@@ -1,7 +1,15 @@
 === PATENT SKEY: 3524504000517 ===
 === SOURCE URL: http://newsd.wips.co.kr/wipslink/api/dkrdshtm.wips?skey=3524504000517 ===
 
-=== DETAILED DESCRIPTION ===
+==============================
+=== CLAIMS ===
+==============================
+
+FAILED TO EXTRACT CLAIMS
+
+==============================
+=== DESCRIPTION ===
+==============================
 
 [기술분야]
 [0001] 본 발명은 테일러 웰디드 블랭크들(Tailor Welded Blanks: TWBs)의 제조를 위한 방법 및 장치, 그리고 접합된 일체의 블랭크를 핫스탬핑하여 차체 부품을 제조하는 방법과 관련된다.

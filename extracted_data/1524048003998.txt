@@ -1,7 +1,15 @@
 === PATENT SKEY: 1524048003998 ===
 === SOURCE URL: http://newsd.wips.co.kr/wipslink/api/depdshtm.wips?skey=1524048003998 ===
 
-=== DETAILED DESCRIPTION ===
+==============================
+=== CLAIMS (청구항) ===
+==============================
+
+청구항 정보를 추출하지 못했습니다.
+
+==============================
+=== DETAILED DESCRIPTION (상세 설명) ===
+==============================
 
 [0001] The present invention relates to laser cutting systems for cutting structural components for vehicles and more particularly to a method for manufacturing a large structural component of a vehicle having a length and a width of 75 cm or more and to a method for manufacturing a unitary side panel for a door frame of a vehicle using such method, see claims 1 and 8.
 

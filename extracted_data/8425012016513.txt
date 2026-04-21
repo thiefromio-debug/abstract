@@ -1,7 +1,15 @@
 === PATENT SKEY: 8425012016513 ===
 === SOURCE URL: http://newsd.wips.co.kr/wipslink/api/dcndshtm.wips?skey=8425012016513 ===
 
-=== DETAILED DESCRIPTION ===
+==============================
+=== CLAIMS ===
+==============================
+
+FAILED TO EXTRACT CLAIMS
+
+==============================
+=== DESCRIPTION ===
+==============================
 
 一种用于锡黄铜和钨钛合金焊接的复合焊料及其用途
 技术领域
