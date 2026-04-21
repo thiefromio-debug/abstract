@@ -1,0 +1,483 @@
+docApp.directive('docCitnDtv', ['$timeout','$http','$compile','docCmmUtilFct', 'docCmmFct', 'docCmmLinkFct', function($timeout, $http, $compile, docCmmUtilFct, docCmmFct, docCmmLinkFct){
+	return {
+		restrict: 'A',
+		link : 	postLink  //compile 이 등록되어 있으면 link 는 수행하지 않는다.
+	};
+	
+	function preCompile(scope, elm, attrs, ctrl){
+		/**
+		 * 변수 초기화
+		 */
+		scope.docVar.docCitnVO.docCitnPatParamVO.skey = scope.docVar.screenVO.skey;
+		scope.docVar.docCitnVO.docCitnPatParamVO.sortField = "lvl";
+		scope.docVar.docCitnVO.docCitnPatParamVO.sortType = "DESC";
+		scope.docVar.docCitnVO.docCitnPatParamVO.pageNum = 1;
+		scope.docVar.docCitnVO.docCitnPatParamVO.pageRow = DocCmmConst.CITN_PAGE_ROW;
+		scope.docVar.docCitnVO.docCitnPatParamVO.subType = 0;
+		scope.docVar.docCitnVO.docCitnPatParamVO.listFilter = 0;
+		scope.docVar.docCitnVO.headerList = [
+		                       		       {id:'chk', fieldNm:'', sortField:'', sortType:'', arrClass:''}   		//check
+		                       		     , {id:'DEPTH', fieldNm:'Depth', sortField:'lvl', sortType:'ASC', arrClass:'ico_arralign ico_default', thClass:'tb_head_backcolor'}   	//Depth
+		                       		     , {id:'CC', fieldNm:'국가', sortField:'ctry', sortType:'DESC', arrClass:'ico_arralign ico_default', thClass:'tb_head_backcolor'}   	//국가
+		                       		     , {id:'AN', fieldNm:'문헌번호', sortField:'appl_num', sortType:'', arrClass:''}   //문서번호
+		                       		     , {id:'S', fieldNm:'인용참증단계', sortField:'', sortType:'', arrClass:''}   			 //유형 -> 인용참증단계(2015-12-17 항목명 수정)
+		                       		     , {id:'AD', fieldNm:'공개일', sortField:'appl_dt', sortType:'', arrClass:''}   	 //공개일
+		                       		     , {id:'appt', fieldNm:'출원인', sortField:'', sortType:'', arrClass:''}   		 //발명의 명칭
+		                       		];
+		
+		
+		// 전체 카운트
+		scope.docVar.docCitnVO.pageCountVO.totRsltCnt = 0;
+		// 인용 건수
+		scope.docVar.docCitnVO.pageCountVO.backRsltCnt = 0;
+		// 피인용 건수
+		scope.docVar.docCitnVO.pageCountVO.forRsltCnt = 0;
+		// 중복 건수
+		scope.docVar.docCitnVO.pageCountVO.duplRsltCnt = 0;
+		// 전체 페이지수 
+		scope.docVar.docCitnVO.pageCountVO.totPageCnt = 1;
+		// 보유 건수
+		scope.docVar.docCitnVO.pageCountVO.holdCnt = 0;
+		// 미보유 건수 
+		scope.docVar.docCitnVO.pageCountVO.missingDocCount = 0;
+		// 전체건수 class
+		scope.docVar.docCitnVO.totClass = 'font_type_bold page_backcolor_step1_text ie7_valignerror_linktext';
+		// 인용건수 class
+		scope.docVar.docCitnVO.backClass = 'ie7_valignerror_text';
+		// 피인용건수 class
+		scope.docVar.docCitnVO.forClass = 'ie7_valignerror_text';
+		// 심사관/심판 참증 단계 보기
+		scope.docVar.docCitnVO.typeChk = 0;
+		
+		scope.findCitnList = function() {
+			
+			// 변수 docCmmVar 및 docCmmConst 로 빼기.
+			var url = "../doc/findCitn.wips";
+			var obj = { skey : scope.docVar.docCitnVO.docCitnPatParamVO.skey
+						, sortField : scope.docVar.docCitnVO.docCitnPatParamVO.sortField
+						, sortType : scope.docVar.docCitnVO.docCitnPatParamVO.sortType
+						, pageNum : scope.docVar.docCitnVO.docCitnPatParamVO.pageNum
+						, pageRow : scope.docVar.docCitnVO.docCitnPatParamVO.pageRow
+						, subType : scope.docVar.docCitnVO.docCitnPatParamVO.subType
+						, listFilter : scope.docVar.docCitnVO.docCitnPatParamVO.listFilter
+					  };
+
+			$http.post(url, $.param(obj),{
+				headers: {'Content-Type': scope.docConst.JSON_CONT_TYPE}
+			}).success(function(data){
+				// 전체 skey
+				scope.docVar.docCitnVO.skeys = data.skeys;
+				scope.docVar.docCitnVO.allChk = false;
+				// 보유목록
+				scope.docVar.docCitnVO.rsltList = data.citnList;
+				
+				//checkbox 초기화
+				if(scope.docVar.docCitnVO.rsltList != null && scope.docVar.docCitnVO.rsltList.length > 0 ){
+					
+					for(var i=0; i < scope.docVar.docCitnVO.rsltList.length; i++){
+						scope.docVar.docCitnVO.rsltList[i].chk = false;
+					}
+				}
+				
+				// 미보유 목록
+				scope.docVar.docCitnVO.missingList = data.citnNoneList;
+				// 전체 건수
+				if(scope.docVar.docCitnVO.pageCountVO != null && data.citnCnt != null){
+					scope.docVar.docCitnVO.pageCountVO.totRsltCnt = data.citnCnt.totRsltCnt + data.citnCnt.totNoneRsltCnt;
+					// 인용 건수
+					scope.docVar.docCitnVO.pageCountVO.backRsltCnt = data.citnCnt.backRsltCnt + data.citnCnt.noneBackRsltCnt;
+					// 피인용 건수
+					scope.docVar.docCitnVO.pageCountVO.forRsltCnt = data.citnCnt.forRsltCnt + data.citnCnt.noneForRsltCnt;
+					// 전체 페이지
+					if(data.citnCnt.totPageCnt != 0) {
+						scope.docVar.docCitnVO.pageCountVO.totPageCnt = data.citnCnt.totPageCnt;
+					}
+					
+					scope.docVar.docCitnVO.pageCountVO.pageNum = scope.docVar.docCitnVO.docCitnPatParamVO.pageNum;
+					scope.docVar.docCitnVO.pageCountVO.pageRow = scope.docVar.docCitnVO.docCitnPatParamVO.pageRow;
+				}
+				scope.clickDevBtnMarker();
+				scope.docQueryHighLighter($("form#paramForm :input[name=hl]").val());
+				
+				scope.docVar.docCitnVO.examnNullChk = false;
+				//심사관 단계보기 데이터 null 처리
+				if(scope.docVar.docCitnVO.typeChk && scope.docVar.docCitnVO.rsltList.length == 0){
+					scope.docVar.docCitnVO.pageCountVO.totRsltCnt = 1;
+					scope.docVar.docCitnVO.examnNullChk = true;
+				}
+				
+				// 상세보기 오른쪽 메뉴 레이어 메뉴 수정
+				// 인용 건수
+				if(scope.docVar.docCitnVO.pageCountVO.backRsltCnt > 0){
+					scrollRightSet("devCitn", "인용 ("+scope.docVar.docCitnVO.pageCountVO.backRsltCnt+")");
+				}
+				// 피인용 건수
+				if(scope.docVar.docCitnVO.pageCountVO.forRsltCnt > 0){
+					scrollRightSet("devForCitn", "피인용 ("+scope.docVar.docCitnVO.pageCountVO.forRsltCnt+")");
+				}
+				
+			}).error(function(data, status){
+				/*if (/EgovBizException/.test(data.responseText)) {
+		            alert(data.responseText.match(/EgovBizException: &quot;(.*?)&quot;/)[1]);
+		            // error 처리
+		        }
+		        else {
+		            alert("에러가 발생하였습니다. " + status + "\nError: " + data.responseText);
+		        }*/
+			});
+			
+		};
+		
+		/**
+		 * 헤더에서 소트키 클릭시
+		 */
+		scope.citnListSort = function(headerIndex){
+			
+			for(var i = 0; i < scope.docVar.docCitnVO.headerList.length; i++){
+				if(scope.docVar.docCitnVO.headerList[i].sortField === ''){
+					continue;
+				}
+				
+				if(i === headerIndex) {
+					if(scope.docVar.docCitnVO.headerList[i].sortType === "DESC") {
+						scope.docVar.docCitnVO.headerList[i].sortType = "ASC";
+						scope.docVar.docCitnVO.headerList[i].arrClass = "ico_arralign ico_arrup";
+						//scope.docVar.docCitnVO.headerList[i].thClass = "tb_head_backcolor font_color_orange";
+						scope.docVar.docCitnVO.headerList[i].fontClass = "font_color_orange";
+					} else {
+						scope.docVar.docCitnVO.headerList[i].sortType = "DESC";
+						scope.docVar.docCitnVO.headerList[i].arrClass = "ico_arralign ico_arrdown";
+						//scope.docVar.docCitnVO.headerList[i].thClass = "tb_head_backcolor font_color_orange";
+						scope.docVar.docCitnVO.headerList[i].fontClass = "font_color_orange";
+					}
+					scope.docVar.docCitnVO.docCitnPatParamVO.sortField = scope.docVar.docCitnVO.headerList[i].sortField;
+					scope.docVar.docCitnVO.docCitnPatParamVO.sortType = scope.docVar.docCitnVO.headerList[i].sortType;
+					
+				} else {
+					scope.docVar.docCitnVO.headerList[i].arrClass = "ico_arralign ico_default";
+					//scope.docVar.docCitnVO.headerList[i].thClass = "tb_head_backcolor";
+					scope.docVar.docCitnVO.headerList[i].fontClass = "";
+				}
+				/*else {
+					scope.docVar.docCitnVO.headerList[i].arrClass = "";
+				}*/
+			}
+			
+			scope.findCitnList();
+		};
+		
+		/**
+		 * 서브통계 클릭시
+		 */
+		scope.citnListSubSelect = function(subType){
+			
+			scope.docVar.docCitnVO.docCitnPatParamVO.subType = subType;
+			
+			// 페이징 리셋
+			scope.docVar.docCitnVO.docCitnPatParamVO.pageNum = 1;
+			if(subType == 0) {
+				// 전체건수 class
+				scope.docVar.docCitnVO.totClass = 'font_type_bold page_backcolor_step1_text ie7_valignerror_linktext';
+				// 인용건수 class
+				scope.docVar.docCitnVO.backClass = 'ie7_valignerror_text';
+				// 피인용건수 class
+				scope.docVar.docCitnVO.forClass = 'ie7_valignerror_text';
+			} else if(subType == -1) {
+				// 전체건수 class
+				scope.docVar.docCitnVO.totClass = 'page_backcolor_step1_text ie7_valignerror_linktext';
+				// 인용건수 class
+				scope.docVar.docCitnVO.backClass = 'ie7_valignerror_text font_type_bold';
+				// 피인용건수 class
+				scope.docVar.docCitnVO.forClass = 'ie7_valignerror_text';
+			} else if (subType == 1) {
+				// 전체건수 class
+				scope.docVar.docCitnVO.totClass = 'page_backcolor_step1_text ie7_valignerror_linktext';
+				// 인용건수 class
+				scope.docVar.docCitnVO.backClass = 'ie7_valignerror_text';
+				// 피인용건수 class
+				scope.docVar.docCitnVO.forClass = 'ie7_valignerror_text font_type_bold';
+			} 
+			
+			scope.findCitnList();
+		};
+		
+		
+		/**
+		 * 이전페이지 클릭시
+		 */
+		scope.prevPageCitn = function(){
+			if(scope.docVar.docCitnVO.docCitnPatParamVO.pageNum == 1){
+				//alert('첫번째 페이지입니다.');
+				return;
+			}
+			
+			scope.docVar.docCitnVO.docCitnPatParamVO.pageNum = scope.docVar.docCitnVO.docCitnPatParamVO.pageNum - 1;
+			scope.findCitnList();
+		};
+		
+		/**
+		 * 다음페이지 클릭시
+		 */
+		scope.nextPageCitn = function(){
+			if(scope.docVar.docCitnVO.docCitnPatParamVO.pageNum == scope.docVar.docCitnVO.pageCountVO.totPageCnt){
+				//alert('마지막 페이지 입니다.');
+				return;
+			}
+			
+			scope.docVar.docCitnVO.docCitnPatParamVO.pageNum = scope.docVar.docCitnVO.docCitnPatParamVO.pageNum + 1;
+			scope.findCitnList();
+		};
+
+		/**
+		 * 인용분석 링크 
+		 */
+		scope.openCitnAnalysis = function(){
+			var url = "../cia/ciaSearch.wips";
+			var form = document.createElement('form');
+			$(form).attr('action', url)
+				   .attr('id', 'citaParamForm')
+				   .attr('method', 'get')
+				   .attr('target', '_blank');
+			$(form).html('<input type="hidden" name="skey" value="' + scope.docVar.docCitnVO.docCitnPatParamVO.skey +'" />' );
+			document.body.appendChild(form);
+
+			$(form).submit();
+			$('form#citaParamForm').remove();	
+		};
+		
+		
+		//원문 아이콘 class
+		scope.pdfIconClass = function(pdfGb, ctry) {
+			if(ctry == "CA"){
+				pdfGb = 0;
+			}
+			
+			if(pdfGb == 1 || pdfGb == 2) {
+				return 'btn_openpdf';
+			}
+			else { // null
+				return "btn_dispdf";
+			}
+		};
+		
+		//인용/피인용 레벨 단계 변환
+		scope.lvlConvert = function(lvl) {
+			var depth = "";
+			
+			if(lvl.indexOf(',') != -1){
+				lvl = lvl.split(',');
+				
+				lvl.forEach(function(i){
+					if(depth.length > 1){
+						depth += ",";
+					}
+					
+					if(i == "-1"){
+						depth += "B1";
+					} else if(i == "1"){
+						depth += "F1";
+					}
+				});
+			} else {			// 단일 레벨
+				if(lvl == "-1"){
+					depth += "B1";
+				} else if(lvl == "1"){
+					depth += "F1";
+				}
+			}
+			
+			return depth;
+		};
+		
+		/**
+		 * Citn Type 변경
+		 */
+		scope.typeChkChangeCitn = function(){
+			if(scope.docVar.docCitnVO.typeChk == 1){
+				scope.docVar.docCitnVO.typeChk = 0;
+			} else {
+				scope.docVar.docCitnVO.typeChk = 1;
+			}
+			
+			scope.docVar.docCitnVO.docCitnPatParamVO.listFilter = scope.docVar.docCitnVO.typeChk;
+			scope.docVar.docCitnVO.docCitnPatParamVO.pageNum = 1;
+			scope.findCitnList();
+		};
+		
+	};
+	function postLink(scope, elm, attrs, ctrl){
+		preCompile(scope, elm, attrs, ctrl);
+		elm.empty();
+		var innerHtml = docCmmUtilFct.hereDoc(function() {/*!
+						<div class="devHighlightNg" id="devCitnPos" ng-if = "docVar.docCitnVO.pageCountVO.totRsltCnt > 0">
+							<div class="dc_leftblock">
+	                            <span class="first_line">인용/피 인용 특허문헌</span>
+	                        </div>
+							<div class="dc_context_block">
+								<div class="clear"><!-- --></div>
+								<div class="float_l marg_top_05">
+									<div class="float_l marg_right_20 doc_page_totalbox">
+										전체 
+										<span ng-class="docVar.docCitnVO.totClass"><a href="javascript:void(0);" ng-bind="docVar.docCitnVO.pageCountVO.totRsltCnt" ng-click="citnListSubSelect(0)"></a></span> 건
+										&nbsp;
+										<span ng-show="docVar.docCitnVO.pageCountVO.backRsltCnt > 0" class="ie7_valignerror_text">인용(<a href="javascript:void(0);" ng-class="docVar.docCitnVO.backClass" ng-bind = "docVar.docCitnVO.pageCountVO.backRsltCnt" ng-click="citnListSubSelect(-1)"></a>)</span>
+										<span ng-show="docVar.docCitnVO.pageCountVO.backRsltCnt == 0" class="ie7_valignerror_text">인용(0)</span>
+										
+										<span ng-show="docVar.docCitnVO.pageCountVO.forRsltCnt > 0" class="ie7_valignerror_text">피인용(<a href="javascript:void(0);" ng-class="docVar.docCitnVO.forClass" ng-bind="docVar.docCitnVO.pageCountVO.forRsltCnt" ng-click="citnListSubSelect(1)"></a>)</span><span
+										ng-show="docVar.docCitnVO.pageCountVO.forRsltCnt == 0" class="ie7_valignerror_text">피인용(0)</span>
+									</div>
+								</div>
+								<div class="float_r">
+									<div class="ico_mark_que dis_b position_r examn_tooltip_wrap">
+										<p class="font_size_11 arrowBox_top_center examn_tooltip">심사관/ 심판 참증단계가 제공되는 한국, 미국, 일본, EP에서 확인할 수 있습니다.</p>
+									</div>
+									<span class="float_l marg_right_40">
+										<input type="checkbox" id="citn_type_examn" name="citn_type" value="examn" ng-click="typeChkChangeCitn();">
+										<label for="citn_type_examn">심사관/ 심판 참증단계 보기 </label>
+									</span>
+									<div class="paginate_type3 pagenate_align">
+										<span class="pagenum"><span ng-bind="docVar.docCitnVO.pageCountVO.pageNum"></span>/<span ng-bind="docVar.docCitnVO.pageCountVO.totPageCnt"></span></span>
+										<a ng-if="docVar.docCitnVO.pageCountVO.pageNum > 1" href="javascript:void(0);" ng-click="prevPageCitn();">
+											<span class="direction"><span class="prev"><!-- --></span><span class="ir_pm">이전</span></span>
+										</a>
+										<span ng-if="docVar.docCitnVO.pageCountVO.pageNum <= 1"> 
+											<span class="direction btn_dis_type"><span class="prev"><!-- --></span><span class="ir_pm">이전</span></span>
+										</span>
+										<a ng-if="docVar.docCitnVO.pageCountVO.totPageCnt > docVar.docCitnVO.pageCountVO.pageNum" href="javascript:void(0);" ng-click="nextPageCitn();">
+											<span class="direction"><span class="next"><!-- --></span><span class="ir_pm">다음</span></span>
+										</a>
+										<span ng-if="docVar.docCitnVO.pageCountVO.totPageCnt <= 1 || docVar.docCitnVO.pageCountVO.pageNum == docVar.docCitnVO.pageCountVO.totPageCnt"> 
+										<span class="direction btn_dis_type"><span class="next"><!-- --></span><span class="ir_pm">다음</span></span>
+										</span> 
+									</div>
+								</div>
+								<div class="clear"><!-- --></div>
+								<table class="marg_top_05 table_type2 oneline_width tb_valign_type devDocViewOption">
+									<colgroup>
+										<col width="30" />
+										<col width="65" />
+										<col width="55" />
+										<col width="166" />
+										<col width="250" />
+										<col width="*" />
+										<col width="90" />
+										<col width="200" />
+									</colgroup>
+									<thead>
+										<tr>
+											<th class="tb_head_backcolor">No</th>
+											<th class="tb_head_backcolor"><a href="javascript:void(0);" ng-click="citnListSort(1)" ng-class="docVar.docCitnVO.headerList[1].fontClass"><span ng-bind-html="docVar.docCitnVO.headerList[1].fieldNm"></span><span ng-class="docVar.docCitnVO.headerList[1].arrClass"><!-- --></span></a></th>
+											<th class="tb_head_backcolor"><a href="javascript:void(0);" ng-click="citnListSort(2)" ng-class="docVar.docCitnVO.headerList[2].fontClass"><span ng-bind-html="docVar.docCitnVO.headerList[2].fieldNm"></span><span ng-class="docVar.docCitnVO.headerList[2].arrClass"><!-- --></span></a></th>
+											<th class="tb_head_backcolor">문헌번호</th>
+											<th class="tb_head_backcolor">
+													<div class="position_r citnSectCdNm_title" id="newIconCitnSectCdNm">
+															<span class="float_l">인용참증단계</span> 
+															<div class="ico_mark_que dis_b float_l marg_left_05 marg_top_05 position_r" onmouseover="$('#citnSectCdNm_layer1').show();" onmouseout="$('#citnSectCdNm_layer1').hide();"><!-- 물음표 -->
+																<div class="arrowBox_top_center citnSectCdNm_layer" id="citnSectCdNm_layer1">
+																	<div class="arrowBox_title">
+																	<strong class="float_l">인용참증단계</strong>
+																	<span class="float_l font_size_11 font_color_888 marg_left_15">해당 인용문헌이 심사단계에서 어떻게 활용되었는지 그 출처를 파악할 수 있습니다.</span>
+																	</div>
+																	<div class="arrowBox_content">
+																		<dl class="bul_style_list">
+																			<dt class="screen_out">인용참증단계 상세안내</dt>
+																			<dd><strong>이의</strong> : 이의신청 과정에서 활용된 문헌 (ex. 이의신청증거, 이의결정증거, 이의증거)</dd>
+																			<dd><strong>심사관</strong>: 심사과정에서 활용된 심사관 인용문헌 (ex. 거절이유통지, 심사관인용, 거절결정, 특허결정, 심사보고서)</dd>
+																			<dd><strong>조사보고</strong> : 국제조사단계에서 활용된 문헌 (ex. 조사보고서, 국제조사기관의견서, 국제 예비심사 보고)</dd>
+																			<dd><strong>선행조사</strong> : 선행기술조사과정에서 활용된 문헌 (ex. 선행기술조사)</dd>
+																			<dd><strong>심판</strong> : 심판단계에서 무효심판 청구로 인용하거나, 심결의 증거로 활용된 문헌 (ex. 무효심판 인용, 심판청구기록, 심판심결증거, 심판거절이유, PTAB인용)</dd>
+																			<dd><strong>출원서</strong> : 인용참증단계에 대한 명확한 속성 없이 공보에서 인용한 문헌 (ex. 출원서 인용)</dd>
+																			<dd><strong>기타</strong> : 심사전치 보고, 기술평가, 보정각하 과정에서 활용된 문헌 (ex. 심사전치, 기타 관련정보, 기술평가서, 보정각하 등 -JP만 제공)</dd>
+																		</dl>
+																	</div>
+																</div>
+															</div>
+													</div>
+											</th>
+											<th class="tb_head_backcolor font_align_left txt_mintype">발명의 명칭</th>
+											<th class="tb_head_backcolor">일자</th>
+											<th class="tb_head_backcolor font_align_left">출원인</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-show="docVar.docCitnVO.rsltList.length == 0 || docVar.docCitnVO.examnNullChk">
+											<td colspan="8" class="font_align_center highlightText ">
+												<p>해당 정보가 없습니다.</p>
+											</td>
+										</tr>
+										<tr ng-show="docVar.docCitnVO.rsltList.length > 0" ng-repeat="citn in docVar.docCitnVO.rsltList">
+											<td class="font_align_center lineheight_reset_padd" ng-bind="((docVar.docCitnVO.pageCountVO.pageNum - 1) * docVar.docCitnVO.pageCountVO.pageRow) + $index+1"></td>
+											<td class="font_align_center lineheight_reset_padd highlightText" ng-bind-html="lvlConvert(citn.lvl) | trimFilter"></td>
+											<td class="font_align_center lineheight_reset_padd highlightText" ng-bind-html="citn.ctry | trimFilter"></td>
+											<td class="lineheight_reset_padd highlightText">
+												<span ng-if="citn.grtNum != null && citn.grtNum != ''" class="item_type">
+													<a ng-hide="citn.grtPdfGb == '0'" doc-citn-pdf-function-dtv ng-model="citn.ctry" pdf-skey="{{citn.grtSkey}}" ng-class="pdfIconClass(citn.grtPdfGb, citn.ctry) + ' float_l marg_top_m1 marg_right_05'"><span class="screen_hide">PDF</span></a>
+													<span ng-show="citn.grtPdfGb == '0' && citn.grtNum != null" ng-class="pdfIconClass(citn.grtPdfGb, citn.ctry) + ' float_l marg_top_m1 marg_right_05'"><span class="screen_hide">PDF</span></span>
+													<a ng-hide="citn.grtSkey == null || citn.grtSkey == ''" doc-citn-link-dtv ng-model="citn"><span ng-bind-html="citn.grtNum"></span></a>
+													<span ng-show = "citn.grtSkey == null || citn.grtSkey == ''" ng-bind-html="citn.grtNum"></span>
+												</span>
+												<span ng-if="citn.grtNum == null || citn.grtNum == ''" class="item_type"></span>
+												<span ng-if="citn.publNum != null && citn.publNum != ''" class="item_type">
+													<a ng-hide="citn.publPdfGb == '0'" doc-citn-pdf-function-dtv ng-model="citn.ctry" pdf-skey="{{citn.publSkey}}" ng-class="pdfIconClass(citn.publPdfGb, citn.ctry) + ' float_l marg_top_m1 marg_right_05'"><span class="screen_hide">PDF</span></a>
+													<span ng-show="citn.publPdfGb == '0'" ng-class="pdfIconClass(citn.publPdfGb, citn.ctry) + ' float_l marg_top_m1 marg_right_05'"><span class="screen_hide">PDF</span></span>
+													<a ng-hide = "citn.publSkey == null || citn.publSkey == ''" doc-citn-link-dtv ng-model="citn"><span ng-bind-html="citn.publNum"></span></a>
+													<span ng-show = "citn.publSkey == null || citn.publSkey == ''" ng-bind-html="citn.publNum"></span>
+												</span>
+												<span ng-if="citn.publNum == null" class="item_type"></span>
+											</td>
+											<td class="lineheight_reset_padd highlightText">                                        	 
+												<span ng-if="citn.examnRefYn == 'BE'" class="icon_type"><img ng-show="citn.examnRefYn == 'BE'" src="../image/icon/ico_be.gif" alt="cited by examiner"/></span>
+												<span ng-if="citn.examnRefYn == 'FE'" class="icon_type"><img ng-show="citn.examnRefYn == 'FE'" src="../image/icon/ico_fe.gif" alt="Citing by Examiner"/></span>
+												<span ng-if="citn.examnRefYn == 'BE,FE'" class="icon_type"><img ng-show="citn.examnRefYn == 'BE,FE'" src="../image/icon/ico_be.gif" alt="cited by examiner"/></span>
+												<span ng-if="citn.examnRefYn == 'BE,FE'" class="icon_type"><img ng-show="citn.examnRefYn == 'BE,FE'" src="../image/icon/ico_fe.gif" alt="Citing by Examiner"/></span>                   
+												<span ng-bind-html="citn.sectCdNm"></span>
+											</td>
+											<td class="txt_mintype lineheight_reset_padd highlightText">
+												<a ng-hide="citn.grtSkey == null || citn.grtSkey == ''" doc-citn-link-dtv ng-model="citn" ng-bind-html="citn.invTi"></a>
+												<a ng-show="citn.grtSkey == null || citn.grtSkey == ''" doc-citn-link-dtv ng-model="citn" ng-bind-html="citn.invTi"></a>
+											</td>
+											<td class="font_align_center lineheight_reset_padd highlightText" ng-bind-html="citn.date"></td>
+											<td class="lineheight_reset_padd highlightText" ng-bind-html="citn.appt"></td>
+										</tr>
+									</tbody>
+								</table>
+								<div class="icon_tipremark_block bottom_type">
+									<span class="items"><img src="../image/icon/ico_be.gif" class="imgico_align2"><span class="info_error_textstyle">심사관 인용(Backward by Examiner)</span></span>&nbsp;<span class="items_last"><img src="../image/icon/ico_fe.gif" class="imgico_align2"><span class="info_error_textstyle">심사관 피 인용(Forward by Examiner)</span></span>
+									<!-- ITS7097(개선) 테이블하단 페이징영역 추가 -->
+									<div class="paginate_type3 pagenate_align5 marg_left_40">
+									 	<span class="pagenum"><span ng-bind="docVar.docCitnVO.pageCountVO.pageNum"></span>/<span ng-bind="docVar.docCitnVO.pageCountVO.totPageCnt"></span></span>
+										<a ng-if="docVar.docCitnVO.pageCountVO.pageNum > 1" href="javascript:void(0);" ng-click="prevPageCitn();">
+											<span class="direction"><span class="prev"><!-- --></span><span class="ir_pm">이전</span></span>
+										</a>
+										<span ng-if="docVar.docCitnVO.pageCountVO.pageNum <= 1"> 
+											<span class="direction btn_dis_type"><span class="prev"><!-- --></span><span class="ir_pm">이전</span></span>
+										</span>
+										<a ng-if="docVar.docCitnVO.pageCountVO.totPageCnt > docVar.docCitnVO.pageCountVO.pageNum" href="javascript:void(0);" ng-click="nextPageCitn();">
+											<span class="direction"><span class="next"><!-- --></span><span class="ir_pm">다음</span></span>
+										</a>
+										<span ng-if="docVar.docCitnVO.pageCountVO.totPageCnt <= 1 || docVar.docCitnVO.pageCountVO.pageNum == docVar.docCitnVO.pageCountVO.totPageCnt"> 
+											<span class="direction btn_dis_type"><span class="next"><!-- --></span><span class="ir_pm">다음</span></span>
+										</span> 
+									</div>
+								</div>
+								<div class="clear"><!-- --></div>
+								<div class="remark_footblock">
+									<p ng-hide="docVar.docCitnVO.missingList.length == 0">
+										<span class="title_text2">* 미포함 문헌 : <span ng-bind="docVar.docCitnVO.missingList.length"></span>건 (절차상 미공개 문헌, 과거분 문헌, WIPS 보유 데이터 범위에 포함되지 않는 문헌)</span>
+										<span ng-repeat="missing in docVar.docCitnVO.missingList">
+											<span ng-class="{'font_color_888': true, 'text_divbar': !$last, 'float_l': $last}" ng-bind-html="missing.refCtry + ' ' + missing.refApplNumKey"></span>
+										</span>
+									</p> 
+								</div>
+								<div class="list_space"><!-- --></div>
+							</div>
+						</div>
+                */
+		});
+		
+		elm.html($compile(innerHtml)(scope));
+		scope.findCitnList();
+	};
+	
+	
+}]);

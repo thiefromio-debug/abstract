@@ -1,0 +1,305 @@
+/**
+ * 작성자 : 김성민
+ * 하이라이팅 및 형광펜 되어야 할 부분을 <div class="highlightText"></div> 감싸줘야 한다.
+ */
+
+/**
+ * 고객센터 검색결과 > 이용매뉴얼 하이라이트
+ */
+function ctsUserManualHighLighter(hlKeyword){
+	if(hlKeyword != '' && hlKeyword != null ){
+		var keywordArray = hlKeyword.split(' ');
+		for (var i = 0; i < keywordArray.length; i++) {
+			if(keywordArray[i] != null && keywordArray[i] != ""){
+				$("div.helpcenter_menual_block").executeHighLight(keywordArray[i], 'font_bgc_yellow no_arrow');
+			}
+		}	
+	}
+}
+
+/**
+ * 고객센터 > 키워드 하이라이트
+ */
+function ctsKeywordHighLighter(hlKeyword){
+	if(hlKeyword != '' && hlKeyword != null ){
+		var keywordArray = hlKeyword.split(' ');
+		for (var i = 0; i < keywordArray.length; i++) {
+			if(keywordArray[i] != null && keywordArray[i] != ""){
+				$("td.highlightText").executeHighLight(keywordArray[i], 'font_color_orange font_type_bold no_arrow');
+			}
+		}	
+	}
+}
+
+/**
+ * 검색식 하이라이트
+ */
+function queryHighLighter(hlKeyword){
+	if(hlKeyword != '' && hlKeyword != null ){
+		var keywordArray = hlKeyword.split(' ');
+		for (var i = 0; i < keywordArray.length; i++) {
+			if(keywordArray[i] != null && keywordArray[i] != ""){
+			$("div.highlightText").executeHighLight(keywordArray[i], 'font_color_orange');
+			}
+	    }	
+	}
+}
+
+/**
+ * 검색식 하이라이트 해제
+ */
+function queryHighLightRemover(){
+	$("div.highlightText").clearHighLight("font_color_orange");
+}
+
+/**
+ * 형광펜
+ */
+function markerHighLighter(){
+	var map = new Object();
+	$('input[name=marker]').each(function(i){
+		var keyworld = $(this).val().replace(/(^\s*)|(\s*$)/gi, '');
+		if(keyworld.lastIndexOf('(\u200B') > -1){
+			keyworld = keyworld.substring(0, keyworld.lastIndexOf('(\u200B'));
+		}
+		if($(this).attr('class').match("color([0-9]+)") !== null){
+			var className = 'highlight_text' + ($(this).attr('class').match("color([0-9]+)"))[1];
+			$('div.highlightText, span.highlightText, p.highlightText').clearHighLight(className);
+			
+			if(keyworld.length > 0){
+				var count = $("div.highlightText:visible, span.highlightText:visible, p.highlightText:visible, .division_con span.highlightText").executeHighLight(keyworld, className);
+				//마이폴더 찾기 기능 제외 (its-19460)
+				if($('.myf_wrap').is(':visible')){
+					$(this).val(keyworld + '(\u200B' + count + ')');
+					$(this).attr("title", keyworld + '(\u200B' + count + ')');
+				}else{
+					//카운트 형식 수정
+					if(count == 0){
+						$(this).val(keyworld + '(\u200B' + '0/' + count + ')');
+						$(this).attr("title", keyworld + '(\u200B' + '0/' + count + ')');
+					}else{
+						$(this).val(keyworld + '(\u200B' + '1/' + count + ')');
+						$(this).attr("title", keyworld + '(\u200B' + '1/' + count + ')');
+					}
+					$(this).parent('div').removeClass('no_data');
+					$(this).next().children().attr('disabled',false);
+				}
+			} else if(!$('.myf_wrap').is(':visible')){
+				//값 없을 경우 화살표 숨김
+				$(this).parent('div').addClass('no_data');
+				$(this).next().children().attr('disabled',true);
+			}
+			//DOC input hidden value add
+			if($('input[name=highlighters]').length > 0){
+				$('input[name=highlighters]').eq(i).val(keyworld);
+			}
+			//재검색 시 방향키 인덱스 초기화
+			highIdx = new Array();
+		}else if(!$('.myf_wrap').is(':visible')){
+			//비활성화 경우 화살표 숨김
+			$(this).parent('div').addClass('no_data');
+			$(this).next().children().attr('disabled',true);
+		}
+		map['hli.hliKeyword' + (i + 1)] = keyworld;
+	});
+	if($('#devHliKeywordYn').val() === 'Y'){
+		setHliConfiguration(map);
+	}
+	
+	// DOC 화학식 하이라이트 이벤트 재 바인딩
+	if($("#chem").val() === 'Y'){
+		highlightDraw();
+	}
+}
+
+/**엔터키 up 시 해당 필드에서 Parent Object 로 전파되는 거 막는다. **/
+function skipParentEvent(event){
+	var intKeyCode = (event.keyCode ? event.keyCode : (event.which ? event.which : event.charCode));
+	if(intKeyCode == 13 || intKeyCode == 37 || intKeyCode == 39){
+		event.preventDefault(); 
+		event.stopPropagation();
+	}
+}
+
+function markerHighLighterRemover(){
+	$('input[name=marker]').each(function(){
+		if($(this).attr('class').match("color([0-9]+)") !== null){
+			var className = 'highlight_text' + ($(this).attr('class').match("color([0-9]+)"))[1];
+			$('div.highlightText, span.highlightText').clearHighLight(className);
+		}
+	});
+}
+
+function getHliConfiguration(){
+	var hliConfigurationObj = '';
+	var list = [
+	            "hli.hliOption",
+	            "hli.hliKeywordYn",
+	            "hli.hliLayerYn",
+	            "hli.hliKeyword1",
+	            "hli.hliKeyword2",
+	            "hli.hliKeyword3",
+	            "hli.hliKeyword4",
+	            "hli.hliKeyword5",
+	            "hli.hliKeyword6",
+	            "hli.hliKeyword7",
+	            "hli.hliKeyword8",
+	            "hli.hliKeyword9",
+	            "hli.hliKeyword10",
+	            "hli.hliKeyword11",
+	            "hli.hliKeyword12",
+	            "hli.hliKeyword13",
+	            "hli.hliKeyword14",
+	            "hli.hliKeyword15",
+	            "hli.hliKeyword16"
+	            ];
+
+	$.ajax({
+		type: "post",
+		url: "../cmm/getConfiguration.wips",
+		dataType: "JSON",
+		async : false,
+		contentType: 'application/json',
+		data: JSON.stringify(list),
+		success: function(data, textStatus) {
+			hliConfigurationObj = data.configuration;
+		}
+	});
+	return hliConfigurationObj;
+}
+
+function setHliConfiguration(map){
+	
+	$.ajax({
+		type: "post",
+		url: "../cmm/setConfiguration.wips",
+		dataType: "JSON",
+		async : true,
+		contentType: 'application/json',
+		data: JSON.stringify(map),
+		success: function(data, textStatus) {
+		},
+		error   : function(jqXHR, textStatus, errorThrown) {
+	    	if(jqXHR.status == 403){
+	    		location.href = "../mai/main.wips";
+	    	}else if(jqXHR.status == 200 && jqXHR.responseText != null && jqXHR.responseText.indexOf("errorCode") > 1 && jqXHR.responseText.indexOf("700") > 1){
+	    		location.href = "../mai/main.wips";
+	    	}
+	    }
+	});
+}
+
+/**
+ * 형광펜 방향키
+ */
+var highIdx = new Array();
+
+function highlightFind(idx,dir,code){
+	
+	var highlightList = $("span.highlight_text"+idx);
+	
+	highlightList.removeClass('txt_stronglight');
+	if(typeof highIdx[idx] == "undefined" || highIdx[idx] == null){
+		highIdx[idx] = 0;
+	}else{
+		if(dir=="prev"){
+			highIdx[idx]--;
+		}else if (dir=="next"){
+			highIdx[idx]++;
+		}
+	}
+	//맨 위까지 찾았을 경우 마지막으로
+	if(highIdx[idx] == -1){
+		highIdx[idx] = highlightList.length - 1;
+	}
+	//마지막까지 찾았을 경우 맨 위로
+	if(highIdx[idx] == highlightList.length){
+		highIdx[idx] = 0;
+	}
+	highlightList.eq(highIdx[idx]).addClass('txt_stronglight');
+	
+	//스크롤 이동
+	if(highlightList.length != 0){
+		var strongLight = $("span.highlight_text" + idx + ".txt_stronglight");
+		var offset = strongLight[0].offsetTop - 300;
+		
+		if(code=="doc"){
+			offset = strongLight[0].offsetTop - $('.viewmode').offset().top;
+			//nmt 번역 - AI 실시간 번역하기 버튼 클릭시 위치잡기
+			if(strongLight.parents('#devTrnsDesc').length != 0){
+				offset = offset + ($('#devTrnsDesc').offset().top-300);
+			}
+			$('html, body').scrollTop(offset);
+		}else if(code=="cop"){
+			//왼쪽 탭
+			if($('#devLeftScroll').find(strongLight).length > 0){
+				$('#devLeftScroll').scrollTop(offset);
+			}
+			//오른쪽 탭
+			if($('#devRigtScroll').find(strongLight).length > 0){
+				$('#devRigtScroll').scrollTop(offset);
+			}
+		}else if(code=="ezv"){
+			if(currentTabType === 'doc') {
+				//타이틀 영역일 때는 offset 재조정
+				if(strongLight.eq(0).offsetParent()[0].className === 'titletext') {
+					offset = strongLight.eq(0).offsetParent().offsetParent()[0].offsetTop;
+				}
+				$('#devDocContentSection').scrollTop(offset);
+			} else if(currentTabType === 'thumnail') {
+				//타이틀 영역일 때는 offset 재조정
+				if(strongLight.eq(0).offsetParent()[0].className === 'titletext') {
+					offset = strongLight.eq(0).offsetParent().offsetParent()[0].offsetTop;
+				}
+				$('#devDrawingContentSection').scrollTop(offset);
+			} else if(currentTabType === 'representative' || currentTabType === 'individual') {
+				var name = $('#devDescContent li.on').eq(0).attr('name');
+				$('div[name=' + name + ']').scrollTop(offset);
+			}
+		}else if(code =="cla"){
+			//청구항 계층분석 탭
+			if($('#devUlLeft').find(strongLight).length > 0){
+				$('#devUlLeft').scrollTop(offset);
+			}else if($('#devUlRight').find(strongLight).length > 0){
+				$('#devUlRight').scrollTop(offset);
+			}
+			//공개/등록청구항 비교 탭
+			else{
+				$('html, body').scrollTop(offset + 700);
+			}
+		}
+	}
+
+	//형광펜 숫자표기
+	var keyworld = $('.highlight_color'+idx).val().replace(/(^\s*)|(\s*$)/gi, '');
+	if(keyworld.lastIndexOf('(\u200B') > -1){
+		keyworld = keyworld.substring(0, keyworld.lastIndexOf('(\u200B'));
+	}
+	var total = highlightList.length; //총 갯수
+	var cnt = highIdx[idx]+1; //현재 수
+	if(total != 0 ){
+		$(".highlight_color"+idx).val(keyworld + '(\u200B' + cnt + '/'+ total + ')');
+		$(".highlight_color"+idx).attr("title", keyworld + '(\u200B' + cnt + '/'+ total + ')');
+	}
+}
+/**
+ * 형광펜 이벤트
+ */
+function highLightKeyEvent(event,idx,code) {
+    var intKeyCode = (event.keyCode ? event.keyCode : (event.which ? event.which : event.charCode));
+    //엔터
+    if (intKeyCode == 13) {
+    	markerHighLighter();
+    }
+    //마이폴더 찾기 기능 제외 (its-19460)
+    if(code != "myf"){
+		//윗 방향키 단축키
+		if(intKeyCode == 38){
+			highlightFind(idx,'prev',code);
+		}
+		//아래 방향키 단축키
+		if(intKeyCode == 40){
+			highlightFind(idx,'next',code);
+		}
+    }
+}

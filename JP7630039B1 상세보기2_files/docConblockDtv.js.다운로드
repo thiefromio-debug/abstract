@@ -1,0 +1,127 @@
+docApp.directive('docConblockDtv', ['$timeout','$http','$compile','docCmmUtilFct', 'docCmmFct', 'docCmmLinkFct', 'docCmmUiFct', 'docInitFct', function($timeout, $http, $compile, docCmmUtilFct, docCmmFct, docCmmLinkFct, docCmmUiFct, docInitFct){
+	return {
+		restrict: 'A',
+		link : 	postLink  //compile 이 등록되어 있으면 link 는 수행하지 않는다.
+	};
+	
+	function getContents(scope, elm){
+		
+		$.openLoadingBar();
+		// 변수 docCmmVar 및 docCmmConst 로 빼기.
+		var url = "";
+		if($("#ctry").val() == "KR"){
+			url = "../api/findDkrDocInfo.wips";
+		} else if($("#ctry").val() == "US"){
+			url = "../api/findDusDocInfo.wips";
+		} else if($("#ctry").val() == "JP"){
+			url = "../api/findDjpDocInfo.wips";
+		} else if($("#ctry").val() == "EP"){
+			url = "../api/findDepDocInfo.wips";
+		} else if($("#ctry").val() == "WO"){
+			url = "../api/findDwoDocInfo.wips";
+		} else if($("#ctry").val() == "CN"){
+			url = "../api/findDcnDocInfo.wips";
+		} else if($("#ctry").val() == "PAJ"){
+			url = "../api/findDpaDocInfo.wips";
+		} else if($("#ctry").val() == "KPA"){
+			url = "../api/findDkpDocInfo.wips";
+		} else {
+			url = "../api/findDipDocInfo.wips";
+		}
+		
+		var paramObj = { skey : scope.docVar.screenVO.skey
+				, tabGb : scope.docVar.screenVO.tabGb
+				, isAbEnable : $("form#paramForm :input[name=isAbEnable]").val()
+				, isClEnable : $("form#paramForm :input[name=isClEnable]").val()
+				, isDsEnable : $("form#paramForm :input[name=isDsEnable]").val()
+				, isAdEnable : $("form#paramForm :input[name=isAdEnable]").val()
+				, isPsEnable : $("form#paramForm :input[name=isPsEnable]").val()
+				, isJdEnable : $("form#paramForm :input[name=isJdEnable]").val()
+				, isFtEnable : $("form#paramForm :input[name=isFtEnable]").val()};
+		
+		$.ajax({
+			url: url,
+			type: 'POST',
+			cache: 'false',
+			async: 'true',
+			dataType: 'html',
+			data:paramObj,
+			success: function(data, textStatus, jqXHR) {
+				//유니코드가 아닌데 유니코드로 인식해서 오류 sample:8419091000019. 유니코드 데이터가 들어오면 삭제필요.
+				//hexadecimal escape sequence (\x) sample:1303100002741
+				var innerHtml = data.replace(/\\u/gi,"&#92;u").replace(/\\x/gi,"&#92;x");
+				elm.empty();
+				elm.html($compile(innerHtml)(scope));
+				//상세보기 최초 진입 시 다른 탭에 표시되는 부분 안보이도록 수정(기획자요청)
+				$("#devChemDiv").remove();		// 화합물 탭
+				$("#devClaimCntDiv").hide();	// 청구항 탭 서브
+				$('#devDtlDescDiv').hide();		// 상세설명 탭 서브
+				
+				//html 출력옵션 값 세팅 
+				docFontOptionSetting($("#fontSizeChk").val(), $("#fontColorChk").val(), $("#fontLineChk").val());
+				$("input[name=devFontsizeChk]").each(function(){
+					if($(this).val() == $("#fontSizeChk").val()){
+						$(this).prop("checked", true);
+					}
+				});
+				$("input[name=devFontcolorChk]").each(function(){
+					if($(this).val() == $("#fontColorChk").val()){
+						$(this).prop("checked", true);
+					}
+				});
+				$("input[name=devFontlineChk]").each(function(){
+					if($(this).val() == $("#fontLineChk").val()){
+						$(this).prop("checked", true);
+					}
+				});
+				
+				docInitFct.init(scope);
+				scope.$apply();
+				
+				//상세보기 오른쪽 메뉴 레이어 영역 클릭 값 셋팅
+				scrollRightListSet();
+				
+				//표준특허는 관련특허 로딩 후 클로징
+				if(scope.docVar.screenVO.tabGb != scope.docConst.TABGB.SD){
+					$.closeLoadingBar();
+				}
+			},
+			error: function(jqXHR, textStatus, errorThrown) {
+				if (/EgovBizException/.test(jqXHR.responseText)) {
+//					alert(jqXHR.responseText.match(/EgovBizException: &quot;(.*?)&quot;/)[1]);
+					// error 처리
+				}
+				else {
+					alert("에러가 발생하였습니다. " + jqXHR.status + "\nError: " + errorThrown);
+				}
+				$.closeLoadingBar();
+			}
+		});
+		
+	};
+	
+	function postLink(scope, elm, attrs, ctrl){
+		scope.$watch(attrs.ngModel, function(value) {
+			$("#tabGb").val(scope.docVar.screenVO.tabGb);
+			// 상세보기 오른쪽 메뉴 레이어 영역 생성
+			scrollRightView();
+			
+			scope.docVar.screenVO.abCurImgNum = 0;
+			scope.docVar.screenVO.clCurImgNum = 0;
+			scope.docVar.screenVO.descCurImgNum = 0;
+			imageCurrentSeq = 0;
+			
+			if(    scope.docVar.screenVO.tabGb == scope.docConst.TABGB.CL
+				|| scope.docVar.screenVO.tabGb == scope.docConst.TABGB.DS 
+				|| scope.docVar.screenVO.tabGb == scope.docConst.TABGB.FT
+				|| scope.docVar.screenVO.tabGb == scope.docConst.TABGB.CH){
+				getContentsJson($compile, scope);
+				// 상단 고정영역 이벤트 선언
+				docCmmUiFct.ready(scope);
+			}else{
+				getContents(scope, elm);
+			}
+		},true);
+		
+	}
+}]);

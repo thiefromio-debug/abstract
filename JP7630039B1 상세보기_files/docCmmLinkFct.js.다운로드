@@ -1,0 +1,213 @@
+;
+docApp.factory("docCmmLinkFct", ['$rootScope','$http', '$timeout', function($rootScope, $http, $timeout){
+	function openPopupUrl(url, popupName, paramList, width, height, toolbar, menubar, status, scrollbars, resizable, copyhistory){
+		$("body").focus();
+		var winHeight = document.body.clientHeight; //현재창의 높이 
+		var winWidth = document.body.clientWidth; //현재창의 너비 
+		var winX = window.screenLeft; //현재창의 x좌표 
+		var winY = window.screenTop; //현재창의 y좌표 
+		
+		var left = winX + (winWidth - width)/2; 
+		var top = winY + (winHeight - height)/2;
+		
+		for(var i=0; paramList != null && i < paramList.length; i++){
+			if(i == 0){
+				url += "?";
+			}else{
+				url += "&";
+			}
+			url += paramList[i].fieldNm + "=" + paramList[i].fieldValue;
+		}
+		
+		var popUpView = window.open(url,popupName,'left=' + left + ',top=' + top + ',width=' + width + ',height=' + height + ',toolbar=' + toolbar + ',menubar=' + menubar + ',status=' + status + ',scrollbars=' + scrollbars + ',resizable=' + resizable + ',copyhistory=' + copyhistory);
+		
+		if(popUpView != null){
+			popUpView.focus();
+		}
+	};
+	
+	function openSubmitPopup(url, popupName, formName, formMethod, paramList, width, height, toolbar, menubar, status, scrollbars, resizable, copyhistory){
+		var winHeight = document.body.clientHeight; //현재창의 높이 
+		var winWidth = document.body.clientWidth; //현재창의 너비 
+		var winX = window.screenLeft; //현재창의 x좌표 
+		var winY = window.screenTop; //현재창의 y좌표 
+		
+		var left = winX + (winWidth - width)/2; 
+		var top = winY + (winHeight - height)/2;
+		
+		var frm = document.createElement('form');
+		frm.setAttribute('method', formMethod);
+		frm.setAttribute('action', url);
+		frm.setAttribute('name', formName);
+		frm.setAttribute('id', formName);
+		frm.setAttribute('target', popupName);
+		
+		for(var i=0; paramList != null && i < paramList.length; i++){
+			var popParamDom = document.createElement('input');
+			popParamDom.setAttribute('type', 'hidden');
+			popParamDom.setAttribute('name', paramList[i].fieldNm);
+			popParamDom.setAttribute('value', paramList[i].fieldValue);
+			frm.appendChild(popParamDom);
+		}
+		
+		document.body.appendChild(frm);
+		
+		var popUpView = window.open("../html/cmm/popup_blank.html",popupName,'left=' + left + ',top=' + top + ',width=' + width + ',height=' + height + ',toolbar=' + toolbar + ',menubar=' + menubar + ',status=' + status + ',scrollbars=' + scrollbars + ',resizable=' + resizable + ',copyhistory=' + copyhistory);
+		
+		if(popUpView == null){
+			$('form#' + formName).remove();
+			alert("차단된 팝업을 허용해 주십시오.");
+		}else{
+			frm.submit();
+			$('form#' + formName).remove();
+			popUpView.focus();
+		}
+	};
+	
+
+	/**
+	 * 패밀리/법적상태 팝업 오픈
+	 */
+	function openFmlyLegal(skey){
+		/*var url = DocCmmConst.DOC_FMLY_LEGAL_URL;//"../doc/docFmlyLegal.wips";
+		var form = document.createElement('form');
+		$(form).attr('action', url)
+			   .attr('id', 'fmlyLegalForm')
+			   .attr('method', 'get')
+			   .attr('target', '_blank');
+		$(form).html('<input type="hidden" name="skey" value="' + skey +'" />' );
+		document.body.appendChild(form);
+
+		$(form).submit();
+		$('form#fmlyLegalForm').remove();	*/
+		var url = DocCmmConst.DOC_FMLY_LEGAL_URL;//"../doc/docFmlyLegal.wips";
+		var width = 1110;
+		var height = 750;
+		
+		var toolbar = 0;
+		var menubar = 0;
+		var status = 0;
+		var scrollbars = 1;
+		var resizable = 0;
+		var copyhistory = 0;
+		
+		var popupName = "docFmlyLegalPopUpViewWT";
+		var formName = "docFmlyLegalPopUpForm";
+		var formMethd = "post";
+		var paramList = [];
+		paramList[paramList.length] = {fieldNm: 'skey', fieldValue: skey};
+		
+		openSubmitPopup(url, popupName, formName, formMethd, paramList, width, height, toolbar, menubar, status, scrollbars, resizable, copyhistory);
+	};
+	
+	/**
+	 * 대표출원인 코드 팝업
+	 */
+	function openReptApptPopup(reptCd, langCd){
+		var url = "../wap/wapView.wips";
+		var width = 1200; // http://its.wips.co.kr/view.php?id=18049
+		var height = 750;
+		
+		var toolbar = 0;
+		var menubar = 0;
+		var status = 0;
+		var scrollbars = 0;
+		var resizable = 0;
+		var copyhistory = 0;
+		
+		var popupName = "docApptPopUpView";
+		var formName = "docApptPopUpForm";
+		var formMethd = "post";
+		var paramList = [];
+		paramList[paramList.length] = {fieldNm: 'text', fieldValue: reptCd};
+		
+		openSubmitPopup(url, popupName, formName, formMethd, paramList, width, height, toolbar, menubar, status, scrollbars, resizable, copyhistory);
+	};
+	
+
+	/**
+	 * 문헌 종류 코드 팝업
+	 */
+	function openDocKindPopup(ctry){
+		var url = "../lyr/docKindPopup.wips";
+		var width = 800;
+		var height = 630;
+		
+		var toolbar = 0;
+		var menubar = 0;
+		var status = 0;
+		var scrollbars = 1;
+		var resizable = 0;
+		var copyhistory = 0;
+		
+		var popupName = "docKindPopUpView";
+		var formName = "docKindPopUpForm";
+		var formMethd = "post";
+		var paramList = [];
+		paramList[paramList.length] = {fieldNm: 'ctry', fieldValue: ctry};
+		
+		openSubmitPopup(url, popupName, formName, formMethd, paramList, width, height, toolbar, menubar, status, scrollbars, resizable, copyhistory);
+	};
+	
+	/**
+	 * 국가 코드 팝업
+	 */
+	function openCtryCodePopup(){
+		
+		var url = "../api/ccvhtm.wips";
+		var width = 800;
+		var height = 630;
+		
+		var toolbar = 0;
+		var menubar = 0;
+		var status = 0;
+		var scrollbars = 1;
+		var resizable = 0;
+		var copyhistory = 0;
+		
+		var popupName = "ctryCodePopUpView";
+		var formName = "ctryCodePopUpForm";
+		var formMethd = "post";
+		var paramList = [];
+		//paramList[paramList.length] = {fieldNm: 'ctry', fieldValue: ctry};
+		
+		openSubmitPopup(url, popupName, formName, formMethd, paramList, width, height, toolbar, menubar, status, scrollbars, resizable, copyhistory);
+		//openPopupUrl(url, popupName, formName, formMethd, paramList, width, height, toolbar, menubar, status, scrollbars, resizable, copyhistory);
+	};
+
+	/**
+	 * 인용문헌의 카테고리 설명
+	 */
+	function openSrchCtgrCodePopup(){
+		var url = "../doc/docExplanationOfSearchCategory.wips";
+		var width = 900;
+		var height = 500;
+		
+		var toolbar = 0;
+		var menubar = 0;
+		var status = 0;
+		var scrollbars = 1;
+		var resizable = 0;
+		var copyhistory = 0;
+		
+		var popupName = "srchCtgrPopUpView";
+		var formName = "srchCtgrPopUpForm";
+		var formMethd = "post";
+		var paramList = [];
+		//paramList[paramList.length] = {fieldNm: 'ctry', fieldValue: ctry};
+		
+		openSubmitPopup(url, popupName, formName, formMethd, paramList, width, height, toolbar, menubar, status, scrollbars, resizable, copyhistory);
+		//openPopupUrl(url, popupName, formName, formMethd, paramList, width, height, toolbar, menubar, status, scrollbars, resizable, copyhistory);
+	};
+	
+	
+	return {
+		openPopupUrl: openPopupUrl
+		,openSubmitPopup:openSubmitPopup
+		, openFmlyLegal: openFmlyLegal
+		, openReptApptPopup : openReptApptPopup
+		, openDocKindPopup: openDocKindPopup
+		, openCtryCodePopup:openCtryCodePopup
+		, openSrchCtgrCodePopup : openSrchCtgrCodePopup
+	};
+}]);

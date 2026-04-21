@@ -1,0 +1,257 @@
+docApp.directive('depSrchRptRefDtv', ['$timeout','$http','$compile','docCmmUtilFct', 'docCmmFct', 'docCmmLinkFct', function($timeout, $http, $compile, docCmmUtilFct, docCmmFct, docCmmLinkFct){
+	return {
+		restrict: 'A',
+		link : 	postLink  //compile 이 등록되어 있으면 link 는 수행하지 않는다.
+	};
+	
+	function preCompile(scope, elm, attrs, ctrl){
+		/**
+		 * 변수 초기화
+		 */
+		scope.docVar.srchRptRefVO.paramVO.skey = scope.docVar.screenVO.skey;
+		scope.docVar.srchRptRefVO.paramVO.pageNum = 1;
+		scope.docVar.srchRptRefVO.paramVO.pageRow = DocCmmConst.SEARCH_REPORT_PAGE_ROW;
+		
+		scope.docVar.srchRptRefVO.headerList = [
+			                       		       {id:'', fieldNm:'', sortField:'', sortType:'', arrClass:''}   //check
+			                       		     , {id:'', fieldNm:'카테고리', sortField:'', sortType:'', arrClass:''}   //카테고리
+			                       		     , {id:'', fieldNm:'문헌번호', sortField:'', sortType:'', arrClass:'', thClass:'tb_head_backcolor'}   //문서번호
+			                       		     , {id:'', fieldNm:'Relevant to claim', sortField:'', sortType:'', arrClass:'', thClass:'tb_head_backcolor'}   //Relevant to claim
+			                       		     , {id:'', fieldNm:'발명의 명칭', sortField:'', sortType:'', arrClass:''}   //발명의 명칭
+			                       		     , {id:'', fieldNm:'출원인', sortField:'', sortType:'', arrClass:''}   //출원인
+			                       		];
+		
+		// 전체 카운트
+		scope.docVar.srchRptRefVO.pageCountVO.totRsltCnt = 0;
+		// 전체 페이지수 
+		scope.docVar.srchRptRefVO.pageCountVO.totPageCnt = 1;
+		scope.docVar.srchRptRefVO.rsltList=[];
+		scope.findSrchRptRefList = function() {
+			
+			// 변수 docCmmVar 및 docCmmConst 로 빼기.
+			var url = "../dep/findSearchReport.wips";
+			var obj = { skey : scope.docVar.srchRptRefVO.paramVO.skey
+						, pageNum : scope.docVar.srchRptRefVO.paramVO.pageNum
+						, pageRow : scope.docVar.srchRptRefVO.paramVO.pageRow
+					  };
+
+			$http.post(url, $.param(obj),{
+				headers: {'Content-Type': scope.docConst.JSON_CONT_TYPE}
+			}).success(function(data){
+				
+				scope.docVar.srchRptRefVO.allChk = false;
+				// 보유목록
+				scope.docVar.srchRptRefVO.rsltList = data.srchRptList == null ? [] : data.srchRptList;
+				
+				//checkbox 초기화
+				if(scope.docVar.srchRptRefVO.rsltList.length > 0 ){
+					
+					for(var i=0; i < scope.docVar.srchRptRefVO.rsltList.length; i++){
+						scope.docVar.srchRptRefVO.rsltList[i].chk = false;
+						if(scope.docVar.srchRptRefVO.rsltList[i].relCl == null) {
+							scope.docVar.srchRptRefVO.rsltList[i].relCl = '-';
+						}
+						if(scope.docVar.srchRptRefVO.rsltList[i].pdfCheck != null) {
+							scope.docVar.srchRptRefVO.rsltList[i].pdfGb = scope.docVar.srchRptRefVO.rsltList[i].pdfCheck.trim();
+						}
+					}
+				}
+				
+				// 전체 건수
+				if(scope.docVar.srchRptRefVO.pageCountVO != null && data.srchRptCnt != null){
+					scope.docVar.srchRptRefVO.pageCountVO.totRsltCnt = data.srchRptCnt.totRsltCnt == null ? 0 : data.srchRptCnt.totRsltCnt;
+				}else{
+					scope.docVar.srchRptRefVO.pageCountVO.totRsltCnt = 0;
+				}
+				// 전체 페이지
+				if(data.srchRptCnt != null && data.srchRptCnt.totPageCnt != 0) {
+					scope.docVar.srchRptRefVO.pageCountVO.totPageCnt = data.srchRptCnt.totPageCnt == null ? 0 : data.srchRptCnt.totPageCnt;
+				}else{
+					scope.docVar.srchRptRefVO.pageCountVO.totPageCnt = 0;
+				}
+				
+				// 미보유 목록
+				scope.docVar.srchRptRefVO.missingList = data.missingList;
+				// 미보유 건수
+				if(scope.docVar.srchRptRefVO.missingList != null) {
+					scope.docVar.srchRptRefVO.pageCountVO.missingDocCount = scope.docVar.srchRptRefVO.missingList.length;
+				} else {
+					scope.docVar.srchRptRefVO.pageCountVO.missingDocCount = 0;
+				}
+				// 전체 건수
+				scope.docVar.srchRptRefVO.pageCountVO.totRsltCnt = scope.docVar.srchRptRefVO.pageCountVO.totRsltCnt + scope.docVar.srchRptRefVO.pageCountVO.missingDocCount;
+				
+				scope.docVar.srchRptRefVO.pageCountVO.pageNum = scope.docVar.srchRptRefVO.paramVO.pageNum;
+				scope.docVar.srchRptRefVO.pageCountVO.pageRow = scope.docVar.srchRptRefVO.paramVO.pageRow;
+				
+				// 전체 skey
+				scope.docVar.srchRptRefVO.skeys = data.skeys;
+					
+				scope.clickDevBtnMarker();
+				scope.docQueryHighLighter($("form#paramForm :input[name=hl]").val());
+			}).error(function(data, status){
+				/*if (/EgovBizException/.test(data.responseText)) {
+		            alert(data.responseText.match(/EgovBizException: &quot;(.*?)&quot;/)[1]);
+		            // error 처리
+		        }
+		        else {
+		            alert("에러가 발생하였습니다. " + status + "\nError: " + data.responseText);
+		        }*/
+			});
+			
+		};
+		
+		/**
+		 * 이전페이지 클릭시
+		 */
+		scope.prevPageEpSrchRpt = function(){
+			if(scope.docVar.srchRptRefVO.paramVO.pageNum == 1){
+				alert('첫번째 페이지입니다.');
+				return;
+			}
+			
+			scope.docVar.srchRptRefVO.paramVO.pageNum = scope.docVar.srchRptRefVO.paramVO.pageNum - 1;
+			scope.findSrchRptRefList();
+		};
+		
+		/**
+		 * 다음페이지 클릭시
+		 */
+		scope.nextPageEpSrchRpt = function(){
+			if(scope.docVar.srchRptRefVO.paramVO.pageNum == scope.docVar.srchRptRefVO.pageCountVO.totPageCnt){
+				alert('마지막 페이지 입니다.');
+				return;
+			}
+			
+			scope.docVar.srchRptRefVO.paramVO.pageNum = scope.docVar.srchRptRefVO.paramVO.pageNum + 1;
+			scope.findSrchRptRefList();
+		};
+		
+		/**
+		 * 인용문헌의 카테고리 설명
+		 */
+		scope.openSrchCtgrCodePopup = function() {
+			docCmmLinkFct.openSrchCtgrCodePopup();
+		};
+		
+		//원문 아이콘 class
+		scope.pdfIconClass = function(pdfGb, ctry) {
+			if(ctry == "CA"){
+				pdfGb = 0;
+			}
+			
+			if(pdfGb == 1 || pdfGb == 2) {
+				return 'btn_openpdf';
+			}
+			else { // null
+				return "btn_dispdf";
+			}
+		};
+		
+	};
+	
+	function postLink(scope, elm, attrs, ctrl){
+		preCompile(scope, elm, attrs, ctrl);
+		elm.empty();
+		var innerHtml = docCmmUtilFct.hereDoc(function() {/*!
+						<div class="devHighlightNg">
+							<div class="dc_leftblock">
+                                <span class="first_line letter_spacing_05">조사보고서의<br/>인용문헌</span>
+                                <!--<span class="second_line"></span>-->
+                            </div>
+                            <div class="dc_context_block">
+                            	<div class="float_l">
+								   <span class="float_l marg_right_20">전체 <span class="font_type_bold page_backcolor_step1_text font_valign_00" ng-bind="docVar.srchRptRefVO.pageCountVO.totRsltCnt"></span> 건</span>
+							   	</div>
+							   	<div class="float_r">
+							   		<div class="paginate_type3 pagenate_align2">
+							   			<span class="pagenum"><span ng-bind="docVar.srchRptRefVO.paramVO.pageNum"></span>/<span ng-bind="docVar.srchRptRefVO.pageCountVO.totPageCnt"></span></span>
+	                                    <a ng-if="docVar.srchRptRefVO.pageCountVO.totPageCnt > 1" href="javascript:void(0);" ng-click="prevPageEpSrchRpt();">
+	                                    	<span class="direction"><span class="prev"><!-- --></span><span class="ir_pm">이전</span></span>
+	                                    </a>
+	                                    <span ng-if="docVar.srchRptRefVO.pageCountVO.totPageCnt <= 1"> 
+	                                    	<span class="direction btn_dis_type"><span class="prev"><!-- --></span><span class="ir_pm">이전</span></span>
+	                                    </span>
+	                                    <a ng-if="docVar.srchRptRefVO.pageCountVO.totPageCnt > 1" href="javascript:void(0);" ng-click="nextPageEpSrchRpt();">
+	                                    	<span class="direction"><span class="next"><!-- --></span><span class="ir_pm">다음</span></span>
+	                                    </a>
+	                                    <span ng-if="docVar.srchRptRefVO.pageCountVO.totPageCnt <= 1"> 
+	                                    	<span class="direction btn_dis_type"><span class="next"><!-- --></span><span class="ir_pm">다음</span></span>
+	                                    </span> 
+	                                </div>
+							   	</div>
+								<div class="clear"><!-- --></div>
+								<table class="marg_top_05 table_type2 oneline_width devDocViewOption">
+									<colgroup>
+										<col width="30" />
+										<col width="50" />
+										<col width="70"/>
+										<col width="130"/>
+										<col width="230"/>
+										<col width="*"/>
+										<col width="200"/>
+									</colgroup>
+									<thead>
+										<tr>
+											<th class="tb_head_backcolor">No</th>
+											<th class="tb_head_backcolor">원문</th>
+											<th class="tb_head_backcolor">카테고리</th>
+											<th class="tb_head_backcolor">문헌번호</th>
+											<th class="tb_head_backcolor">Relevant to claim</th>
+											<th class="tb_head_backcolor">발명의 명칭</th>
+											<th class="tb_head_backcolor">출원인</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-show="docVar.srchRptRefVO.rsltList.length == 0">
+											<td colspan="7" class="font_align_center" ng-class="updateDocFontOption();">
+												<p>해당 정보가 없습니다.</p>
+											</td>
+										</tr>
+										<tr ng-show="docVar.srchRptRefVO.rsltList.length > 0" ng-repeat="srchRptRef in docVar.srchRptRefVO.rsltList">
+											<td class="font_align_center" ng-bind="((docVar.srchRptRefVO.pageCountVO.pageNum - 1) * docVar.srchRptRefVO.pageCountVO.pageRow) + $index+1"></td>
+											<td class="font_align_center" ng-class="updateDocFontOption();">
+		                                    	<a ng-hide="srchRptRef.pdfGb == '0'" doc-pdf-function-dtv ng-model="srchRptRef" ng-class="pdfIconClass(srchRptRef.pdfGb, srchRptRef.ctry) + ' marg_auto marg_top_05'"><span class="screen_hide">PDF</span></a>
+		                                    	<span ng-show="srchRptRef.pdfGb == '0'" ng-class="pdfIconClass(srchRptRef.pdfGb, srchRptRef.ctry) + ' marg_auto marg_top_05'"><span class="screen_hide">PDF</span></span>
+		                                    </td>
+											<td class="font_align_center font_color_red" ng-class="updateDocFontOption();"><span class="font_color_red" ng-bind-html="srchRptRef.ctgr"></span></td>
+											<td ng-class="updateDocFontOption();" class="lineheight_reset_padd">
+												<a ng-hide="srchRptRef.skey == null || srchRptRef.skey == ''" doc-link-dtv ng-model="srchRptRef"><span ng-bind="srchRptRef.ctry + ' ' +srchRptRef.mngNum + ' ' + srchRptRef.docKind"></span></a>
+												<span ng-show="srchRptRef.skey == null || srchRptRef.skey == ''" ng-bind="srchRptRef.ctry + ' ' +srchRptRef.mngNum + ' ' + srchRptRef.docKind"></span>
+												<span ng-show="srchRptRef.dbNm.toUpperCase() == 'INPDB' && srchRptRef.ctry != 'AT' && srchRptRef.ctry != 'AU' && srchRptRef.ctry != 'CA' && srchRptRef.ctry != 'CH' 
+												&& srchRptRef.ctry != 'DK' && srchRptRef.ctry != 'ES' && srchRptRef.ctry != 'FI' && srchRptRef.ctry != 'IT' && srchRptRef.ctry != 'NL' && srchRptRef.ctry != 'SE'">
+												<img src="../image/icon/ico_in.gif" class="imgico_align"></span>
+											</td>
+											<td class="font_align_center" ng-class="updateDocFontOption();" ng-bind-html="srchRptRef.relCl"></td>
+											<td ng-class="updateDocFontOption();" ng-bind-html="srchRptRef.invTi"></td>
+											<td ng-class="updateDocFontOption();" ng-bind-html="srchRptRef.appt"></td>
+										</tr>
+									</tbody>
+								</table>
+							   	<a href="javascript:void(0);" ng-click="openSrchCtgrCodePopup();" class="btn_doc_white marg_top_05">인용문헌의 카테고리 설명</a>
+							   	<div class="icon_tipremark_block">
+								   <span class="items_last"><img src="../image/icon/ico_in.gif" class="imgico_align"><span class="info_error_textstyle">기타 57개국</span></span>
+							   	</div>
+							   	<div class="clear"><!-- --></div>
+							   	<p class="marg_top_03 info_area_01">
+								   <span class="info_error_textstyle"><strong class="marg_right_05">!</strong> 발행처의 조사보고서 텍스트 데이터는 원문 이미지 정보와 상이할 수 있습니다.</span>
+							   	</p>
+							   	<div class="remark_footblock ng-scope" ng-if="docVar.srchRptRefVO.missingList.length > 0">
+							   		<p class="ng-scope">
+							   			<span class="title_text2">* 미포함 문헌 : <span ng-bind="docVar.srchRptRefVO.pageCountVO.missingDocCount" class="ng-binding">1</span>건 (절차상 미공개 문헌, 과거분 문헌, WIPS 보유 데이터 범위에 포함되지 않는 문헌)</span>
+							   			<span ng-repeat="missing in docVar.srchRptRefVO.missingList" ng-class="{'font_color_888': true, 'text_divbar': !$last , 'float_l': $last}" 
+							   				ng-bind-html="(missing.ctgr != null ? '('+missing.ctgr+') ' : '') + missing.ctry +' '+ missing.mngNum +' '+ missing.docKind" class="ng-binding ng-scope font_color_888 float_l"></span>
+							   		</p>
+							   	</div>
+							   	<div class="list_space"><!-- --></div>
+                            </div>
+						</div>
+                */
+		});
+		
+		elm.html($compile(innerHtml)(scope));
+		scope.findSrchRptRefList();
+	};
+	
+	
+}]);

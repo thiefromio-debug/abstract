@@ -1,0 +1,115 @@
+//선택 영역 open
+function onOffOptionLayer() {
+	
+	var layerText = $('.js_cmmSubMenu_fold .fold_text').text();
+	
+	if (layerText === "접기") {
+		$('.js_cmmSubMenu_fold .fold_text').text('열기');
+		$('.js_cmmSubMenu_fold .fold_text').parent().removeClass('on');	
+		$('#cmm_header .cmm_menuDepth3_checkList').hide();
+		$('.js_cmmSubMenu_fold span').eq(1).removeClass('ico_arrowUp_orange').addClass('ico_arrowDown_gray');
+		$(".info_selectoption").show();
+		sch_3depthHeightEvent();
+	} else if(layerText === "열기") {
+		$('.js_cmmSubMenu_fold .fold_text').text('접기');
+		$('.js_cmmSubMenu_fold .fold_text').parent().addClass('on');	
+		$('#cmm_header .cmm_menuDepth3_checkList').show();	
+		$('.js_cmmSubMenu_fold span').eq(1).removeClass('ico_arrowDown_gray').addClass('ico_arrowUp_orange');	
+		$(".info_selectoption").hide();
+		sch_3depthHeightEvent();
+	}
+};
+
+// 도움말 layer on/off
+function onOffHelpLayer() {
+	var helpBtn_node = $('.btn_cmm_help').offset();
+	var helpLayer_width = $('#devHelpLayer').width() - $('.btn_cmm_help').width();
+	var helpLayer_node = helpBtn_node.left - helpLayer_width;
+	
+		$('#devHelpLayer').css({'left':helpLayer_node});	
+		
+	if ($('#devHelpLayer').is(':visible')) {
+		$('#devHelpLayer').hide();
+	} else {
+		$('#devHelpLayer').show();
+	}	
+};
+
+//기반팀::김명숙::2020::AISearch::
+//도움말 layer on/off - 오른쪽 방향으로 오픈
+function onOffHelpLayerRight() {
+	var helpBtn_node = $('.btn_cmm_help').offset();
+//	var helpLayer_width = $('#devHelpLayer').width() - $('.btn_cmm_help').width();
+	var helpLayer_node = helpBtn_node.left;// - helpLayer_width;
+	
+		$('#devHelpLayer').css({'left':helpLayer_node});	
+		
+	if ($('#devHelpLayer').is(':visible')) {
+		$('#devHelpLayer').hide();
+	} else {
+		$('#devHelpLayer').show();
+	}	
+};
+
+//추천검색>영문서지검색 접기/펼치기 버튼 설정 및 기간설정 영역 높이 리사이징
+function onoffBibliographic() {
+	var scsNationOpen = $('.scs_new_nationList').hasClass("open");
+	
+	$('.scs_new_nationList').toggleClass("open");
+	$( ".btn_foldBlue_plus" ).toggleClass("btn_foldBlue_minus");
+
+	if (scsNationOpen){
+		sch_3depthHeightEvent();
+		}
+	else{
+		sch_3depthHeightEvent();
+	};	
+};
+
+//IP Expert FTO Generic Search Fields show and hide
+function onOffIpExpertField() {
+	if($('#pul_arrow').hasClass('ico_arrowUp_orange')){
+      $('#pul_arrow').removeClass("ico_arrowUp_orange").toggleClass("ico_arrowDown_gray");
+    }else{
+      $('#pul_arrow').removeClass("ico_arrowDown_gray").toggleClass("ico_arrowUp_orange");
+    };
+	$(".block_showhide_topline").slideToggle();
+};
+
+//툴팁
+//최대건 선택 start
+$('.select_max').on('mouseover', function(){
+	$(this).children('.js_tooltip_max').show();
+});
+$('.select_max').on('mouseout', function(){
+	$('.js_tooltip_max').hide();
+});
+
+//검색영역 공통 > 3depth UI 공통길이 설정 이벤트
+function sch_3depthHeightEvent(){
+	$('.area_dividing,.area_dividing2,.area_dividing3').removeAttr( 'style' );
+	
+	var sch_3depthHeight_01 = $('.cmm_menuDepth3_checkList .area_dividing1');
+	var sch_3depthHeight_02 = $('.cmm_menuDepth3_checkList .area_dividing2');
+	var sch_3depthHeight_03 = $('.cmm_menuDepth3_checkList .area_dividing3');
+	
+	var sch_3depthHeight_all = [sch_3depthHeight_01.outerHeight(),sch_3depthHeight_02.outerHeight(),sch_3depthHeight_03.outerHeight()];
+	var sch_3depthHeight_max = Math.max.apply(null, sch_3depthHeight_all);
+
+	$('.area_dividing,.area_dividing2,.area_dividing3').css({"height":sch_3depthHeight_max});
+};
+
+$(document).ready(function(){
+	/* 편집기모드 작동 브라우저 안내툴팁*/
+//	$('#devEdt1').bind({
+//	mouseover: function(){
+//		$('#pul_edit_tooltip').css('display','block');
+//		$('#def_header').css('z-index','0');
+//	}, mouseout: function(){
+//		$('#pul_edit_tooltip').css('display','none');
+//		$('#def_header').css('z-index','999999');
+//	}
+//	});
+	
+	sch_3depthHeightEvent();// 검색영역 공통 > 3depth UI 공통길이 설정
+});

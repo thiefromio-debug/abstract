@@ -1,0 +1,2676 @@
+;
+docApp.factory("docInitFct", ['$rootScope','$http', '$timeout', '$compile', 'docCmmUiFct', 'docCmmLinkFct', 'docCmmFct', function($rootScope, $http, $timeout, $compile, docCmmUiFct, docCmmLinkFct, docCmmFct){
+
+	function setFunctionAb(scope){
+		
+	};
+	
+	function setFunctionKrAb(scope){
+		if($("#devInclude").hasClass("oneline_iwidth") === true) {
+			$("#devInclude").removeClass('oneline_iwidth');
+		}
+		/**
+		 * 발명의 명칭 클릭시 수행
+		 */
+		scope.onClickInvTi = function(index){
+			scope.docVar.docPageCmmRsltVO.selectInvTiIndex = index;
+		};
+		
+		/**
+		 * 개별도면 클릭시 도면 팝업 오픈
+		 */
+		scope.onClickDrw = function(skey,seq){
+			// 클릭한 이미지 블러 처리
+	        $("a").blur();
+	        
+			//alert(seq + " 번째 클릭  " +skey);
+			//scope.docVar.docPageCmmRsltVO.selectInvTiIndex = seq;
+
+			var url = scope.docConst.DRAW_POP_URL;
+			var width = 1150;
+			var height = 720;
+			var popupName = "_imgPopup";
+			var paramList = [];
+			
+			var toolbar = 0;
+			var menubar = 0;
+			var status = 0;
+			var scrollbars = 1;
+			var resizable = 1;
+			var copyhistory = 0;
+
+			paramList[paramList.length] = {fieldNm: 'skey', fieldValue: skey};
+	        paramList[paramList.length] = {fieldNm: 'rDetailImageNum', fieldValue: seq};
+	    
+	        scope.docVar.screenVO.abCurImgNum = (seq * 1);
+	        
+	        //scope.$apply();
+	        docCmmLinkFct.openPopupUrl(url, popupName, paramList, width, height, toolbar, menubar, status, scrollbars, resizable, copyhistory);
+		};
+		
+		/**
+		 * 패밀리/법적상태 팝업 오픈
+		 */
+		scope.openFmlyLegal = function(skey){
+			docCmmLinkFct.openFmlyLegal(skey);
+		};
+		
+		/**
+		 * 대표출원인 코드 팝업
+		 */
+		scope.openReptApptPopup = function(reptCd, langCd){
+			docCmmLinkFct.openReptApptPopup(reptCd, langCd);
+		};
+		
+		/**
+		 * 문헌 종류 코드 팝업
+		 */
+		scope.openDocKindPopup = function(ctry){
+			docCmmLinkFct.openDocKindPopup(ctry);
+		};
+		
+		/**
+		 * 국가 코드 팝업
+		 */
+		scope.openCtryCodePopup = function(ctry){
+			docCmmLinkFct.openCtryCodePopup(ctry);
+		};
+		
+		/**
+		 * 현재진행상태 오픈 KR 처리
+		 */
+		scope.openStatusKR = function(applNum, docKind){
+			if(docKind != null){
+				docKind = $.trim(docKind.toUpperCase());
+			}
+			
+			if(applNum != null){
+				applNum = $.trim(applNum);
+				if(applNum.length >= 4){
+//					var url = "http://file.wipson.com/kipoinfo/kipoInfo_appl.asp";
+//					var url = DocCmmConst.KR_CURR_STATUS_URL;
+
+					var width = 770;
+					var height = 620;
+					var popupName = "docCurStatusKRPopUpView";
+					var paramList = [];
+					
+					var toolbar = 0;
+					var menubar = 0;
+					var status = 0;
+					var scrollbars = 1;
+					var resizable = 1;
+					var copyhistory = 0;
+					
+					if((applNum.substring(3,7) * 1) < 1999){
+						applNum = applNum.replace("-70", "-07");
+					}
+					
+					applNum = applNum.replace(/-/gi, "");
+					// 문헌 종류가 U(공개실용/등록실용공보), Y1(공고/등록실용공보), Y2(공고/등록실용공보) 일 경우에는 20 아니면 10을 앞에 붙여준다.
+			        /*if (docKind != null && (docKind == 'U' || docKind == 'Y1' || docKind == 'Y2')) {
+			        	applNum = "20" + applNum;
+			        } else {
+			        	applNum = "10" + applNum;
+			        }*/
+			        
+					//ITS-18551, imsi
+					var url = "http://www.patent.go.kr/smart/jsp/kiponet/ma/mamarkapply/infomodifypatent/ReadChgFrmApplInfo.do?selCondtn=appl&lgnId=&clickPageGubn=f&pageNo=1&startPageNo=1&pagePerRow=1000&applNo="+applNum			        
+//					docCmmLinkFct.openPopupUrl(url, popupName, '', width, height, toolbar, menubar, status, scrollbars, resizable, copyhistory);
+					
+					// original process
+					paramList[paramList.length] = {fieldNm: 'applNo', fieldValue: applNum};
+					docCmmLinkFct.openPopupUrl(url, popupName, '', width, height, toolbar, menubar, status, scrollbars, resizable, copyhistory);
+				}
+			}
+		};
+		
+		/**
+		 * 등록번호 상태 보기 페이지를 오픈한다.
+		 */
+		scope.openRegStatus = function(rgstNo, docKind){
+			//등록상태보기는 한국만 있다.
+			
+			if(docKind != null){
+				docKind = $.trim(docKind.toUpperCase());
+			}
+			
+			if(rgstNo != null){
+				rgstNo = $.trim(rgstNo);
+				if(rgstNo != ''){
+//					var url = "http://file.wipson.com/kipoinfo/kipoInfo_rgst.asp";
+					var width = 770;
+					var height = 620;
+					var popupName = "docCurStatusPopUpView";
+					var paramList = [];
+					
+					var toolbar = 0;
+					var menubar = 0;
+					var status = 0;
+					var scrollbars = 1;
+					var resizable = 1;
+					var copyhistory = 0;
+					
+					rgstNo = rgstNo.replace(/-/g, "")+ "0000";
+					// 문헌 종류가 U(공개실용/등록실용공보), Y1(공고/등록실용공보), Y2(공고/등록실용공보) 일 경우에는 20 아니면 10을 앞에 붙여준다.
+			        /*if (docKind != null && (docKind == 'U' || docKind == 'Y1' || docKind == 'Y2')) {
+			        	rgstNo = "20" + rgstNo + "0000";
+			        } else {
+			        	rgstNo = "10" + rgstNo + "0000";
+			        }*/
+			        
+					var url = "http://www.patent.go.kr/smart/jsp/kiponet/ma/mamarkapply/infomodifypatent/ReadChgFrmRgstInfo.do?selCondtn=rgst&lgnId=&clickPageGubn=f&pageNo=1&startPageNo=1&pagePerRow=1000&rgstNo="+rgstNo;
+					
+			        paramList[paramList.length] = {fieldNm: 'rgstNo', fieldValue: rgstNo};
+			        paramList[paramList.length] = {fieldNm: 'Gubun', fieldValue: 2};
+					
+			        docCmmLinkFct.openPopupUrl(url, popupName, '', width, height, toolbar, menubar, status, scrollbars, resizable, copyhistory);
+				}
+			}
+		};
+		
+		/**
+		 * 중간서류철 팝업
+		 */
+		scope.openMidDocPopup = function(skey, applNumKey, sendNum, sendTp){
+			docCmmLinkFct.openMidDocPopup(skey, applNumKey, sendNum, sendTp);
+		};
+	};
+	
+	function setFunctionKrCl(scope){
+		if(!$("#devInclude").hasClass("oneline_iwidth")) {
+			//$("#devInclude").addClass('oneline_iwidth');
+		}
+		/**
+		 * 개별도면 클릭시 도면 팝업 오픈
+		 */
+		scope.onClickDrw = function(skey,seq){
+			// 클릭한 이미지 블러 처리
+	        $("a").blur();
+	        
+			//alert(seq + " 번째 클릭  " +skey);
+			//scope.docVar.docPageCmmRsltVO.selectInvTiIndex = seq;
+			
+			var url = scope.docConst.DRAW_POP_URL;
+			var width = 1150;
+			var height = 720;
+			var popupName = "_imgPopup";
+			var paramList = [];
+			
+			var toolbar = 0;
+			var menubar = 0;
+			var status = 0;
+			var scrollbars = 1;
+			var resizable = 1;
+			var copyhistory = 0;
+
+			paramList[paramList.length] = {fieldNm: 'skey', fieldValue: skey};
+	        paramList[paramList.length] = {fieldNm: 'rDetailImageNum', fieldValue: seq};
+	    
+	        scope.docVar.screenVO.abCurImgNum = (seq * 1);
+	        docCmmLinkFct.openPopupUrl(url, popupName, paramList, width, height, toolbar, menubar, status, scrollbars, resizable, copyhistory);
+			
+		};
+		//docClaimFct.ready(scope);
+	};
+	
+	function setFunctionKrDs(scope){
+		if(!$("#devInclude").hasClass("oneline_iwidth")) {
+			//$("#devInclude").addClass('oneline_iwidth');
+		}
+		/**
+		 * 개별도면 클릭시 도면 팝업 오픈
+		 */
+		scope.onClickDrw = function(skey,seq){
+			// 클릭한 이미지 블러 처리
+	        $("a").blur();
+	        
+			//alert(seq + " 번째 클릭  " +skey);
+			//scope.docVar.docPageCmmRsltVO.selectInvTiIndex = seq;
+			
+			var url = scope.docConst.DRAW_POP_URL;
+			var width = 1150;
+			var height = 720;
+			var popupName = "_imgPopup";
+			var paramList = [];
+			
+			var toolbar = 0;
+			var menubar = 0;
+			var status = 0;
+			var scrollbars = 1;
+			var resizable = 1;
+			var copyhistory = 0;
+
+			paramList[paramList.length] = {fieldNm: 'skey', fieldValue: skey};
+	        paramList[paramList.length] = {fieldNm: 'rDetailImageNum', fieldValue: seq};
+	    
+	        scope.docVar.screenVO.abCurImgNum = (seq * 1);
+	        docCmmLinkFct.openPopupUrl(url, popupName, paramList, width, height, toolbar, menubar, status, scrollbars, resizable, copyhistory);
+			
+		};
+	};
+	
+	//CA,AU도 사용
+	function setFunctionKrAd(scope){
+		if($("#devInclude").hasClass("oneline_iwidth") === true) {
+			$("#devInclude").removeClass('oneline_iwidth');
+		}
+		
+		scope.findRght = function() {
+			var url = "../dkr/findRghtInfo.wips";
+			var obj = { skey : $('#skey').val()};
+			
+			$.ajax({
+			    url         : url,
+			    type        : 'POST',
+			    cache       : false,
+			    async       : false,
+			    dataType    : 'json',
+			    data        : $.param(obj),
+			    success     : function(data, textStatus, jqXHR) {
+			    	scope.docVar.dkrBiblInfoVO.biblGrtRankDetailList = data.grtRankDetailList; 
+			    	scope.docVar.dkrBiblInfoVO.rghtPersDetailList = data.rghtPersDetailList;
+			    	//권리란 출력정보 세팅
+			    	scope.docVar.dkrBiblInfoVO.firstRghtList = [];
+			    	scope.docVar.dkrBiblInfoVO.rghtInfoList = [];
+			    	for(var i=0; i < scope.docVar.dkrBiblInfoVO.biblGrtRankDetailList.length; i++){
+			    		if(scope.docVar.dkrBiblInfoVO.firstRghtList.length == 0 && scope.docVar.dkrBiblInfoVO.biblGrtRankDetailList[i].rankNum == 1){
+			    			scope.docVar.dkrBiblInfoVO.firstRghtList[scope.docVar.dkrBiblInfoVO.firstRghtList.length] = scope.docVar.dkrBiblInfoVO.biblGrtRankDetailList[i];
+			    		} else if(scope.docVar.dkrBiblInfoVO.biblGrtRankDetailList[i].rankNum != null){
+			    			scope.docVar.dkrBiblInfoVO.rghtInfoList[scope.docVar.dkrBiblInfoVO.rghtInfoList.length] = scope.docVar.dkrBiblInfoVO.biblGrtRankDetailList[i];
+			    		}
+			    	}
+			    	
+			    	//권리자ㅣ 출력정보 세팅
+			    	scope.docVar.dkrBiblInfoVO.firstRghtPersList = [];
+			    	scope.docVar.dkrBiblInfoVO.rghtPersList = [];
+			    	for(var i=0; i < scope.docVar.dkrBiblInfoVO.rghtPersDetailList.length; i++){
+			    		if(scope.docVar.dkrBiblInfoVO.firstRghtPersList.length == 0 && scope.docVar.dkrBiblInfoVO.rghtPersDetailList[i].rankNum == 1){
+			    			scope.docVar.dkrBiblInfoVO.firstRghtPersList[scope.docVar.dkrBiblInfoVO.firstRghtPersList.length] = scope.docVar.dkrBiblInfoVO.rghtPersDetailList[i];
+			    		} else if(scope.docVar.dkrBiblInfoVO.rghtPersDetailList[i].rankNum != null){
+			    			scope.docVar.dkrBiblInfoVO.rghtPersList[scope.docVar.dkrBiblInfoVO.rghtPersList.length] = scope.docVar.dkrBiblInfoVO.rghtPersDetailList[i];
+			    		}
+			    	}
+			    	
+			    	scope.clickDevBtnMarker();
+			    	scope.docQueryHighLighter($("form#paramForm :input[name=hl]").val());
+			    },
+			    error   : function(jqXHR, textStatus, errorThrown) {
+			        /*if (/EgovBizException/.test(jqXHR.responseText)) {
+			            alert(jqXHR.responseText.match(/EgovBizException: &quot;(.*?)&quot;/)[1]);
+			            // error 처리
+			        }
+			        else {
+			            alert("에러가 발생하였습니다. " + jqXHR.status + "\nError: " + errorThrown);
+			        }*/
+			        scope.clickDevBtnMarker();
+			        scope.docQueryHighLighter($("form#paramForm :input[name=hl]").val());
+			    }
+			});
+		};
+		
+		/**
+		 * 발명의 명칭 클릭시 수행
+		 */
+		/*scope.onClickInvTi = function(index){
+			alert(index + " 번째 클릭");
+			scope.docVar.docPageCmmRsltVO.selectInvTiIndex = index;
+		};*/
+		
+		/**
+		 * 통합행정이력 리스트는 최초 10건 출력
+		 */
+		scope.intgHistFn = function() {
+			
+			scope.docVar.docAdminTbl.intgHistCnt = $('#devHistTbl tr').size();
+					     
+			if (scope.docVar.docAdminTbl.intgHistCnt >= scope.docConst.ADMIN.HISTCNT) { //10개 이상이면 SHOW
+				$('#devHistTbl').find('tr:gt(' + (scope.docConst.ADMIN.HISTCNT) + ')').hide();
+		    };
+		};
+		
+		scope.onClickIntgHistShow = function() {
+	    	$('#devHistTbl').find('tr:lt(' + scope.docVar.docAdminTbl.intgHistCnt + ')').show();
+	    	$('#devHistShow').hide();
+	    	$('#devHistHide').show();
+		};
+		
+		scope.onClickIntgHistHide = function() {
+			$('#devHistTbl').find('tr:gt(' + (scope.docConst.ADMIN.HISTCNT) + ')').hide();
+	    	$('#devHistHide').hide();
+	    	$('#devHistShow').show();
+		};
+		
+		/**
+		 * 정정사항 리스트 최초 10건 출력
+		 */		
+		scope.corrListFn = function() {			
+			scope.docVar.docAdminTbl.corrListCnt = $('#devCorrTbl tr').size();
+					     
+			if (scope.docVar.docAdminTbl.corrListCnt >= scope.docConst.ADMIN.CORRCNT) { //10개 이상이면 SHOW
+				$('#devCorrTbl').find('tr:gt(' + (scope.docConst.ADMIN.CORRCNT) + ')').hide();
+		    };
+		};
+		
+		scope.onClickCorrectShow = function() {
+	    	$('#devCorrTbl').find('tr:lt(' + scope.docVar.docAdminTbl.corrListCnt + ')').show();
+	    	$('#devCorrectShow').hide();
+	    	$('#devCorrectHide').show();
+		};
+		
+		scope.onClickCorrectHide = function() {
+			$('#devCorrTbl').find('tr:gt(' + (scope.docConst.ADMIN.CORRCNT) + ')').hide();
+	    	$('#devCorrectHide').hide();
+	    	$('#devCorrectShow').show();
+		};
+		
+		/**
+		 * 연차료 리스트는 최초 5건 출력
+		 */
+		scope.grtFeeFn = function() {
+			scope.docVar.docAdminTbl.grtFeeCnt = $('#devGrtFeeTbl tr').size();
+					     
+			if (scope.docVar.docAdminTbl.grtFeeCnt >= scope.docConst.ADMIN.GRTFEECNT) { //5개 이상이면 SHOW
+				$('#devGrtFeeTbl').find('tr:gt(' + (scope.docConst.ADMIN.GRTFEECNT) + ')').hide();
+		    };
+		};
+		
+		scope.onClickGrtFeeShow = function() {
+	    	$('#devGrtFeeTbl').find('tr:lt(' + scope.docVar.docAdminTbl.grtFeeCnt + ')').show();
+	    	$('#devGrtFeeShow').hide();
+	    	$('#devGrtFeeHide').show();
+		};
+		
+		scope.onClickGrtFeeHide = function() {
+			$('#devGrtFeeTbl').find('tr:gt(' + (scope.docConst.ADMIN.GRTFEECNT) + ')').hide();
+	    	$('#devGrtFeeHide').hide();
+	    	$('#devGrtFeeShow').show();
+		};
+		
+		scope.onClickPrint = function() {
+			$('#devPrntConfirm').show();
+		};
+		
+		scope.onClickIntgPopup = function(){
+			var url = "../dca/dcaAdminIntgPopup.wips";
+			var width = 950;
+			var height = 720;
+			var popupName = "_imgPopup";
+			var paramList = [];
+			
+			var toolbar = 0;
+			var menubar = 0;
+			var status = 0;
+			var scrollbars = 1;
+			var resizable = 1;
+			var copyhistory = 0;
+			
+			docCmmLinkFct.openPopupUrl(url, popupName, paramList, width, height, toolbar, menubar, status, scrollbars, resizable, copyhistory);
+		};
+	};
+	
+	function setFunctionKrJd(scope){
+		$.allCollapsesClick = function(){
+			//심판단위 보기 클릭시 
+			$('#allCollapses').click (function(){
+				var thisCheck = $(this);
+				if ( thisCheck.is(':checked') ) {
+					$( "li[id^='li_']:not([id$='first'])" ).hide();
+					$( "li[id^='li_'][id$='first']" ).addClass("close"); 
+					$( "button[id^='bt_']" ).removeClass("toggle2 minus").addClass("toggle2 plus");
+				}else{
+					$( "li[id^='li_']:not([id$='first'])" ).show();
+					$( "li[id^='li_'][id$='first']" ).removeClass("close");
+					$( "button[id^='bt_']" ).removeClass("toggle2 plus").addClass("toggle2 minus");
+				}
+			});
+		};
+		
+		//-+ 버튼 클릭시 
+		$.expandJdgItem = function(orgJdgNum){
+			if ($("li[id='li_" + orgJdgNum + "']").css("display") == "none") {
+				$("li[id='li_" + orgJdgNum + "']").show();
+				$("li[id='li_" + orgJdgNum + "_first']").removeClass("close");
+				$("li[id='li_" + orgJdgNum + "_first']").addClass("oepn");
+				$("#bt_"+ orgJdgNum).removeClass("toggle2 plus").addClass("toggle2 minus");
+			}else{
+				$("li[id='li_" + orgJdgNum + "']").hide();
+				$("li[id='li_" + orgJdgNum + "_first']").removeClass("oepn");
+				$("li[id='li_" + orgJdgNum + "_first']").addClass("close");
+				$("#bt_"+ orgJdgNum).html("+");
+	    		$("#bt_" + orgJdgNum).removeClass("toggle2 minus").addClass("toggle2 plus");
+			}
+		};
+
+		//sort 클릭시 이벤트
+		$.clickSortCoulumn = function(jdgSortCoulumn){
+			$('#jdgSortCoulumn').val(jdgSortCoulumn);
+			var jdgSortOrder = $('#jdgSortOrder').val();
+			
+			if(jdgSortOrder == 'DESC')
+				jdgSortOrder = 'ASC';
+			else
+				jdgSortOrder = 'DESC';
+			
+			$('#jdgSortOrder').val(jdgSortOrder);
+			
+			var paramObj = {
+					skey : $('#skey').val(),
+					jdgSortCoulumn : jdgSortCoulumn,
+					jdgSortOrder : jdgSortOrder
+			};
+			
+			$.ajax({
+				url: '../dkr/dkrJudge.wips',
+				type: 'POST',
+				cache: 'false',
+				async: 'true',
+				dataType: 'html',
+				data:paramObj,
+				success: function(data, textStatus, jqXHR) {
+					var innerHtml = data;
+					$('#devInclude').empty();
+					$('#devInclude').html($compile(innerHtml)(scope));
+					
+					//심판단위 보기 클릭시 
+					$.allCollapsesClick();
+					$.highlightProc();
+					scope.$apply();
+				},
+				error: function(jqXHR, textStatus, errorThrown) {
+					/*if (/EgovBizException/.test(jqXHR.responseText)) {
+						alert(jqXHR.responseText.match(/EgovBizException: &quot;(.*?)&quot;/)[1]);
+						// error 처리
+					}
+					else {
+						alert("에러가 발생하였습니다. " + jqXHR.status + "\nError: " + errorThrown);
+					}*/
+				}
+			});
+		};
+
+		//상세정보 레이어 출력
+		$.expandJdgDetail = function(jdgNum){
+	    	if ($('#div_'+jdgNum).css("display") == "none") {
+	        	$('#span_'+jdgNum).removeClass("float_l").addClass("float_l font_type_bold");
+	        	$('#a_'+jdgNum).removeClass("ico_open_judge").addClass("ico_close_judge");
+	        	$('#div_'+jdgNum).show();
+	    	}else{
+	        	$('#span_'+jdgNum).removeClass("float_l font_type_bold").addClass("float_l");
+	        	$('#a_'+jdgNum).removeClass("ico_close_judge").addClass("ico_open_judge");
+	        	$('#div_'+jdgNum).hide();
+	    	}
+		};
+		
+		//print 클릭시 이벤트
+		$.clickJdgPrintBtn = function(){
+	    	$('#jdgPrintLyr').show();
+		};
+
+		//레이어 취소 클릭시 이벤트
+		$.clickJdgCancelBtn = function(){
+	    	$('#jdgPrintLyr').hide();
+		};
+
+		//레이어 확인 클릭시 이벤트
+		$.clickJdgCfmBtn = function(){
+	    	$('#jdgPrintLyr').hide();
+			$.openPrintPopup();
+		};
+
+		//print 인쇄 팝업
+		$.openPrintPopup = function(){
+			var left = 200;
+			var top = 200;
+			var width = 1120;
+			var height = 707;
+			var toolbar = 0;
+			var menubar = 0;
+			var statusbar = 1;
+			var scrollbar = 1;
+			var resizable = 1;
+			var copyhistory = 0;
+		    
+		    tmp_toolbar = toolbar ? 'yes' : 'no';
+		    tmp_menubar = menubar ? 'yes' : 'no';
+		    tmp_statusbar = statusbar ? 'yes' : 'no';
+		    tmp_scrollbar = scrollbar ? 'yes' : 'no';
+		    tmp_resizable = resizable ? 'yes' : 'no';
+		    tmp_copyhistory = copyhistory ? 'yes' : 'no';
+				
+			var objectPopup = window.open('../html/cmm/popup_blank.html', "jdgPrintPopup", 'left=' + left + ',top=' + top + ',width=' + width + ',height=' + height + ',toolbar=' + tmp_toolbar + ',menubar=' + tmp_menubar + ',status=' + tmp_statusbar + ',scrollbars=' + tmp_scrollbar + ',resizable=' + tmp_resizable + ',copyhistory=' + tmp_copyhistory);
+				
+			var frm = document.createElement("form");
+			frm.setAttribute("method", "post");
+			frm.setAttribute("action", "../dkr/dkrJdgPrintPopup.wips");
+			frm.setAttribute("name", "newForm");
+			frm.setAttribute("id", "frmMyfolder");
+			
+			frm.setAttribute("target", "jdgPrintPopup");
+			
+			var oHidden = document.createElement('input');
+			oHidden.setAttribute("type", "hidden");
+			oHidden.setAttribute("id", "skey");
+			oHidden.setAttribute("name", "skey");
+			var skey = $('#skey').val();
+			oHidden.setAttribute("value", skey);
+			
+			frm.appendChild(oHidden);
+			
+			oHidden = document.createElement('input');
+			oHidden.setAttribute("type", "hidden");
+			oHidden.setAttribute("id", "tabGb");
+			oHidden.setAttribute("name", "tabGb");
+			oHidden.setAttribute("value", "JD");
+			
+			frm.appendChild(oHidden);		
+			document.body.appendChild(frm);
+			frm.submit();
+			$('form#frmMyfolder').remove();
+			
+			if (objectPopup == null) {
+				return;
+			}
+			else {
+				objectPopup.focus();
+			}
+		};
+	};
+	
+	function setFunctionCnAb(scope){
+		if($("#devInclude").hasClass("oneline_iwidth") === true) {
+			$("#devInclude").removeClass('oneline_iwidth');
+		}
+		/**
+		 * 발명의 명칭 클릭시 수행
+		 */
+		scope.onClickInvTi = function(index){
+			scope.docVar.docPageCmmRsltVO.selectInvTiIndex = index;
+		};
+			
+		/**
+		 * 요약 langCd 클릭시 수행
+		 */
+		scope.onClickAb = function(index){
+			scope.docVar.docPageSummaryRsltVO.curAbIndex = index;
+			scope.clickDevBtnMarker();
+		};
+		/**
+		 * 대표청구항 langCd 클릭시 수행
+		 */
+		scope.onClickExmpCl = function(index){
+			scope.docVar.docPageSummaryRsltVO.curExmpClIndex = index;
+			scope.clickDevBtnMarker();
+		};
+		
+		/**
+		 * 대표출원인 코드 팝업
+		 */
+		scope.openReptApptPopup = function(reptCd, langCd){
+			docCmmLinkFct.openReptApptPopup(reptCd, langCd);
+		};
+		
+		/**
+		 * 문헌 종류 코드 팝업
+		 */
+		scope.openDocKindPopup = function(ctry){
+			docCmmLinkFct.openDocKindPopup(ctry);
+		};
+		
+		/**
+		 * 국가 코드 팝업
+		 */
+		scope.openCtryCodePopup = function(ctry){
+			docCmmLinkFct.openCtryCodePopup(ctry);
+		};
+		
+		/**
+		 * 패밀리/법적상태 팝업 오픈
+		 */
+		scope.openFmlyLegal = function(skey){
+			docCmmLinkFct.openFmlyLegal(skey);
+		};
+		
+		/**
+		 * 개별도면 클릭시 도면 팝업 오픈
+		 */
+		scope.onClickDrw = function(skey,seq){
+			// 클릭한 이미지 블러 처리
+	        $("a").blur();
+	        
+			//alert(seq + " 번째 클릭  " +skey);
+			//scope.docVar.docPageCmmRsltVO.selectInvTiIndex = seq;
+			
+			var url = scope.docConst.DRAW_POP_URL;
+			var width = 1150;
+			var height = 720;
+			var popupName = "_imgPopup";
+			var paramList = [];
+			
+			var toolbar = 0;
+			var menubar = 0;
+			var status = 0;
+			var scrollbars = 1;
+			var resizable = 1;
+			var copyhistory = 0;
+
+			paramList[paramList.length] = {fieldNm: 'skey', fieldValue: skey};
+	        paramList[paramList.length] = {fieldNm: 'rDetailImageNum', fieldValue: seq};
+	    
+	        scope.docVar.screenVO.abCurImgNum = (seq * 1);
+	        docCmmLinkFct.openPopupUrl(url, popupName, paramList, width, height, toolbar, menubar, status, scrollbars, resizable, copyhistory);
+			
+		};
+		
+		/**
+		 * 특허분류코드 레이어 팝업 함수
+		 */
+		scope.openClsLayer = function(clsType , clsStatus  , clsIndex , clsMode , clsCd) {
+			docCmmFct.openClsLayer(scope, clsType , clsStatus  , clsIndex , clsMode , clsCd);
+		};
+		
+		scope.openClsLayerFi = function(clsType , clsStatus  , clsIndex , clsMode , clsCd, unfdSymb, savRecgSymb) {
+			
+			docCmmFct.openClsLayerFi(scope, clsType , clsStatus  , clsIndex , clsMode , clsCd, unfdSymb, savRecgSymb);
+		};
+		
+		scope.layerHide = function() {
+			docCmmFct.layerHide();
+		};
+		
+		scope.closeClsLayer = function(clsType , clsStatus  , clsIndex , clsMode) {
+			docCmmFct.closeClsLayer(clsType , clsStatus  , clsIndex , clsMode);
+		};
+		
+		scope.lyrClsHierarchy = function(clsType , clsStatus  , clsIndex , clsMode , clsCd) {
+			docCmmFct.lyrClsHierarchy(scope, clsType , clsStatus  , clsIndex , clsMode , clsCd);
+		};
+	};
+	
+	function setFunctionDbAb(scope){
+		if($("#devInclude").hasClass("oneline_iwidth") === true) {
+			$("#devInclude").removeClass('oneline_iwidth');
+		}
+		/**
+		 * 발명의 명칭 클릭시 수행
+		 */
+		scope.onClickInvTi = function(index){
+			//alert(index + " 번째 클릭");
+			scope.docVar.docPageCmmRsltVO.selectInvTiIndex = index;
+		};
+			
+		/**
+		 * 요약 langCd 클릭시 수행
+		 */
+		scope.onClickAb = function(index){
+			//alert(index + " 번째 클릭");
+			scope.docVar.docPageSummaryRsltVO.curAbIndex = index;
+			scope.clickDevBtnMarker();
+		};
+		
+		/**
+		 * 개별도면 클릭시 도면 팝업 오픈
+		 */
+		scope.onClickDrw = function(skey,seq){
+			// 클릭한 이미지 블러 처리
+	        $("a").blur();
+	        
+			//alert(seq + " 번째 클릭  " +skey);
+			//scope.docVar.docPageCmmRsltVO.selectInvTiIndex = seq;
+			
+			var url = scope.docConst.DRAW_POP_URL;
+			var width = 1150;
+			var height = 720;
+			var popupName = "_imgPopup";
+			var paramList = [];
+			
+			var toolbar = 0;
+			var menubar = 0;
+			var status = 0;
+			var scrollbars = 1;
+			var resizable = 1;
+			var copyhistory = 0;
+
+			paramList[paramList.length] = {fieldNm: 'skey', fieldValue: skey};
+	        paramList[paramList.length] = {fieldNm: 'rDetailImageNum', fieldValue: seq};
+	    
+	        scope.docVar.screenVO.abCurImgNum = (seq * 1);
+	        docCmmLinkFct.openPopupUrl(url, popupName, paramList, width, height, toolbar, menubar, status, scrollbars, resizable, copyhistory);
+			
+		};
+		
+		/**
+		 * 대표출원인 코드 팝업
+		 */
+		scope.openReptApptPopup = function(reptCd, langCd){
+			docCmmLinkFct.openReptApptPopup(reptCd, langCd);
+		};
+		
+		/**
+		 * 패밀리/법적상태 팝업 오픈
+		 */
+		scope.openFmlyLegal = function(skey){
+			docCmmLinkFct.openFmlyLegal(skey);
+		};
+		
+		/**
+		 * 특허분류코드 레이어 팝업 함수
+		 */
+		scope.openClsLayer = function(clsType , clsStatus  , clsIndex , clsMode , clsCd) {
+			docCmmFct.openClsLayer(scope, clsType , clsStatus  , clsIndex , clsMode , clsCd);
+		};
+		
+		scope.openClsLayerFi = function(clsType , clsStatus  , clsIndex , clsMode , clsCd, unfdSymb, savRecgSymb) {
+			
+			docCmmFct.openClsLayerFi(scope, clsType , clsStatus  , clsIndex , clsMode , clsCd, unfdSymb, savRecgSymb);
+		};
+		
+		scope.layerHide = function() {
+			docCmmFct.layerHide();
+		};
+		
+		scope.closeClsLayer = function(clsType , clsStatus  , clsIndex , clsMode) {
+			docCmmFct.closeClsLayer(clsType , clsStatus  , clsIndex , clsMode);
+		};
+		
+		scope.lyrClsHierarchy = function(clsType , clsStatus  , clsIndex , clsMode , clsCd) {
+			docCmmFct.lyrClsHierarchy(scope, clsType , clsStatus  , clsIndex , clsMode , clsCd);
+		};
+		
+		/**
+		 * 문헌 종류 코드 팝업
+		 */
+		scope.openDocKindPopup = function(ctry){
+			docCmmLinkFct.openDocKindPopup(ctry);
+		};
+		
+		/**
+		 * 국가 코드 팝업
+		 */
+		scope.openCtryCodePopup = function(ctry){
+			docCmmLinkFct.openCtryCodePopup(ctry);
+		};
+	};
+	
+	function setFunctionEpAb(scope){
+		if($("#devInclude").hasClass("oneline_iwidth") === true) {
+			$("#devInclude").removeClass('oneline_iwidth');
+		}
+		/**
+		 * 발명의 명칭 클릭시 수행
+		 */
+		scope.onClickInvTi = function(index){
+			//alert(index + " 번째 클릭");
+			scope.docVar.docPageCmmRsltVO.selectInvTiIndex = index;
+			scope.clickDevBtnMarker();
+		};
+			
+		/**
+		 * 요약 langCd 클릭시 수행
+		 */
+		scope.onClickAb = function(index){
+			//alert(index + " 번째 클릭");
+			scope.docVar.docPageSummaryRsltVO.curAbIndex = index;
+			scope.clickDevBtnMarker();
+		};
+		/**
+		 * 대표청구항 langCd 클릭시 수행
+		 */
+		scope.onClickExmpCl = function(index){
+			scope.docVar.docPageSummaryRsltVO.curExmpClIndex = index;
+			scope.clickDevBtnMarker();
+		};
+		/**
+		 * 개별도면 클릭시 도면 팝업 오픈
+		 */
+		scope.onClickDrw = function(skey,seq){
+			// 클릭한 이미지 블러 처리
+	        $("a").blur();
+	        
+			//alert(seq + " 번째 클릭  " +skey);
+			//scope.docVar.docPageCmmRsltVO.selectInvTiIndex = seq;
+			
+			var url = scope.docConst.DRAW_POP_URL;
+			var width = 1150;
+			var height = 720;
+			var popupName = "_imgPopup";
+			var paramList = [];
+			
+			var toolbar = 0;
+			var menubar = 0;
+			var status = 0;
+			var scrollbars = 1;
+			var resizable = 1;
+			var copyhistory = 0;
+
+			paramList[paramList.length] = {fieldNm: 'skey', fieldValue: skey};
+	        paramList[paramList.length] = {fieldNm: 'rDetailImageNum', fieldValue: seq};
+	    
+	        scope.docVar.screenVO.abCurImgNum = (seq * 1);
+	        docCmmLinkFct.openPopupUrl(url, popupName, paramList, width, height, toolbar, menubar, status, scrollbars, resizable, copyhistory);
+			
+		};
+
+		/**
+		 * 패밀리/법적상태 팝업 오픈
+		 */
+		scope.openFmlyLegal = function(skey){
+			docCmmLinkFct.openFmlyLegal(skey);
+		};
+		
+		/**
+		 * 대표출원인 코드 팝업
+		 */
+		scope.openReptApptPopup = function(reptCd, langCd){
+			docCmmLinkFct.openReptApptPopup(reptCd, langCd);
+		};
+		
+		/**
+		 * 문헌 종류 코드 팝업
+		 */
+		scope.openDocKindPopup = function(ctry){
+			docCmmLinkFct.openDocKindPopup(ctry);
+		};
+
+		/**
+		 * 국가 코드 팝업
+		 */
+		scope.openCtryCodePopup = function(ctry){
+			docCmmLinkFct.openCtryCodePopup(ctry);
+		};
+		
+		
+		/**
+		 * 현재진행상태 오픈 EP 처리
+		 */
+		scope.openStatusEP = function(applNum){
+			
+			if(applNum != null){
+				applNum = $.trim(applNum);
+				if(applNum != ''){
+					var appls = applNum.split("-");
+			        if (appls.length > 0 && appls[1].length > 0){
+			        	var url = "https://register.epo.org/espacenet/application";
+						var width = 840;
+						var height = 620;
+						var popupName = "docCurStatusEPPopUpView";
+						var paramList = [];
+						
+						var toolbar = 0;
+						var menubar = 0;
+						var status = 0;
+						var scrollbars = 1;
+						var resizable = 1;
+						var copyhistory = 0;
+			        	
+			        	appls[0] = appls[0].substr(2, 2);
+			        	appls[1] = appls[1].substr(0, 6);
+			        	
+			        	applNum = "EP" + appls[0] + appls[1];
+			        	
+			        	paramList[paramList.length] = {fieldNm: 'number', fieldValue: applNum};
+			        	
+			        	docCmmLinkFct.openPopupUrl(url, popupName, paramList, width, height, toolbar, menubar, status, scrollbars, resizable, copyhistory);
+			        }
+				}
+			}
+		};
+	};
+	
+	function setFunctionJpAb(scope){
+		if($("#devInclude").hasClass("oneline_iwidth") === true) {
+			$("#devInclude").removeClass('oneline_iwidth');
+		}
+		/**
+		 * 발명의 명칭 클릭시 수행
+		 */
+		scope.onClickInvTi = function(index){
+			scope.docVar.docPageCmmRsltVO.selectInvTiIndex = index;
+		};
+			
+		
+		/**
+		 * 요약 langCd 클릭시 수행
+		 */
+		scope.onClickAb = function(index){
+			scope.docVar.docPageSummaryRsltVO.selectAbIndex = index;
+		};
+		/**
+		 * 대표청구항 langCd 클릭시 수행
+		 */
+		scope.onClickExmpCl = function(index){
+			scope.docVar.docPageSummaryRsltVO.curExmpClIndex = index;
+		};
+		
+		/**
+		 * 개별도면 클릭시 도면 팝업 오픈
+		 */
+		scope.onClickDrw = function(skey,seq){
+			// 클릭한 이미지 블러 처리
+	        $("a").blur();
+	        
+			//alert(seq + " 번째 클릭  " +skey);
+			//scope.docVar.docPageCmmRsltVO.selectInvTiIndex = seq;
+			
+			var url = DocCmmConst.DRAW_POP_URL;
+			var width = 1150;
+			var height = 720;
+			var popupName = "_imgPopup";
+			var paramList = [];
+			
+			var toolbar = 0;
+			var menubar = 0;
+			var status = 0;
+			var scrollbars = 1;
+			var resizable = 1;
+			var copyhistory = 0;
+
+			paramList[paramList.length] = {fieldNm: 'skey', fieldValue: skey};
+	        paramList[paramList.length] = {fieldNm: 'rDetailImageNum', fieldValue: seq};
+	    
+	        scope.docVar.screenVO.abCurImgNum = (seq * 1);
+	        docCmmLinkFct.openPopupUrl(url, popupName, paramList, width, height, toolbar, menubar, status, scrollbars, resizable, copyhistory);
+			
+		};
+		
+		/**
+		 * 수속보정서 링크
+		 */
+		scope.openCorrPage = function(skey){
+//			var url = DocCmmConst.JP_CORR_DTL_POPUP_URL;
+			var url = scope.docConst.JP_CORR_DTL_POPUP_URL;
+			var width = 1050;
+			var height = 500;
+			var toolbar = 0;
+			var menubar = 0;
+			var status = 0;
+			var scrollbars = 1;
+			var resizable = 1;
+			var copyhistory = 0;
+			
+			var popupName = "djpCorrPopUpView";
+			var formName = "djpCorrPopUpForm";
+			var formMethod = 'post';
+			var paramList = [];
+			paramList[paramList.length] = {fieldNm: 'skey', fieldValue: skey};
+			docCmmLinkFct.openSubmitPopup(url, popupName, formName, formMethod, paramList, width, height, toolbar, menubar, status, scrollbars, resizable, copyhistory);
+		};
+		
+
+		/**
+		 * 패밀리/법적상태 팝업 오픈
+		 */
+		scope.openFmlyLegal = function(skey){
+			docCmmLinkFct.openFmlyLegal(skey);
+		};
+		/**
+		 * 대표출원인 코드 팝업
+		 */
+		scope.openReptApptPopup = function(reptCd, langCd){
+			docCmmLinkFct.openReptApptPopup(reptCd, langCd);
+		};
+		/**
+		 * 문헌 종류 코드 팝업
+		 */
+		scope.openDocKindPopup = function(ctry){
+			docCmmLinkFct.openDocKindPopup(ctry);
+		};
+		
+		/**
+		 * 국가 코드 팝업
+		 */
+		scope.openCtryCodePopup = function(ctry){
+			docCmmLinkFct.openCtryCodePopup(ctry);
+		};
+		
+		/**
+		 * 정정사항 리스트 최초 10건 출력
+		 */		
+		scope.jpCorrListFn = function() {			
+			scope.docVar.docAdminTbl.corrListCnt = $('#devJpCorrTbl tr').size();
+					     
+			if (scope.docVar.docAdminTbl.corrListCnt >= scope.docConst.ADMIN.CORRCNT) { //10개 이상이면 SHOW
+				$('#devJpCorrTbl').find('tr:gt(' + (scope.docConst.ADMIN.CORRCNT) + ')').hide();
+		    };
+		};
+		
+		scope.jpCorrListFn();
+		
+		scope.onClickJpCorrectShow = function() {
+	    	$('#devJpCorrTbl').find('tr:lt(' + scope.docVar.docAdminTbl.corrListCnt + ')').show();
+	    	$('#devJpCorrectShow').hide();
+	    	$('#devJpCorrectHide').show();
+		};
+		
+		scope.onClickJpCorrectHide = function() {
+			$('#devJpCorrTbl').find('tr:gt(' + (scope.docConst.ADMIN.CORRCNT) + ')').hide();
+	    	$('#devJpCorrectHide').hide();
+	    	$('#devJpCorrectShow').show();
+		};
+		
+		/**
+		 * 현재진행상태 오픈 JP 처리
+		 */
+		scope.openStatusJP = function(mngNum, docKind, publNum, reJtpIntrPublNum, rghtSect, mngKind, grtNum, firmNum, firmDt, issDt){
+			var strKA = "";
+			var patNum = mngNum == null ? "" : $.trim(mngNum);
+			var patKind =  mngKind == null || $.trim(mngKind) == '' ? 0 : ($.trim(mngKind));
+			var patUrl = "";
+			docKind == null ? "" : $.trim(docKind.toUpperCase());
+			publNum == null ? "" : $.trim(publNum);
+			reJtpIntrPublNum == null ? "" : $.trim(reJtpIntrPublNum);
+			rghtSect == null ? "" : $.trim(rghtSect);
+			grtNum == null ? "" : $.trim(grtNum);
+			firmNum == null ? "" : $.trim(firmNum);
+			firmDt == null || $.trim(firmDt) == '' ? "0" : $.trim(firmDt);
+			issDt == null || $.trim(issDt) == '' ? "0" : $.trim(issDt);
+			
+			// doc_kind가 공개/공표가 아니거나 공개번호의 일련번호 첫자리가 5가 아닐 경우에만 실행한다.
+	        if ((docKind != "A") || (publNum.substr(5, 1) != "5"))
+	        {
+	        	// 문헌 종류가 특허이고, 국제발행일자가 없을 경우에는 특허이고, 문헌종류가 실용이면 그냥 실용
+	        	if (reJtpIntrPublNum == "" && rghtSect == "P"){
+	        		strKA = "P";
+	        	} else if (rghtSect == "U") {
+	        		strKA = "U";
+	        	}
+
+	        	// 특허번호를 설정한다.
+	        	// WIPS 4.0 과 doc_kind 비교
+	        	// XC	  DOC_KIND
+	        	// 1	  1
+	        	// 2	  4
+	        	// 3	  8
+	        	// 4	  9
+	        	// 5	  5
+	        	// 6	  2, 3
+	        	// 7	  6, 7
+	        	if (patKind == 1 || patKind == 4 || patKind == 8 || patKind == 9){
+	        		// 공표 및 국제공개번호는 공개번호가 존재하지 않으므로 기존번호 그대로 유지
+	        		if (publNum != null){
+	                  patNum = publNum;
+	                }
+	        	} else if ((patKind == 6 || patKind == 7) && grtNum == "") {
+	        		patNum = firmNum;
+	        	} else if (patKind == 2 || patKind == 3) {
+	                if (firmNum != "" && firmDt < 19960401){
+	                	patNum = firmNum;
+	                } else if (grtNum != "" && issDt >= 19960401){
+	                	patNum = grtNum;
+	                }
+	        	} else {
+	        		patNum = grtNum;
+	        	}
+
+	        	// 날짜를 일왕년도로 바꾼다.
+	        	var strConv_JPYear = "";
+	        	var strYear;
+	        	var strNum;
+	        	var iTempNum = 0;
+	        	if (patKind == 1 || patKind == 4) {
+	        		strYear = patNum.substr(0, 4) * 1;
+	        		strNum = patNum.substr(5, 6) * 1;
+	        		if (strYear >= 1926 && strYear < 1989) {
+	        			iTempNum = strYear - 1925;
+	        			if (iTempNum < 10) {
+	        				strConv_JPYear = "0" + iTempNum;
+	        			} else {
+	        				strConv_JPYear = iTempNum + "";
+	        			}
+	        			strConv_JPYear = "S" + strConv_JPYear;
+	        		} else {
+	        			iTempNum = strYear - 1988;
+	        			if (iTempNum < 10) {
+	        				strConv_JPYear = "0" + iTempNum;
+	        			} else {
+	        				strConv_JPYear = iTempNum + "";
+	        			}
+	        			strConv_JPYear = "H" + strConv_JPYear;
+	        		}
+	        		patNum = strConv_JPYear + "-" + strNum;
+	        	}
+	        }
+	        
+	        if (strKA == "P")
+	        {
+	        	//patUrl = "https://www2.j-platpat.inpit.go.jp/SA1/html/input.html";
+	        	patUrl = "https://www.j-platpat.inpit.go.jp/p0000";
+	        } else{
+	        	//patUrl = "https://www2.j-platpat.inpit.go.jp/SA1/html/input.html";
+	        	patUrl = "https://www.j-platpat.inpit.go.jp/p0000";
+	        }
+	        
+	        if(patUrl != "" && reJtpIntrPublNum == ""){
+				var width = 730;
+				var height = 620;
+				var popupName = "docCurStatusJPPopUpView";
+				var paramList = [];
+				
+				var toolbar = 0;
+				var menubar = 0;
+				var status = 0;
+				var scrollbars = 1;
+				var resizable = 1;
+				var copyhistory = 0;
+	        	
+				docCmmLinkFct.openPopupUrl(patUrl, popupName, paramList, width, height, toolbar, menubar, status, scrollbars, resizable, copyhistory);
+	        }
+		};
+	};
+	
+	function setFunctionJpJd(scope){
+		//분쟁정보 출력안내 레이어 UI
+		if($('#skey').val() != null && $('#skey').val() != "undefined"){
+			//분쟁정보 출력안내 레이어 UI
+		    $(".layerpopheader_backcolor").css('background','#5cb14a');// 레이어 Header(back단 opacity Layer Mask)
+		    $(".popheader_backcolor2").css('background','#FFFFFF').css('border-bottom','1px solid #b7b7b7');// 팝업 Header(배경 화이트+라인)
+		}
+	    
+		//-+ 버튼 클릭시 
+		$.expandJdgItem = function(orgJdgNum){
+			if ($("li[id='li_" + orgJdgNum + "']").css("display") == "none") {
+				$("li[id='li_" + orgJdgNum + "']").show();
+				$("#bt_"+ orgJdgNum).removeClass("toggle2 plus").addClass("toggle2 minus");
+				
+			}else{
+				$("li[id='li_" + orgJdgNum + "']").hide();
+				$("#bt_"+ orgJdgNum).html("+");
+	    		$("#bt_" + orgJdgNum).removeClass("toggle2 minus").addClass("toggle2 plus");
+
+			}
+		};
+
+		//심판단위 보기 클릭시 
+		$('#allCollapses').click (function(){
+			var thisCheck = $(this);
+			if ( thisCheck.is(':checked') ) {
+				$( "li[id^='li_']" ).hide();
+				$( "button[id^='bt_']" ).removeClass("toggle2 minus").addClass("toggle2 plus");
+			}else{
+				$( "li[id^='li_']" ).show();
+				$( "button[id^='bt_']" ).removeClass("toggle2 plus").addClass("toggle2 minus");
+			}
+		});
+
+		var skey = $('#skey').val();
+		var hl = $('#hl').val();
+		var ctry = $('#ctry').val();
+		var html = "";
+		var highLight1 = $('#highLight1').val();
+		var highLight2 = $('#highLight2').val();
+		var highLight3 = $('#highLight3').val();
+		var nJdgSortOrder = $('#jdgSortOrder').val();
+		
+		var jdgSortOrder = '';
+		if(nJdgSortOrder == 'DESC')
+			jdgSortOrder = 'ASC';
+		else
+			jdgSortOrder = 'DESC';
+		
+		//sort 클릭시 이벤트
+		$.clickSortCoulumn = function(jdgSortCoulumn){
+			$('#jdgSortCoulumn').val(jdgSortCoulumn);
+			var jdgSortOrder = $('#jdgSortOrder').val();
+			
+			if(jdgSortOrder == 'DESC')
+				jdgSortOrder = 'ASC';
+			else
+				jdgSortOrder = 'DESC';
+			
+			$('#jdgSortOrder').val(jdgSortOrder);
+			
+			var paramObj = {
+					skey : $('#skey').val(),
+					jdgSortCoulumn : jdgSortCoulumn,
+					jdgSortOrder : jdgSortOrder
+			};
+			
+			$.ajax({
+				url: '../djp/djpJudge.wips',
+				type: 'POST',
+				cache: 'false',
+				async: 'true',
+				dataType: 'html',
+				data:paramObj,
+				success: function(data, textStatus, jqXHR) {
+					var innerHtml = data;
+					$('#devInclude').empty();
+					$('#devInclude').html($compile(innerHtml)(scope));
+					
+					//심판단위 보기 클릭시 
+					$.highlightProc();
+					scope.$apply();
+				},
+				error: function(jqXHR, textStatus, errorThrown) {
+					/*if (/EgovBizException/.test(jqXHR.responseText)) {
+						alert(jqXHR.responseText.match(/EgovBizException: &quot;(.*?)&quot;/)[1]);
+						// error 처리
+					}
+					else {
+						alert("에러가 발생하였습니다. " + jqXHR.status + "\nError: " + errorThrown);
+					}*/
+				}
+			});
+		};
+
+		//상세정보 팝업 출력
+		$.expandJdgDetail = function(jdgNum){
+			var left = 200;
+			var top = 200;
+			var width = 880;
+			var height = 600;
+			var toolbar = 0;
+			var menubar = 0;
+			var statusbar = 1;
+			var scrollbar = 1;
+			var resizable = 1;
+			var copyhistory = 0;
+		    
+		    tmp_toolbar = toolbar ? 'yes' : 'no';
+		    tmp_menubar = menubar ? 'yes' : 'no';
+		    tmp_statusbar = statusbar ? 'yes' : 'no';
+		    tmp_scrollbar = scrollbar ? 'yes' : 'no';
+		    tmp_resizable = resizable ? 'yes' : 'no';
+		    tmp_copyhistory = copyhistory ? 'yes' : 'no';
+				
+			var objectPopup = window.open('../html/cmm/popup_blank.html', 'pop_' + jdgNum, 'left=' + left + ',top=' + top + ',width=' + width + ',height=' + height + ',toolbar=' + tmp_toolbar + ',menubar=' + tmp_menubar + ',status=' + tmp_statusbar + ',scrollbars=' + tmp_scrollbar + ',resizable=' + tmp_resizable + ',copyhistory=' + tmp_copyhistory);
+				
+			var frm = document.createElement("form");
+			frm.setAttribute("method", "post");
+			frm.setAttribute("action", "../djp/djpJdgDetailPopup.wips");
+			frm.setAttribute("name", "newForm");
+			frm.setAttribute("id", "frmJdgPrint");
+			
+			frm.setAttribute("target", 'pop_' + jdgNum);
+			
+			var oHidden = document.createElement('input');
+			oHidden.setAttribute("type", "hidden");
+			oHidden.setAttribute("id", "jdgNum");
+			oHidden.setAttribute("name", "jdgNum");
+			oHidden.setAttribute("value", jdgNum);
+			
+			frm.appendChild(oHidden);
+			document.body.appendChild(frm);
+			frm.submit();
+			$('form#frmJdgPrint').remove();
+			
+			if (objectPopup == null) {
+				return;
+			}
+			else {
+				objectPopup.focus();
+			}
+		};	
+		
+		//print 클릭시 이벤트
+		$.clickJdgPrintBtn = function(){
+	    	$('#jdgPrintLyr').show();
+		};
+
+		//레이어 취소 클릭시 이벤트
+		$.clickJdgCancelBtn = function(){
+	    	$('#jdgPrintLyr').hide();
+		};
+
+		//레이어 확인 클릭시 이벤트
+		$.clickJdgCfmBtn = function(){
+	    	$('#jdgPrintLyr').hide();
+			$.openPrintPopup();
+		};
+
+		//print 인쇄 팝업
+		$.openPrintPopup = function(){
+			var left = 200;
+			var top = 200;
+			var width = 820;
+			var height = 707;
+			var toolbar = 0;
+			var menubar = 0;
+			var statusbar = 1;
+			var scrollbar = 1;
+			var resizable = 1;
+			var copyhistory = 0;
+		    
+		    tmp_toolbar = toolbar ? 'yes' : 'no';
+		    tmp_menubar = menubar ? 'yes' : 'no';
+		    tmp_statusbar = statusbar ? 'yes' : 'no';
+		    tmp_scrollbar = scrollbar ? 'yes' : 'no';
+		    tmp_resizable = resizable ? 'yes' : 'no';
+		    tmp_copyhistory = copyhistory ? 'yes' : 'no';
+				
+			var objectPopup = window.open('../html/cmm/popup_blank.html', "jdgPrintPopup", 'left=' + left + ',top=' + top + ',width=' + width + ',height=' + height + ',toolbar=' + tmp_toolbar + ',menubar=' + tmp_menubar + ',status=' + tmp_statusbar + ',scrollbars=' + tmp_scrollbar + ',resizable=' + tmp_resizable + ',copyhistory=' + tmp_copyhistory);
+				
+			var frm = document.createElement("form");
+			frm.setAttribute("method", "post");
+			frm.setAttribute("action", "../dkr/dkrJdgPrintPopup.wips");
+			frm.setAttribute("name", "newForm");
+			frm.setAttribute("id", "frmMyfolder");
+			
+			frm.setAttribute("target", "jdgPrintPopup");
+			
+			var oHidden = document.createElement('input');
+			oHidden.setAttribute("type", "hidden");
+			oHidden.setAttribute("id", "skey");
+			oHidden.setAttribute("name", "skey");
+			oHidden.setAttribute("value", skey);
+			
+			frm.appendChild(oHidden);
+			
+			oHidden = document.createElement('input');
+			oHidden.setAttribute("type", "hidden");
+			oHidden.setAttribute("id", "tabGb");
+			oHidden.setAttribute("name", "tabGb");
+			oHidden.setAttribute("value", "JD");
+			
+			frm.appendChild(oHidden);		
+			document.body.appendChild(frm);
+			frm.submit();
+			$('form#frmMyfolder').remove();
+			
+			if (objectPopup == null) {
+				return;
+			}
+			else {
+				objectPopup.focus();
+			}
+		};
+	};
+	
+	function setFunctionKpAuAb(scope){
+		if($("#devInclude").hasClass("oneline_iwidth") === true) {
+			$("#devInclude").removeClass('oneline_iwidth');
+		}
+		/**
+		 * 발명의 명칭 클릭시 수행
+		 */
+		scope.onClickInvTi = function(index){
+			//alert(index + " 번째 클릭");
+			scope.docVar.docPageCmmRsltVO.selectInvTiIndex = index;
+		};
+			
+		/**
+		 * 요약 langCd 클릭시 수행
+		 */
+		scope.onClickAb = function(index){
+			//alert(index + " 번째 클릭");
+			scope.docVar.docPageSummaryRsltVO.selectAbIndex = index;
+		};
+		
+		/**
+		 * 개별도면 클릭시 도면 팝업 오픈
+		 */
+		scope.onClickDrw = function(skey,seq){
+			// 클릭한 이미지 블러 처리
+	        $("a").blur();
+	        
+			//alert(seq + " 번째 클릭  " +skey);
+			//scope.docVar.docPageCmmRsltVO.selectInvTiIndex = seq;
+			
+			var url = scope.docConst.DRAW_POP_URL;
+			var width = 1150;
+			var height = 720;
+			var popupName = "_imgPopup";
+			var paramList = [];
+			
+			var toolbar = 0;
+			var menubar = 0;
+			var status = 0;
+			var scrollbars = 1;
+			var resizable = 1;
+			var copyhistory = 0;
+
+			paramList[paramList.length] = {fieldNm: 'skey', fieldValue: skey};
+	        paramList[paramList.length] = {fieldNm: 'rDetailImageNum', fieldValue: seq};
+	    
+	        scope.docVar.screenVO.abCurImgNum = (seq * 1);
+	        docCmmLinkFct.openPopupUrl(url, popupName, paramList, width, height, toolbar, menubar, status, scrollbars, resizable, copyhistory);
+			
+		};
+		
+		/**
+		 * 대표출원인 코드 팝업
+		 */
+		scope.openReptApptPopup = function(reptCd, langCd){
+			docCmmLinkFct.openReptApptPopup(reptCd, langCd);
+		};
+		
+		/**
+		 * 문헌 종류 코드 팝업
+		 */
+		scope.openDocKindPopup = function(ctry){
+			docCmmLinkFct.openDocKindPopup(ctry);
+		};
+		
+		/**
+		 * 패밀리/법적상태 팝업 오픈
+		 */
+		scope.openFmlyLegal = function(skey){
+			docCmmLinkFct.openFmlyLegal(skey);
+		};
+		
+		/**
+		 * 특허분류코드 레이어 팝업 함수
+		 */
+		scope.openClsLayer = function(clsType , clsStatus  , clsIndex , clsMode , clsCd) {
+			docCmmFct.openClsLayer(scope, clsType , clsStatus  , clsIndex , clsMode , clsCd);
+		};
+		
+		scope.openClsLayerFi = function(clsType , clsStatus  , clsIndex , clsMode , clsCd, unfdSymb, savRecgSymb) {
+			
+			docCmmFct.openClsLayerFi(scope, clsType , clsStatus  , clsIndex , clsMode , clsCd, unfdSymb, savRecgSymb);
+		};
+		
+		scope.layerHide = function() {
+			docCmmFct.layerHide();
+		};
+		
+		scope.closeClsLayer = function(clsType , clsStatus  , clsIndex , clsMode) {
+			docCmmFct.closeClsLayer(clsType , clsStatus  , clsIndex , clsMode);
+		};
+		
+		scope.lyrClsHierarchy = function(clsType , clsStatus  , clsIndex , clsMode , clsCd) {
+			docCmmFct.lyrClsHierarchy(scope, clsType , clsStatus  , clsIndex , clsMode , clsCd);
+		};
+		
+		/**
+		 * 국가 코드 팝업
+		 */
+		scope.openCtryCodePopup = function(ctry){
+			docCmmLinkFct.openCtryCodePopup(ctry);
+		};
+	};
+	
+	function setFunctionKtAb(scope){
+		if($("#devInclude").hasClass("oneline_iwidth") === true) {
+			$("#devInclude").removeClass('oneline_iwidth');
+		}
+		/**
+		 * 발명의 명칭 클릭시 수행
+		 */
+		scope.onClickInvTi = function(index){
+			//alert(index + " 번째 클릭");
+			scope.docVar.docPageCmmRsltVO.selectInvTiIndex = index;
+		};
+			
+		/**
+		 * 요약 langCd 클릭시 수행
+		 */
+		scope.onClickAb = function(index){
+			//alert(index + " 번째 클릭");
+			scope.docVar.docPageSummaryRsltVO.selectAbIndex = index;
+		};
+		
+		/**
+		 * 개별도면 클릭시 도면 팝업 오픈
+		 */
+		scope.onClickDrw = function(skey,seq){
+			// 클릭한 이미지 블러 처리
+	        $("a").blur();
+	        
+			//alert(seq + " 번째 클릭  " +skey);
+			//scope.docVar.docPageCmmRsltVO.selectInvTiIndex = seq;
+			
+			var url = scope.docConst.DRAW_POP_URL;
+			var width = 1150;
+			var height = 720;
+			var popupName = "_imgPopup";
+			var paramList = [];
+			
+			var toolbar = 0;
+			var menubar = 0;
+			var status = 0;
+			var scrollbars = 1;
+			var resizable = 1;
+			var copyhistory = 0;
+
+			paramList[paramList.length] = {fieldNm: 'skey', fieldValue: skey};
+	        paramList[paramList.length] = {fieldNm: 'rDetailImageNum', fieldValue: seq};
+	    
+	        scope.docVar.screenVO.abCurImgNum = (seq * 1);
+	        docCmmLinkFct.openPopupUrl(url, popupName, paramList, width, height, toolbar, menubar, status, scrollbars, resizable, copyhistory);
+			
+		};
+		
+		/**
+		 * 대표출원인 코드 팝업
+		 */
+		scope.openReptApptPopup = function(reptCd, langCd){
+			docCmmLinkFct.openReptApptPopup(reptCd, langCd);
+		};
+		
+		/**
+		 * 특허분류코드 레이어 팝업 함수
+		 */
+		scope.openClsLayer = function(clsType , clsStatus  , clsIndex , clsMode , clsCd) {
+			docCmmFct.openClsLayer(scope, clsType , clsStatus  , clsIndex , clsMode , clsCd);
+		};
+		
+		scope.openClsLayerFi = function(clsType , clsStatus  , clsIndex , clsMode , clsCd, unfdSymb, savRecgSymb) {
+			
+			docCmmFct.openClsLayerFi(scope, clsType , clsStatus  , clsIndex , clsMode , clsCd, unfdSymb, savRecgSymb);
+		};
+		
+		scope.layerHide = function() {
+			docCmmFct.layerHide();
+		};
+		
+		scope.closeClsLayer = function(clsType , clsStatus  , clsIndex , clsMode) {
+			docCmmFct.closeClsLayer(clsType , clsStatus  , clsIndex , clsMode);
+		};
+		
+		scope.lyrClsHierarchy = function(clsType , clsStatus  , clsIndex , clsMode , clsCd) {
+			docCmmFct.lyrClsHierarchy(scope, clsType , clsStatus  , clsIndex , clsMode , clsCd);
+		};
+		
+		/**
+		 * 문헌 종류 코드 팝업
+		 */
+		scope.openDocKindPopup = function(ctry){
+			docCmmLinkFct.openDocKindPopup(ctry);
+		};
+	};
+	
+	function setFunctionLnAb(scope){
+		if($("#devInclude").hasClass("oneline_iwidth") === true) {
+			$("#devInclude").removeClass('oneline_iwidth');
+		}
+		/**
+		 * 발명의 명칭 클릭시 수행
+		 */
+		scope.onClickInvTi = function(index){
+			scope.docVar.docPageCmmRsltVO.curAbIndex = index;
+		};
+			
+		/**
+		 * 요약 langCd 클릭시 수행
+		 */
+		scope.onClickAb = function(index){
+			scope.docVar.docPageSummaryRsltVO.curAbIndex = index;
+			scope.clickDevBtnMarker();
+		};
+		/**
+		 * 대표청구항 langCd 클릭시 수행
+		 */
+		scope.onClickExmpCl = function(index){
+			scope.docVar.docPageSummaryRsltVO.curExmpClIndex = index;
+			scope.clickDevBtnMarker();
+		};
+		
+		/**
+		 * 개별도면 클릭시 도면 팝업 오픈
+		 */
+		scope.onClickDrw = function(skey,seq){
+			// 클릭한 이미지 블러 처리
+	        $("a").blur();
+	        
+			//alert(seq + " 번째 클릭  " +skey);
+			//scope.docVar.docPageCmmRsltVO.selectInvTiIndex = seq;
+			
+			var url = scope.docConst.DRAW_POP_URL;
+			var width = 1150;
+			var height = 720;
+			var popupName = "_imgPopup";
+			var paramList = [];
+			
+			var toolbar = 0;
+			var menubar = 0;
+			var status = 0;
+			var scrollbars = 1;
+			var resizable = 1;
+			var copyhistory = 0;
+
+			paramList[paramList.length] = {fieldNm: 'skey', fieldValue: skey};
+	        paramList[paramList.length] = {fieldNm: 'rDetailImageNum', fieldValue: seq};
+	    
+	        scope.docVar.screenVO.abCurImgNum = (seq * 1);
+	        docCmmLinkFct.openPopupUrl(url, popupName, paramList, width, height, toolbar, menubar, status, scrollbars, resizable, copyhistory);
+			
+		};
+		
+		/**
+		 * 대표출원인 코드 팝업
+		 */
+		scope.openReptApptPopup = function(reptCd, langCd){
+			docCmmLinkFct.openReptApptPopup(reptCd, langCd);
+		};
+		
+		/**
+		 * 문헌 종류 코드 팝업
+		 */
+		scope.openDocKindPopup = function(ctry){
+			docCmmLinkFct.openDocKindPopup(ctry);
+		};
+		
+		/**
+		 * 패밀리/법적상태 팝업 오픈
+		 */
+		scope.openFmlyLegal = function(skey){
+			docCmmLinkFct.openFmlyLegal(skey);
+		};
+		
+		/**
+		 * 특허분류코드 레이어 팝업 함수
+		 */
+		scope.openClsLayer = function(clsType , clsStatus  , clsIndex , clsMode , clsCd) {
+			docCmmFct.openClsLayer(scope, clsType , clsStatus  , clsIndex , clsMode , clsCd);
+		};
+		
+		scope.openClsLayerFi = function(clsType , clsStatus  , clsIndex , clsMode , clsCd, unfdSymb, savRecgSymb) {
+			
+			docCmmFct.openClsLayerFi(scope, clsType , clsStatus  , clsIndex , clsMode , clsCd, unfdSymb, savRecgSymb);
+		};
+		
+		scope.layerHide = function() {
+			docCmmFct.layerHide();
+		};
+		
+		scope.closeClsLayer = function(clsType , clsStatus  , clsIndex , clsMode) {
+			docCmmFct.closeClsLayer(clsType , clsStatus  , clsIndex , clsMode);
+		};
+		
+		scope.lyrClsHierarchy = function(clsType , clsStatus  , clsIndex , clsMode , clsCd) {
+			docCmmFct.lyrClsHierarchy(scope, clsType , clsStatus  , clsIndex , clsMode , clsCd);
+		};
+		
+		/**
+		 * 국가 코드 팝업
+		 */
+		scope.openCtryCodePopup = function(ctry){
+			docCmmLinkFct.openCtryCodePopup(ctry);
+		};
+	};
+	
+	function setFunctionInAb(scope){
+		/*if($("#devInclude").hasClass("oneline_iwidth") === true) {
+			$("#devInclude").removeClass('oneline_iwidth');
+		}*/
+		/**
+		 * 발명의 명칭 클릭시 수행
+		 */
+		scope.onClickInvTi = function(index){
+			scope.docVar.docPageCmmRsltVO.selectInvTiIndex = index;
+		};
+		/**
+		 * 대표출원인 코드 팝업
+		 */
+		scope.openReptApptPopup = function(reptCd, langCd){
+			docCmmLinkFct.openReptApptPopup(reptCd, langCd);
+		};
+		/**
+		 * 개별도면 클릭시 도면 팝업 오픈
+		 */
+		scope.onClickDrw = function(skey,seq){
+			// 클릭한 이미지 블러 처리
+	        $("a").blur();
+	        
+			//alert(seq + " 번째 클릭  " +skey);
+			//scope.docVar.docPageCmmRsltVO.selectInvTiIndex = seq;
+			
+			var url = scope.docConst.DRAW_POP_URL;
+			var width = 1150;
+			var height = 720;
+			var popupName = "_imgPopup";
+			var paramList = [];
+			
+			var toolbar = 0;
+			var menubar = 0;
+			var status = 0;
+			var scrollbars = 1;
+			var resizable = 1;
+			var copyhistory = 0;
+
+			paramList[paramList.length] = {fieldNm: 'skey', fieldValue: skey};
+	        paramList[paramList.length] = {fieldNm: 'rDetailImageNum', fieldValue: seq};
+	    
+	        scope.docVar.screenVO.abCurImgNum = (seq * 1);
+	        docCmmLinkFct.openPopupUrl(url, popupName, paramList, width, height, toolbar, menubar, status, scrollbars, resizable, copyhistory);
+			
+		};
+		
+		/**
+		 * 특허분류코드 레이어 팝업 함수
+		 */
+		scope.openClsLayer = function(clsType , clsStatus  , clsIndex , clsMode , clsCd) {
+			docCmmFct.openClsLayer(scope, clsType , clsStatus  , clsIndex , clsMode , clsCd);
+		};
+		
+		scope.openClsLayerFi = function(clsType , clsStatus  , clsIndex , clsMode , clsCd, unfdSymb, savRecgSymb) {
+			
+			docCmmFct.openClsLayerFi(scope, clsType , clsStatus  , clsIndex , clsMode , clsCd, unfdSymb, savRecgSymb);
+		};
+		
+		scope.layerHide = function() {
+			docCmmFct.layerHide();
+		};
+		
+		scope.closeClsLayer = function(clsType , clsStatus  , clsIndex , clsMode) {
+			docCmmFct.closeClsLayer(clsType , clsStatus  , clsIndex , clsMode);
+		};
+		
+		scope.lyrClsHierarchy = function(clsType , clsStatus  , clsIndex , clsMode , clsCd) {
+			docCmmFct.lyrClsHierarchy(scope, clsType , clsStatus  , clsIndex , clsMode , clsCd);
+		};
+		
+		/**
+		 * 패밀리/법적상태 팝업 오픈
+		 */
+		scope.openFmlyLegal = function(skey){
+			docCmmLinkFct.openFmlyLegal(skey);
+		};
+	};
+	
+	function setFunctionPjAb(scope){
+		if($("#devInclude").hasClass("oneline_iwidth") === true) {
+			$("#devInclude").removeClass('oneline_iwidth');
+		}
+		/**
+		 * 발명의 명칭 클릭시 수행
+		 */
+		scope.onClickInvTi = function(index){
+			//alert(index + " 번째 클릭");
+			scope.docVar.docPageCmmRsltVO.selectInvTiIndex = index;
+		};
+			
+		/**
+		 * 요약 langCd 클릭시 수행
+		 */
+		scope.onClickAb = function(index){
+			//alert(index + " 번째 클릭");
+			scope.docVar.docPageSummaryRsltVO.selectAbIndex = index;
+		};
+		
+		/**
+		 * 개별도면 클릭시 도면 팝업 오픈
+		 */
+		scope.onClickDrw = function(skey,seq){
+			// 클릭한 이미지 블러 처리
+	        $("a").blur();
+	        
+			//alert(seq + " 번째 클릭  " +skey);
+			//scope.docVar.docPageCmmRsltVO.selectInvTiIndex = seq;
+			
+			var url = scope.docConst.DRAW_POP_URL;
+			var width = 1150;
+			var height = 720;
+			var popupName = "_imgPopup";
+			var paramList = [];
+			
+			var toolbar = 0;
+			var menubar = 0;
+			var status = 0;
+			var scrollbars = 1;
+			var resizable = 1;
+			var copyhistory = 0;
+
+			paramList[paramList.length] = {fieldNm: 'skey', fieldValue: skey};
+	        paramList[paramList.length] = {fieldNm: 'rDetailImageNum', fieldValue: seq};
+	    
+	        scope.docVar.screenVO.abCurImgNum = (seq * 1);
+	        docCmmLinkFct.openPopupUrl(url, popupName, paramList, width, height, toolbar, menubar, status, scrollbars, resizable, copyhistory);
+			
+		};
+		
+		/**
+		 * 대표출원인 코드 팝업
+		 */
+		scope.openReptApptPopup = function(reptCd, langCd){
+			docCmmLinkFct.openReptApptPopup(reptCd, langCd);
+		};
+		
+		/**
+		 * 문헌 종류 코드 팝업
+		 */
+		scope.openDocKindPopup = function(ctry){
+			docCmmLinkFct.openDocKindPopup(ctry);
+		};
+		
+		/**
+		 * 패밀리/법적상태 팝업 오픈
+		 */
+		scope.openFmlyLegal = function(skey){
+			docCmmLinkFct.openFmlyLegal(skey);
+		};
+		
+		/**
+		 * 특허분류코드 레이어 팝업 함수
+		 */
+		scope.openClsLayer = function(clsType , clsStatus  , clsIndex , clsMode , clsCd) {
+			docCmmFct.openClsLayer(scope, clsType , clsStatus  , clsIndex , clsMode , clsCd);
+		};
+		
+		scope.openClsLayerFi = function(clsType , clsStatus  , clsIndex , clsMode , clsCd, unfdSymb, savRecgSymb) {
+			
+			docCmmFct.openClsLayerFi(scope, clsType , clsStatus  , clsIndex , clsMode , clsCd, unfdSymb, savRecgSymb);
+		};
+		
+		scope.layerHide = function() {
+			docCmmFct.layerHide();
+		};
+		
+		scope.closeClsLayer = function(clsType , clsStatus  , clsIndex , clsMode) {
+			docCmmFct.closeClsLayer(clsType , clsStatus  , clsIndex , clsMode);
+		};
+		
+		scope.lyrClsHierarchy = function(clsType , clsStatus  , clsIndex , clsMode , clsCd) {
+			docCmmFct.lyrClsHierarchy(scope, clsType , clsStatus  , clsIndex , clsMode , clsCd);
+		};
+		
+		/**
+		 * 국가 코드 팝업
+		 */
+		scope.openCtryCodePopup = function(ctry){
+			docCmmLinkFct.openCtryCodePopup(ctry);
+		};
+	};
+	
+	function setFunctionUsAb(scope){
+		if($("#devInclude").hasClass("oneline_iwidth") === true) {
+			$("#devInclude").removeClass('oneline_iwidth');
+		}
+		/**
+		 * 발명의 명칭 클릭시 수행
+		 */
+		scope.onClickInvTi = function(index){
+			scope.docVar.docPageCmmRsltVO.selectInvTiIndex = index;
+		};
+		/**
+		 * 요약 클릭시 수행
+		 */
+		scope.onClickAb = function(index){
+			scope.docVar.docPageCmmRsltVO.selectInvTiIndex = index;
+		};
+		/**
+		 * 개별도면 클릭시 도면 팝업 오픈
+		 */
+		scope.onClickDrw = function(skey,seq){
+			// 클릭한 이미지 블러 처리
+	        $("a").blur();
+	        
+			//alert(seq + " 번째 클릭  " +skey);
+			//scope.docVar.docPageCmmRsltVO.selectInvTiIndex = seq;
+			
+			var url = scope.docConst.DRAW_POP_URL;
+			var width = 1150;
+			var height = 720;
+			var popupName = "_imgPopup";
+			var paramList = [];
+			
+			var toolbar = 0;
+			var menubar = 0;
+			var status = 0;
+			var scrollbars = 1;
+			var resizable = 1;
+			var copyhistory = 0;
+
+			paramList[paramList.length] = {fieldNm: 'skey', fieldValue: skey};
+	        paramList[paramList.length] = {fieldNm: 'rDetailImageNum', fieldValue: seq};
+	    
+	        scope.docVar.screenVO.abCurImgNum = (seq * 1);
+	        docCmmLinkFct.openPopupUrl(url, popupName, paramList, width, height, toolbar, menubar, status, scrollbars, resizable, copyhistory);
+			
+		};
+		
+
+		/**
+		 * 패밀리/법적상태 팝업 오픈
+		 */
+		scope.openFmlyLegal = function(skey){
+			docCmmLinkFct.openFmlyLegal(skey);
+		};
+		
+		/**
+		 * 대표출원인 코드 팝업
+		 */
+		scope.openReptApptPopup = function(reptCd, langCd){
+			docCmmLinkFct.openReptApptPopup(reptCd, langCd);
+		};
+		
+		/**
+		 * 문헌 종류 코드 팝업
+		 */
+		scope.openDocKindPopup = function(ctry){
+			docCmmLinkFct.openDocKindPopup(ctry);
+		};
+		
+		/**
+		 * 현재진행상태 오픈 US 처리
+		 */
+		scope.openStatusUS = function(applNumKey){
+//			var url = "http://portal.uspto.gov/pair/PublicPair";
+			var url = "https://patentcenter.uspto.gov/applications/";
+			if(applNumKey != null && applNumKey != ""){
+				url += applNumKey;
+			}
+			var width = 1275;
+			var height = 780;
+			var popupName = "docCurStatusUSPopUpView";
+			var paramList = [];
+			
+			var toolbar = 0;
+			var menubar = 0;
+			var status = 0;
+			var scrollbars = 1;
+			var resizable = 1;
+			var copyhistory = 0;
+			
+			docCmmLinkFct.openPopupUrl(url, popupName, paramList, width, height, toolbar, menubar, status, scrollbars, resizable, copyhistory);
+		};
+		
+		/**
+		 * 국가 코드 팝업
+		 */
+		scope.openCtryCodePopup = function(ctry){
+			docCmmLinkFct.openCtryCodePopup(ctry);
+		};
+	};
+	
+	function setFunctionCnAd(scope){
+		
+		/**
+		 * CN Legal Status 리스트는 최초 5건 출력
+		 */
+		scope.legalStatusFn = function() {
+			
+			scope.docVar.dcnAdminVO.legalStatusTotalCnt = $('#devLegalStTbl > li > table').size();
+			if (scope.docVar.dcnAdminVO.legalStatusTotalCnt >= scope.docConst.ADMIN.LEGALCNT) { //5개 이상이면 SHOW
+				$('#devLegalStTbl').find('table:gt(' + (scope.docConst.ADMIN.LEGALCNT - 1) + ')').hide();
+		    };
+			
+		};
+		/**
+		 *  CN Legal Status 더보기 
+		 */
+		scope.onClickLegalStatusShow = function() {
+	    	$('#devLegalStTbl').find('table:lt(' + scope.docVar.dcnAdminVO.legalStatusTotalCnt + ')').show();
+	    	$('#devLegalStTbl table:last').show(); // 20151211 jia 추가
+	    	$('#devLegalShow').hide();
+	    	$('#devLegalHide').show();
+		};
+		
+		/**
+		 *  CN Legal Status 접기
+		 */
+		scope.onClickLegalStatusHide = function() {
+			$('#devLegalStTbl').find('table:gt(' + (scope.docConst.ADMIN.LEGALCNT - 1) + ')').hide();
+	    	$('#devLegalHide').hide();
+	    	$('#devLegalShow').show();
+	    	$.devScrolls('devLegal');
+		};
+		
+		
+		/**
+		 * 언어 선택 버튼
+		 */
+		onClickLegalLangCd = function(lang){
+
+			$('#devLangBtn button').each(function(){			
+				if($(this).attr("lang") == lang){
+					if(!$(this).hasClass('on')){
+						$(this).addClass('on');
+						$(this).attr('style', "cursor:default;");
+						$('.devLegal .devLegalChi').show();
+						$('.devLegal .devLegalKor').hide();
+					}
+				}
+				else{
+					if($(this).hasClass('on')){
+						$(this).removeClass('on');
+						$(this).attr('style', "cursor:pointer;");
+						$('.devLegal .devLegalKor').show();
+						$('.devLegal .devLegalChi').hide();
+					}
+				}
+			});
+		}
+	};
+	
+	function setFunctionUsAd(scope){
+		if($("#devInclude").hasClass("oneline_iwidth") === true) {
+			$("#devInclude").removeClass('oneline_iwidth');
+		}
+		
+//		var divId = scope.docVar.screenVO.divId;
+//		if(divId != null && divId != ""){
+//			//$("form#submitForm :input[name=divId]").val(divId);
+//			if($('#' + divId).position() != null){
+//				$(document).scrollTop($('#' + divId).position().top - $('#nav-holder').height());
+//			}
+//		}
+		
+		/**
+		 * Transaction History init
+		 */
+		scope.transHistInitFn = function() {
+			scope.docVar.dusAdminVO.transHistTotalCnt = $('#devTransHistTbl >tbody >tr').size();
+		};
+		
+		/**
+		 *  Transaction History 더보기 
+		 */
+		scope.onClickTransHistShow = function() {
+	    	$('#devTransHistTbl').find('tr:lt(' + scope.docVar.dusAdminVO.transHistTotalCnt + ')').show();
+	    	$('#devTransHistTbl tr:last').show(); // 20151211 jia 추가
+	    	$('#devHistShow').hide();
+	    	$('#devHistHide').show();
+		};
+		/**
+		 *  Transaction History 접기
+		 */
+		scope.onClickTransHistHide = function() {
+			//$('#devTransHistTbl > tbody').find('tr:gt(' + (scope.docConst.ADMIN.HISTCNT) + ')').hide();
+			$('#devTransHistTbl').find('tr:gt(' + (scope.docConst.ADMIN.HISTCNT) + ')').hide();
+	    	$('#devHistHide').hide();
+	    	$('#devHistShow').show();
+		};
+		
+		/**
+		 * Image File Wrapper init
+		 */
+		scope.imgWrapInitFn = function() {
+			scope.docVar.dusAdminVO.imgWrapTotalCnt = $('#devImgWrapTbl > tbody > tr').size();
+		};
+		/**
+		 *  Image File Wrapper 더보기 
+		 */
+//		scope.onClickImgWrapShow = function() {
+//	    	$('#devImgWrapTbl').find('tr:lt(' + scope.docVar.dusAdminVO.imgWrapTotalCnt + ')').show();
+//	    	$('#devImgWrapTbl tr:last').show(); // 20151201 jia 추가
+//	    	$('#devImgWrapShow').hide();
+//	    	$('#devImgWrapHide').show();
+//		};
+		/**
+		 *  Image File Wrapper 접기
+		 */
+//		scope.onClickImgWrapHide = function() {
+//			$('#devImgWrapTbl').find('tr:gt(' + (scope.docConst.ADMIN.HISTCNT) + ')').hide();
+//	    	$('#devImgWrapHide').hide();
+//	    	$('#devImgWrapShow').show();
+//		};
+		
+		/**
+		 * 연차료 리스트는 최초 10건 출력
+		 */
+		scope.feeFn = function() {
+			if (scope.docVar.dusAdminVO.feeTotalCnt >= scope.docConst.ADMIN.HISTCNT) { //10개 이상이면 SHOW
+				$('#devFeeTbl').find('tr:gt(' + (scope.docConst.ADMIN.HISTCNT) + ')').hide();
+		    };
+			
+		};
+		
+		/**
+		 *  연차료 더보기 
+		 */
+		scope.onClickFeeShow = function() {
+	    	$('#devFeeTbl').find('tr:lt(' + scope.docVar.dusAdminVO.feeTotalCnt + ')').show();
+	    	$('#devFeeTbl tr:last').show(); // 20151211 jia 추가
+	    	$('#devFeeShow').hide();
+	    	$('#devFeeHide').show();
+		};
+		/**
+		 *  연차료 접기
+		 */
+		scope.onClickFeeHide = function() {
+			$('#devFeeTbl').find('tr:gt(' + (scope.docConst.ADMIN.HISTCNT) + ')').hide();
+	    	$('#devFeeHide').hide();
+	    	$('#devFeeShow').show();
+		};
+		
+		/**
+		 * 양도/양수 내역 리스트는 최초 10건 출력
+		 */
+		scope.assnHistFn = function() {
+			
+			scope.docVar.dusAdminVO.assnHistTotalCnt = $('#devAssnHist >tbody >tr').size();
+			
+			if (scope.docVar.dusAdminVO.assnHistTotalCnt >= scope.docConst.ADMIN.HISTCNT) { //10개 이상이면 SHOW
+				$('#devAssnHist').find('tr:gt(' + (scope.docConst.ADMIN.HISTCNT) + ')').hide();
+		    };
+			
+		};
+		/**
+		 * 양도/양수 내역 더보기 
+		 */
+		scope.onClickAssnHistShow = function() {
+	    	$('#devAssnHist').find('tr:lt(' + scope.docVar.dusAdminVO.assnHistTotalCnt + ')').show();
+	    	$('#devAssnHist tr:last').show(); // 20151211 jia 추가
+	    	$('#devAssnHistShow').hide();
+	    	$('#devAssnHistHide').show();
+		};
+		/**
+		 *  양도/양수 내역 접기
+		 */
+		scope.onClickAssnHistHide = function() {
+			$('#devAssnHist').find('tr:gt(' + (scope.docConst.ADMIN.HISTCNT) + ')').hide();
+	    	$('#devAssnHistHide').hide();
+	    	$('#devAssnHistShow').show();
+		};
+		
+	};
+	
+	function setFunctionUsJd(scope){
+		var skey = $('#skey').val();
+		var hl = $('#hl').val();
+		var ctry = $('#ctry').val();
+		var html = "";
+		var highLight1 = $('#highLight1').val();
+		var highLight2 = $('#highLight2').val();
+		var highLight3 = $('#highLight3').val();
+		var nJdgSortOrder = $('#jdgSortOrder').val();
+		
+		var jdgSortOrder = '';
+		if(nJdgSortOrder == 'DESC') {
+			jdgSortOrder = 'ASC';
+		} else {
+			jdgSortOrder = 'DESC';
+		}
+	
+		//sort 클릭시 이벤트
+		$.clickSortCoulumnUsJd = function(jdgSortCoulumn){
+			$('#jdgSortCoulumn').val(jdgSortCoulumn);
+			var jdgSortOrder = $('#jdgSortOrder').val();
+			
+			if(jdgSortOrder == 'DESC')
+				jdgSortOrder = 'ASC';
+			else
+				jdgSortOrder = 'DESC';
+			
+			$('#jdgSortOrder').val(jdgSortOrder);
+			
+			var paramObj = {
+					skey : $('#skey').val(),
+					jdgSortCoulumn : jdgSortCoulumn,
+					jdgSortOrder : jdgSortOrder
+			};
+			
+			$.ajax({
+				url: '../dus/dusJudge.wips',
+				type: 'POST',
+				cache: 'false',
+				async: 'true',
+				dataType: 'html',
+				data:paramObj,
+				success: function(data, textStatus, jqXHR) {
+					var innerHtml = data;
+					$('#devInclude').empty();
+					$('#devInclude').html($compile(innerHtml)(scope));
+					
+					//심판단위 보기 클릭시 
+					$.highlightProc();
+					scope.$apply();
+				},
+				error: function(jqXHR, textStatus, errorThrown) {
+				}
+			});
+		};
+
+	};
+	
+	function setFunctionUtAb(scope){
+		if($("#devInclude").hasClass("oneline_iwidth") === true) {
+			$("#devInclude").removeClass('oneline_iwidth');
+		}
+		/**
+		 * 발명의 명칭 클릭시 수행
+		 */
+		scope.onClickInvTi = function(index){
+			//alert(index + " 번째 클릭");
+			scope.docVar.docPageCmmRsltVO.selectInvTiIndex = index;
+		};
+		
+		/**
+		 * 개별도면 클릭시 도면 팝업 오픈
+		 */
+		scope.onClickDrw = function(skey,seq){
+			// 클릭한 이미지 블러 처리
+	        $("a").blur();
+	        
+			//alert(seq + " 번째 클릭  " +skey);
+			//scope.docVar.docPageCmmRsltVO.selectInvTiIndex = seq;
+			
+			var url = scope.docConst.DRAW_POP_URL;
+			var width = 1150;
+			var height = 720;
+			var popupName = "_imgPopup";
+			var paramList = [];
+			
+			var toolbar = 0;
+			var menubar = 0;
+			var status = 0;
+			var scrollbars = 1;
+			var resizable = 1;
+			var copyhistory = 0;
+
+			paramList[paramList.length] = {fieldNm: 'skey', fieldValue: skey};
+	        paramList[paramList.length] = {fieldNm: 'rDetailImageNum', fieldValue: seq};
+	    
+	        scope.docVar.screenVO.abCurImgNum = (seq * 1);
+	        docCmmLinkFct.openPopupUrl(url, popupName, paramList, width, height, toolbar, menubar, status, scrollbars, resizable, copyhistory);
+			
+		};
+		
+		/**
+		 * 특허분류코드 레이어에 사용되는 함수 
+		 */
+		scope.openClsLayer = function(clsType , clsStatus  , clsIndex , clsMode , clsCd) {
+			docCmmFct.openClsLayer(scope, clsType , clsStatus  , clsIndex , clsMode , clsCd);
+		};
+		
+		scope.openClsLayerFi = function(clsType , clsStatus  , clsIndex , clsMode , clsCd, unfdSymb, savRecgSymb) {
+			
+			docCmmFct.openClsLayerFi(scope, clsType , clsStatus  , clsIndex , clsMode , clsCd, unfdSymb, savRecgSymb);
+		};
+		
+		scope.layerHide = function() {
+			docCmmFct.layerHide();
+		};
+		
+		scope.closeClsLayer = function(clsType , clsStatus  , clsIndex , clsMode) {
+			docCmmFct.closeClsLayer(clsType , clsStatus  , clsIndex , clsMode);
+		};
+		
+		scope.lyrClsHierarchy = function(clsType , clsStatus  , clsIndex , clsMode , clsCd) {
+			docCmmFct.lyrClsHierarchy(scope, clsType , clsStatus  , clsIndex , clsMode , clsCd);
+		};
+		
+		/**
+		 * 문헌 종류 코드 팝업
+		 */
+		scope.openDocKindPopup = function(ctry){
+			docCmmLinkFct.openDocKindPopup(ctry);
+		};
+	};
+	
+	function setFunctionWoAb(scope){
+		if($("#devInclude").hasClass("oneline_iwidth") === true) {
+			$("#devInclude").removeClass('oneline_iwidth');
+		}
+		/**
+		 * 발명의 명칭 클릭시 수행
+		 */
+		scope.onClickInvTi = function(index){
+			//alert(index + " 번째 클릭");
+			scope.docVar.docPageCmmRsltVO.selectInvTiIndex = index;
+		};
+			
+		/**
+		 * 요약 langCd 클릭시 수행
+		 */
+		scope.onClickAb = function(index){
+			//alert(index + " 번째 클릭");
+			scope.docVar.docPageSummaryRsltVO.curAbIndex = index;
+			scope.clickDevBtnMarker();
+		};
+		/**
+		 * 대표청구항 langCd 클릭시 수행
+		 */
+		scope.onClickExmpCl = function(index){
+			scope.docVar.docPageSummaryRsltVO.curExmpClIndex = index;
+			scope.clickDevBtnMarker();
+		};
+		/**
+		 * 개별도면 클릭시 도면 팝업 오픈
+		 */
+		scope.onClickDrw = function(skey,seq){
+			// 클릭한 이미지 블러 처리
+	        $("a").blur();
+	        
+			//alert(seq + " 번째 클릭  " +skey);
+			//scope.docVar.docPageCmmRsltVO.selectInvTiIndex = seq;
+			
+			var url = scope.docConst.DRAW_POP_URL;
+			var width = 1150;
+			var height = 720;
+			var popupName = "_imgPopup";
+			var paramList = [];
+			
+			var toolbar = 0;
+			var menubar = 0;
+			var status = 0;
+			var scrollbars = 1;
+			var resizable = 1;
+			var copyhistory = 0;
+
+			paramList[paramList.length] = {fieldNm: 'skey', fieldValue: skey};
+	        paramList[paramList.length] = {fieldNm: 'rDetailImageNum', fieldValue: seq};
+	    
+	        scope.docVar.screenVO.abCurImgNum = (seq * 1);
+	        docCmmLinkFct.openPopupUrl(url, popupName, paramList, width, height, toolbar, menubar, status, scrollbars, resizable, copyhistory);
+			
+		};
+		
+		/**
+		 * 대표출원인 코드 팝업
+		 */
+		scope.openReptApptPopup = function(reptCd, langCd){
+			docCmmLinkFct.openReptApptPopup(reptCd, langCd);
+		};
+		
+		/**
+		 * 문헌 종류 코드 팝업
+		 */
+		scope.openDocKindPopup = function(ctry){
+			docCmmLinkFct.openDocKindPopup(ctry);
+		};
+		
+		/**
+		 * 국가 코드 팝업
+		 */
+		scope.openCtryCodePopup = function(ctry){
+			docCmmLinkFct.openCtryCodePopup(ctry);
+		};
+		
+		/**
+		 * 패밀리/법적상태 팝업 오픈
+		 */
+		scope.openFmlyLegal = function(skey){
+			docCmmLinkFct.openFmlyLegal(skey);
+		};
+		
+		/**
+		 * 특허분류코드 레이어 팝업 함수
+		 */
+		scope.openClsLayer = function(clsType , clsStatus  , clsIndex , clsMode , clsCd) {
+			docCmmFct.openClsLayer(scope, clsType , clsStatus  , clsIndex , clsMode , clsCd);
+		};
+		
+		scope.openClsLayerFi = function(clsType , clsStatus  , clsIndex , clsMode , clsCd, unfdSymb, savRecgSymb) {
+			
+			docCmmFct.openClsLayerFi(scope, clsType , clsStatus  , clsIndex , clsMode , clsCd, unfdSymb, savRecgSymb);
+		};
+		
+		scope.layerHide = function() {
+			docCmmFct.layerHide();
+		};
+		
+		scope.closeClsLayer = function(clsType , clsStatus  , clsIndex , clsMode) {
+			docCmmFct.closeClsLayer(clsType , clsStatus  , clsIndex , clsMode);
+		};
+		
+		scope.lyrClsHierarchy = function(clsType , clsStatus  , clsIndex , clsMode , clsCd) {
+			docCmmFct.lyrClsHierarchy(scope, clsType , clsStatus  , clsIndex , clsMode , clsCd);
+		};
+	};
+	
+	function init(scope){
+		docCmmUiFct.ready(scope);
+		
+		switch (scope.docVar.screenVO.tabGb){
+		case scope.docConst.TABGB.AB:
+			switch (scope.docVar.screenVO.serviceNm){
+			case scope.docConst.SERVICENM.DKR:
+				$.setGrtStts(scope.docVar);
+				$.setDocPageDrwList(scope.docVar);
+				$.setDocVarApplHistoryList(scope.docVar);
+				setFunctionKrAb(scope);
+				$.ajaxDevDrw(); //도면 데이터 조회 ajax
+				$.ajaxDevCls();
+				//인용된 비특허
+				//getNpatData();
+				break;
+			case scope.docConst.SERVICENM.DCN:
+				$.setDocPageDrwList(scope.docVar);
+				$.setDocVarAbList(scope.docVar);
+				$.setDocVarExmpClList(scope.docVar);
+				$.setDocVarApplHistoryList(scope.docVar);
+				setFunctionCnAb(scope);
+				$.ajaxDevDrw(); //도면 데이터 조회 ajax
+				//인용된 비특허
+				//getNpatData();
+				break;
+			case scope.docConst.SERVICENM.DDB:
+				$.setDocPageDrwList(scope.docVar);
+				$.setDocVarAbList(scope.docVar);
+				$.setDocVarApplHistoryList(scope.docVar);
+				setFunctionDbAb(scope);
+				break;
+			case scope.docConst.SERVICENM.DEP:
+				$.setGrtStts(scope.docVar);
+				$.setDocPageDrwList(scope.docVar);
+				$.setDocVarAbList(scope.docVar);
+				$.setDocVarExmpClList(scope.docVar);
+				$.setDocVarApplHistoryList(scope.docVar);
+				setFunctionEpAb(scope);
+				$.ajaxDevDrw(); //도면 데이터 조회 ajax
+				$.ajaxDevCls();
+				//인용된 비특허
+				//getNpatData();
+				break;
+			case scope.docConst.SERVICENM.DJP:
+				$.setGrtStts(scope.docVar);
+				$.setDocPageDrwList(scope.docVar);
+				$.setDocVarApplHistoryList(scope.docVar);
+				setFunctionJpAb(scope);
+				$.ajaxDevDrw(); //도면 데이터 조회 ajax
+				$.ajaxDevCls();
+				//인용된 비특허
+				//getNpatData();
+				break;
+			case scope.docConst.SERVICENM.DKP:
+				$.setDocVarApplHistoryList(scope.docVar);
+				setFunctionKpAuAb(scope);
+				break;
+			case scope.docConst.SERVICENM.DKT:
+				setFunctionKtAb(scope);
+				break;
+			case scope.docConst.SERVICENM.DLN:
+				$.setDocPageDrwList(scope.docVar);
+				$.setDocVarAbList(scope.docVar);
+				$.setDocVarExmpClList(scope.docVar);
+				$.setDocVarApplHistoryList(scope.docVar);
+				setFunctionLnAb(scope);
+				//인용된 비특허
+				//getNpatData();
+				$.ajaxDevDrw(); //도면 데이터 조회 ajax
+				break;
+			case scope.docConst.SERVICENM.DIN:
+				$.setDocPageDrwList(scope.docVar);
+				$.setDocVarApplHistoryList(scope.docVar);
+				setFunctionInAb(scope);
+				$.ajaxDevDrw(); //도면 데이터 조회 ajax
+				break;
+			case scope.docConst.SERVICENM.DPJ:
+				$.setDocPageDrwList(scope.docVar);
+				$.setDocVarApplHistoryList(scope.docVar);
+				setFunctionPjAb(scope);
+				break;
+			case scope.docConst.SERVICENM.DUS:
+				$.setGrtStts(scope.docVar);
+				$.setDocVarApplHistoryList(scope.docVar);
+				setFunctionUsAb(scope);
+				$.ajaxDevDrw(); //도면 데이터 조회 ajax
+				$.ajaxDevCls();
+				//인용된 비특허
+				//getNpatData();
+				break;
+			case scope.docConst.SERVICENM.DUT:
+				$.setDocPageDrwList(scope.docVar);
+				setFunctionUtAb(scope);
+				$.ajaxDevDrw();
+				//인용된 비특허
+				//getNpatData();
+				break;
+			case scope.docConst.SERVICENM.DWO:
+				$.setDocPageDrwList(scope.docVar);
+				$.setDocVarAbList(scope.docVar);
+				$.setDocVarExmpClList(scope.docVar);
+				$.setDocVarApplHistoryList(scope.docVar);
+				$.setDocPageDrwList(scope.docVar);
+				setFunctionWoAb(scope);
+				$.ajaxDevDrw();
+				break;
+			case scope.docConst.SERVICENM.DCA:
+				$.setDocVarAbList(scope.docVar);
+				$.setDocVarApplHistoryList(scope.docVar);
+				setFunctionWoAb(scope);
+				$.ajaxDevCls();
+				break;
+			case scope.docConst.SERVICENM.DAU:
+				$.setDocVarApplHistoryList(scope.docVar);
+				$.setDocPageDrwList(scope.docVar);
+				$.ajaxDevCls();
+				setFunctionKpAuAb(scope);
+				$.ajaxDevDrw();
+				break;
+			}
+			$.fnDocDataView();
+			break;
+		case scope.docConst.TABGB.CL:
+			switch (scope.docVar.screenVO.serviceNm){
+			case scope.docConst.SERVICENM.DKR:
+			case scope.docConst.SERVICENM.DCN:
+			case scope.docConst.SERVICENM.DEP:
+			case scope.docConst.SERVICENM.DIN:
+			case scope.docConst.SERVICENM.DJP:
+			case scope.docConst.SERVICENM.DLN:
+			case scope.docConst.SERVICENM.DUS:
+			case scope.docConst.SERVICENM.DUT:
+			case scope.docConst.SERVICENM.DWO:
+				setFunctionKrCl(scope);
+				break;
+			}
+			break;
+		case scope.docConst.TABGB.DS:
+			switch (scope.docVar.screenVO.serviceNm){
+			case scope.docConst.SERVICENM.DKR:
+			case scope.docConst.SERVICENM.DCN:
+			case scope.docConst.SERVICENM.DEP:
+			case scope.docConst.SERVICENM.DJP:
+			case scope.docConst.SERVICENM.DLN:
+			case scope.docConst.SERVICENM.DUS:
+			case scope.docConst.SERVICENM.DUT:
+			case scope.docConst.SERVICENM.DIN:
+			case scope.docConst.SERVICENM.DWO:
+				setFunctionKrDs(scope);
+//				docDescriptionFct.ready(scope);
+//				docDescriptionFct.start(scope);
+				break;
+			}
+			break;
+		case scope.docConst.TABGB.AD:
+			switch (scope.docVar.screenVO.serviceNm){
+			case scope.docConst.SERVICENM.DKR:
+				setFunctionKrAd(scope);
+				scope.findRght();
+				scope.intgHistFn();
+				scope.corrListFn();
+				scope.grtFeeFn();
+				if(scope.docVar.screenVO.divId != null) {
+					$.idUlScrollRightClick(scope.docVar.screenVO.divId);
+					scope.docVar.screenVO.divId = null;
+				}
+				setFunctionKrAb(scope);
+				break;
+			case scope.docConst.SERVICENM.DEP:
+				setFunctionEpAb(scope);
+				if(scope.docVar.screenVO.divId != null) {
+					$.idUlScrollRightClick(scope.docVar.screenVO.divId);
+					scope.docVar.screenVO.divId = null;
+				}
+				break;
+			case scope.docConst.SERVICENM.DCN:
+				setFunctionCnAd(scope);
+				scope.legalStatusFn();
+				break;
+			case scope.docConst.SERVICENM.DUS:
+				setFunctionUsAd(scope);
+				scope.transHistInitFn();
+				scope.imgWrapInitFn();
+				scope.feeFn();
+				if(scope.docVar.screenVO.divId != null) {
+					$.idUlScrollRightClick(scope.docVar.screenVO.divId);
+					scope.docVar.screenVO.divId = null;
+				}
+				break;
+			case scope.docConst.SERVICENM.DCA:
+				setFunctionKrAd(scope);
+				scope.intgHistFn();
+				if(scope.docVar.screenVO.divId != null) {
+					$.idUlScrollRightClick(scope.docVar.screenVO.divId);
+					scope.docVar.screenVO.divId = null;
+				}
+				break;
+			case scope.docConst.SERVICENM.DAU:
+				setFunctionKrAd(scope);
+				scope.intgHistFn();
+				break;
+			}
+			break;
+		case scope.docConst.TABGB.PS:
+			// 함수 실행
+			makeRatePatentChart();
+			break;
+		case scope.docConst.TABGB.JD:
+			switch (scope.docVar.screenVO.serviceNm){
+			case scope.docConst.SERVICENM.DKR:
+				setFunctionKrJd(scope);
+				$.allCollapsesClick();
+				
+				if($('#skey').val() != null && $('#skey').val() != "undefined"){
+					//분쟁정보 출력안내 레이어 UI
+				    $(".layerpopheader_backcolor").css('background','#5cb14a');// 레이어 Header(back단 opacity Layer Mask)
+				    $(".popheader_backcolor2").css('background','#FFFFFF').css('border-bottom','1px solid #b7b7b7');// 팝업 Header(배경 화이트+라인)
+				}
+				break;
+			case scope.docConst.SERVICENM.DEP:
+				setFunctionEpAb(scope);
+				break;
+			case scope.docConst.SERVICENM.DJP:
+				setFunctionJpAb(scope);
+				setFunctionJpJd(scope);
+			case scope.docConst.SERVICENM.DUS:
+				setFunctionUsAb(scope);
+				setFunctionUsJd(scope);
+				break;
+			}
+			// 함수 실행
+			selectUsSuitList('');
+			
+			break;
+		case scope.docConst.TABGB.FM:
+			switch (scope.docVar.screenVO.serviceNm){
+			case  scope.docConst.SERVICENM.DKR:
+				setFunctionKrAb(scope);
+				break;
+			}
+			break;
+		case scope.docConst.TABGB.CT:
+			switch (scope.docVar.screenVO.serviceNm){
+			case  scope.docConst.SERVICENM.DKR:
+				setFunctionKrAb(scope);
+				break;
+			}
+			break;
+		case scope.docConst.TABGB.SU:		// 소송
+
+			// 함수 실행
+			selectUsSuitList('');
+			break;
+		case scope.docConst.TABGB.SD:
+			$.initRelPatPage('','','','','');
+			break;
+		}
+		
+		if($('#devTimeLine') != null){
+			docCmmUiFct.timeLine(scope);
+		}
+		
+		/**
+		 * 유사특허 팝업
+		 */
+		scope.openSimilarPatent = function(skey,ctry){
+			docCmmLinkFct.openSimilarPatent(skey,ctry);
+		};
+		
+		//scope.setTopFixed();
+		$.highlightProc();
+		//docCmmUiFct.ready(scope);
+	};
+	
+	$.docInitFctInit = function(scope){
+		init(scope);
+	}
+	
+	return {
+		  init: init
+	};
+}]);

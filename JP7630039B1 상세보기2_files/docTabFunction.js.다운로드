@@ -1,0 +1,82 @@
+// DOC Tab 관련 함수 
+;(function($) {
+	
+	//tab 클릭시 이벤트
+//	$.clickDocTab = function(tabGb, divId){
+//		//var url 		= makeForwardUrl(tabGb);
+//		var url 		= "docTestCont.wips";
+//		
+//		$.openLoadingBar();
+//		
+//		var form = document.createElement('form');
+//		$(form).attr('action', url)
+//		   .attr('id', 'submitForm')
+//		   .attr('name', 'submitForm')
+//		   .attr('method', 'post')
+//		   .attr('target', '_self');
+//		$(form).html($('form#paramForm').html());
+//		
+//		document.body.appendChild(form);
+//		$("form#submitForm :input[name=tabGb]").val(tabGb);
+//		if(divId != null && divId != ""){
+//			$("form#submitForm :input[name=divId]").val(divId);
+//		}
+//		
+//		$(form).submit();
+//		$('form#submitForm').remove();
+//	};
+	
+	//tab 클릭시 이벤트
+	$.clickDocTabBlank = function(tabGb, divId){
+		//var url 		= makeForwardUrl(tabGb);
+		var url ="";
+		var ctry = $("#ctry").val();
+		if(ctry == "KR"){
+			url = "../api/dkrdshtm.wips";
+		} else if(ctry == "US"){
+			url = "../api/dusdshtm.wips";
+		} else if(ctry == "JP"){
+			url = "../api/djpdshtm.wips";
+		} else if(ctry == "EP"){
+			url = "../api/depdshtm.wips";
+		} else if(ctry == "WO"){
+			url = "../api/dwodshtm.wips";
+		} else if(ctry == "CN"){
+			url = "../api/dcndshtm.wips";
+		} else if(ctry == "PAJ"){
+			url = "../api/dpadshtm.wips";
+		} else if(ctry == "KPA"){
+			url = "../api/dkpdshtm.wips";
+		} else {
+			url = "../api/dipdshtm.wips";
+		}
+		
+		var form = document.createElement('form');
+		$(form).attr('action', url)
+		   .attr('id', 'submitForm')
+		   .attr('name', 'submitForm')
+		   .attr('method', 'post')
+		   .attr('target', '_blank');
+		$(form).html($('form#paramForm').html());
+		
+		document.body.appendChild(form);
+		$("form#submitForm :input[name=tabGb]").val(tabGb);
+		if(divId != null && divId != ""){
+			$("form#submitForm :input[name=divId]").val(divId);
+		}
+		$(form).submit();
+		$('form#submitForm').remove();
+	};
+
+
+	
+	$.getCharOnly = function(val){
+		var result = val;
+	    var idx = result.indexOf('(');
+		if(idx > 0){
+			result = val.substring(0,idx);
+		}
+	    return result;
+	};
+	
+})(jQuery);

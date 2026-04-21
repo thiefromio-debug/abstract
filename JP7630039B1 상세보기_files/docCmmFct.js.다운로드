@@ -1,0 +1,633 @@
+;
+docApp.factory("docCmmFct", ['$rootScope','$http', '$timeout', '$compile', function($rootScope, $http, $timeout, $compile){
+	function initVar(scope){
+		//docCmmView.js 의 angularScope 객체 센팅
+		try {
+			$.setAngularScope(scope);
+		} catch (e) {
+			// TODO: handle exception
+		}
+		
+		scope.docVar = new DocCmmVar();
+		scope.docConst = DocCmmConst;
+		
+		//넘겨준 skey 와 hl 정보를 받음
+		scope.docVar.screenVO.skey = $("#skey").val() * 1;
+		scope.docVar.screenVO.hl = $("#hl").val();
+		scope.docVar.screenVO.tabGb = $("#tabGb").val();
+		scope.docVar.screenVO.ctry = $("#ctry").val();
+		scope.docVar.screenVO.mngNum = $("#num").val();
+		scope.docVar.screenVO.mngKind = $('#mngKind').val();
+		scope.docVar.screenVO.applNum = $("#applNum").val();
+		scope.docVar.screenVO.serviceNm = $("#serviceNm").val();
+		scope.docVar.screenVO.devProdCd = $("#devProdCd").val();
+		/** 2017년 5월 10일 도면 방향키로 선택활성화를 위한 변수 추가 **********/
+		scope.docVar.screenVO.drwImgList = [];
+		scope.docVar.screenVO.abCurImgNum = 0;
+		scope.docVar.screenVO.clCurImgNum = 0;
+		scope.docVar.screenVO.descCurImgNum = 0;
+		
+		/** 도면 방향키를 위한 이벤트 함수 지정 ***/
+		$(window).on('keyup', function(event){
+			var flag = false;
+			$("input[name=marker]").each(function() {
+				if ($(this).is(":focus")) {
+					flag = true;
+				}
+			});
+			
+			// 상세보기 페이징 엔터 처리
+			if($("#docPageNum").is(":focus")){
+				switch (event.keyCode) {
+					case 13:
+					{
+						fnDocPageGo();
+					}
+					break;
+				}
+			}
+			//먼저 마이폴더 팝업이 오픈되어 있는지 체크한다. 181113 퀵헬프 오픈 확인 추가
+			if(!$("#devSaveMyfolder").hasClass("open") && !$("#correct_trans_text").is(":focus") && !$("#wrong_trans_text").is(":focus") && !flag && !$(".list_quick").hasClass("on") && !$("#docPageNum").is(":focus")){
+				switch (event.keyCode) {
+				case 37:
+					{
+						var totalImgCnt = scope.docVar.screenVO.drwImgList == null ? 0 : scope.docVar.screenVO.drwImgList.length + 1;
+						if(totalImgCnt > 0){
+							switch (scope.docVar.screenVO.tabGb){
+							case scope.docConst.TABGB.AB:
+								if(scope.docVar.screenVO.abCurImgNum == 0 && totalImgCnt >= 2){
+									scope.docVar.screenVO.abCurImgNum = totalImgCnt - 1;
+									scope.$apply();
+								}else if(scope.docVar.screenVO.abCurImgNum > 0 && totalImgCnt >= 2){
+									scope.docVar.screenVO.abCurImgNum -= 1;
+									scope.$apply();
+								}
+								
+								if(scope.docVar.screenVO.drwImgList != null && scope.docVar.screenVO.drwImgList.length > 3 && scope.docVar.screenVO.abCurImgNum == (totalImgCnt - 1)){
+									if($("._2depth").length > 0){
+										$("._2depth").show();
+										$("#devScreenHide").show();
+									}
+									else{
+										$.resultDevDrw(scope.docVar.screenVO.drwImgList, 3);
+									}
+									
+									if(!$("#devDrwImage").hasClass("on")){
+										$("#devDrwImage").addClass("on")
+									}
+								}
+								break;
+							case scope.docConst.TABGB.CL:
+								{
+									var showStartImg = -1;
+									var showLastImg = -1;
+									
+									$(".mini_imgdraw_block").each(function(i){
+										if($(this)[0].style.display != "none"){
+											showLastImg = i;
+											if(showStartImg == -1){
+												showStartImg = i;
+											}
+										}
+									});
+									
+									if(scope.docVar.screenVO.clCurImgNum == 0 && totalImgCnt >= 2){
+										scope.docVar.screenVO.clCurImgNum = totalImgCnt - 1;
+										scope.$apply();
+									}else if(scope.docVar.screenVO.clCurImgNum > 0 && totalImgCnt >= 2){
+										scope.docVar.screenVO.clCurImgNum -= 1;
+										scope.$apply();
+									}
+									
+									if(scope.docVar.screenVO.clCurImgNum < showStartImg || scope.docVar.screenVO.clCurImgNum > showLastImg){
+										if(scope.docVar.screenVO.clCurImgNum == (totalImgCnt - 1)){
+											showStartImg = scope.docVar.screenVO.clCurImgNum - (showLastImg - showStartImg);
+										}else{
+											showStartImg = showStartImg - (showLastImg - showStartImg + 1);
+											if(showStartImg < 0){
+												showStartImg = 0;
+											}
+										}
+										$.imageDisplayShow(showStartImg);
+										
+										if(imageCurrentSeq  ==  0 && !$('#previousDrawImg').hasClass("btn_dis_type")){
+											$('#previousDrawImg').removeAttr("href");
+											$('#previousDrawImg').addClass('btn_dis_type');
+										}else if(imageCurrentSeq  >  0 && $('#previousDrawImg').hasClass("btn_dis_type")){
+											$('#previousDrawImg').attr("href","javascript:void(0);");
+											$('#previousDrawImg').removeClass('btn_dis_type');
+										}
+										
+										if(imageCurrentSeq + imageDisplayCnt > $(".mini_imgdraw_block").length -1 && !$('#nextDrawImg').hasClass('btn_dis_type')){
+											$('#nextDrawImg').removeAttr("href");
+											$('#nextDrawImg').addClass('btn_dis_type');
+										}else if(imageCurrentSeq + imageDisplayCnt <= $(".mini_imgdraw_block").length -1 && $('#nextDrawImg').hasClass('btn_dis_type')){
+											$.imageDisplayShow(imageCurrentSeq);
+											$('#nextDrawImg').attr("href","javascript:void(0);");
+											$('#nextDrawImg').removeClass('btn_dis_type');
+										}
+									}
+								}
+								break;
+							case scope.docConst.TABGB.DS:
+								{
+									var showStartImg = -1;
+									var showLastImg = -1;
+									
+									$(".mini_imgdraw_block").each(function(i){
+										if($(this)[0].style.display != "none"){
+											showLastImg = i;
+											if(showStartImg == -1){
+												showStartImg = i;
+											}
+										}
+									});
+									
+									if(scope.docVar.screenVO.descCurImgNum == 0 && totalImgCnt >= 2){
+										scope.docVar.screenVO.descCurImgNum = totalImgCnt - 1;
+										scope.$apply();
+									}else if(scope.docVar.screenVO.descCurImgNum > 0 && totalImgCnt >= 2){
+										scope.docVar.screenVO.descCurImgNum -= 1;
+										scope.$apply();
+									}
+									
+									if(scope.docVar.screenVO.descCurImgNum < showStartImg || scope.docVar.screenVO.descCurImgNum > showLastImg){
+										if(scope.docVar.screenVO.descCurImgNum == (totalImgCnt - 1)){
+											showStartImg = scope.docVar.screenVO.descCurImgNum - (showLastImg - showStartImg);
+										}else{
+											showStartImg = showStartImg - (showLastImg - showStartImg + 1);
+											if(showStartImg < 0){
+												showStartImg = 0;
+											}
+										}
+										$.imageDisplayShow(showStartImg);
+										
+										if(imageCurrentSeq  ==  0 && !$('#previousDrawImg').hasClass("btn_dis_type")){
+											$('#previousDrawImg').removeAttr("href");
+											$('#previousDrawImg').addClass('btn_dis_type');
+										}else if(imageCurrentSeq  >  0 && $('#previousDrawImg').hasClass("btn_dis_type")){
+											$('#previousDrawImg').attr("href","javascript:void(0);");
+											$('#previousDrawImg').removeClass('btn_dis_type');
+										}
+										
+										if(imageCurrentSeq + imageDisplayCnt > $(".mini_imgdraw_block").length -1 && !$('#nextDrawImg').hasClass('btn_dis_type')){
+											$('#nextDrawImg').removeAttr("href");
+											$('#nextDrawImg').addClass('btn_dis_type');
+										}else if(imageCurrentSeq + imageDisplayCnt <= $(".mini_imgdraw_block").length -1 && $('#nextDrawImg').hasClass('btn_dis_type')){
+											$.imageDisplayShow(imageCurrentSeq);
+											$('#nextDrawImg').attr("href","javascript:void(0);");
+											$('#nextDrawImg').removeClass('btn_dis_type');
+										}
+									}
+								}
+								break;
+							}
+						}
+					}
+					
+					break;
+				case 39:
+					{
+						var totalImgCnt = scope.docVar.screenVO.drwImgList == null ? 0 : scope.docVar.screenVO.drwImgList.length + 1;
+						if(totalImgCnt > 0){
+							switch (scope.docVar.screenVO.tabGb){
+							case scope.docConst.TABGB.AB:
+								if(scope.docVar.screenVO.abCurImgNum == (totalImgCnt - 1) && totalImgCnt >= 2){
+									scope.docVar.screenVO.abCurImgNum = 0;
+									scope.$apply();
+								}else if(scope.docVar.screenVO.abCurImgNum >= 0 && totalImgCnt >= 2){
+									scope.docVar.screenVO.abCurImgNum += 1;
+									scope.$apply();
+								}
+								
+								if(scope.docVar.screenVO.drwImgList != null && scope.docVar.screenVO.drwImgList.length > 3 && scope.docVar.screenVO.abCurImgNum == 4){
+									if($("._2depth").length > 0){
+										$("._2depth").show();
+										$("#devScreenHide").show();
+									}
+									else{
+										$.resultDevDrw(scope.docVar.screenVO.drwImgList, 3);
+									}
+									
+									if(!$("#devDrwImage").hasClass("on")){
+										$("#devDrwImage").addClass("on")
+									}
+								}
+								break;
+							case scope.docConst.TABGB.CL:
+								{
+									var showStartImg = -1;
+									var showLastImg = -1;
+									
+									$(".mini_imgdraw_block").each(function(i){
+										if($(this)[0].style.display != "none"){
+											showLastImg = i;
+											if(showStartImg == -1){
+												showStartImg = i;
+											}
+										}
+									});
+									
+									if(scope.docVar.screenVO.clCurImgNum == (totalImgCnt - 1) && totalImgCnt >= 2){
+										scope.docVar.screenVO.clCurImgNum = 0;
+										scope.$apply();
+									}else if(scope.docVar.screenVO.clCurImgNum >= 0 && totalImgCnt >= 2){
+										scope.docVar.screenVO.clCurImgNum += 1;
+										scope.$apply();
+									}
+									
+									if(scope.docVar.screenVO.clCurImgNum < showStartImg || scope.docVar.screenVO.clCurImgNum > showLastImg){
+										if(scope.docVar.screenVO.clCurImgNum == 0){
+											showStartImg = 0;
+										}else{
+											showStartImg = showStartImg + 1;
+										}
+										$.imageDisplayShow(showStartImg);
+										
+										if(imageCurrentSeq  ==  0 && !$('#previousDrawImg').hasClass("btn_dis_type")){
+											$('#previousDrawImg').removeAttr("href");
+											$('#previousDrawImg').addClass('btn_dis_type');
+										}else if(imageCurrentSeq  >  0 && $('#previousDrawImg').hasClass("btn_dis_type")){
+											$('#previousDrawImg').attr("href","javascript:void(0);");
+											$('#previousDrawImg').removeClass('btn_dis_type');
+										}
+										
+										if(imageCurrentSeq + imageDisplayCnt > $(".mini_imgdraw_block").length -1 && !$('#nextDrawImg').hasClass('btn_dis_type')){
+											$('#nextDrawImg').removeAttr("href");
+											$('#nextDrawImg').addClass('btn_dis_type');
+										}else if(imageCurrentSeq + imageDisplayCnt <= $(".mini_imgdraw_block").length -1 && $('#nextDrawImg').hasClass('btn_dis_type')){
+											$.imageDisplayShow(imageCurrentSeq);
+											$('#nextDrawImg').attr("href","javascript:void(0);");
+											$('#nextDrawImg').removeClass('btn_dis_type');
+										}
+									}
+								}
+								break;
+							case scope.docConst.TABGB.DS:
+								{
+									var showStartImg = -1;
+									var showLastImg = -1;
+									
+									$(".mini_imgdraw_block").each(function(i){
+										if($(this)[0].style.display != "none"){
+											showLastImg = i;
+											if(showStartImg == -1){
+												showStartImg = i;
+											}
+										}
+									});
+									
+									if(scope.docVar.screenVO.descCurImgNum == (totalImgCnt - 1) && totalImgCnt >= 2){
+										scope.docVar.screenVO.descCurImgNum = 0;
+										scope.$apply();
+									}else if(scope.docVar.screenVO.descCurImgNum >= 0 && totalImgCnt >= 2){
+										scope.docVar.screenVO.descCurImgNum += 1;
+										scope.$apply();
+									}
+									
+									if(scope.docVar.screenVO.descCurImgNum < showStartImg || scope.docVar.screenVO.descCurImgNum > showLastImg){
+										if(scope.docVar.screenVO.descCurImgNum == 0){
+											showStartImg = 0;
+										}else{
+											showStartImg = showStartImg + 1;
+										}
+										$.imageDisplayShow(showStartImg);
+										
+										if(imageCurrentSeq  ==  0 && !$('#previousDrawImg').hasClass("btn_dis_type")){
+											$('#previousDrawImg').removeAttr("href");
+											$('#previousDrawImg').addClass('btn_dis_type');
+										}else if(imageCurrentSeq  >  0 && $('#previousDrawImg').hasClass("btn_dis_type")){
+											$('#previousDrawImg').attr("href","javascript:void(0);");
+											$('#previousDrawImg').removeClass('btn_dis_type');
+										}
+										
+										if(imageCurrentSeq + imageDisplayCnt > $(".mini_imgdraw_block").length -1 && !$('#nextDrawImg').hasClass('btn_dis_type')){
+											$('#nextDrawImg').removeAttr("href");
+											$('#nextDrawImg').addClass('btn_dis_type');
+										}else if(imageCurrentSeq + imageDisplayCnt <= $(".mini_imgdraw_block").length -1 && $('#nextDrawImg').hasClass('btn_dis_type')){
+											$.imageDisplayShow(imageCurrentSeq);
+											$('#nextDrawImg').attr("href","javascript:void(0);");
+											$('#nextDrawImg').removeClass('btn_dis_type');
+										}
+									}
+								}
+								break;
+							}
+						}
+					}
+					break;
+				case 13:
+					{
+						var totalImgCnt = scope.docVar.screenVO.drwImgList == null ? 0 : scope.docVar.screenVO.drwImgList.length + 1;
+						if($(".mini_imgdraw_block") != null && $(".mini_imgdraw_block").length > 0 && totalImgCnt > 0){
+							switch (scope.docVar.screenVO.tabGb){
+							case scope.docConst.TABGB.AB:
+								scope.onClickDrw(scope.docVar.screenVO.skey, scope.docVar.screenVO.abCurImgNum);
+								break;
+							case scope.docConst.TABGB.CL:
+								scope.onClickDrw(scope.docVar.screenVO.skey, scope.docVar.screenVO.clCurImgNum);
+								break;
+							case scope.docConst.TABGB.DS:
+								scope.onClickDrw(scope.docVar.screenVO.skey, scope.docVar.screenVO.descCurImgNum);
+								break;
+							}
+						}
+					}
+					break;
+				case 221:		//오른쪽 탭 이동
+					{
+						var actTabList = scope.docVar.screenVO.actTabList
+							,actTab = scope.docVar.screenVO.activeTab
+							, tabLen = actTabList.length;
+						
+						if(actTabList.indexOf(actTab) === (tabLen - 1)){	//마지막 탭이면 처음으로
+							$.clickDocTab(actTabList[0]);
+						} else {
+							var nextTab = actTabList.indexOf(actTab) + 1
+							$.clickDocTab(actTabList[nextTab]);
+						}
+					}
+					break;
+				case 219:		// 왼쪽 탭 이동
+					{
+						var actTabList = scope.docVar.screenVO.actTabList
+						,actTab = scope.docVar.screenVO.activeTab
+						, tabLen = actTabList.length;
+					
+						if(actTabList.indexOf(actTab) === 0){	//맨 처음 탭이면 마지막으로
+							$.clickDocTab(actTabList[tabLen-1]);
+						} else {
+							var pervTab = actTabList.indexOf(actTab) -1
+							$.clickDocTab(actTabList[pervTab]);
+						}
+					}
+					break;
+				case 65:		//A : 이전 문헌 이동
+				case 97:
+					{
+						if($(".layer_pop_spin").not(":visible")){
+							$("#docPagePre").trigger("click");
+						}
+					}
+					break;
+				case 68:		//D : 다음 문헌 이동
+				case 100:
+					{
+						if($(".layer_pop_spin").not(":visible")){
+							$("#docPageNext").trigger("click");
+						}
+					}
+					break;
+				}; //switch block
+			} // if block
+		}); //event function block 
+	};
+	
+	function openClsLayer(scope, clsType , clsStatus  , clsIndex , clsMode , clsCd) {
+		clsCd = clsCd.replace(/(^\s*)|(\s*$)/gi, "");
+		
+		if(clsType == 'ipc' && clsCd.length == 8){//ipc 일 경우 /00 처리
+			clsCd += '/00';
+		}
+		
+		if(clsType == 'upc' && clsCd.indexOf('.') > -1 ){//upc 일 경우 ITS-8665 처리
+			if(clsCd.split('.')[1].length == 1) {
+				clsCd += '00';
+			} else if(clsCd.split('.')[1].length == 2) {
+				clsCd += '0';
+			}
+		}
+		
+		if ($('#'+clsType+'_'+clsStatus+'_lyr_'+clsIndex+'_'+clsMode).css("display") == "none") {
+			var divId = clsType+'_'+clsStatus+'_div_'+clsIndex+'_'+clsMode;
+	    	var lyrId = clsType+'_'+clsStatus+'_lyr_'+clsIndex+'_'+clsMode;
+			scope.layerHide();
+			$('#'+clsType+'_'+clsStatus+'_lyr_'+clsIndex+'_'+clsMode).show();
+			$('#'+clsType+'_'+clsStatus+'_div_'+clsIndex+'_'+clsMode).attr("style", "position:relative;");
+			
+			var cnt = $('#'+clsType+'_'+clsStatus+'_lyr_'+clsIndex+'_'+clsMode+' > div').length;
+			if(cnt == 0){
+				scope.lyrClsHierarchy(clsType , clsStatus  , clsIndex , clsMode , clsCd.replace("\:" , "\/"));	
+			}
+			
+		}else{
+			scope.closeClsLayer(clsType , clsStatus  , clsIndex , clsMode) ;
+		}
+	};
+	
+	function openClsLayerFi(scope, clsType , clsStatus  , clsIndex , clsMode , clsCd, unfdSymb, savRecgSymb) {
+		clsCd = clsCd.replace(/(^\s*)|(\s*$)/gi, "");
+		var inputFiCls = clsCd;
+		
+		if(unfdSymb != null ) {
+			unfdSymb = unfdSymb.replace(/(^\s*)|(\s*$)/gi, "");
+			inputFiCls += ',';
+			inputFiCls += unfdSymb;
+		} 
+		
+		if(savRecgSymb != null ) {
+			savRecgSymb = savRecgSymb.replace(/(^\s*)|(\s*$)/gi, "");
+			inputFiCls += '@';
+			inputFiCls += savRecgSymb;
+		} 
+		
+		if ($('#'+clsType+'_'+clsStatus+'_lyr_'+clsIndex+'_'+clsMode).css("display") == "none") {
+			var divId = clsType+'_'+clsStatus+'_div_'+clsIndex+'_'+clsMode;
+	    	var lyrId = clsType+'_'+clsStatus+'_lyr_'+clsIndex+'_'+clsMode;
+			scope.layerHide();
+			$('#'+clsType+'_'+clsStatus+'_lyr_'+clsIndex+'_'+clsMode).show();
+			$('#'+clsType+'_'+clsStatus+'_div_'+clsIndex+'_'+clsMode).attr("style", "position:relative;");
+			
+			var cnt = $('#'+clsType+'_'+clsStatus+'_lyr_'+clsIndex+'_'+clsMode+' > div').length;
+			if(cnt == 0){
+				scope.lyrClsHierarchy(clsType , clsStatus  , clsIndex , clsMode , inputFiCls.replace("\:" , "\/"));	
+			}
+		}else{
+			scope.closeClsLayer(clsType , clsStatus  , clsIndex , clsMode) ;
+		}
+	};
+	
+	function layerHide() {
+		var clsKinds = ["cpc", "ipc", "upc", "fi" , "fterm","locarno"];
+		for (var i = 0; i < clsKinds.length; i++) {
+			$( "div[id^="+clsKinds[i]+"_curr_lyr_]").hide();
+			$( "div[id^="+clsKinds[i]+"_curr_div_]").attr("style", "");
+			
+			$( "div[id^="+clsKinds[i]+"_orig_lyr_]").hide();
+			$( "div[id^="+clsKinds[i]+"_orig_div_]").attr("style", "");
+			
+			//wips 패밀리 IPC/CPC
+			$( "div[id^="+clsKinds[i]+"_main_lyr_]").hide();
+			$( "div[id^="+clsKinds[i]+"_main_div_]").attr("style", "");
+		}
+	};
+	
+	function closeClsLayer(clsType , clsStatus  , clsIndex , clsMode) {
+		$('#'+clsType+'_'+clsStatus+'_lyr_'+clsIndex+'_'+clsMode).hide();
+		$('#'+clsType+'_'+clsStatus+'_div_'+clsIndex+'_'+clsMode).attr("style", "");
+	};
+	
+	function lyrClsHierarchy(scope, clsType , clsStatus  , clsIndex , clsMode , clsCd) {
+		var url = scope.docConst.DOC_LYRCLSHIERARCHY_URL;
+		var obj = { clsType : clsType, clsCd : clsCd };
+		
+		$http.post(url, $.param(obj),{
+			headers: {'Content-Type': scope.docConst.JSON_CONT_TYPE}
+		}).success(function(data){
+			var lyrObj = $('#'+clsType+'_'+clsStatus+'_lyr_'+clsIndex+'_'+clsMode);
+			lyrObj.empty();
+			var html = "<p class='topblock'>";
+			html+= "<span class='float_l'>특허분류코드</span>";
+			html+= "<span class='float_r marg_top_02'><a href='javascript:void(0);' class='btn_x dis_b marg_top_04' ng-click='closeClsLayer(\""+clsType+"\" , \""+clsStatus+"\" , \""+clsIndex+"\" , "+clsMode+")'><span class='screen_out'>닫기</span></a></span>";
+			html+= "</p>";
+			html+= "<div class='clear'></div><div class='conblock'><ul>";
+			
+			if(data.msriLyrClsVOList.length == 0 ) {
+				if(clsCd == '001/001') {
+					html += "미분류 코드입니다.";
+				} else {
+					html += "일치하는 코드가 존재하지 않습니다.";
+				}
+			} else {
+				for (var i = 0; i < data.msriLyrClsVOList.length; i++) {
+					var cls = data.msriLyrClsVOList[i].cls.replace(/[,|@]/gi, ' ');
+					
+					html += "<li>";
+					html += "<div class='item'>" + cls + "</div>";
+					html += "<div class='codelist'>";
+					
+					if(data.msriLyrClsVOList[i].desc == null  || data.msriLyrClsVOList[i].desc == '<b></b>') {
+						html += "-";
+					} else {
+						html += data.msriLyrClsVOList[i].desc;
+					}
+					html += "</div>";
+					html += "</li>";
+				};
+			}
+			
+			html+= "</ul></div>";
+			html+= "<span class='arrow_border top fix_top11'><!-- --></span>";
+			html+= "<span class='arrow_bg top fix_top11'><!-- --></span>";
+			
+ 			lyrObj.html($compile(html)(scope));
+
+		}).error(function(data, status){
+			/*if (/EgovBizException/.test(data.responseText)) {
+	            alert(data.responseText.match(/EgovBizException: &quot;(.*?)&quot;/)[1]);
+	            // error 처리
+	        }
+	        else {
+	            alert("에러가 발생하였습니다. " + status + "\nError: " + data.responseText);
+	        }*/
+		});
+		
+	};
+	
+	function openFmlyClsLayer(skey, dbNm, ctry, clsType, clsIndex) {
+		if($('#'+clsType+'_main'+'_lyr_'+clsIndex+'_0').css("display") == "none"){	//레이어는 만들어 졌으나 hide인 상태
+			layerHide();
+			$('#'+clsType+'_main'+'_lyr_'+clsIndex+'_0').show();
+			$('#'+clsType+'_main'+'_div_'+clsIndex+'_0').attr("style", "position:relative;");
+		} else if($('#'+clsType+'_main'+'_lyr_'+clsIndex+'_0').css("display") == "block"){	//레이터 열린 상태에서 다시 +버튼 누를때 닫기
+			closeClsLayer(clsType , 'main'  , clsIndex , '0') ;
+		} else {	// 레이어가 안만들어 졌을 때 ajax
+			var url = "../doc/docFmlyCls.wips";
+			var obj = { skey : skey, dbNm : dbNm, ctry : ctry, clsType:clsType};
+			
+			$.ajax({
+				url			: url,
+				type		: 'POST',
+				cache		: false,
+				async		: false,
+				dataType	: 'json',
+				data		: obj,
+				success     : function(data, textStatus, jqXHR) {
+					layerHide();
+					if(clsType === 'ipc'){
+						$('#'+clsType+'_main'+'_div_'+clsIndex+'_0 > div').append($("#tmplFmlyClsLayer").render({clsType:clsType, clsIndex:clsIndex, clsList:data.clsList}));
+					} else if(clsType === 'cpc'){
+						$('#'+clsType+'_main'+'_div_'+clsIndex+'_0 > div').append($("#tmplFmlyClsLayer").render({clsType:clsType, clsIndex:clsIndex, clsList:data.clsList}));
+					}
+					$('#'+clsType+'_main'+'_lyr_'+clsIndex+'_0').show();
+					$('#'+clsType+'_main'+'_div_'+clsIndex+'_0').attr("style", "position:relative;");
+				},
+				error   : function(jqXHR, textStatus, errorThrown) {
+				}
+			});
+		}
+		
+	};
+	
+	function checkKrNumberType(number, linkType) {
+		var checkPattern1 	= null, 
+			checkPattern2 	= null,
+			numberType		= null;
+		checkPattern1 = new RegExp("^[0-9]{2}-[0-9]{4}-[0-9]{7}$", "ig"); // AN or PN
+		checkPattern2 = new RegExp("^[0-9]{2}-[0-9]{7}$", "ig"); // RN
+		
+		if(linkType == "JUDGE") {
+			numberType = "RN";
+		} else if (linkType == "STATUS") { //PN|RN 존재
+			
+		} else if(linkType == "CITN") { // AN
+			numberType = "AN";
+		} else if(linkType == "FAMILY") { // PN|RN 존재
+			
+		}
+		
+		return numberType;
+	};
+	
+	
+	function getDocUrl(ctry, skey){
+		var url = "";
+		//skey 없는 문헌은 없으니 그냥 ctry로 먼저 판단.
+		if(typeof ctry != "undefined" && ctry != null && ctry != ''){
+			if(ctry == "KR"){
+				url = "../api/dkrdshtm.wips";
+			} else if(ctry == "US"){
+				url = "../api/dusdshtm.wips";
+			} else if(ctry == "JP"){
+				url = "../api/djpdshtm.wips";
+			} else if(ctry == "EP"){
+				url = "../api/depdshtm.wips";
+			} else if(ctry == "WO"){
+				url = "../api/dwodshtm.wips";
+			} else if(ctry == "CN"){
+				url = "../api/dcndshtm.wips";
+			} else if(ctry == "PAJ"){
+				url = "../api/dpadshtm.wips";
+			} else if(ctry == "KPA"){
+				url = "../api/dkpdshtm.wips";
+			} else {
+				url = "../api/dipdshtm.wips";
+			} 
+		}else {	//RA의 경우 ctry값 없음. 국내(원국가)와 pct만 존재, meta데이터 토대로 작성
+			var ctryCd = parseInt(skey.substring(0,2));
+			if(ctryCd == 10){ //AU
+				url = "../api/dipdshtm.wips";
+			} else if(ctryCd >= 45 && ctryCd <= 54) {//US
+				url = "../api/dusdshtm.wips";
+			} else if([55, 56, 58, 60, 80].includes(ctryCd)){//WO
+				url = "../api/dwodshtm.wips";
+			} else {
+				url = "../api/dipdshtm.wips";
+			}
+		}
+		
+		return url;
+	}
+	
+	return {
+		  initVar: initVar
+		  , openClsLayer : openClsLayer
+		  , openClsLayerFi : openClsLayerFi
+		  , closeClsLayer : closeClsLayer
+		  , layerHide : layerHide
+		  , lyrClsHierarchy : lyrClsHierarchy
+		  , checkKrNumberType : checkKrNumberType
+		  , openFmlyClsLayer : openFmlyClsLayer
+		  , getDocUrl : getDocUrl
+	};
+}]);

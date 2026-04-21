@@ -1,0 +1,517 @@
+
+
+//quick help menu click
+$('.list_quick>li>button').on('click', function(){
+	
+	var befClassNm = $('.show').attr('class'),
+		classNm = $(this).parents('li').attr('class');
+
+	$('.list_quick>li').removeClass('show'); // initial
+	$('.quick_block .content_wrap').stop().slideUp(); // initial
+	
+	
+	if (befClassNm != "undefined" && befClassNm === classNm) {
+		$('.list_quick_wrap ').stop().slideUp(function(){
+			$('.quick_block').removeClass('on');
+		});
+		return;
+	}
+	
+	if (classNm === 'kakao') {
+		$.ajax({
+		    type: "post",
+		    url: "../lyr/qnakakao.wips",
+		    dataType: "json",
+		});
+		window.open('https://pf.kakao.com/_NZSxku/chat', 'kakao', 'top=100px, left=100px, height=645px, width=465px');
+
+	} else {
+		$(this).parents('li').addClass('show');
+		$('.list_quick').addClass('on');
+		$(this).siblings('.content_wrap').stop().slideDown();
+		
+		if (classNm === 'faq') {
+			$("#devQuickPgnum").val(1);
+			$.selectFaq();
+		} else if(classNm === 'manual'){
+			$("#devQuickManuPgnum").val(1);
+		}
+	}
+	
+	
+});
+
+//Q&A 글자 수 check
+$('#devQuickCntnt').keyup(function (){
+    var cntnt = $(this).val();
+    if(cntnt.length > 500) {
+    	$(this).val($(this).val().substr(0, 500));
+    	cntnt = $(this).val();
+    }
+    $('#devQuickCntntCnt').html(cntnt.length);
+});
+$('#devQuickCntnt').keyup();
+
+// quick_block 마우스오버 
+$('.quick_block').not($('.quick_block .content_wrap')).on('mouseenter', function(){
+	$('.quick_block').addClass('on');
+	$('.list_quick_wrap').stop().slideDown();
+	if($('.list_quick_wrap').css('overflow') == 'hidden') {
+		$('.list_quick_wrap').css('overflow','visible');
+	}
+});
+$('.quick_block').on('mouseleave', function(){
+	if( !($('.list_quick>li').hasClass('show')) ){
+		$('.list_quick_wrap').stop().slideUp(function(){
+			$('.quick_block').removeClass('on');
+		});
+	}
+});
+
+// x button
+$('.quick_block .btn_close, .quick_block .btn_cancel').on('click', function(){
+	$('.list_quick>li').removeClass('show');
+	$('.list_quick').removeClass('on');
+	$('.quick_block .content_wrap').stop().slideUp();
+});
+
+$.selectUserManual = function() {
+	var keyword = $("#devQuickManuSrchTxt").val(),
+		pgnum = $("#devQuickManuPgnum").val(),
+		pgrow = 5;
+	if(keyword.replace(/(\s*)/g, "") == ""){
+		alert('검색어를 입력해 주세요.')
+		return;
+	}
+	$.fn.showHistoryLoadingbar('devQuickManualLoadingbar');
+
+	$.ajax({
+		url: "../cts/ctsManualSearch.wips",
+		type: 'POST',
+		cache: false,
+		async: true,
+		dataType: 'json',
+		global: false, 
+		data: {
+			keyword : keyword,
+			type : 'M',
+			pgnum: pgnum,
+			pgrow: pgrow
+		},
+		success: function(data, textStatus, jqXHR) {
+			$.createUserManualListHtml(data);
+			$("#rsltKeyword").text(data.ctsManualParamVO.keyword);
+			$("#rsltCount").text(data.ctsManualResultVO.manuCount);
+			var keywordArray = data.ctsManualParamVO.keyword.replace(/"/g,"").split(" ");
+			$.fnKeyWordHighlights(keywordArray);	
+			$(".manual_results_box").show();
+			$(".search_results_box").show();
+			$.fn.hideHistoryLoadingbar('devQuickManualLoadingbar');
+		}
+	});
+}
+
+//키워드 하이라이트
+$.fnKeyWordHighlights = function(keywordArray){
+	for(var i = 0; i <keywordArray.length;i++){
+		ctsKeywordHighLighter(keywordArray[i]);
+	}
+};
+//UserManual list 
+$.createUserManualListHtml = function(data) {
+	$("#devQuickManualList").empty();
+	
+	userManualList = data.ctsManualResultVO.manuList;
+	userManualListCnt = data.ctsManualResultVO.totalCountForpaging;
+	
+	var pgnum 		= $("#devQuickManuPgnum").val(),
+		insertBlock2 = new Array(),
+		keyword = data.ctsManualParamVO.keyword;
+			
+	userManualList.forEach(function(item) {
+		insertBlock2.push("<tr>");
+		insertBlock2.push(" <td class='font_color_4c font_align_center'><span>" + (userManualListCnt - item.rowNumber + 1) + "</span></td>");
+		insertBlock2.push(" <td class='txt_left highlightText'>");
+		insertBlock2.push("  <p class='padd_left_05'>");
+		insertBlock2.push("   <a href='../cts/userGuideManual.wips?type="+item.mtype+"&target="+item.brdid+"&keyword="+keyword+"' class='font_color_4c' target='_blank'> <span>" + item.ti + "</span></a>");
+		insertBlock2.push("   <span class='font_color_4c cut_word'>" + item.cntnt + "</span>"); 
+		insertBlock2.push("  </p>");
+		insertBlock2.push(" </td>");
+		insertBlock2.push("</tr>");
+	})
+		
+	if(userManualList.length == 0){
+		insertBlock2.push('<tr><td colspan="2"><p class="txt_nolist">! 검색결과가 존재하지 않습니다.</p></td></tr>');
+	}
+	
+	$("#devQuickManualList").append(insertBlock2.join('\n'));
+	
+	$.createUserManualPagingHtml(data);
+			
+};
+$.createUserManualPagingHtml = function(data) {
+
+	var totCnt 	= data.ctsManualResultVO.totalCountForpaging,
+		totPage = Math.ceil((totCnt - 5) / 5) + 1,
+		pgnum   = $("#devQuickManuPgnum").val(),
+		curPage = Math.ceil((pgnum) / 10),
+		lastPgNum = (curPage * 10 < totPage)? curPage*10: totPage;
+
+	$("#devQuickManualPaging").empty();
+	var insertBlock = new Array();
+	
+//	console.log("totCnt:"+totCnt+"|totPage:"+totPage+"|pgnum:"+pgnum+"|curPage:"+curPage+"|lastPgNum:"+lastPgNum)
+	
+	insertBlock.push("<ul>");
+	if(pgnum == 1) { //처음으로
+		insertBlock.push("<a href='javascript:void(0);' class=' paging prev p1 btn_dis_type'>First pages</a>");
+	} else {
+		insertBlock.push("<a href='javascript:$.goQuickManuPage(1);' class=' paging prev p1'>First pages</a>");
+	} 
+	
+	if (curPage == 1) {	//이전으로
+		insertBlock.push("<a href='javascript:void(0);' class='paging prev p10 btn_dis_type'>Previous 10 page</a>");
+	} else {
+		insertBlock.push("<a href='javascript:$.goQuickManuPage(\"prev\");' class='paging prev p10'>Previous 10 page</a>");
+	}
+	
+	for (i = ((curPage - 1) * 10) + 1; i <= lastPgNum; i++) { //1~10
+		var lastClass = "";
+		if (i == lastPgNum) {
+			lastClass = "last";
+		}
+		if (pgnum == i) {
+			insertBlock.push("<li class='on'><a href='javascript:void(0);'>" + i + "</a></li>");
+		} else {
+			insertBlock.push("<li><a href='javascript:$.goQuickManuPage(" + i + ");'>" + i + "</a></li>");
+		}
+		
+	}
+	if(lastPgNum == totPage) { //다음으로
+		insertBlock.push("<a href='javascript:void(0);' class='next p1 btn_dis_type'>Next 10 pages</a>");
+	} else {
+		insertBlock.push("<a href='javascript:$.goQuickManuPage(\"next\");' class='next p1'>Next 10 pages</a>");
+	}
+	
+	if(pgnum == totPage) {	//마지막으로
+		insertBlock.push("<a href='javascript:void(0);' class='next p10 btn_dis_type'>Last page</a>");
+	} else {
+		insertBlock.push("<a href='javascript:$.goQuickManuPage(\"last\"," + totPage + ")' class='next p10'>Last page</a>");
+	}
+	insertBlock.push("</ul>");
+	
+	$("#devQuickManualPaging").append(insertBlock.join('\n'));
+}
+//UserManual paging 
+$.goQuickManuPage = function(pgnum, totPage) {
+	curPgnum = Number($("#devQuickManuPgnum").val());
+	if (pgnum == 'prev') {
+		$("#devQuickManuPgnum").val((Math.ceil(curPgnum/10)-1)*10);
+	} else if (pgnum == 'next') {
+		$("#devQuickManuPgnum").val(Math.ceil(curPgnum/10)*10+1);
+	} else if (pgnum == 'last') {
+		$("#devQuickManuPgnum").val(totPage);
+	} else {
+		$("#devQuickManuPgnum").val(pgnum);
+	}
+	$.selectUserManual();
+};
+
+// faq 조회
+$.selectFaq = function() {
+	
+	var brdSectCd = $("li[id^='devCtgrClass'][class='on']").attr("id").replace('devCtgrClass', '') + '%',
+		srchText = $("#devQuickSrchTxt").val(),
+		pgnum = $("#devQuickPgnum").val(),
+		pgrow = 5;
+		
+	if (pgnum != 1) {
+		pgrow = pgnum * 10; 
+		pgnum = 1;
+	}
+	
+	$.fn.showHistoryLoadingbar('devQuickFaqLoadingbar');
+	
+	$.ajax({
+		url: "../lyr/selectFaq.wips",
+		type: 'POST',
+		cache: false,
+		async: true,
+		dataType: 'json',
+		global: false, 
+		data: {
+			brdSectCd : brdSectCd,
+			srchText : srchText,
+			pgnum: pgnum,
+			pgrow: pgrow
+		},
+		success: function(data, textStatus, jqXHR) {
+			$.createFaqListHtml(data);
+			$.fn.hideHistoryLoadingbar('devQuickFaqLoadingbar');
+		}
+	});
+	
+};
+
+// faq list 
+$.createFaqListHtml = function(data) {
+	$("#devQuickFaqTopList").empty();
+	$("#devQuickFaqList").empty();
+	
+	faqTopList = data.topList;
+	faqList = data.brdList.manuList;
+	faqListCnt = data.brdList.totalCountForpaging;
+	
+	var insertBlock = new Array(),
+		pgnum 		= $("#devQuickPgnum").val();
+	
+	for(var i=0 ; i < faqTopList.length ; i++){
+		insertBlock.push("<li><a href=javascript:$.goFaqCntnt(" + faqTopList[i].brdId + ",'')>" + faqTopList[i].ti + "</a></li>");
+	}
+	if(faqTopList.length == 0 || pgnum != 1) {
+		$("#devQuickFaqTopList").hide();
+	} else {
+		$("#devQuickFaqTopList").show();
+	}
+	
+	var insertBlock2 = new Array(),
+		startVal     = (pgnum == 1) ? 0 : (pgnum - 2) * 10 + 5,
+		endVal       = (faqList.length > (pgnum * 10 - 5)) ? (pgnum * 10 - 5) : faqList.length;
+	
+	for(var i=startVal; i<endVal ; i++){
+		insertBlock2.push("<li>");
+		insertBlock2.push("<span>" + (faqListCnt - faqList[i].rowNumber + 1) + ".</span>");
+		insertBlock2.push("<a href='javascript:$.goFaqCntnt(" + faqList[i].brdid + "," + faqList[i].rowNumber + ")'>" + faqList[i].ti + "</a>");
+		insertBlock2.push("</li>");
+	}
+	if(faqList.length == 0){
+		insertBlock2.push('<li class="no_data">작성된 게시물이 없습니다.</li>');
+	}
+	
+	$("#devQuickFaqTopList").append(insertBlock.join('\n'));
+	$("#devQuickFaqList").append(insertBlock2.join('\n'));
+	
+	$.createFaqPagingHtml(faqListCnt);
+	
+};
+
+// faq paging
+$.createFaqPagingHtml = function(data) {
+	var totCnt 	= data,
+		totPage = Math.ceil((totCnt - 5) / 10) + 1,
+		pgnum   = $("#devQuickPgnum").val(),
+		curPage = Math.ceil((pgnum) / 10),
+		lastPgNum = (curPage * 10 < totPage)? curPage*10: totPage;
+ 
+	$("#devQuickPaging").empty();
+	var insertBlock = new Array();
+	
+	if(pgnum == 1) {
+		insertBlock.push('<span class="btn_pagenate btn_first_quick btn_dis_type"><span class="screen_out">처음</span></span>');
+	} else {
+		insertBlock.push('<a href="javascript:$.goQuickPage(1)" class="btn_pagenate btn_first_quick"><span class="screen_out">처음</span></a>');
+	} 
+	
+	if (curPage == 1) {
+		insertBlock.push('<span class="btn_pagenate btn_before_quick btn_dis_type"><span class="screen_out">이전</span></span>');
+	} else {
+		insertBlock.push('<a href="javascript:$.goQuickPage(\'prev\')" class="btn_pagenate btn_before_quick"><span class="screen_out">이전</span></a>');
+	}
+	
+	for (i = ((curPage - 1) * 10) + 1; i <= lastPgNum; i++) {
+		var lastClass = '';
+		if (i == lastPgNum) {
+			lastClass = 'last';
+		}
+		if (pgnum == i) {
+			insertBlock.push('<span class="pagenate_txt on '+ lastClass +'">'+ i + '</span>');
+		} else {
+			insertBlock.push('<a href="javascript:$.goQuickPage(' + i + ')" class="pagenate_txt '+ lastClass +'">'+ i + '</a>');
+		}
+		
+	}
+	if(lastPgNum == totPage) {
+		insertBlock.push('<span class="btn_pagenate btn_after_quick  btn_dis_type"><span class="screen_out">다음</span></span>');
+	} else {
+		insertBlock.push('<a href="javascript:$.goQuickPage(\'next\')" class="btn_pagenate btn_after_quick "><span class="screen_out">다음</span></a>');
+	}
+	
+	if(pgnum == totPage) {
+		insertBlock.push('<span class="btn_pagenate btn_last_quick  btn_dis_type"><span class="screen_out">마지막</span></span>');
+	} else {
+		insertBlock.push('<a href="javascript:$.goQuickPage(\'last\',' + totPage + ')" class="btn_pagenate btn_last_quick "><span class="screen_out">마지막</span></a>');
+	}
+	
+	$("#devQuickPaging").append(insertBlock.join('\n'));
+};
+
+// faq paging 
+$.goQuickPage = function(pgnum, totPage) {
+	curPgnum = Number($("#devQuickPgnum").val());
+	if (pgnum == 'prev') {
+		$("#devQuickPgnum").val((Math.ceil(curPgnum/10)-1)*10);
+	} else if (pgnum == 'next') {
+		$("#devQuickPgnum").val(Math.ceil(curPgnum/10)*10+1);
+	} else if (pgnum == 'last') {
+		$("#devQuickPgnum").val(totPage);
+	} else {
+		$("#devQuickPgnum").val(pgnum);
+	}
+	
+	$.selectFaq();
+};
+
+
+// faq 리스트 클릭 (고객센터 새 창 이동)
+$.goFaqCntnt = function(brdId, rnum) {
+	var form = document.createElement('form');
+	var brdSectCd = $("li[id^='devCtgrClass'][class='on']").attr("id").replace('devCtgrClass', '') + '%';
+	
+	$(form).attr('action', '../cts/faqCntnt.wips')
+	   .attr('id', 'lyrQuickHelpFaqForm')
+	   .attr('method', 'get')
+	   .attr('target', '_blank');
+	$(form).html('<input type="hidden" name="brdId" value="' + brdId + '"/>' + 
+	'<input type="hidden" name="rnum" value="' + rnum + '"/>' +
+	'<input type="hidden" name="srchText" value="' +  $("#devQuickSrchTxt").val() + '"/>' +
+	'<input type="hidden" name="brdSectCd" value="'+brdSectCd+'"/>');
+	
+	document.body.appendChild(form);
+	
+	$(form).submit();
+	
+	$('form#lyrQuickHelpFaqForm').remove();	
+
+};
+
+// faq category click
+$.fn.changeCtgrCd = function(brdSectCd) {
+	$("li[id^='devCtgrClass']").removeClass("on");
+	$("#devCtgrClass" + brdSectCd.replace('%', '')).addClass("on");
+	
+	$("#devQuickPgnum").val(1);
+	$.selectFaq();
+};
+
+// faq 검색
+$("#devQuickGoSrch").on('click', function() {
+	$("#devQuickPgnum").val(1);
+	$.selectFaq();
+});
+// usermanual 검색
+$("#devQuickManuGoSrch").on('click', function() {
+	$("#devQuickManuPgnum").val(1);
+	$.selectUserManual();
+});
+
+//quick userManual enter
+$('#devQuickManuSrchTxt').keypress(function(event){
+ if (event.which == 13) {
+ 	$("#devQuickManuPgnum").val(1);
+ 	$.selectUserManual();
+ }
+});
+
+//quick faq enter
+$('#devQuickSrchTxt').keypress(function(event){
+ if (event.which == 13) {
+ 	$("#devQuickPgnum").val(1);
+ 	$.selectFaq();
+ }
+});
+
+
+// Q&A 첨부파일 사이즈 체크
+$("#devQuickFile").on("change", function () {
+	var imgFileSize = $(this)[0].files[0].size;
+	
+	if (imgFileSize > 3145728) {
+		alert("파일 용량이 3MB를 넘는 파일은 업로드 하실 수 없습니다.");
+		$('input[name=attchFile]').val('');
+		
+		return;
+	} else {
+		var filename = $(this)[0].files[0].name;
+		$('#devQuickFileNm').val(filename);
+	}
+});
+
+// Q&A 등록
+$("#devQnaRegist").on('click', function() {
+	
+	if ($("#devQuickSelbox").val() === "" || $("#devQuickSelbox").val() == "default") {
+		alert ("문의 유형을 선택해주세요.");
+		$('#devQuickSelbox').focus();
+		return;
+	}
+	
+	if ($('#devQuickTi').val().trim() === "") {
+		alert ("제목을 입력해주세요.");
+		$('#devQuickTi').focus();
+		return;
+	}
+	
+	if ($('#devQuickCntnt').val().trim() === "") {
+		alert ("내용을 입력해주세요.");
+		$('#devQuickCntnt').focus();
+		return;
+	}
+	
+	var form = $('form[id="devQnaForm"]')[0];
+	var formData = new FormData(form);
+    formData.append("ctgrCd", $("#devQuickSelbox").val());
+    formData.append("emailRplyYn", $("#devQuickEmailRplyYn").prop("checked"));
+    formData.append("kakaoRplyYn", $("#devQuickKakaoRplyYn").prop("checked"));
+    formData.append("scrtYn", true);
+    
+	
+	$.ajax({
+		url: "../lyr/insertQna.wips",
+		type: 'POST',
+		dataType: 'json',
+		processData: false,
+        contentType: false,
+        data: formData,
+        global: false,
+		success: function(data) {
+			alert("고객님의 문의가 고객센터 1:1 문의에 등록되었습니다.\n문의사항에 대하여 신속하게 답변 드리겠습니다");
+			$('#devQnaForm').find('input, textarea').val('');
+			$("#devQuickSelbox").val('default');
+			$("#devQuickEmailRplyYn").prop("checked",false);
+			$("#devQuickKakaoRplyYn").prop("checked",false);
+			$("#devQuickScrtYn").prop("checked",false);
+			
+		}
+	});
+	
+});
+$.fn.showHistoryLoadingbar = function(objId) {
+	var opts = {
+		      lines: 11             // The number of lines to draw
+		    , length: 7             // The length of each line
+		    , width: 5              // The line thickness
+		    , radius: 10            // The radius of the inner circle
+		    , scale: 0.6            // Scales overall size of the spinner
+		    , corners: 1            // Roundness (0..1)
+		    , color: '#000000'         // #rgb or #rrggbb
+		    , rotate: 0             // Rotation offset
+		    , direction: 1          // 1: clockwise, -1: counterclockwise
+		    , speed: 1              // Rounds per second
+		    , trail: 100            // Afterglow percentage
+		    , fps: 20               // Frames per second when using setTimeout()
+		    , zIndex: 2e9           // Use a high z-index by default
+		    , shadow: false         // Whether to render a shadow
+		    , hwaccel: false        // Whether to use hardware acceleration (might be buggy)
+		    , position: 'absolute'  // Element positioning
+	    	, top: '50%'
+		    , left: '50%'
+	};
+	var target = document.getElementById(objId);
+    var spinner = new Spinner(opts).spin(target);
+    $('#'+objId).show();
+};
+
+$.fn.hideHistoryLoadingbar = function(objId) {
+	$('#'+objId).hide();
+	$('#'+objId).html('');
+};

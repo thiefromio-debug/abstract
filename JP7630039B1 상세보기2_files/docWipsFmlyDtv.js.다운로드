@@ -1,0 +1,451 @@
+docApp.directive('docWipsFmlyDtv', ['$timeout','$http','$compile','docCmmUtilFct', 'docCmmFct', 'docCmmLinkFct', function($timeout, $http, $compile, docCmmUtilFct, docCmmFct, docCmmLinkFct){
+	return {
+		restrict: 'A',
+		link : 	postLink  //compile 이 등록되어 있으면 link 는 수행하지 않는다.
+	};
+	
+	function preCompile(scope, elm, attrs, ctrl){
+		/**
+		 * 변수 초기화
+		 */
+		scope.docVar.docWipsFmlyVO.docWipsFmlyParamVO.skey = scope.docVar.screenVO.skey;
+		scope.docVar.docWipsFmlyVO.docWipsFmlyParamVO.duplFlag = 0; // 0: 중복제거, 1 : 중복허용
+		scope.docVar.docWipsFmlyVO.docWipsFmlyParamVO.fmlyTp = DocCmmConst.FMLY_TYPE.W;
+		scope.docVar.docWipsFmlyVO.docWipsFmlyParamVO.sortField = "pat_dt";
+		scope.docVar.docWipsFmlyVO.docWipsFmlyParamVO.sortType = "DESC";
+		scope.docVar.docWipsFmlyVO.docWipsFmlyParamVO.pageNum = 1;
+		scope.docVar.docWipsFmlyVO.docWipsFmlyParamVO.pageRow = DocCmmConst.WIPS_FMLY_PAGE_ROW;
+		
+		scope.docVar.docWipsFmlyVO.headerList = [
+		                       		       {id:'chk', fieldNm:'', sortField:'', sortType:'', arrClass:''}   //check
+		                       		     , {id:'ORG', fieldNm:'원문', sortField:'', sortType:'', arrClass:''}   //원문
+		                       		     , {id:'CC', fieldNm:'국가', sortField:'ctry', sortType:'', arrClass:''}   //국가
+		                       		     , {id:'AN', fieldNm:'문헌번호', sortField:'pat_num', sortType:'ASC', arrClass:'ico_arralign ico_default', thClass:'tb_head_backcolor doc_family_wplus'}   //문서번호
+		                       		     , {id:'AD', fieldNm:'일자', sortField:'pat_dt', sortType:'DESC', arrClass:'ico_arralign ico_default', thClass:'tb_head_backcolor'}   //일자
+		                       		     , {id:'TI', fieldNm:'발명의 명칭', sortField:'', sortType:'', arrClass:''}   //발명의 명칭
+		                       		];
+		
+		
+		// 전체 카운트
+		scope.docVar.docWipsFmlyVO.pageCountVO.totRsltCnt = 0;
+		// 전체 페이지수 
+		scope.docVar.docWipsFmlyVO.pageCountVO.totPageCnt = 1;
+		// 보유 건수
+		scope.docVar.docWipsFmlyVO.pageCountVO.holdCnt = 0;
+		// 미보유 건수 
+		scope.docVar.docWipsFmlyVO.pageCountVO.missingDocCount = 0;
+		// Provisional 건수
+		scope.docVar.docWipsFmlyVO.pageCountVO.provisionalCount = 0;
+		// 보유 문헌
+		scope.docVar.docWipsFmlyVO.rsltList = [];
+		// 최대건 skeys
+		scope.docVar.docWipsFmlyVO.allSkeys ='';
+		//미보유문헌 목록
+		scope.docVar.docWipsFmlyVO.missingList = [];
+		//미보유문헌 목록
+		scope.docVar.docWipsFmlyVO.provisionalList = [];
+		
+		
+		// 패밀리 IPC/CPC 특허분류코드, docCmmFct 공통 함수 사용.
+		scope.layerHide = function() {
+			docCmmFct.layerHide();
+		};
+		
+		scope.openFmlyClsLayer = function(skey, dbNm, ctry, clsType, clsIndex) {
+			docCmmFct.openFmlyClsLayer(skey, dbNm, ctry, clsType, clsIndex);
+		};
+		
+//		scope.closeClsLayer = function(clsType , clsStatus  , clsIndex , clsMode) {
+//			docCmmFct.closeClsLayer(clsType , clsStatus  , clsIndex , clsMode);
+//		};
+//		
+		scope.findWipsFmlyList = function() {
+			// 변수 docCmmVar 및 docCmmConst 로 빼기.
+			var url = "../doc/findWipsFmlyList.wips";
+			var obj = { skey : scope.docVar.docWipsFmlyVO.docWipsFmlyParamVO.skey
+						, fmlyTp : scope.docVar.docWipsFmlyVO.docWipsFmlyParamVO.fmlyTp
+						, duplFlag : scope.docVar.docWipsFmlyVO.docWipsFmlyParamVO.duplFlag
+						, sortField : scope.docVar.docWipsFmlyVO.docWipsFmlyParamVO.sortField
+						, sortType : scope.docVar.docWipsFmlyVO.docWipsFmlyParamVO.sortType
+						, pageNum : scope.docVar.docWipsFmlyVO.docWipsFmlyParamVO.pageNum
+						, pageRow : scope.docVar.docWipsFmlyVO.docWipsFmlyParamVO.pageRow
+					  };
+
+			$http.post(url, $.param(obj),{
+				headers: {'Content-Type': scope.docConst.JSON_CONT_TYPE}
+			}).success(function(data){
+				scope.docVar.docWipsFmlyVO.wipsFmlyExist = data.wipsFmlyExist;
+				$('#wipsFmlyExist').val(data.wipsFmlyExist); //패밀리 법적상태 대용량 처리 사용 (ITS-17569)
+				scope.docVar.docWipsFmlyVO.allChk = false;
+				scope.docVar.docWipsFmlyVO.maxChk = false;
+				if(scope.docVar.docWipsFmlyVO.wipsFmlyExist) {
+					// 보유목록
+					if(data.wipsFmlyList != null ) {
+						scope.docVar.docWipsFmlyVO.rsltList = data.wipsFmlyList;
+					}
+					
+					//checkbox 초기화
+					if(scope.docVar.docWipsFmlyVO.rsltList != null && scope.docVar.docWipsFmlyVO.rsltList.length > 0 ){
+						
+						for(var i=0; i < scope.docVar.docWipsFmlyVO.rsltList.length; i++){
+							scope.docVar.docWipsFmlyVO.rsltList[i].chk = false;
+							if(scope.docVar.docWipsFmlyVO.allSkeys.length > 0){
+								scope.docVar.docWipsFmlyVO.allSkeys += ',';
+							}
+							scope.docVar.docWipsFmlyVO.allSkeys += scope.docVar.docWipsFmlyVO.rsltList[i].skey;
+						}
+					}
+					
+					scope.docVar.docWipsFmlyVO.maxSkeys = data.skeys; //sbpark 수정
+					// 전체 건수 
+					if(data.wipsFmlyCnt != null) {
+						scope.docVar.docWipsFmlyVO.pageCountVO.totRsltCnt =data.wipsFmlyCnt.cnt;
+						scope.docVar.docWipsFmlyVO.pageCountVO.holdCnt = data.wipsFmlyCnt.cnt;
+					}
+					// Provisional of 목록
+					scope.docVar.docWipsFmlyVO.provisionalList = data.wipsFmlyProvList;
+					// 미보유 목록
+					scope.docVar.docWipsFmlyVO.missingList = data.wipsFmlyMissList;
+					
+					// 미보유 건수
+					if(scope.docVar.docWipsFmlyVO.missingList != null) {
+						scope.docVar.docWipsFmlyVO.pageCountVO.missingDocCount = scope.docVar.docWipsFmlyVO.missingList.length;
+					}
+					// Provisional 건수
+					if(scope.docVar.docWipsFmlyVO.provisionalList != null) {
+						scope.docVar.docWipsFmlyVO.pageCountVO.provisionalCount = scope.docVar.docWipsFmlyVO.provisionalList.length;
+					}
+					// 전체 건수
+					scope.docVar.docWipsFmlyVO.pageCountVO.totRsltCnt = scope.docVar.docWipsFmlyVO.pageCountVO.totRsltCnt + scope.docVar.docWipsFmlyVO.pageCountVO.missingDocCount + scope.docVar.docWipsFmlyVO.pageCountVO.provisionalCount;
+					
+					
+					scope.docVar.docWipsFmlyVO.pageCountVO.pageNum = scope.docVar.docWipsFmlyVO.docWipsFmlyParamVO.pageNum;
+					scope.docVar.docWipsFmlyVO.pageCountVO.pageRow = scope.docVar.docWipsFmlyVO.docWipsFmlyParamVO.pageRow;
+					
+					scope.docVar.docWipsFmlyVO.pageCountVO.totPageCnt = Math.floor(scope.docVar.docWipsFmlyVO.pageCountVO.holdCnt / scope.docVar.docWipsFmlyVO.pageCountVO.pageRow) 
+					                                            + (scope.docVar.docWipsFmlyVO.pageCountVO.holdCnt % scope.docVar.docWipsFmlyVO.pageCountVO.pageRow == 0 ? 0 : 1) ;
+					if(scope.docVar.docWipsFmlyVO.pageCountVO.totPageCnt == 0) {
+						scope.docVar.docWipsFmlyVO.pageCountVO.totPageCnt = 1;
+					}
+					$("input[id='devWipsFmlyAll']").attr("disabled",false);
+				} else {
+					$("input[id='devWipsFmlyAll']").attr("disabled",true);
+					if(scope.docVar.docWipsFmlyVO.docWipsFmlyParamVO.duplFlag == 0){  // 대용량 Count 중복제거 
+						scope.docVar.docWipsFmlyVO.pageCountVO.totRsltCnt = data.wipsFmlyCnt.cntRemoveDupl + data.wipsFmlyCnt.missingCnt;
+					}
+					else{ 
+						scope.docVar.docWipsFmlyVO.pageCountVO.totRsltCnt = data.wipsFmlyCnt.cnt + data.wipsFmlyCnt.missingCnt;
+					}
+				}
+				
+				scope.clickDevBtnMarker();
+				
+				// 상세보기 오른쪽 메뉴 레이어 메뉴 수정
+				scrollRightSet("devWipsFamily", "패밀리 ("+scope.docVar.docWipsFmlyVO.pageCountVO.totRsltCnt+")");
+			}).error(function(data, status){
+				/*if (/EgovBizException/.test(data.responseText)) {
+		            alert(data.responseText.match(/EgovBizException: &quot;(.*?)&quot;/)[1]);
+		            // error 처리
+		        }
+		        else {
+		            alert("에러가 발생하였습니다. " + status + "\nError: " + data.responseText);
+		        }*/
+			});
+			
+		};
+		
+		/**
+		 * 헤더에서 소트키 클릭시
+		 */
+		scope.wipsFmlyListSort = function(headerIndex){
+			
+			for(var i = 0; i < scope.docVar.docWipsFmlyVO.headerList.length; i++){
+				if(scope.docVar.docWipsFmlyVO.headerList[i].sortField === ''){
+					continue;
+				}
+				
+				if(i === headerIndex) {
+					if(scope.docVar.docWipsFmlyVO.headerList[i].sortType === "DESC") {
+						scope.docVar.docWipsFmlyVO.headerList[i].sortType = "ASC";
+						scope.docVar.docWipsFmlyVO.headerList[i].arrClass = "ico_arralign ico_arrup";
+						//scope.docVar.docWipsFmlyVO.headerList[i].thClass = "tb_head_backcolor";
+						scope.docVar.docWipsFmlyVO.headerList[i].aClass = "font_color_orange";
+					} else {
+						scope.docVar.docWipsFmlyVO.headerList[i].sortType = "DESC";
+						scope.docVar.docWipsFmlyVO.headerList[i].arrClass = "ico_arralign ico_arrdown";
+						//scope.docVar.docWipsFmlyVO.headerList[i].thClass = "tb_head_backcolor";
+						scope.docVar.docWipsFmlyVO.headerList[i].aClass = "font_color_orange";
+					}
+					scope.docVar.docWipsFmlyVO.docWipsFmlyParamVO.sortField = scope.docVar.docWipsFmlyVO.headerList[i].sortField;
+					scope.docVar.docWipsFmlyVO.docWipsFmlyParamVO.sortType = scope.docVar.docWipsFmlyVO.headerList[i].sortType;
+				} else {
+					scope.docVar.docWipsFmlyVO.headerList[i].arrClass = "ico_arralign ico_default";
+					scope.docVar.docWipsFmlyVO.headerList[i].thClass = "tb_head_backcolor";
+					scope.docVar.docWipsFmlyVO.headerList[i].aClass = "";
+				}
+				
+			}
+			scope.findWipsFmlyList();
+		};
+		
+		/**
+		 * 이전페이지 클릭시
+		 */
+		scope.prevPageWF = function(){
+			if(scope.docVar.docWipsFmlyVO.docWipsFmlyParamVO.pageNum == 1){
+				return;
+			}
+			
+			scope.docVar.docWipsFmlyVO.docWipsFmlyParamVO.pageNum = scope.docVar.docWipsFmlyVO.docWipsFmlyParamVO.pageNum - 1;
+			scope.findWipsFmlyList();
+		};
+		
+		/**
+		 * 다음페이지 클릭시
+		 */
+		scope.nextPageWF = function(){
+			if(scope.docVar.docWipsFmlyVO.docWipsFmlyParamVO.pageNum == scope.docVar.docWipsFmlyVO.pageCountVO.totPageCnt){
+				return;
+			}
+			
+			scope.docVar.docWipsFmlyVO.docWipsFmlyParamVO.pageNum = scope.docVar.docWipsFmlyVO.docWipsFmlyParamVO.pageNum + 1;
+			scope.findWipsFmlyList();
+		};
+
+		/**
+		 * Family Type 변경
+		 */
+		scope.wipsFmlyTypeRdo = function(curMode){
+			scope.docVar.docWipsFmlyVO.docWipsFmlyParamVO.fmlyTp = curMode;
+			scope.docVar.docWipsFmlyVO.docWipsFmlyParamVO.pageNum = 1;
+			scope.findWipsFmlyList();
+		};
+		
+		/**
+		 * 패밀리 중복체크 클릭
+		 */
+		scope.wipsFmlyDupChk = function(){
+			if(scope.docVar.docWipsFmlyVO.docWipsFmlyParamVO.duplChk) {
+				scope.docVar.docWipsFmlyVO.docWipsFmlyParamVO.duplFlag = 0;
+			}else {
+				scope.docVar.docWipsFmlyVO.docWipsFmlyParamVO.duplFlag = 1;
+			}
+			
+			//scope.docVar.docWipsFmlyVO.docWipsFmlyParamVO.pgnum = 1;
+			scope.docVar.docWipsFmlyVO.docWipsFmlyParamVO.pageNum = 1;
+			
+			scope.findWipsFmlyList();
+		};
+		
+		/**
+		 * 패밀리 중복체크 라벨 클릭
+		 */
+		scope.wipsFmlyDupChkClick = function(){
+			scope.docVar.docWipsFmlyVO.docWipsFmlyParamVO.duplChk = !scope.docVar.docWipsFmlyVO.docWipsFmlyParamVO.duplChk;
+			scope.wipsFmlyDupChk();
+		};
+		
+		/**
+		 * 대용량 컨텐츠 링크
+		 */
+		scope.openLargeContent = function() {
+			
+			var url			= "../lyr/largeContentView.wips",
+				name		= "_lrgCntPopup",
+				width 		= 500,
+				height 		= 320,
+				left 		= 300, 
+				top 		= 300,
+				frm			= null,
+				frmSkey		= null,
+				frmSeq		= null,
+				imgPopup	= null,
+				input		= "",
+				form 		= document.createElement('form');
+
+			$(form).attr('action', url)
+				   .attr('id', 'devlrgCntForm')
+				   .attr('method', 'post')
+				   .attr('target', name);
+			$(form).html('<input type="hidden" name="skey" value="' + scope.docVar.docWipsFmlyVO.docWipsFmlyParamVO.skey +'" />'
+					+ '<input type="hidden" name="cntntTp" value="W"/>');
+			
+			document.body.appendChild(form);
+			
+			imgPopup = window.open("../html/cmm/popup_blank.html", name, 'left=' + left + ',top=' + top + ',width=' + width + ',height=' + height + ',toolbar=0,menubar=0,status=1,scrollbars=0,resizable=1,copyhistory=0');
+			
+			if (imgPopup === null) {
+				alert("차단된 팝업을 허용해 주십시오.");
+			} else {
+				$(form).submit();
+				$('form#devlrgCntForm').remove();
+				imgPopup.focus();
+			}
+		};
+		
+		//원문 아이콘 class
+		scope.pdfIconClass = function(pdfGb, ctry) {
+			if(ctry == "CA"){
+				pdfGb = 0;
+			}
+			
+			if(pdfGb == 1 || pdfGb == 2) {
+				return 'btn_openpdf';
+			}
+			else { // null
+				return "btn_dispdf";
+			}
+		};
+		
+	};
+	
+	function postLink(scope, elm, attrs, ctrl){
+		preCompile(scope, elm, attrs, ctrl);
+		elm.empty();
+		
+		var innerHtml = docCmmUtilFct.hereDoc(function() {/*!
+						
+						<div class="dc_leftblock">
+							<span class="first_line">패밀리</span>
+						</div>
+						<div class="dc_context_block">
+							<div class="clear"><!-- --></div>
+							<div class="float_l">
+								<span class="float_l marg_right_20">전체 <span class="font_type_bold page_backcolor_step1_text font_valign_00" ng-bind="docVar.docWipsFmlyVO.pageCountVO.totRsltCnt" id="devWipsFamilyCnt"></span> 건</span>
+							</div>
+							<div class="float_r">
+								<span class="float_l marg_right_20"><input type="radio" id="fmly_type_e" name="fmly_type" value="E" ng-click="wipsFmlyTypeRdo('W');" checked><label for="fmly_type_e"> WIPS Extended</label></span>
+								<span class="float_l marg_right_40"><input type="radio" id="fmly_type_s" name="fmly_type" value="S" ng-click="wipsFmlyTypeRdo('S');"><label for="fmly_type_s"> EPO Simple</label></span>
+								<span class="float_l marg_right_30"><input type="checkbox" id="ck_dup" name="ck_dup" ng-model="docVar.docWipsFmlyVO.docWipsFmlyParamVO.duplChk"  ng-click="wipsFmlyDupChkClick();"><label for="ck_dup"> 중복제거 </label></span>
+								<div class="paginate_type3 pagenate_align"> 
+									<span class="pagenum"><span ng-bind="docVar.docWipsFmlyVO.pageCountVO.pageNum"></span>/<span ng-bind="docVar.docWipsFmlyVO.pageCountVO.totPageCnt"></span></span>
+									<a ng-if="docVar.docWipsFmlyVO.pageCountVO.pageNum > 1" href="javascript:void(0);" ng-click="prevPageWF();">
+										<span class="direction"><span class="prev"><!-- --></span><span class="ir_pm">이전</span></span>
+									</a>
+									<span ng-if="docVar.docWipsFmlyVO.pageCountVO.pageNum <= 1"> 
+										<span class="direction btn_dis_type"><span class="prev"><!-- --></span><span class="ir_pm">이전</span></span>
+									</span>
+									<a ng-if="docVar.docWipsFmlyVO.pageCountVO.totPageCnt > docVar.docWipsFmlyVO.pageCountVO.pageNum" href="javascript:void(0);" ng-click="nextPageWF();">
+										<span class="direction"><span class="next"><!-- --></span><span class="ir_pm">다음</span></span>
+									</a>
+									<span ng-if="docVar.docWipsFmlyVO.pageCountVO.totPageCnt <= 1 || docVar.docWipsFmlyVO.pageCountVO.pageNum == docVar.docWipsFmlyVO.pageCountVO.totPageCnt"> 
+										<span class="direction btn_dis_type"><span class="next"><!-- --></span><span class="ir_pm">다음</span></span>
+									</span> 
+								</div>
+							</div>
+							<div class="clear"><!-- --></div>
+							<div class="devHighlightNg" ng-show="docVar.docWipsFmlyVO.wipsFmlyExist == true">
+								<table class="marg_top_05 table_type2 oneline_width devDocViewOption">
+									<colgroup>
+										<col width="30" />
+										<col width="50" />
+										<col width="150" />
+										<col width="130" />
+										<col width="*" />
+										<col width="150" />
+										<col width="150" />
+									</colgroup>
+									<thead>
+										<tr>
+											<th class="tb_head_backcolor">No</th>
+											<th class="tb_head_backcolor">원문</th>
+											<th class="tb_head_backcolor"><a href="javascript:void(0);" ng-click="wipsFmlyListSort(3)" ng-class="docVar.docWipsFmlyVO.headerList[3].aClass"><span ng-bind-html="docVar.docWipsFmlyVO.headerList[3].fieldNm"></span><span ng-class="docVar.docWipsFmlyVO.headerList[3].arrClass"><!-- --></span></a></th>
+											<th class="tb_head_backcolor"><a href="javascript:void(0);" ng-click="wipsFmlyListSort(4)" ng-class="docVar.docWipsFmlyVO.headerList[4].aClass"><span ng-bind-html="docVar.docWipsFmlyVO.headerList[4].fieldNm"></span><span ng-class="docVar.docWipsFmlyVO.headerList[4].arrClass"><!-- --></span></a></th>
+											<th class="tb_head_backcolor font_align_left">발명의 명칭</th>
+											<th class="tb_head_backcolor font_align_left txt_type">IPC(Main)</th>
+											<th class="tb_head_backcolor font_align_left">CPC(Main)</th>
+										</tr>
+									</thead>
+									<tbody>
+									<tr ng-show="docVar.docWipsFmlyVO.rsltList.length == 0">
+										<td colspan="7" class="font_align_center">
+											<p>해당 정보가 없습니다.</p>
+										</td>
+									</tr>
+									<tr ng-show="docVar.docWipsFmlyVO.rsltList.length > 0" ng-repeat="wipsFmly in docVar.docWipsFmlyVO.rsltList" ng-init="fmlyIndex = $index">
+										<td class="font_align_center lineheight_reset_padd" ng-bind="((docVar.docWipsFmlyVO.pageCountVO.pageNum - 1) * docVar.docWipsFmlyVO.pageCountVO.pageRow) + $index + 1"></td>
+										<td class="font_align_center lineheight_reset_padd">
+											<a ng-hide="wipsFmly.pdfGb == '0'" doc-pdf-function-dtv ng-model="wipsFmly" ng-class="pdfIconClass(wipsFmly.pdfGb, wipsFmly.ctry) + ' marg_auto'"><span class="screen_hide">PDF</span></a>
+											<span ng-show="wipsFmly.pdfGb == '0'" ng-class="pdfIconClass(wipsFmly.pdfGb, wipsFmly.ctry) + ' marg_auto'"><span class="screen_hide">PDF</span></span>
+										</td>
+										<td class="lineheight_reset_padd doc_family_wplus">
+											<span ng-hide="wipsFmly.skey == null || wipsFmly.skey == ''">
+												<span><a doc-link-dtv ng-model="wipsFmly" ng-bind-html="wipsFmly.patNum"></a></span>
+												<span ng-show="wipsFmly.dbNm.toUpperCase() == 'DOCDB' && wipsFmly.ctry != 'AT' && wipsFmly.ctry != 'AU' && wipsFmly.ctry != 'CA' && wipsFmly.ctry != 'CH' && wipsFmly.ctry != 'DK' && wipsFmly.ctry != 'ES' && wipsFmly.ctry != 'FI' && wipsFmly.ctry != 'IT' && wipsFmly.ctry != 'NL' && wipsFmly.ctry != 'SE'">
+												<img src="../image/icon/ico_in.gif" class="imgico_align"></span>
+												<span ng-show="wipsFmly.bp == '1'"><img src="../image/icon/ico_bp.gif" class="imgico_align"></span>
+											</span>
+											<span ng-show="wipsFmly.skey == null || wipsFmly.skey == ''" ng-bind-html="wipsFmly.patNum"></span>
+										</td>
+										<td class="font_align_center lineheight_reset_padd"><span ng-bind-html="wipsFmly.patDt"></span></td>
+										<td class="lineheight_reset_padd">
+											<span ng-hide="wipsFmly.skey == null || wipsFmly.skey == ''">
+												<span><a doc-link-dtv ng-model="wipsFmly" ng-bind-html="wipsFmly.ti | nonDataFlt:'title'"></a></span>
+											</span>
+											<span ng-show="wipsFmly.skey == null || wipsFmly.skey == ''" ng-bind-html="wipsFmly.ti | nonDataFlt:'title'"></span>
+										</td>
+										
+										<!-- Orig IPC -->
+										<td class="col_doc_ipc txt_type">
+											<div id="ipc_main_div_{{fmlyIndex}}_0">
+												<span class="txt_docFmly_ipc" ng-bind-html="wipsFmly.origIpcMain"></span>
+												<div class="wrap_fmly_tooltip" ng-if="wipsFmly.origIpcMain != '-'">
+													<button class="btn_doc_ipcTooltip" ng-click="openFmlyClsLayer(wipsFmly.skey, wipsFmly.dbNm, wipsFmly.ctry, 'ipc', fmlyIndex)"><span class="screen_hide">IPC아이콘</span></button>
+													<!-- Original IPC Layer-->
+													
+												</div>
+											</div>
+										</td>
+										
+										<!-- Orig CPC -->
+										<td class="col_doc_cpc">
+											<div id="cpc_main_div_{{fmlyIndex}}_0">
+												<span class="txt_docFmly_cpc" ng-bind-html="wipsFmly.origCpcMain"></span>
+												<div class="wrap_fmly_tooltip" ng-if="wipsFmly.origCpcMain != '-'">
+													<button class="btn_doc_cpcTooltip" ng-click="openFmlyClsLayer(wipsFmly.skey, wipsFmly.dbNm, wipsFmly.ctry, 'cpc', fmlyIndex)"><span class="screen_hide">CPC아이콘</span></button>
+													<!-- Original CPC Layer-->
+													
+												</div>
+											</div>
+										</td>
+									</tr>
+									</tbody>
+								</table>
+								<div class="icon_tipremark_block">
+									<span class="items"><img src="../image/icon/ico_bp.gif" class="imgico_align"><span class="info_error_textstyle">Basic Patent</span></span>
+									<span class="items_last"><img src="../image/icon/ico_in.gif" class="imgico_align"><span class="info_error_textstyle">기타 57개국</span></span>
+								</div>
+								<div class="clear"><!-- --></div>
+								<div class="remark_footblock" ng-if="docVar.docWipsFmlyVO.provisionalList.length > 0 || docVar.docWipsFmlyVO.missingList.length > 0">
+									<p ng-if="docVar.docWipsFmlyVO.provisionalList.length > 0">
+										<span class="title_text">* Provisional</span>
+										<span ng-repeat="provision in docVar.docWipsFmlyVO.provisionalList"> 
+											<span ng-class="{'font_color_888': true, 'text_divbar': !$last, 'float_l': $last}" ng-bind-html="provision.prNum"></span>
+										</span>
+									</p> 
+									<p ng-if="docVar.docWipsFmlyVO.missingList.length > 0">
+										<span class="title_text2">* 미포함 문헌 : <span ng-bind="docVar.docWipsFmlyVO.pageCountVO.missingDocCount" ></span>건 (절차상 미공개 문헌, 과거분 문헌, WIPS 보유 데이터 범위에 포함되지 않는 문헌)</span>
+										<span ng-repeat="missing in docVar.docWipsFmlyVO.missingList" ng-class="{'font_color_888': true, 'text_divbar': !$last , 'float_l': $last}" ng-bind-html="missing.prNum"></span>
+									</p> 
+								</div>
+							</div>
+							<!-- 데이터 용량이 클때 -->
+							<div class="bigdata_mess_block" ng-if="docVar.docWipsFmlyVO.wipsFmlyExist == false">
+								<p class="line_first">
+									<span class="font_size_14 font_type_bold">
+										<span class="font_color_orange">
+											해당 정보는 데이터 용량이 커서 화면에 표시할 수 없습니다.<br/>로그인 후 확인 가능합니다.
+										</span>
+									</span>
+								</p>
+							</div>
+						</div>
+*/
+		});
+		
+		elm.html($compile(innerHtml)(scope));
+		scope.findWipsFmlyList();
+	};
+	
+	
+}]);

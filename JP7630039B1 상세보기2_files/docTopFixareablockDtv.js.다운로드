@@ -1,0 +1,1021 @@
+;
+docApp.directive('docTopFixareablockDtv', ['$timeout','$http','$compile', 'docCmmUtilFct', function($timeout, $http, $compile, docCmmUtilFct){
+	return {
+		restrict: 'A',
+		link : 	postLink  //compile 이 등록되어 있으면 link 는 수행하지 않는다.
+	};
+	
+	function defDrawContents(scope, elm){
+		var innerHtml = docCmmUtilFct.hereDoc(function() {/*!
+								<div class="top_control_setblock2">
+		                            <span class="btn_top btn_locachg marg_right_20"><a href="#"><span class="ico_top marg_top_02"><!-- --></span>Top</a></span>
+		                            <span class="btn_floorview btn_locachg "><a href="javascript:$.openImagePopup($('#skey').val(),'0');"><span class="ico_floorview"><!-- --></span>전체도면보기</a></span>
+		                        </div>
+		                        <div class="clear"><!-- --></div>
+		*/
+		});
+		
+		elm.empty();
+		elm.html($compile(innerHtml)(scope));
+		elm.show();
+	};
+	
+	function krClDrawContents(scope, elm){
+		var innerHtml = docCmmUtilFct.hereDoc(function() {/*!
+						   		<fieldset class="top_control_setblock">
+							        <legend>설정</legend>
+							        <div class="left_block">
+							            <div class="sbox_type2">
+							                <ul>
+							                    <li><input type="checkbox" id="devViewTwoColumn"><label for="devViewTwoColumn">다단보기</label></li>
+							                    <li><input type="checkbox" id="devViewHighLight"><label for="devViewHighLight">검색식 하이라이트</label></li>
+							                </ul>
+							            </div>
+							        </div>
+							    </fieldset>
+							    <div class="top_control_setblock2">
+		                            <span class="btn_top btn_locachg marg_right_20"><a href="#"><span class="ico_top marg_top_02"><!-- --></span>Top</a></span>
+		                            <span class="btn_wordcheck btn_locachg"><a href="javascript:$.openImagePopup($('#skey').val(),'0');"><span class="ico_floorview"><!-- --></span>전체도면보기</a></span>
+		                        </div>
+							    <div class="clear"><!-- --></div>
+		 */
+		});
+		elm.empty();
+		elm.html($compile(innerHtml)(scope));
+		elm.show();
+	};
+	
+	function krDsDrawContents(scope, elm){
+		var innerHtml = docCmmUtilFct.hereDoc(function() {/*!
+						   		<fieldset class="top_control_setblock">
+							        <legend>설정</legend>
+							        <div class="left_block">
+							            <div class="sbox_type2">
+							                <ul>
+							                    <li><input type="checkbox" id="devViewTwoColumn"><label for="devViewTwoColumn">다단보기</label></li>
+							                    <li><input type="checkbox" id="devViewHighLight"><label for="devViewHighLight">검색식 하이라이트</label></li>
+							                </ul>
+							            </div>
+							        </div>
+							    </fieldset>
+							    <div class="top_control_setblock2">
+		                            <span class="btn_top btn_locachg marg_right_20"><a href="#"><span class="ico_top marg_top_02"><!-- --></span>Top</a></span>
+		                            <span class="btn_floorview btn_locachg"><a href="javascript:$.openImagePopup($('#skey').val(),'0');"><span class="ico_floorview"><!-- --></span>전체도면보기</a></span>
+		                        </div>
+							    <div class="clear"><!-- --></div>
+		 */
+		});
+		elm.empty();
+		elm.html($compile(innerHtml)(scope));
+		elm.show();
+	};
+	
+	function cnClDrawContents(scope, elm, clTrnsCnt){
+		var innerHtml = "";
+		
+		if(clTrnsCnt > 0){
+			innerHtml = docCmmUtilFct.hereDoc(function() {/*!
+								<fieldset class="top_control_setblock">
+				                    <legend>설정</legend>
+				                    <div class="left_block">
+				                    	<div class="sbox_type1">
+				                            <ul>
+				                                <li><input type="radio" id="devViewMulti" name="viewModeRadio" checked="checked"><label for="devViewMulti">번역동시보기</label></li>
+				                                <li><input type="radio" id="devViewOrigin" name="viewModeRadio"><label for="devViewOrigin">원문보기</label></li>
+				                                <li><input type="radio" id="devViewTrans" name="viewModeRadio"><label for="devViewTrans">번역문보기</label></li>
+				                            </ul>
+				                        </div>
+				                        <div class="sbox_type2">
+				                            <ul>
+				                              	<li ng-show="docVar.screenVO.tabGb == docConst.TABGB.CL"><input type="checkbox" id="devViewTwoColumn" checked="checked" disabled="disabled"><label for="devViewTwoColumn"><span class="txt_disabled">다단보기</span></label></li>
+				                                <li><input type="checkbox" id="devViewHighLight"><label for="devViewHighLight">검색식 하이라이트</label></li>
+				                            </ul>
+				                        </div>
+				                    </div>
+				                </fieldset>
+                				<div class="top_control_setblock2  position_r_ie7s">
+		                        	<span class="btn_top btn_locachg marg_right_20"><a href="#"><span class="ico_top marg_top_02"><!-- --></span>Top</a></span>
+		                        	<span class="btn_wordcheck btn_locachg marg_right_20"><a href="javascript:clickTransTextLayerWithDivId('C',$('#skey').val(),'layer_transText_cn',$('#ctry').val());"><span class="ico_errortext"><!-- --></span>번역신고</a></span>
+		                             <!-- Layer-번역신고 -->
+									<div id="layer_transText_cn" class="layer_wordcheck wc_top layer_type2" style="display:none;"></div>
+									 <!-- //Layer-번역신고 -->
+		                        	<span class="btn_floorview btn_locachg"><a href="javascript:$.openImagePopup($('#skey').val(),'0');"><span class="ico_floorview"><!-- --></span>전체도면보기</a></span>
+		                        </div>
+		                        <div class="clear"><!-- --></div>
+			*/
+			});
+		}else{
+			innerHtml = docCmmUtilFct.hereDoc(function() {/*!
+								<fieldset class="top_control_setblock">
+				                    <legend>설정</legend>
+				                    <div class="left_block">
+				                    	<div class="sbox_type1">
+				                            <ul>
+				                                <li><input type="radio" id="devViewMulti" name="viewModeRadio" disabled="disabled"><label for="viewMulti">번역동시보기</label></li>
+				                                <li><input type="radio" id="devViewOrigin" name="viewModeRadio" checked="checked"><label for="viewOrigin">원문보기</label></li>
+				                                <li><input type="radio" id="devViewTrans" name="viewModeRadio" disabled="disabled"><label for="viewTrans">번역문보기</label></li>
+				                            </ul>
+				                        </div>
+				                        <div class="sbox_type2">
+				                            <ul>
+				                                <li><input type="checkbox" id="devViewTwoColumn"><label for="devViewTwoColumn">다단보기</label></li>
+				                                <li><input type="checkbox" id="devViewHighLight"><label for="devViewHighLight">검색식 하이라이트</label></li>
+				                            </ul>
+				                        </div>
+				                    </div>
+				                </fieldset>
+                				<div class="top_control_setblock2  position_r_ie7s">
+		                        	<span class="btn_top btn_locachg marg_right_20"><a href="#"><span class="ico_top marg_top_02"><!-- --></span>Top</a></span>
+		                        	<span class="btn_wordcheck btn_locachg marg_right_20"><a href="javascript:clickTransTextLayerWithDivId('C',$('#skey').val(),'layer_transText_cn',$('#ctry').val());"><span class="ico_errortext"><!-- --></span>번역신고</a></span>
+		                             <!-- Layer-번역신고 -->
+									<div id="layer_transText_cn" class="layer_wordcheck wc_top layer_type2" style="display:none;"></div>
+									 <!-- //Layer-번역신고 -->
+		                        	<span class="btn_floorview btn_locachg"><a href="javascript:$.openImagePopup($('#skey').val(),'0');"><span class="ico_floorview"><!-- --></span>전체도면보기</a></span>
+		                        </div>
+		                        <div class="clear"><!-- --></div>
+			*/
+			});
+		}
+		
+		elm.empty();
+		elm.html($compile(innerHtml)(scope));
+		elm.show();
+	};
+	
+	function cnDsDrawContents(scope, elm, descTrnsCnt){
+		var innerHtml = "";
+		if(descTrnsCnt > 0){
+			innerHtml = docCmmUtilFct.hereDoc(function() {/*!
+								<fieldset class="top_control_setblock">
+				                    <legend>설정</legend>
+				                    <div class="left_block">
+				                    	<div class="sbox_type1">
+				                            <ul>
+				                                <li><input type="radio" id="devViewMulti" name="viewModeRadio" checked="checked"><label for="devViewMulti">번역동시보기</label></li>
+				                                <li><input type="radio" id="devViewOrigin" name="viewModeRadio"><label for="devViewOrigin">원문보기</label></li>
+				                                <li><input type="radio" id="devViewTrans" name="viewModeRadio"><label for="devViewTrans">번역문보기</label></li>
+				                            </ul>
+				                        </div>
+				                        <div class="sbox_type2">
+				                            <ul>
+				                              	<li><input type="checkbox" id="devViewTwoColumn" checked="checked" disabled="disabled"><label for="devViewTwoColumn"><span class="txt_disabled">다단보기</span></label></li>
+				                                <li><input type="checkbox" id="devViewHighLight"><label for="devViewHighLight">검색식 하이라이트</label></li>
+				                            </ul>
+				                        </div>
+				                    </div>
+				                </fieldset>
+                				<div class="top_control_setblock2  position_r_ie7s">
+		                        	<span class="btn_top btn_locachg marg_right_20"><a href="#"><span class="ico_top marg_top_02"><!-- --></span>Top</a></span>
+		                            <span class="btn_wordcheck btn_locachg marg_right_20"><a href="javascript:clickTransTextLayerWithDivId('C',$('#skey').val(),'layer_transText_cn',$('#ctry').val());"><span class="ico_errortext"><!-- --></span>번역신고</a></span>
+		                             <!-- Layer-번역신고 -->
+									<div id="layer_transText_cn" class="layer_wordcheck wc_top layer_type2" style="display:none;"></div>
+									 <!-- //Layer-번역신고 -->
+									 <span class="btn_floorview btn_locachg"><a href="javascript:$.openImagePopup($('#skey').val(),'0');"><span class="ico_floorview"><!-- --></span>전체도면보기</a></span>		                            
+		                        </div>
+		                        <div class="clear"><!-- --></div>
+			*/
+			});
+		}else{
+			innerHtml = docCmmUtilFct.hereDoc(function() {/*!
+								<fieldset class="top_control_setblock">
+				                    <legend>설정</legend>
+				                    <div class="left_block">
+				                    	<div class="sbox_type1">
+				                            <ul>
+				                                <li><input type="radio" id="devViewMulti" name="viewModeRadio" disabled="disabled"><label for="viewMulti">번역동시보기</label></li>
+				                                <li><input type="radio" id="devViewOrigin" name="viewModeRadio" checked="checked"><label for="viewOrigin">원문보기</label></li>
+				                                <li><input type="radio" id="devViewTrans" name="viewModeRadio" disabled="disabled"><label for="viewTrans">번역문보기</label></li>
+				                            </ul>
+				                        </div>
+				                        <div class="sbox_type2">
+				                            <ul>
+				                                <li><input type="checkbox" id="devViewTwoColumn"><label for="devViewTwoColumn">다단보기</label></li>
+				                                <li><input type="checkbox" id="devViewHighLight"><label for="devViewHighLight">검색식 하이라이트</label></li>
+				                            </ul>
+				                        </div>
+				                    </div>
+				                </fieldset>
+                				<div class="top_control_setblock2  position_r_ie7s">
+		                        	<span class="btn_top btn_locachg marg_right_20"><a href="#"><span class="ico_top marg_top_02"><!-- --></span>Top</a></span>
+		                            <span class="btn_wordcheck btn_locachg marg_right_20"><a href="javascript:clickTransTextLayerWithDivId('C',$('#skey').val(),'layer_transText_cn',$('#ctry').val());"><span class="ico_errortext"><!-- --></span>번역신고</a></span>
+		                             <!-- Layer-번역신고 -->
+									<div id="layer_transText_cn" class="layer_wordcheck wc_top layer_type2" style="display:none;"></div>
+									 <!-- //Layer-번역신고 -->
+		                            <span class="btn_floorview btn_locachg"><a href="javascript:$.openImagePopup($('#skey').val(),'0');"><span class="ico_floorview"><!-- --></span>전체도면보기</a></span>
+		                        </div>
+		                        <div class="clear"><!-- --></div>
+			*/
+			});
+		}
+		
+		elm.empty();
+		elm.html($compile(innerHtml)(scope));
+		elm.show();
+	};
+	
+	function epClDrawContents(scope, elm, clTrnsCnt, clType){
+		var innerHtml = "";
+		if(clType != "PCT"){
+			if(clTrnsCnt > 0){
+				innerHtml = docCmmUtilFct.hereDoc(function() {/*!
+									<fieldset class="top_control_setblock">
+			                            <legend>설정</legend>
+			                            <div class="left_block">
+			                            	<div class="sbox_type1">
+			                                    <ul>
+			                                        <li><input type="radio" id="devViewMulti" name="viewModeRadio" checked><label for="devViewMulti">번역동시보기</label></li>
+			                                        <li><input type="radio" id="devViewOrigin" name="viewModeRadio"><label for="devViewOrigin">원문보기</label></li>
+			                                        <li><input type="radio" id="devViewTrans" name="viewModeRadio"><label for="devViewTrans">번역문보기</label></li>
+			                                    </ul>
+			                                </div>
+			                                <div class="sbox_type2">
+			                                    <ul>
+		                                        	<li><input type="checkbox" id="devViewTwoColumn" checked="checked" disabled="disabled"><label for="devViewTwoColumn"><span class="txt_disabled">다단보기</span></label></li>
+			                                        <li><input type="checkbox" id="devViewHighLight"><label for="devViewHighLight">검색식 하이라이트</label></li>
+			                                    </ul>
+			                                </div>
+			                            </div>
+			                        </fieldset>
+			                        <div class="top_control_setblock2  position_r_ie7s">
+			                        	 <span class="btn_top btn_locachg marg_right_20"><a href="#"><span class="ico_top marg_top_02"><!-- --></span>Top</a></span>
+			                             <span class="btn_wordcheck btn_locachg marg_right_20"><a href="javascript:clickTransTextLayer('C',$('#skey').val(),$('#ctry').val());"><span class="ico_errortext"><!-- --></span>번역신고</a></span>
+			                             <!-- Layer-번역신고 -->
+										 <div id="layer_transText" class="layer_wordcheck wc_top layer_type2" style="display:none;"></div>
+										 <!-- //Layer-번역신고 -->
+			                             <span class="btn_floorview btn_locachg"><a href="javascript:$.openImagePopup($('#skey').val(),'0');"><span class="ico_floorview"><!-- --></span>전체도면보기</a></span>
+			                        </div>
+			                        <div class="clear"><!-- --></div>
+				*/
+				});
+			}else{
+				innerHtml = docCmmUtilFct.hereDoc(function() {/*!
+								<fieldset class="top_control_setblock">
+		                            <legend>설정</legend>
+		                            <div class="left_block">
+		                            	<div class="sbox_type1">
+		                                    <ul>
+		                                        <li><input type="radio" id="devViewMulti" name="viewModeRadio" disabled><label for="devViewMulti">번역동시보기</label></li>
+		                                        <li><input type="radio" id="devViewOrigin" name="viewModeRadio" checked disabled><label for="devViewOrigin">원문보기</label></li>
+		                                        <li><input type="radio" id="devViewTrans" name="viewModeRadio" disabled><label for="devViewTrans">번역문보기</label></li>
+		                                    </ul>
+		                                </div>
+		                                <div class="sbox_type2">
+		                                    <ul>
+		                                        <li><input type="checkbox" id="devViewTwoColumn"><label for="devViewTwoColumn">다단보기</label></li>
+		                                        <li><input type="checkbox" id="devViewHighLight"><label for="devViewHighLight">검색식 하이라이트</label></li>
+		                                    </ul>
+		                                </div>
+		                            </div>
+		                        </fieldset>
+		                        <div class="top_control_setblock2  position_r_ie7s">
+		                        	 <span class="btn_top btn_locachg marg_right_20"><a href="#"><span class="ico_top marg_top_02"><!-- --></span>Top</a></span>
+		                             <span class="btn_wordcheck btn_locachg marg_right_20"><a href="javascript:clickTransTextLayer('C',$('#skey').val(),$('#ctry').val());"><span class="ico_errortext"><!-- --></span>번역신고</a></span>
+		                             <!-- Layer-번역신고 -->
+									 <div id="layer_transText" class="layer_wordcheck wc_top layer_type2" style="display:none;"></div>
+									 <!-- //Layer-번역신고 -->
+		                             <span class="btn_floorview btn_locachg"><a href="javascript:$.openImagePopup($('#skey').val(),'0');"><span class="ico_floorview"><!-- --></span>전체도면보기</a></span>
+		                        </div>
+		                        <div class="clear"><!-- --></div>
+				*/
+				});
+			}
+		}else{
+			innerHtml = docCmmUtilFct.hereDoc(function() {/*!
+							<fieldset class="top_control_setblock">
+	                            <legend>설정</legend>
+	                            <div class="left_block">
+                                	<div class="sbox_type2">
+	                                    <ul>
+	                                    	<li><input type="checkbox" id="devViewTwoColumn"><label for="devViewTwoColumn">다단보기</label></li>
+	                                        <li><input type="checkbox" id="devViewHighLight"><label for="devViewHighLight">검색식 하이라이트</label></li>
+	                                    </ul>
+                                	</div>
+	                            </div>
+	                        </fieldset>
+	                        <div class="top_control_setblock2  position_r_ie7s">
+	                        	 <span class="btn_top btn_locachg marg_right_20"><a href="#"><span class="ico_top marg_top_02"><!-- --></span>Top</a></span>
+	                             <span class="btn_wordcheck btn_locachg marg_right_20"><a href="javascript:clickTransTextLayer('C',$('#skey').val(),$('#ctry').val());"><span class="ico_errortext"><!-- --></span>번역신고</a></span>
+	                             <!-- Layer-번역신고 -->
+								 <div id="layer_transText" class="layer_wordcheck wc_top layer_type2" style="display:none;"></div>
+								 <!-- //Layer-번역신고 -->
+	                             <span class="btn_floorview btn_locachg"><a href="javascript:$.openImagePopup($('#skey').val(),'0');"><span class="ico_floorview"><!-- --></span>전체도면보기</a></span>
+	                        </div>
+	                        <div class="clear"><!-- --></div>
+			*/
+			});
+		}
+		
+		elm.empty();
+		elm.html($compile(innerHtml)(scope));
+		elm.show();
+	};
+	
+	function epDsDrawContents(scope, elm, descTrnsCnt){
+		var innerHtml = "";
+		
+		if(descTrnsCnt > 0){
+			innerHtml = docCmmUtilFct.hereDoc(function() {/*!
+						<fieldset class="top_control_setblock">
+					        <legend>설정</legend>
+					        <div class="left_block">
+					 					<div class="sbox_type1">
+					      				<ul>
+					                        <li><input type="radio" id="devViewMulti" name="viewModeRadio" checked="checked"><label for="devViewMulti">번역동시보기</label></li>
+					                        <li><input type="radio" id="devViewOrigin" name="viewModeRadio"><label for="devViewOrigin">원문보기</label></li>
+					                        <li><input type="radio" id="devViewTrans" name="viewModeRadio"><label for="devViewTrans">번역문보기</label></li>
+					      				</ul>
+					  				</div>				                            
+					            <div class="sbox_type2">
+					                <ul>
+				                    	<li><input type="checkbox" id="devViewTwoColumn" checked="checked" disabled="disabled"><label for="devViewTwoColumn"><span class="txt_disabled">다단보기</span></label></li>
+					                    <li><input type="checkbox" id="devViewHighLight"><label for="devViewHighLight">검색식 하이라이트</label></li>
+					                </ul>
+					            </div>
+					        </div>
+					    </fieldset>
+					    <div class="top_control_setblock2">
+					    	 <span class="btn_top btn_locachg marg_right_20"><a href="#"><span class="ico_top marg_top_02"><!-- --></span>Top</a></span>
+					         <span class="btn_wordcheck btn_locachg marg_right_20"><a href="javascript:clickTransTextLayer('D',$('#skey').val(),$('#ctry').val());"><span class="ico_errortext"><!-- --></span>번역신고</a></span>
+					         <!-- Layer-번역신고 -->
+							 <div id="layer_transText" class="layer_wordcheck wc_top layer_type2" style="display:none;"></div>
+							 <!-- //Layer-번역신고 -->
+					         <span class="btn_floorview btn_locachg"><a href="javascript:$.openImagePopup($('#skey').val(),'0');"><span class="ico_floorview"><!-- --></span>전체도면보기</a></span>
+					    </div>
+					    <div class="clear"><!-- --></div>
+			*/
+			});
+		}else{
+			innerHtml = docCmmUtilFct.hereDoc(function() {/*!
+						<fieldset class="top_control_setblock">
+					        <legend>설정</legend>
+					        
+					        <div class="left_block">
+					 					<div class="sbox_type1">
+					      				<ul>
+					                        <li><input type="radio" id="devViewMulti" name="viewModeRadio" disabled="disabled"><label for="devViewMulti">번역동시보기</label></li>
+					                        <li><input type="radio" id="devViewOrigin" name="viewModeRadio" checked="checked"><label for="devViewOrigin">원문보기</label></li>
+					                        <li><input type="radio" id="devViewTrans" name="viewModeRadio" disabled="disabled"><label for="devViewTrans">번역문보기</label></li>
+					      				</ul>
+					  				</div>				                            
+					            <div class="sbox_type2">
+					                <ul>
+				                        <li><input type="checkbox" id="devViewTwoColumn"><label for="devViewTwoColumn">다단보기</label></li>
+					                    <li><input type="checkbox" id="devViewHighLight"><label for="devViewHighLight">검색식 하이라이트</label></li>
+					                </ul>
+					            </div>
+					        </div>
+					    </fieldset>
+					    <div class="top_control_setblock2">
+					    	 <span class="btn_top btn_locachg marg_right_20"><a href="#"><span class="ico_top marg_top_02"><!-- --></span>Top</a></span>
+					         <span class="btn_wordcheck btn_locachg marg_right_20"><a href="javascript:clickTransTextLayer('D',$('#skey').val(),$('#ctry').val());"><span class="ico_errortext"><!-- --></span>번역신고</a></span>
+					         <!-- Layer-번역신고 -->
+							 <div id="layer_transText" class="layer_wordcheck wc_top layer_type2" style="display:none;"></div>
+							 <!-- //Layer-번역신고 -->
+					         <span class="btn_floorview btn_locachg"><a href="javascript:$.openImagePopup($('#skey').val(),'0');"><span class="ico_floorview"><!-- --></span>전체도면보기</a></span>
+					    </div>
+					    <div class="clear"><!-- --></div>
+			*/
+			});
+		}
+		
+		elm.empty();
+		elm.html($compile(innerHtml)(scope));
+		elm.show();
+	};
+	
+	function jpClDrawContents(scope, elm, clTrnsCnt){
+		var innerHtml = "";
+		if(clTrnsCnt > 0){
+			innerHtml = docCmmUtilFct.hereDoc(function() {/*!
+						<fieldset class="top_control_setblock">
+						    <legend>설정</legend>
+						    <div class="left_block">
+						    	<div class="sbox_type1">
+						            <ul>
+					                    <li><input type="radio" id="devViewMulti" name="viewModeRadio" checked="checked"><label for="devViewMulti">번역동시보기</label></li>
+					                    <li><input type="radio" id="devViewOrigin" name="viewModeRadio"><label for="devViewOrigin">원문보기</label></li>
+					                    <li><input type="radio" id="devViewTrans" name="viewModeRadio"><label for="devViewTrans">번역문보기</label></li>
+						            </ul>
+						        </div>
+						        <div class="sbox_type2">
+						            <ul>
+					                	<li><input type="checkbox" id="devViewTwoColumn" checked="checked" disabled="disabled"><label for="devViewTwoColumn"><span class="txt_disabled">다단보기</span></label></li>
+						                <li><input type="checkbox" id="devViewHighLight"><label for="devViewHighLight">검색식 하이라이트</label></li>
+						            </ul>
+						        </div>
+						    </div>
+						</fieldset>
+						<div class="top_control_setblock2  position_r_ie7s">
+							 <span class="btn_top btn_locachg marg_right_20"><a href="#"><span class="ico_top marg_top_02"><!-- --></span>Top</a></span>
+						     <span class="btn_wordcheck btn_locachg marg_right_20"><a href="javascript:clickTransTextLayer('C',$('#skey').val(),$('#ctry').val());"><span class="ico_errortext"><!-- --></span>번역신고</a></span>
+						     <!-- Layer-번역신고 -->
+							 <div id="layer_transText" class="layer_wordcheck wc_top layer_type2" style="display:none;"></div>
+							 <!-- //Layer-번역신고 -->
+						     <span class="btn_floorview btn_locachg"><a href="javascript:$.openImagePopup($('#skey').val(),'0');"><span class="ico_floorview"><!-- --></span>전체도면보기</a></span>
+						</div>
+						<div class="clear"><!-- --></div>
+			*/
+			});
+		}else{
+			innerHtml = docCmmUtilFct.hereDoc(function() {/*!
+						<fieldset class="top_control_setblock">
+						    <legend>설정</legend>
+						    <div class="left_block">
+						    	<div class="sbox_type1">
+						            <ul>
+					                    <li><input type="radio" id="devViewMulti" name="viewModeRadio" disabled="disabled"><label for="devViewMulti">번역동시보기</label></li>
+					                    <li><input type="radio" id="devViewOrigin" name="viewModeRadio" checked="checked"><label for="devViewOrigin">원문보기</label></li>
+					                    <li><input type="radio" id="devViewTrans" name="viewModeRadio" disabled="disabled"><label for="devViewTrans">번역문보기</label></li>
+						            </ul>
+						        </div>
+						        <div class="sbox_type2">
+						            <ul>
+					                    <li><input type="checkbox" id="devViewTwoColumn"><label for="devViewTwoColumn">다단보기</label></li>
+						                <li><input type="checkbox" id="devViewHighLight"><label for="devViewHighLight">검색식 하이라이트</label></li>
+						            </ul>
+						        </div>
+						    </div>
+						</fieldset>
+						<div class="top_control_setblock2  position_r_ie7s">
+							 <span class="btn_top btn_locachg marg_right_20"><a href="#"><span class="ico_top marg_top_02"><!-- --></span>Top</a></span>
+						     <span class="btn_wordcheck btn_locachg marg_right_20"><a href="javascript:clickTransTextLayer('C',$('#skey').val(),$('#ctry').val());"><span class="ico_errortext"><!-- --></span>번역신고</a></span>
+						     <!-- Layer-번역신고 -->
+							 <div id="layer_transText" class="layer_wordcheck wc_top layer_type2" style="display:none;"></div>
+							 <!-- //Layer-번역신고 -->
+						     <span class="btn_floorview btn_locachg"><a href="javascript:$.openImagePopup($('#skey').val(),'0');"><span class="ico_floorview"><!-- --></span>전체도면보기</a></span>
+						</div>
+						<div class="clear"><!-- --></div>
+			*/
+			});
+		}
+		elm.empty();
+		elm.html($compile(innerHtml)(scope));
+		elm.show();
+	};
+	
+	function jpDsDrawContents(scope, elm, descTrnsCnt){
+		var innerHtml = "";
+		if(descTrnsCnt > 0){
+			innerHtml = docCmmUtilFct.hereDoc(function() {/*!
+				<fieldset class="top_control_setblock">
+				    <legend>설정</legend>
+				    <div class="left_block">
+								<div class="sbox_type1">
+				  				<ul>
+				                    <li><input type="radio" id="devViewMulti" name="viewModeRadio" checked="checked"><label for="devViewMulti">번역동시보기</label></li>
+				                    <li><input type="radio" id="devViewOrigin" name="viewModeRadio"><label for="devViewOrigin">원문보기</label></li>
+				                    <li><input type="radio" id="devViewTrans" name="viewModeRadio"><label for="devViewTrans">번역문보기</label></li>
+				  				</ul>
+								</div>				                            
+				        <div class="sbox_type2">
+				            <ul>
+			                	<li><input type="checkbox" id="devViewTwoColumn" checked="checked" disabled="disabled"><label for="devViewTwoColumn"><span class="txt_disabled">다단보기</span></label></li>
+				                <li><input type="checkbox" id="devViewHighLight"><label for="devViewHighLight">검색식 하이라이트</label></li>
+				            </ul>
+				        </div>
+				    </div>
+				 </fieldset>
+				 <div class="top_control_setblock2">
+					<span class="btn_top btn_locachg marg_right_20"><a href="#"><span class="ico_top marg_top_02"><!-- --></span>Top</a></span>
+				    <span class="btn_wordcheck btn_locachg marg_right_20"><a href="javascript:clickTransTextLayer('D',$('#skey').val(),$('#ctry').val());"><span class="ico_errortext"><!-- --></span>번역신고</a></span>
+				    <!-- Layer-번역신고 -->
+				 	<div id="layer_transText" class="layer_wordcheck wc_top layer_type2" style="display:none;"></div>
+				    <!-- //Layer-번역신고 -->
+					<span class="btn_floorview btn_locachg"><a href="javascript:$.openImagePopup($('#skey').val(),'0');"><span class="ico_floorview"><!-- --></span>전체도면보기</a></span>
+				 </div>
+				 <div class="clear"><!-- --></div>
+			*/
+			});
+		}else{
+			innerHtml = docCmmUtilFct.hereDoc(function() {/*!
+				<fieldset class="top_control_setblock">
+				    <legend>설정</legend>
+				    <div class="left_block">
+								<div class="sbox_type1">
+				  				<ul>
+				                    <li><input type="radio" id="devViewMulti" name="viewModeRadio" disabled="disabled"><label for="devViewMulti">번역동시보기</label></li>
+				                    <li><input type="radio" id="devViewOrigin" name="viewModeRadio" checked="checked"><label for="devViewOrigin">원문보기</label></li>
+				                    <li><input type="radio" id="devViewTrans" name="viewModeRadio" disabled="disabled"><label for="devViewTrans">번역문보기</label></li>
+				  				</ul>
+								</div>				                            
+				        <div class="sbox_type2">
+				            <ul>
+			                    <li><input type="checkbox" id="devViewTwoColumn"><label for="devViewTwoColumn">다단보기</label></li>
+				                <li><input type="checkbox" id="devViewHighLight"><label for="devViewHighLight">검색식 하이라이트</label></li>
+				            </ul>
+				        </div>
+				    </div>
+				 </fieldset>
+				 <div class="top_control_setblock2">
+					<span class="btn_top btn_locachg marg_right_20"><a href="#"><span class="ico_top marg_top_02"><!-- --></span>Top</a></span>
+				    <span class="btn_wordcheck btn_locachg marg_right_20"><a href="javascript:clickTransTextLayer('D',$('#skey').val(),$('#ctry').val());"><span class="ico_errortext"><!-- --></span>번역신고</a></span>
+				    <!-- Layer-번역신고 -->
+				 <div id="layer_transText" class="layer_wordcheck wc_top layer_type2" style="display:none;"></div>
+				    <!-- //Layer-번역신고 -->
+					<span class="btn_floorview btn_locachg"><a href="javascript:$.openImagePopup($('#skey').val(),'0');"><span class="ico_floorview"><!-- --></span>전체도면보기</a></span>
+				 </div>
+				 <div class="clear"><!-- --></div>
+			*/
+			});
+		}
+		elm.empty();
+		elm.html($compile(innerHtml)(scope));
+		elm.show();
+	};
+	
+	function jtFtDrawContents(scope, elm, isTrns, mngNum, docKind, mngDt){
+		var innerHtml = '<p class="marg_bottom_15 font_type_bold"><span class="text_divbar">문헌번호</span>' + mngNum + ' ' + docKind + ' ' +  mngDt + '</p>';
+		if(isTrns == 1){
+			innerHtml += docCmmUtilFct.hereDoc(function() {/*!
+				    <fieldset class="top_control_setblock">
+				        <legend>설정</legend>
+				        <div class="left_block">
+				        	<div class="sbox_type1">
+				                <ul>
+			                        <li><input type="radio" id="devViewMulti" name="viewModeRadio" checked="checked"><label for="devViewMulti">번역동시보기</label></li>
+			                        <li><input type="radio" id="devViewOrigin" name="viewModeRadio"><label for="devViewOrigin">원문보기</label></li>
+			                        <li><input type="radio" id="devViewTrans" name="viewModeRadio"><label for="devViewTrans">번역문보기</label></li>
+				                </ul>
+				            </div>
+				            <div class="sbox_type2">
+				                <ul>
+			                    	<li><input type="checkbox" id="devViewTwoColumn" checked="checked" disabled="disabled"><label for="devViewTwoColumn"><span class="txt_disabled">다단보기</span></label></li>
+				                    <li><input type="checkbox" id="devViewHighLight"><label for="devViewHighLight">검색식 하이라이트</label></li>
+				                </ul>
+				            </div>
+				        </div>
+				    </fieldset>
+				    <div class="top_control_setblock2  position_r_ie7s">
+				         <span class="btn_top btn_locachg marg_right_20"><a href="#"><span class="ico_top marg_top_02"><!-- --></span>Top</a></span>
+				         <span class="btn_wordcheck btn_locachg"><a href="javascript:clickTransTextLayer('D',$('#skey').val(),$('#ctry').val());"><span class="ico_errortext"><!-- --></span>번역신고</a></span>
+				         <!-- Layer-번역신고 -->
+						 <div id="layer_transText" class="layer_wordcheck wc_top layer_type2" style="display:none;"></div>
+						 <!-- //Layer-번역신고 -->
+				    </div>
+				    <div class="clear"><!-- --></div>
+			*/
+			});
+		}else{
+			innerHtml += docCmmUtilFct.hereDoc(function() {/*!
+			    <fieldset class="top_control_setblock">
+			        <legend>설정</legend>
+			        <div class="left_block">
+			        	<div class="sbox_type1">
+			                <ul>
+		                        <li><input type="radio" id="devViewMulti" name="viewModeRadio" disabled="disabled"><label for="devViewMulti">번역동시보기</label></li>
+		                        <li><input type="radio" id="devViewOrigin" name="viewModeRadio" checked="checked"><label for="devViewOrigin">원문보기</label></li>
+		                        <li><input type="radio" id="devViewTrans" name="viewModeRadio" disabled="disabled"><label for="devViewTrans">번역문보기</label></li>
+			                </ul>
+			            </div>
+			            <div class="sbox_type2">
+			                <ul>
+		                        <li><input type="checkbox" id="devViewTwoColumn"><label for="devViewTwoColumn">다단보기</label></li>
+			                    <li><input type="checkbox" id="devViewHighLight"><label for="devViewHighLight">검색식 하이라이트</label></li>
+			                </ul>
+			            </div>
+			        </div>
+			    </fieldset>
+			    <div class="top_control_setblock2  position_r_ie7s">
+			         <span class="btn_top btn_locachg marg_right_20"><a href="#"><span class="ico_top marg_top_02"><!-- --></span>Top</a></span>
+			         <span class="btn_wordcheck btn_locachg"><a href="javascript:clickTransTextLayer('D',$('#skey').val(), $('#ctry').val());"><span class="ico_errortext"><!-- --></span>번역신고</a></span>
+			         <!-- Layer-번역신고 -->
+					 <div id="layer_transText" class="layer_wordcheck wc_top layer_type2" style="display:none;"></div>
+					 <!-- //Layer-번역신고 -->
+			    </div>
+			    <div class="clear"><!-- --></div>
+			*/
+			});
+		}
+		elm.empty();
+		elm.html($compile(innerHtml)(scope));
+		elm.show();
+	};
+	
+	function lnClDrawContents(scope, elm){
+		var innerHtml = "";
+		innerHtml = docCmmUtilFct.hereDoc(function() {/*!
+				        <fieldset class="top_control_setblock">
+				            <legend>설정</legend>
+				            <div class="left_block">
+				                <div class="sbox_type2">
+				                    <ul>
+				                        <li><input type="checkbox" id="devViewTwoColumn"><label for="devViewTwoColumn">다단보기</label></li>
+				                        <li><input type="checkbox" id="devViewHighLight"><label for="devViewHighLight">검색식 하이라이트</label></li>
+				                    </ul>
+				                </div>
+				            </div>
+				        </fieldset>
+				        <div class="top_control_setblock2  position_r_ie7s">
+				        	<span class="btn_top btn_locachg marg_right_20"><a href="#"><span class="ico_top marg_top_02"><!-- --></span>Top</a></span>
+				        	<span class="btn_floorview btn_locachg"><a href="javascript:$.openImagePopup($('#skey').val(),'0');"><span class="ico_floorview"><!-- --></span>전체도면보기</a></span>
+				        </div>
+				        <div class="clear"><!-- --></div>
+		*/
+		});
+		elm.empty();
+		elm.html($compile(innerHtml)(scope));
+		elm.show();
+	};
+	
+	function lnDsDrawContents(scope, elm){
+		var innerHtml = "";
+		innerHtml = docCmmUtilFct.hereDoc(function() {/*!
+						<fieldset class="top_control_setblock">
+						    <legend>설정</legend>
+						    <div class="left_block">			                            
+						        <div class="sbox_type2">
+						            <ul>
+						                <li><input type="checkbox" id="devViewTwoColumn"><label for="devViewTwoColumn">다단보기</label></li>
+						                <li><input type="checkbox" id="devViewHighLight"><label for="devViewHighLight">검색식 하이라이트</label></li>
+						            </ul>
+						        </div>
+						    </div>
+						 </fieldset>
+						 <div class="top_control_setblock2  position_r_ie7s">
+						 	<span class="btn_top btn_locachg marg_right_20"><a href="#"><span class="ico_top marg_top_02"><!-- --></span>Top</a></span>
+						 	<span class="btn_floorview btn_locachg"><a href="javascript:$.openImagePopup($('#skey').val(),'0');"><span class="ico_floorview"><!-- --></span>전체도면보기</a></span>
+						</div>
+						<div class="clear"><!-- --></div>
+		*/
+		});
+		elm.empty();
+		elm.html($compile(innerHtml)(scope));
+		elm.show();
+	};
+	
+	function usClDrawContents(scope, elm, clTrnsCnt){
+		var innerHtml = "";
+		
+		if(clTrnsCnt > 0){
+			innerHtml = docCmmUtilFct.hereDoc(function() {/*!
+					<fieldset class="top_control_setblock">
+					    <legend>설정</legend>
+					    <div class="left_block">
+					    	<div class="sbox_type1">
+					            <ul>
+				                    <li><input type="radio" id="devViewMulti" name="viewModeRadio" checked="checked"><label for="devViewMulti">번역동시보기</label></li>
+				                    <li><input type="radio" id="devViewOrigin" name="viewModeRadio"><label for="devViewOrigin">원문보기</label></li>
+				                    <li><input type="radio" id="devViewTrans" name="viewModeRadio"><label for="devViewTrans">번역문보기</label></li>
+					            </ul>
+					        </div>
+					        <div class="sbox_type2">
+					            <ul>
+				                	<li><input type="checkbox" id="devViewTwoColumn" checked="checked" disabled="disabled"><label for="devViewTwoColumn"><span class="txt_disabled">다단보기</span></label></li>
+					                <li><input type="checkbox" id="devViewHighLight"><label for="devViewHighLight">검색식 하이라이트</label></li>
+					            </ul>
+					        </div>
+					    </div>
+					</fieldset>
+					<div class="top_control_setblock2  position_r_ie7s">
+						 <span class="btn_top btn_locachg marg_right_20"><a href="#"><span class="ico_top marg_top_02"><!-- --></span>Top</a></span>
+					     <span class="btn_wordcheck btn_locachg marg_right_20"><a href="javascript:clickTransTextLayer('C',$('#skey').val(),$('#ctry').val());"><span class="ico_errortext"><!-- --></span>번역신고</a></span>
+					     <!-- Layer-번역신고 -->
+						 <div id="layer_transText" class="layer_wordcheck wc_top layer_type2" style="display:none;"></div>
+						 <!-- //Layer-번역신고 -->
+						 <span class="btn_floorview btn_locachg"><a href="javascript:$.openImagePopup($('#skey').val(),'0');"><span class="ico_floorview"><!-- --></span>전체도면보기</a></span>					     
+					</div>
+					<div class="clear"><!-- --></div>
+			*/
+			});
+		}else{
+			innerHtml = docCmmUtilFct.hereDoc(function() {/*!
+					<fieldset class="top_control_setblock">
+					    <legend>설정</legend>
+					    <div class="left_block">
+					    	<div class="sbox_type1">
+					            <ul>
+				                    <li><input type="radio" id="devViewMulti" name="viewModeRadio" disabled="disabled"><label for="devViewMulti">번역동시보기</label></li>
+				                    <li><input type="radio" id="devViewOrigin" name="viewModeRadio" checked="checked"><label for="devViewOrigin">원문보기</label></li>
+				                    <li><input type="radio" id="devViewTrans" name="viewModeRadio" disabled="disabled"><label for="devViewTrans">번역문보기</label></li>
+					            </ul>
+					        </div>
+					        <div class="sbox_type2">
+					            <ul>
+				                    <li><input type="checkbox" id="devViewTwoColumn"><label for="devViewTwoColumn">다단보기</label></li>
+					                <li><input type="checkbox" id="devViewHighLight"><label for="devViewHighLight">검색식 하이라이트</label></li>
+					            </ul>
+					        </div>
+					    </div>
+					</fieldset>
+					<div class="top_control_setblock2  position_r_ie7s">
+						 <span class="btn_top btn_locachg marg_right_20"><a href="#"><span class="ico_top marg_top_02"><!-- --></span>Top</a></span>
+					     <span class="btn_wordcheck btn_locachg marg_right_20"><a href="javascript:clickTransTextLayer('C',$('#skey').val(), $('#ctry').val());"><span class="ico_errortext"><!-- --></span>번역신고</a></span>
+					     <!-- Layer-번역신고 -->
+						 <div id="layer_transText" class="layer_wordcheck wc_top layer_type2" style="display:none;"></div>
+						 <!-- //Layer-번역신고 -->
+					     <span class="btn_floorview btn_locachg"><a href="javascript:$.openImagePopup($('#skey').val(),'0');"><span class="ico_floorview"><!-- --></span>전체도면보기</a></span>
+					</div>
+					<div class="clear"><!-- --></div>
+			*/
+			});
+		}
+		
+		elm.empty();
+		elm.html($compile(innerHtml)(scope));
+		elm.show();
+	};
+	
+	function usDsDrawContents(scope, elm, descTrnsCnt){
+		var innerHtml = "";
+		if(descTrnsCnt > 0){
+			innerHtml = docCmmUtilFct.hereDoc(function() {/*!
+			<fieldset class="top_control_setblock">
+			    <legend>설정</legend>
+				<div class="left_block">
+					<div class="sbox_type1">
+						<ul>
+			               	<li><input type="radio" id="devViewMulti" name="viewModeRadio" checked="checked"><label for="devViewMulti">번역동시보기</label></li>
+			               	<li><input type="radio" id="devViewOrigin" name="viewModeRadio"><label for="devViewOrigin">원문보기</label></li>
+			               	<li><input type="radio" id="devViewTrans" name="viewModeRadio"><label for="devViewTrans">번역문보기</label></li>
+						</ul>
+					</div>				                            
+					<div class="sbox_type2">
+			    		<ul>
+			               	<li><input type="checkbox" id="devViewTwoColumn" checked="checked" disabled="disabled"><label for="devViewTwoColumn"><span class="txt_disabled">다단보기</span></label></li>
+			       			<li><input type="checkbox" id="devViewHighLight"><label for="devViewHighLight">검색식 하이라이트</label></li>
+			    		</ul>
+					</div>
+				</div>
+			</fieldset>
+			<div class="top_control_setblock2">
+				<span class="btn_top btn_locachg marg_right_20"><a href="#"><span class="ico_top marg_top_02"><!-- --></span>Top</a></span>
+				<span class="btn_wordcheck btn_locachg marg_right_20"><a href="javascript:clickTransTextLayer('D',$('#skey').val(),$('#ctry').val());"><span class="ico_errortext"><!-- --></span>번역신고</a></span>
+				<!-- Layer-번역신고 -->
+				<div id="layer_transText" class="layer_wordcheck wc_top layer_type2" style="display:none;"></div>
+				<!-- //Layer-번역신고 -->
+				<span class="btn_floorview btn_locachg"><a href="javascript:$.openImagePopup($('#skey').val(),'0');"><span class="ico_floorview"><!-- --></span>전체도면보기</a></span>
+			</div>
+			<div class="clear"><!-- --></div>
+			*/
+			});
+		}else{
+			innerHtml = docCmmUtilFct.hereDoc(function() {/*!
+			<fieldset class="top_control_setblock">
+			    <legend>설정</legend>
+				<div class="left_block">
+					<div class="sbox_type1">
+						<ul>
+			                <li><input type="radio" id="devViewMulti" name="viewModeRadio" disabled="disabled"><label for="devViewMulti">번역동시보기</label></li>
+			                <li><input type="radio" id="devViewOrigin" name="viewModeRadio" checked="checked"><label for="devViewOrigin">원문보기</label></li>
+			                <li><input type="radio" id="devViewTrans" name="viewModeRadio" disabled="disabled"><label for="devViewTrans">번역문보기</label></li>
+						</ul>
+					</div>				                            
+					<div class="sbox_type2">
+			    		<ul>
+		                    <li><input type="checkbox" id="devViewTwoColumn"><label for="devViewTwoColumn">다단보기</label></li>
+			        		<li><input type="checkbox" id="devViewHighLight"><label for="devViewHighLight">검색식 하이라이트</label></li>
+			    		</ul>
+					</div>
+				</div>
+			</fieldset>
+			<div class="top_control_setblock2">
+				<span class="btn_top btn_locachg marg_right_20"><a href="#"><span class="ico_top marg_top_02"><!-- --></span>Top</a></span>
+				<span class="btn_wordcheck btn_locachg marg_right_20"><a href="javascript:clickTransTextLayer('D',$('#skey').val(),$('#ctry').val());"><span class="ico_errortext"><!-- --></span>번역신고</a></span>
+				<!-- Layer-번역신고 -->
+				<div id="layer_transText" class="layer_wordcheck wc_top layer_type2" style="display:none;"></div>
+				<!-- //Layer-번역신고 -->
+				<span class="btn_floorview btn_locachg"><a href="javascript:$.openImagePopup($('#skey').val(),'0');"><span class="ico_floorview"><!-- --></span>전체도면보기</a></span>
+			</div>
+			<div class="clear"><!-- --></div>
+			*/
+			});
+		}
+		
+		elm.empty();
+		elm.html($compile(innerHtml)(scope));
+		elm.show();
+	};
+	
+	function utClDrawContents(scope, elm){
+		var innerHtml = docCmmUtilFct.hereDoc(function() {/*!
+					<fieldset class="top_control_setblock">
+					    <legend>설정</legend>
+					    <div class="left_block">
+					        <div class="sbox_type2">
+					            <ul>
+					                <li><input type="checkbox" id="devViewTwoColumn"><label for="devViewTwoColumn">다단보기</label></li>
+					                <li><input type="checkbox" id="devViewHighLight"><label for="devViewHighLight">검색식 하이라이트</label></li>
+					            </ul>
+					        </div>
+					    </div>
+					</fieldset>
+					<div class="top_control_setblock2  position_r_ie7s">
+						<span class="btn_top btn_locachg marg_right_20"><a href="#"><span class="ico_top marg_top_02"><!-- --></span>Top</a></span>
+						<span class="btn_floorview btn_locachg"><a href="javascript:$.openImagePopup($('#skey').val(),'0');"><span class="ico_floorview"><!-- --></span>전체도면보기</a></span>
+					</div>
+					<div class="clear"><!-- --></div>
+		*/
+		});
+		elm.empty();
+		elm.html($compile(innerHtml)(scope));
+		elm.show();
+	};
+	
+	function utDsDrawContents(scope, elm){
+		var innerHtml = docCmmUtilFct.hereDoc(function() {/*!
+				<fieldset class="top_control_setblock">
+				    <legend>설정</legend>
+				    <div class="left_block">			                            
+				        <div class="sbox_type2">
+				            <ul>
+				                <li><input type="checkbox" id="devViewTwoColumn"><label for="devViewTwoColumn">다단보기</label></li>
+				                <li><input type="checkbox" id="devViewHighLight"><label for="devViewHighLight">검색식 하이라이트</label></li>
+				            </ul>
+				        </div>
+				    </div>
+				 </fieldset>
+				<div class="top_control_setblock2">
+					<span class="btn_top btn_locachg marg_right_20"><a href="#"><span class="ico_top marg_top_02"><!-- --></span>Top</a></span>
+					<span class="btn_floorview btn_locachg"><a href="javascript:$.openImagePopup($('#skey').val(),'0');"><span class="ico_floorview"><!-- --></span>전체도면보기</a></span>
+				</div>
+				<div class="clear"><!-- --></div>
+		*/
+		});
+		elm.empty();
+		elm.html($compile(innerHtml)(scope));
+		elm.show();
+	};
+	
+	function woClDrawContents(scope, elm){
+		var innerHtml = docCmmUtilFct.hereDoc(function() {/*!
+				<fieldset class="top_control_setblock">
+				    <legend>설정</legend>
+				    <div class="left_block">
+				        <div class="sbox_type2">
+				            <ul>
+				            	<li><input type="checkbox" id="devViewTwoColumn"><label for="devViewTwoColumn">다단보기</label></li>
+				                <li><input type="checkbox" id="devViewHighLight"><label for="devViewHighLight">검색식 하이라이트</label></li>
+				            </ul>
+				        </div>
+				    </div>
+				</fieldset>
+				<div class="top_control_setblock2  position_r_ie7s">
+					<span class="btn_top btn_locachg marg_right_20"><a href="#"><span class="ico_top marg_top_02"><!-- --></span>Top</a></span>
+				    <span class="btn_floorview btn_locachg"><a href="javascript:$.openImagePopup($('#skey').val(),'0');"><span class="ico_floorview"><!-- --></span>전체도면보기</a></span>
+				</div>
+				<div class="clear"><!-- --></div>
+		*/
+		});
+		elm.empty();
+		elm.html($compile(innerHtml)(scope));
+		elm.show();
+	};
+	
+	function woDsDrawContents(scope, elm, descTrnsCnt){
+		var innerHtml = "";
+		if(descTrnsCnt > 0){
+			innerHtml = docCmmUtilFct.hereDoc(function() {/*!
+						<fieldset class="top_control_setblock">
+						    <legend>설정</legend>
+						    <div class="left_block">
+									<div class="sbox_type2">
+						            <ul>
+					                	<li><input type="checkbox" id="devViewTwoColumn" checked="checked" disabled="disabled"><label for="devViewTwoColumn"><span class="txt_disabled">다단보기</span></label></li>
+						                <li><input type="checkbox" id="devViewHighLight"><label for="devViewHighLight">검색식 하이라이트</label></li>
+						            </ul>
+						        </div>
+						    </div>
+						 </fieldset>
+						<div class="top_control_setblock2">
+							<span class="btn_top btn_locachg marg_right_20"><a href="#"><span class="ico_top marg_top_02"><!-- --></span>Top</a></span>
+						    <span class="btn_floorview btn_locachg"><a href="javascript:$.openImagePopup($('#skey').val(),'0');"><span class="ico_floorview"><!-- --></span>전체도면보기</a></span>
+						</div>
+						<div class="clear"><!-- --></div>
+			*/
+			});
+		}else{
+			innerHtml = docCmmUtilFct.hereDoc(function() {/*!
+				<fieldset class="top_control_setblock">
+				    <legend>설정</legend>
+				    <div class="left_block">
+							<div class="sbox_type2">
+				            <ul>
+			                    <li><input type="checkbox" id="devViewTwoColumn"><label for="devViewTwoColumn">다단보기</label></li>
+				                <li><input type="checkbox" id="devViewHighLight"><label for="devViewHighLight">검색식 하이라이트</label></li>
+				            </ul>
+				        </div>
+				    </div>
+				 </fieldset>
+				<div class="top_control_setblock2">
+					<span class="btn_top btn_locachg marg_right_20"><a href="#"><span class="ico_top marg_top_02"><!-- --></span>Top</a></span>
+				    <span class="btn_floorview btn_locachg"><a href="javascript:$.openImagePopup($('#skey').val() ,'0');"><span class="ico_floorview"><!-- --></span>전체도면보기</a></span>
+				</div>
+				<div class="clear"><!-- --></div>
+			*/
+			});
+		}
+		
+		elm.empty();
+		elm.html($compile(innerHtml)(scope));
+		elm.show();
+	};
+	
+	function drawContents(scope, elm, value, clTrnsCnt, descTrnsCnt, clType, isTrns, mngNum, docKind, mngDt){
+		switch (value){
+		case scope.docConst.TABGB.CL:
+			switch (scope.docVar.screenVO.serviceNm){
+			case scope.docConst.SERVICENM.DKR:
+				krClDrawContents(scope, elm);
+				break;
+			case scope.docConst.SERVICENM.DCN:
+				cnClDrawContents(scope, elm, clTrnsCnt);
+				break;
+			case scope.docConst.SERVICENM.DEP:
+				epClDrawContents(scope, elm, clTrnsCnt, clType);
+				break;
+			case scope.docConst.SERVICENM.DJP:
+				jpClDrawContents(scope, elm, clTrnsCnt);
+				break;
+			case scope.docConst.SERVICENM.DLN:
+				lnClDrawContents(scope, elm);
+				break;
+			case scope.docConst.SERVICENM.DUS:
+				usClDrawContents(scope, elm, clTrnsCnt);
+				break;
+			case scope.docConst.SERVICENM.DUT:
+				utClDrawContents(scope, elm);
+				break;
+			case scope.docConst.SERVICENM.DWO:
+				woClDrawContents(scope, elm);
+				break;
+			default:
+				defDrawContents(scope, elm);
+				break;
+			}
+			break;
+		case scope.docConst.TABGB.DS:
+			switch (scope.docVar.screenVO.serviceNm){
+			case scope.docConst.SERVICENM.DKR:
+				krDsDrawContents(scope, elm);
+				break;
+			case scope.docConst.SERVICENM.DCN:
+				cnDsDrawContents(scope, elm, descTrnsCnt);
+				break;
+			case scope.docConst.SERVICENM.DEP:
+				epDsDrawContents(scope, elm, descTrnsCnt);
+				break;
+			case scope.docConst.SERVICENM.DJP:
+				jpDsDrawContents(scope, elm, descTrnsCnt);
+				break;
+			case scope.docConst.SERVICENM.DLN:
+				lnDsDrawContents(scope, elm);
+				break;
+			case scope.docConst.SERVICENM.DUS:
+				usDsDrawContents(scope, elm, descTrnsCnt);
+				break;
+			case scope.docConst.SERVICENM.DUT:
+				utDsDrawContents(scope, elm);
+				break;
+			case scope.docConst.SERVICENM.DWO:
+				woDsDrawContents(scope, elm, descTrnsCnt);
+				break;
+			default:
+				defDrawContents(scope, elm);
+				break;
+			}
+			break;
+		case scope.docConst.TABGB.AB:
+			elm.empty();
+			elm.hide();
+			break;
+		case scope.docConst.TABGB.AD:
+			switch (scope.docVar.screenVO.serviceNm){
+			case scope.docConst.SERVICENM.DKR:
+			case scope.docConst.SERVICENM.DEP:
+			case scope.docConst.SERVICENM.DUS:
+				elm.empty();
+				elm.hide();
+				break;
+			default:
+				defDrawContents(scope, elm);
+				break;
+			}
+			break;
+		case scope.docConst.TABGB.FT:
+			switch (scope.docVar.screenVO.serviceNm){
+			case scope.docConst.SERVICENM.DJT:
+				jtFtDrawContents(scope, elm, isTrns, mngNum, docKind, mngDt);
+				break;
+			}
+			break;
+		default:
+			defDrawContents(scope, elm);
+			break;
+		}
+	};
+	
+	function postLink(scope, elm, attrs, ctrl){
+		scope.$watch(attrs.ngModel, function(value) {
+			var clTrnsCnt = attrs.clTrnsCnt * 1;
+			var descTrnsCnt = attrs.descTrnsCnt * 1;
+			var clType = attrs.clType + "";
+			var mngNum = attrs.mngNum + "";
+			var docKind = attrs.docKind + "";
+			var mngDt = attrs.mngDt + "";
+			var isTrns = attrs.isTrns * 1;
+			
+			//drawContents(scope, elm, value, clTrnsCnt, descTrnsCnt, clType, isTrns, mngNum, docKind, mngDt);
+		},true);
+		
+	};
+}]);

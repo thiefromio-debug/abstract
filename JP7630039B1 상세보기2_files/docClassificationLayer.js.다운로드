@@ -1,0 +1,141 @@
+/**
+ * 특허분류코드 상세 레이어
+ */
+function openClsLayer(clsType , clsStatus  , clsIndex , clsMode , clsCd) {
+	clsCd = clsCd.replace(/(^\s*)|(\s*$)/gi, "");
+	if(clsType == 'ipc' && clsCd.length == 8){//ipc 일 경우 /00 처리
+		clsCd += '/00';
+	}
+	
+	if(clsType == 'upc' && clsCd.indexOf('.') > -1 ){//upc 일 경우 ITS-8665 처리
+		if(clsCd.split('.')[1].length == 1) {
+			clsCd += '00';
+		} else if(clsCd.split('.')[1].length == 2) {
+			clsCd += '0';
+		}
+	}
+	
+	if ($('#'+clsType+'_'+clsStatus+'_lyr_'+clsIndex+'_'+clsMode).css("display") == "none") {
+		var divId = clsType+'_'+clsStatus+'_div_'+clsIndex+'_'+clsMode;
+    	var lyrId = clsType+'_'+clsStatus+'_lyr_'+clsIndex+'_'+clsMode;
+		layerHide();
+		$('#'+clsType+'_'+clsStatus+'_lyr_'+clsIndex+'_'+clsMode).show();
+		$('#'+clsType+'_'+clsStatus+'_div_'+clsIndex+'_'+clsMode).attr("style", "position:relative;");
+		
+		var cnt = $('#'+clsType+'_'+clsStatus+'_lyr_'+clsIndex+'_'+clsMode+' > div').length;
+		if(cnt == 0){
+			lyrClsHierarchy(clsType , clsStatus  , clsIndex , clsMode , clsCd.replace("\:" , "\/"));	
+		}
+		
+	}else{
+		closeClsLayer(clsType , clsStatus  , clsIndex , clsMode) ;
+	}
+};
+
+function closeClsLayer(clsType , clsStatus  , clsIndex , clsMode) {
+	$('#'+clsType+'_'+clsStatus+'_lyr_'+clsIndex+'_'+clsMode).hide();
+	$('#'+clsType+'_'+clsStatus+'_div_'+clsIndex+'_'+clsMode).attr("style", "");
+};
+
+function layerHide() {
+	var clsKinds = ["cpc", "ipc", "upc", "fi" , "fterm"];
+	for (var i = 0; i < clsKinds.length; i++) {
+		$( "div[id^="+clsKinds[i]+"_curr_lyr_]").hide();
+		$( "div[id^="+clsKinds[i]+"_curr_div_]").attr("style", "");
+		
+		$( "div[id^="+clsKinds[i]+"_orig_lyr_]").hide();
+		$( "div[id^="+clsKinds[i]+"_orig_div_]").attr("style", "");
+		
+		//wips 패밀리 IPC/CPC
+		$( "div[id^="+clsKinds[i]+"_main_lyr_]").hide();
+		$( "div[id^="+clsKinds[i]+"_main_div_]").attr("style", "");
+	}
+};
+
+function lyrClsHierarchy(clsType , clsStatus  , clsIndex , clsMode , clsCd) {
+	
+	$.ajax({
+		url			: "../doc/lyrClsHierarchy.wips",
+		type		: 'POST',
+		cache		: false,
+		async		: false,
+		dataType	: 'json',
+		data		: {
+			clsType : clsType
+			, clsCd : clsCd
+		},
+		success     : function(data, textStatus, jqXHR) {
+			var lyrObj = $('#'+clsType+'_'+clsStatus+'_lyr_'+clsIndex+'_'+clsMode);
+			$(lyrObj);
+			lyrObj.empty();
+			var html = "<p class='topblock'>";
+			html+= "<span class='float_l'>특허분류코드</span>";
+			html+= "<span class='float_r marg_top_02'><a href='javascript:void(0);' class='btn_x dis_b marg_top_04' onclick='closeClsLayer(\""+clsType+"\" , \""+clsStatus+"\" , \""+clsIndex+"\" , "+clsMode+")'><span class='close marg_left_03'><!--  --></span></a></span>";
+			html+= "</p>";
+			html+= "<div class='clear'></div><div class='conblock'><ul>";
+			
+			if(data.msriLyrClsVOList.length == 0 ) {
+				if(clsCd == '001/001') {
+					html += "미분류 코드입니다.";
+				} else {
+					html += "일치하는 코드가 존재하지 않습니다.";
+				}
+			} else {
+				for (var i = 0; i < data.msriLyrClsVOList.length; i++) {
+					var cls = data.msriLyrClsVOList[i].cls.replace(/[,|@]/gi, ' ');
+					
+					html += "<li>";
+					html += "<div class='item'>" + cls + "</div>";
+					html += "<div class='codelist'>";
+					
+					if(data.msriLyrClsVOList[i].desc == null  || data.msriLyrClsVOList[i].desc == '<b></b>') {
+						html += "-";
+					} else {
+						html += data.msriLyrClsVOList[i].desc;
+					}
+					html += "</div>";
+					html += "</li>";
+				};
+			}
+			
+			html+= "</ul></div>";
+			html+= "<span class='arrow_border top fix_top11'><!-- --></span>";
+			html+= "<span class='arrow_bg top fix_top11'><!-- --></span>";
+			lyrObj.html(html);
+		},
+		error   : function(jqXHR, textStatus, errorThrown) {
+		}
+	});
+};
+
+function openClsLayerFi(clsType , clsStatus  , clsIndex , clsMode , clsCd, unfdSymb, savRecgSymb) {
+	clsCd = clsCd.replace(/(^\s*)|(\s*$)/gi, "");
+	var inputFiCls = clsCd;
+	
+	if(unfdSymb != null  && unfdSymb != '') {
+		unfdSymb = unfdSymb.replace(/(^\s*)|(\s*$)/gi, "");
+		inputFiCls += ',';
+		inputFiCls += unfdSymb;
+	} 
+	
+	if(savRecgSymb != null && savRecgSymb != '') {
+		savRecgSymb = savRecgSymb.replace(/(^\s*)|(\s*$)/gi, "");
+		inputFiCls += '@';
+		inputFiCls += savRecgSymb;
+	} 
+	
+	if ($('#'+clsType+'_'+clsStatus+'_lyr_'+clsIndex+'_'+clsMode).css("display") == "none") {
+		var divId = clsType+'_'+clsStatus+'_div_'+clsIndex+'_'+clsMode;
+    	var lyrId = clsType+'_'+clsStatus+'_lyr_'+clsIndex+'_'+clsMode;
+		layerHide();
+		$('#'+clsType+'_'+clsStatus+'_lyr_'+clsIndex+'_'+clsMode).show();
+		$('#'+clsType+'_'+clsStatus+'_div_'+clsIndex+'_'+clsMode).attr("style", "position:relative;");
+		
+		var cnt = $('#'+clsType+'_'+clsStatus+'_lyr_'+clsIndex+'_'+clsMode+' > div').length;
+		if(cnt == 0){
+			lyrClsHierarchy(clsType , clsStatus  , clsIndex , clsMode , inputFiCls.replace("\:" , "\/"));	
+		}
+	}else{
+		closeClsLayer(clsType , clsStatus  , clsIndex , clsMode) ;
+	}
+};

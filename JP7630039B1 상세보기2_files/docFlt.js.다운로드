@@ -1,0 +1,361 @@
+/**
+ * 공개번호 , 등록 / 공고번호 한글 타이틀 명치 필터
+ */
+;
+docApp.filter("numTitleKorFilter", function() {
+	var filterText = function(mngKind, docType) {
+		var rtnValue = "";
+		
+		if(docType === 'KR') {
+			
+			if(mngKind === "1" || mngKind == "4"){
+				rtnValue = "공개번호";
+			} else {
+				rtnValue = "등록/공고번호";
+			}
+		} else if(docType === 'US') {
+			
+			if(mngKind === "1"){
+				rtnValue = "공개번호";
+			} else {
+				rtnValue = "등록번호";
+			}
+		} else if (docType === 'JP') {
+			
+			if(mngKind === "1" || mngKind == "4"){
+				rtnValue = "공개번호";
+			} else if(mngKind === "8"){
+				rtnValue = "공표번호";
+			} else if(mngKind === "9"){
+				rtnValue = "국제공개번호";
+			} else {
+				rtnValue = "특허번호";
+			}
+		} else if (docType === 'CN') {
+			
+			if(mngKind === "1" || mngKind == "4"){
+				rtnValue = "공개번호";
+			} else {
+				rtnValue = "등록번호";
+			}
+		} else if (docType === 'WO') {
+			rtnValue = "공개번호";
+		} else if (docType === 'DB') {
+			rtnValue = "특허번호";
+		} else if (docType === 'PAJ'){
+			rtnValue = "공개번호";
+		} else {
+			// 기타 개별국 docType 가 다양하다 DE, FR, 등등
+			rtnValue = "특허번호";
+		}
+		
+		return rtnValue;
+	};
+	return filterText;
+});
+
+/**
+ * 해당 헹리먼트안의 문자중 하이라이트 변경 처리를 한다.
+ */
+docApp.filter("highLightFilter", function() {
+	var filterText = function(inputStr, highLightStr) {
+		var outStr = inputStr;
+		if(outStr != undefined) {
+			outStr = outStr.replace(highLightStr, "<span class='font_color_orange'>" + highLightStr + "</span>");
+		}
+		
+		return outStr;
+	};
+	return filterText;
+});
+
+
+/**
+ * 법적상태 PrsCd Filter 처리
+ */
+docApp.filter("legalStatusPrsCdFilter", function() {
+	var filterText = function(prsCd, symb) {
+		var rtnValue = ''; //prsCd;
+		if(symb === "+") {
+			//rtnValue += "<font color='green'>";
+			rtnValue += "<span class='font_color_green font_type_bold'>";
+		}else if(symb === "-") {
+			//rtnValue += "<font color='red'>";
+			rtnValue += "<span class='font_color_red font_type_bold'>";
+		}else {
+			rtnValue += "<span class='font_color_black font_type_bold'>";
+		}
+		
+		rtnValue += prsCd;
+		
+		if(symb === "+") {
+			rtnValue += "</span>";
+		}else if(symb === "-") {
+			rtnValue += "</span>";
+		}else {
+			rtnValue += "</span>";
+		}
+		
+		return rtnValue;
+	};
+	return filterText;
+});
+
+/**
+ * 법적상태 Desc Filter 처리
+ */
+docApp.filter("legalStatusDescFilter", function() {
+	var filterText = function(desc, remark) {
+		var rtnValue = ''; //
+		var remarkArray = remark != null ? remark.split('|') : [];
+		var rmarkSplitArray;
+		
+		rtnValue += desc;
+		for(var i=0; i < remarkArray.length; i++){
+			rmarkSplitArray = remarkArray[i].split(':');
+			if(rmarkSplitArray !== null && rmarkSplitArray.length > 0) {
+				rtnValue += "<br/><span class='font_type_bold'>" + rmarkSplitArray[0] + "</span>";
+				
+				for(var j=1; j < rmarkSplitArray.length; j++) {
+					rtnValue += " : " + rmarkSplitArray[j];
+				}
+			}
+		}
+		
+		
+		return rtnValue.replace(/&amp;/gi,'&');
+	};
+	return filterText;
+});
+/**
+ *  날짜 데이터 필터 
+ */
+docApp.filter('dateFilter', function() {
+	var filterText = function(input) {
+		if(input != null && input.length === 8){
+			var txt1 = input.substr(0, 4),
+				txt2 = input.substr(4, 2),
+				txt3 = input.substr(6, 2);
+			
+			return txt1 + '.' + txt2 + '.' + txt3;
+		} else if(input == null){
+			return "";
+		} else {
+			return input;
+		}
+	};
+	return filterText;
+});
+/**
+ * Data Null Check Filter
+ */
+docApp.filter("dataNullFilter", function() {
+	var filterText = function(input, addStr) {
+		input = $.trim(input);
+		//console.log(input);
+		if(input == null || input == ""){
+			return input = "-";
+		} else {
+			return input;
+		}
+	};
+	return filterText;
+});
+/**
+ * (YYYY.MM.DD) DateFilter
+ */
+docApp.filter("dateBracketFilter", function() {
+	var filterText = function(input, addStr) {
+		input = $.trim(input);
+		
+		if(input != null && input.length === 8){
+			var txt1 = input.substr(0, 4),
+				txt2 = input.substr(4, 2),
+				txt3 = input.substr(6, 2);
+			
+			return "(" + txt1 + '.' + txt2 + '.' + txt3 + ")" + (addStr != null ? ' ' + addStr : '');
+		} else if(input == null){
+			return "";
+		} else {
+			return input;
+		}
+	};
+	return filterText;
+});
+/**
+ * (YYYY.MM.DD) value 
+ * DateFilter
+ */
+docApp.filter("dateAddStrFilter", function() {
+	var filterText = function(input, addStr) {
+		input = $.trim(input);
+		
+		if(input != null && input.length === 8){
+			var txt1 = input.substr(0, 4),
+				txt2 = input.substr(4, 2),
+				txt3 = input.substr(6, 2);
+			
+			return txt1 + '.' + txt2 + '.' + txt3 + (addStr != null ? ' ' + addStr : '');
+		} else if(input == null){
+			return "";
+		} else {
+			return input;
+		}
+	};
+	return filterText;
+});
+/**
+ * trim Filter
+ */
+docApp.filter("trimFilter", function() {
+	var filterText = function(input) {
+		input = $.trim(input);
+		return input;
+	};
+	return filterText;
+});
+/**
+ * 행정이력보기 심판이력 출력 필터
+ */
+docApp.filter('jdgNotcNumFilter', function() {
+	var jdgNotcNumText = function(strInput){
+		var strReturn = "";
+		// 입력 받은 값{
+	    switch (strInput.toUpperCase())
+	    {
+	        case "100": strReturn = "당"; break;
+	        case "101": strReturn = "원"; break;
+	        case "102": strReturn = "보"; break;
+	        case "103": strReturn = "취"; break;
+	        case "104": strReturn = "기"; break;
+	        case "105": strReturn = "정"; break;
+	        case "110": strReturn = "재당"; break;
+	        case "111": strReturn = "재원"; break;
+	        case "112": strReturn = "재보"; break;
+	        case "113": strReturn = "재취"; break;
+	        case "114": strReturn = "재기"; break;
+	        case "120": strReturn = "추당"; break;
+	        case "121": strReturn = "추원"; break;
+	        case "122": strReturn = "추보"; break;
+	        case "123": strReturn = "추취"; break;
+	        case "124": strReturn = "추기"; break;
+	        case "130": strReturn = "당취소판결"; break;
+	        case "131": strReturn = "원취소판결"; break;
+	        case "132": strReturn = "보취소판결"; break;
+	        case "133": strReturn = "취취소판결"; break;
+	        case "134": strReturn = "기취소판결"; break;
+	        case "140": strReturn = "당환송"; break;
+	        case "141": strReturn = "원환송"; break;
+	        case "142": strReturn = "보환송"; break;
+	        case "143": strReturn = "취환송"; break;
+	        case "144": strReturn = "기환송"; break;
+	        case "150": strReturn = "제척당"; break;
+	        case "151": strReturn = "제척원"; break;
+	        case "152": strReturn = "제척보"; break;
+	        case "153": strReturn = "제척취"; break;
+	        case "154": strReturn = "제척기"; break;
+	        case "160": strReturn = "기피당"; break;
+	        case "161": strReturn = "기피원"; break;
+	        case "162": strReturn = "기피보"; break;
+	        case "163": strReturn = "기피취"; break;
+	        case "164": strReturn = "기피기"; break;
+	        case "200": strReturn = "허당"; break;
+	        case "201": strReturn = "허원"; break;
+	        case "202": strReturn = "허보"; break;
+	        case "203": strReturn = "허취"; break;
+	        case "204": strReturn = "허기"; break;
+	        case "210": strReturn = "재허당"; break;
+	        case "211": strReturn = "재허원"; break;
+	        case "212": strReturn = "재허보"; break;
+	        case "213": strReturn = "재허취"; break;
+	        case "214": strReturn = "재허기"; break;
+	        case "240": strReturn = "허환송당"; break;
+	        case "241": strReturn = "허환송원"; break;
+	        case "242": strReturn = "허환송보"; break;
+	        case "243": strReturn = "허환송취"; break;
+	        case "244": strReturn = "허환송기"; break;
+	        case "300": strReturn = "후당"; break;
+	        case "301": strReturn = "후원"; break;
+	        case "302": strReturn = "후보"; break;
+	        case "303": strReturn = "후취"; break;
+	        case "304": strReturn = "후기"; break;
+	        case "310": strReturn = "재후당"; break;
+	        case "311": strReturn = "재후원"; break;
+	        case "312": strReturn = "재후보"; break;
+	        case "313": strReturn = "재후취"; break;
+	    }
+	    return strReturn;
+	};
+
+	var jdgNotcNumNum = function(strInput){
+	    var strReturn = "";
+	    for (var i = 1; strInput != null && i < strInput.Length; i++)
+	    {
+	        var c = strInput[i].charCodeAt();
+	        if (c == '0') {
+	            strReturn = strInput.substring(i, strInput.length - i);
+	        } else {
+	            strReturn = strInput.substring(i, strInput.length - i);
+	            break;
+	        }
+	    }
+	    
+	    return strReturn;
+	};
+	
+	var filterText = function(jdgNotcNum) {
+		var rtnHtml = jdgNotcNum;
+		
+		if(jdgNotcNum != null && jdgNotcNum.length >= 12){
+			rtnHtml = jdgNotcNum.substring(0, 4);
+			rtnHtml += jdgNotcNumText(jdgNotcNum.substring(4, 7));
+			rtnHtml += jdgNotcNum.substring(9, 13);
+			
+			rtnHtml += " (" + jdgNotcNum + ")";
+		}
+		
+		return rtnHtml;
+	};
+	
+	return filterText;
+});
+
+
+docApp.filter('trustAsHTML', ['$sce', function($sce){
+	return function(text) {
+		return $sce.trustAsHtml(text);
+	};
+}]);
+
+docApp.filter("addStrFilter", function() {
+	var filterText = function(input, addStr, addType) {
+		input = $.trim(input);
+		
+		if(input != null && input != ""){
+			if(addType === "pre"){
+				return (addStr == null ? "" : addStr) + input;
+			} else if (addType === "next"){
+				return input + (addStr == null ? "" : addStr);
+			}
+		} else if(input == null){
+			return "";
+		} else {
+			return input;
+		}
+	};
+	return filterText;
+});
+
+docApp.filter("nonDataFlt", function() {
+	var filterText = function(input, type) {
+		input = $.trim(input);
+		if(type==="title"){
+			if(input != null && input != ""){
+				return input
+			} else {
+				return 'No Title';
+			}
+		}
+	};
+	return filterText;
+});

@@ -1,0 +1,292 @@
+var clList = [];
+var clTrnsList = [];
+var clSignList = [];
+var leftClList = [];
+var rightClList = [];
+var clCnt = {};
+var exmpSeq = 1;
+var clType = '';
+
+//EP 대체정보 출처
+var dbNm = '';
+var docKind = '';
+//PCT 대페정보 출처
+var ctry = '';
+var docNum = '';
+
+;(function($){
+	$.makeTwoColumnBlock = function(clData, lang){
+		var showLength = clData.length;
+		var printLength = 0;
+		var halfLength = Math.ceil(showLength/2);
+		leftClList = [];
+		rightClList = [];
+		$.each(clData, function(idx, val){
+			if(printLength < halfLength){
+				leftClList.push(val);
+			}
+			else{
+				rightClList.push(val);
+			}
+			printLength++;
+		});
+	};
+	
+	// 전체청구항 항목 클릭 세팅 
+	$.showClView = function(id, clSect){
+		$('#devClAll, #devCliCnt, #devCldCnt, #devClnoneCnt, #devClcCnt').removeClass('font_type_bold');
+		
+		$("#devClAll").addClass('btn_cltxt');
+		$('#devClAll').attr("onClick", "javascript:$.showClView('devClAll', 'A');");
+		if(Number($("#devCliCnt").attr("dataCnt")) > 0){
+			$("#devCliCnt").addClass('btn_cltxt');
+			$('#devCliCnt').attr("onClick", "javascript:$.showClView('devCliCnt', 'I');");
+		}
+		if(Number($("#devCldCnt").attr("dataCnt")) > 0){
+			$("#devCldCnt").addClass('btn_cltxt');
+			$('#devCldCnt').attr("onClick", "javascript:$.showClView('devCldCnt', 'D');");
+		}
+		if(Number($("#devClnoneCnt").attr("dataCnt")) > 0){
+			$("#devClnoneCnt").addClass('btn_cltxt');
+			$('#devClnoneCnt').attr("onClick", "javascript:$.showClView('devClnoneCnt', 'N');");
+		}
+		if(Number($("#devClcCnt").attr("dataCnt")) > 0){
+			$("#devClcCnt").addClass('btn_cltxt');
+			$('#devClcCnt').attr("onClick", "javascript:$.showClView('devClcCnt', 'C');");
+		}
+		
+		if(id != ''){
+			$("#"+id).addClass('font_type_bold');
+			$("#"+id).removeClass('btn_cltxt');
+			$("#"+id).attr("onClick", ";");
+			$("#devClSect").val(clSect);
+			
+			dataCLView();
+		}
+	};
+	
+	/**
+	 * Partial에 대한 Tooltip
+	 */
+	$.showPartialTooltip = function(){
+		if($('#devPartialTooltip').css('display') == 'none'){
+			$('#devPartialTooltip').show();
+		}
+		else{
+			$('#devPartialTooltip').hide();
+		}
+	};
+	
+	$.showSelectPartial = function(partial){
+		$.ajax({
+			url: '../dep/depClaimByPartial.wips',
+			type: 'POST',
+			cache: 'false',
+			async: 'true',
+			dataType: 'json',
+			data:{
+				skey : $('#skey').val(),
+				clType : partial
+			},
+			success: function(data, textStatus, jqXHR) {
+				
+				var clCnt = data.clCnt;
+				$('#devClAll').html('전체 청구항('+clCnt.cnt+')');
+				$('#devCliCnt').html('독립항('+clCnt.iCnt+')');
+				$('#devCldCnt').html('종속항('+clCnt.dCnt+')');
+				$('#devClnoneCnt').html('미분류 청구항('+clCnt.noneCnt+')');
+				$('#devClcCnt').html('삭제 청구항('+clCnt.cCnt+')');
+				
+				getContentsJsonSuccess(data);
+			}
+		});
+	};
+	
+	//EP Partial Data가 있을 경우
+	$("#devInclude").on("click", "li[name=devPartial]", function(){
+		var partial = $(this).attr('id').replace('devPartial', '');
+		$.showSelectPartial(encodeURIComponent(partial).replace(/[!'()]/g, escape));
+		
+		$('li[name="devPartial"]>a').removeClass('on');
+		if(partial == '' || partial == 'Common'){
+			$('li[id="devPartialCommon"]>a').addClass('on');
+		} else {
+			$('li[id="devPartial'+ partial +'"]>a').addClass('on');
+		}
+	});
+})(jQuery);
+
+function dataCLView(){
+	var tmplClList = [];
+	var tmplClTrnsList = [];
+	var tmpClList = [];
+	var tmpClTrnsList = [];
+	
+	// [S] 데이터 언어 데이터 분리 작업
+	// 데이터 셋팅 
+	if($("#isSignShow").val() === "Y"){
+		if($("#ctry").val() === "KR" || $("#ctry").val() === "US"){
+			tmpClList = CLDataContentsLangCd(clSignList, $("#devLangCd").val());
+			tmpClTrnsList = CLDataContentsLangCd(clTrnsList, $("#devLangCdTrns").val());
+		} else if ($("#ctry").val() === "JP"){
+			tmpClList = CLDataContentsLangCd(clList, $("#devLangCd").val());
+			tmpClTrnsList = CLDataContentsLangCd(clSignList, $("#devLangCdTrns").val());
+		}
+	} else {
+		tmpClList = CLDataContentsLangCd(clList, $("#devLangCd").val());
+		tmpClTrnsList = CLDataContentsLangCd(clTrnsList, $("#devLangCdTrns").val());
+	}
+	// [E] 데이터 언어 데이터 분리 작업
+	
+	// [S] 전체 청구항, 독립항, 종속항, 미분류 청구항, 삭제 청구항 데이터  분리 작업
+	var devClSect =  ($("#devClSect").val() == '') ? 'A':$("#devClSect").val();
+	if(devClSect == 'A'){
+		tmplClList = tmpClList;
+		tmplClTrnsList = tmpClTrnsList;
+	}else{
+		$.each(tmpClList, function(idx, val){
+			if(devClSect == val.clSect){
+				tmplClList.push(val);
+			}
+		});
+		if(tmpClTrnsList != null && tmpClTrnsList.length > 0){
+			$.each(tmpClTrnsList, function(idx, val){
+				if(devClSect == val.clSect){
+					tmplClTrnsList.push(val);
+				}
+			});
+		}
+		else{
+			tmplClTrnsList = [];
+		}
+	}
+
+	if($("#ctry").val() === "KR"){
+		tmplClList = tmplClList.filter(item => item.langCd && item.langCd.toLowerCase() === 'kr');
+	}
+	tmpClList = [];
+	tmpClTrnsList = [];
+	// [E] 전체 청구항, 독립항, 종속항, 미분류 청구항, 삭제 청구항 데이터  분리 작업
+
+	// 청구항 문헌 타이틀 노출 여부 (1:노출, 2:미노출, 3:미노출+PCT문구노출) US과거분 미노출 추가-18360
+	var claimView = 1;
+	if($("#ctry").val() == 'WO' || $("#ctry").val() == 'USPAST'){
+		claimView = 2;
+	}
+//	else if(clType == "PCT"){
+//		claimView = 3;
+//	}
+	
+	//대체정보 출처 노출 여부 ( 0: 미노출, 1 : 노출)
+	var replTag = "";
+	if(docKind != null && docKind != ''){
+		replTag ="↓" + dbNm + "-" + docKind + " 문헌의 청구항"
+		if(dbNm == "PCT"){
+			claimView = 3;
+		}
+		if($("#ctry").val() == 'WO'){
+			replTag ="↓" + ctry + " " + docNum + " " + docKind + " 문헌의 청구항"
+		}
+	}
+	
+	// [S] Tmpl 데이터 노출
+	var basicTrnsView = 2;
+	var trnsView = $("#ctry").val() == "WO" && tmplClTrnsList?.[0]?.trns ? tmplClTrnsList[0].trns : basicTrnsView;
+	var rInfo = {
+		replTag : replTag
+		, trnsView : trnsView
+		, claimView : claimView
+	}
+	var lInfo = {
+		replTag :  $("#ctry").val() == "EP" ? replTag : ""
+		, trnsView : trnsView
+		, claimView : claimView
+	}
+	$("#devClaimView").empty();
+	if($("#devViewMulti").prop('checked')){
+		lInfo.trnsView = 0;	//동시보기 시 왼쪽은 원문
+		// 번역동시보기
+		//$("#devClaimView").html($("#tmplClaimRight").render({leftClList:tmplClList, rightClList:tmplClTrnsList, trnsView:trnsView, exmpSeq:exmpSeq, claimView:claimView, replTag:replTag}));
+		$("#devClaimView").html($("#tmplClaimRight").render({leftClList:tmplClList, rightClList:tmplClTrnsList, lInfo:lInfo, rInfo:rInfo, exmpSeq:exmpSeq}));
+	}
+	else{
+		// 다단보기
+		if($("#devViewTwoColumn").prop('checked')){
+			if($("#devViewTrans").prop('checked')){
+				// 번영문보기
+				$.makeTwoColumnBlock(tmplClTrnsList, '', 0);
+				lInfo = Object.assign({}, rInfo);
+			}else{
+				// 원문보기
+				$.makeTwoColumnBlock(tmplClList, '', 0);
+				lInfo.trnsView = 0;
+			}
+			rInfo.trnsView = 0;
+			rInfo.replTag = '';
+			$("#devClaimView").html($("#tmplClaimRight").render({leftClList:leftClList, rightClList:rightClList, lInfo:lInfo, rInfo:rInfo, exmpSeq:exmpSeq}));
+		}
+		else{
+			if($("#devViewTrans").prop('checked')){
+				// 번영문보기
+				$("#devClaimView").html($("#tmplClaimLeft").render({leftClList:tmplClTrnsList, trnsView:trnsView, exmpSeq:exmpSeq, claimView:claimView, replTag:rInfo.replTag}));
+			}
+			else{
+				// 원문보기
+				$("#devClaimView").html($("#tmplClaimLeft").render({leftClList:tmplClList, trnsView:0, exmpSeq:exmpSeq, claimView:claimView, replTag:lInfo.replTag}));
+			}
+		}
+	}
+	// [E] Tmpl 데이터 노출
+	
+	// 청구항 화학식 레이어 노출
+	if($("#chem").val() == "Y"){
+		var clText = "";
+		if($("#devViewTrans").prop('checked')){
+			clText = tmplClTrnsList.map(function(elm){
+				return elm.cl;
+			}).join('');
+		}
+		else if($("#devViewOrigin").prop('checked')){
+			clText = tmplClList.map(function(elm){
+				return elm.cl;
+			}).join('');
+		}
+		else {
+			// 원문,번역문 라디오 버튼 있을 때
+			if(tmplClTrnsList !== undefined && tmplClTrnsList != ""){
+				clText = tmplClList.concat(tmplClTrnsList);
+			} else {
+				clText = tmplClList;
+			}
+			clText = clText.map(function(elm){
+				return elm.cl;
+			}).join('');
+		}
+		
+		//컨텐츠를 이용하여 cid 추출 및 정보
+		highlight_ds_obj = goWithDisplayContent(clText, "cl");
+		
+		markerHighLighterDocWithChemicalName(highlight_ds_obj);
+		
+		$('input[name="marker"]').on('keypress', function() {	//형광펜 매칭 이후 제거되는 마우스 이벤트 재 연동
+			highlightDraw();
+		});
+	}
+	// 화합물 매칭을 위해 나중에 하이라이팅
+}
+
+//데이터 언어 데이터 분리 작업
+function CLDataContentsLangCd(list, langCd){
+	var tmpList = [];
+	if(langCd != ''){
+		$.each(list, function(idx, val){
+			if(langCd == val.langCd.toLowerCase()){
+				tmpList.push(val);
+			}
+		});
+	}
+	else{
+		tmpList = list;
+	}
+	return tmpList;
+}

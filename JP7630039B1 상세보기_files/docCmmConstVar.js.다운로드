@@ -1,0 +1,41 @@
+;
+var DocCmmConst = {
+	  JSON_CONT_TYPE: "application/x-www-form-urlencoded; charset=UTF-8; metatype=json"
+	, CTRY:{KR:"KR", US:"US", JP:"JP", CN:"CN", WO:"WO"}
+    , CTRYNM:{KR:"한국", US:"미국", JP:"일본", CN:"중국", WO:"마드리드"}
+    //, CTRYENM:{KR:"Korean", US:"English", JP:"Japanese", CN:"Chinese", DE:"German", FR:"French", AR:"Arabic", ES: "Spanish", PT:"Portuguese" ,RU:"Russian"}
+    , CTRYENM:{KR:"한국어", US:"영어", JP:"일본어", CN:"중국어", DE:"독어", FR:"불어", AR:"아랍어", ES: "스페인어", PT:"포르투갈어" ,RU:"러시아어", BA:"BA" ,BG:"불가리아어", CS:"체코어", DK:"DK", EE:"EE", FI:"핀란드어"
+               , GR:"GR", IT:"이탈리아어", LT:"리투아니아어", LV:"LV", NL:"네덜란드어", NO:"노르웨이어", PL:"폴란드어", RO:"루마니아어", SE:"북부 사미어", SH:"SH", SI:"SI", SK:"슬로바키아어", SR:"SR", TR:"터키어"
+               , HE:"히브리어", HR:"크로아티아어", ID:"인도네시아어", IS:"아이슬란드어", MO:"MO", UK:"우크라이나어", TH:"태국어", CA:"카탈루냐어", DA:"덴마크어", EL:"그리스어", ET:"에스토니아어", GA:"아일랜드어", HU:"헝가리어"
+               , MS:"말레이어", NE:"네팔어", RN:"키룬디어", SV:"스웨덴어", SW:"스와힐리어", VI:"베트남어", KY:"키르기스어", MY:"버마어 (미얀마어)"}
+    , TABGB:{AB: "AB", CL:"CL", DS:"DS", AD: "AD", FM: "FM", CT: "CT", FT: "FT", JD: "JD", SU: "SU", PS: "PS", CH: "CH", SD: "SD"}
+    , ADMIN:{HISTCNT:10, GRTFEECNT:5 , ASSMHISTCNT:5, LEGALCNT:5, CORRCNT:10}
+    , SUMMARY:{LEGALCNT:10, NPATCNT:100}
+    , DRAW_POP_URL: '../lyr/popDrawing.wips'
+    , KR_CLASSIFICATION_URL: '../dkr/dkrClassification.wips'
+    , US_CLASSIFICATION_URL: '../dus/dusClassification.wips'
+    , EP_CLASSIFICATION_URL: '../dep/depClassification.wips'
+    , JP_CLASSIFICATION_URL: '../djp/djpClassification.wips'
+    , DOC_LYRCLSHIERARCHY_URL: '../doc/lyrClsHierarchy.wips'
+    , JP_CORR_DTL_POPUP_URL : '../djp/djpCorrDtlPopup.wips' 
+    , REL_APPL_PAGE_ROW : 20
+    , PR_PAT_PAGE_ROW : 20
+    , SEARCH_REPORT_PAGE_ROW : 20
+    , WIPS_FMLY_PAGE_ROW: 20
+    , CITN_PAGE_ROW : 20
+    , DOC_URL: '../doc/docView.wips'
+    , US_REL_APPl_ANALYSIS_URL: '../dus/dusRelApplVisual.wips'
+    , FMLY_TYPE : {W:'W', E:'E'}
+    , DOC_FMLY_LEGAL_URL :'../doc/docFmlyLegal.wips'
+    , DOC_WRAP_REQ_URL :'../doc/docWrapReqPopup.wips'    	
+    , KR_CURR_STATUS_URL : 'http://file.wipson.com/kipoinfo/kipoInfo_appl.asp'
+    , US_CURR_STATUS_URL : 'http://portal.uspto.gov/pair/PublicPair'
+    , EASYVIEWER_URL : '../ezv/easyViewer.wips'
+    , PDF_URL : '../pdf/pdfView.wips'
+    , SERVICENM: {DCN: 'DCN', DDB: 'DDB', DEP: 'DEP', DJP: 'DJP', DJT: 'DJT', DKP: 'DKP', DKR: 'DKR', DKT: 'DKT', DLN: 'DLN', DPJ: 'DPJ', DUS: 'DUS', DUT: 'DUT', DWO: 'DWO', DIN:'DIN', DCA:'DCA', DAU:'DAU'}
+    , DOC_CONFIG: {
+    	  FONT_SIZE:{L:"L", D:"D", S:"S"}
+        , FONT_WGT:{D:"D", N:"N"}
+        , FONT_LINE: {L:"L", D:"D", S:"S"}
+      }
+};

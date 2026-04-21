@@ -1,0 +1,2 @@
+;
+var docApp = angular.module('docApp', ['ngSanitize']);

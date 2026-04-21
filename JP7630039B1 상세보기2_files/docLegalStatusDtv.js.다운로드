@@ -1,0 +1,117 @@
+docApp.directive('docLegalStatusDtv', ['$timeout','$http','$compile','docCmmUtilFct', 'docCmmFct', 'docCmmLinkFct', function($timeout, $http, $compile, docCmmUtilFct, docCmmFct, docCmmLinkFct){
+	return {
+		restrict: 'A',
+		link : 	postLink  //compile 이 등록되어 있으면 link 는 수행하지 않는다.
+	};
+	
+	function preCompile(scope, elm, attrs, ctrl){
+		/**
+		 * 변수 초기화
+		 */
+		scope.docVar.docLegalStatusVO.rsltList = [];
+		scope.docVar.docLegalStatusVO.tableShow = false;
+		
+		scope.findLegalStatusList = function() {
+			
+			// 변수 docCmmVar 및 docCmmConst 로 빼기.
+			var url = "../doc/findLegalStatusList.wips";
+			var obj = { skey : scope.docVar.screenVO.skey };
+
+			$http.post(url, $.param(obj),{
+				headers: {'Content-Type': scope.docConst.JSON_CONT_TYPE}
+			}).success(function(data){
+				scope.docVar.docLegalStatusVO.rsltList = data.docPageLegalStatusVOList;
+				if(scope.docVar.docLegalStatusVO.rsltList.length > 10) {
+					scope.docVar.docLegalStatusVO.tableShow = true;
+				}
+			}).error(function(data, status){
+				/*if (/EgovBizException/.test(data.responseText)) {
+		            alert(data.responseText.match(/EgovBizException: &quot;(.*?)&quot;/)[1]);
+		            // error 처리
+		        }
+		        else {
+		            alert("에러가 발생하였습니다. " + status + "\nError: " + data.responseText);
+		        }*/
+			});
+			
+			
+		};
+		
+		/**
+		 * 법적상태 리스트는 최초 10건 출력
+		 */
+		scope.legalStatFn = function() {
+			setTimeout(function(){
+				if (scope.docVar.docLegalStatusVO.rsltList.length >= scope.docConst.SUMMARY.LEGALCNT) { //10개 이상이면 SHOW
+					$('#devLegalTbl').find('tr:gt(' + (scope.docConst.SUMMARY.LEGALCNT) + ')').hide();
+			    };
+			}, 800);
+		};
+		
+		scope.onClickLegalStatShow = function() {
+			$('#devLegalTbl').find('tr').show();
+	    	$('#devLegalShow').hide();
+	    	$('#devLegalHide').show();
+		};
+		
+		scope.onClickLegalStatHide = function() {
+			$('#devLegalTbl').find('tr:gt(' + (scope.docConst.SUMMARY.LEGALCNT) + ')').hide();
+	    	$('#devLegalHide').hide();
+	    	$('#devLegalShow').show();
+		};
+
+	};
+	
+	function postLink(scope, elm, attrs, ctrl){
+		preCompile(scope, elm, attrs, ctrl);
+		elm.empty();
+		var innerHtml = docCmmUtilFct.hereDoc(function() {/*!
+						<div ng-show="docVar.docLegalStatusVO.rsltList.length > 0" class="fullBlockWrap">
+                            <div class="dc_leftblock">
+                                <span class="first_line letter_spacing_05">법적상태</span>
+                                <!--<span class="second_line"></span>-->
+                            </div>
+                            <div class="dc_context_block">
+                               <table class="table_type2 oneline_width devDocViewOption" id="devLegalTbl">
+                                   <colgroup>
+                                    <col width="100" />
+                                    <col width="70" />
+                                    <col width="*" />
+                                   </colgroup>
+                                   <thead>
+                                       <th class="tb_head_backcolor">일자</th>
+                                       <th class="tb_head_backcolor">종류</th>
+                                       <th class="tb_head_backcolor font_align_left padd_left_10">설명</th>
+                                   </thead>
+                                   <tbody>
+                                       <tr ng-repeat="legalStatus in docVar.docLegalStatusVO.rsltList" ng-class="$index < 10 ? '' : 'devMoreTd'">
+                                            <td class="font_align_center" ng-bind-html="legalStatus.prsDt"></td>
+                                            <td class="font_align_center" ng-bind-html="legalStatus.prsCd  | legalStatusPrsCdFilter : legalStatus.symb"></td>
+                                            <td class="lineheight_reset_padd">
+                                             <p class="line_height_i16 padd_left_10" ng-bind-html="legalStatus.desc | legalStatusDescFilter : legalStatus.remark"></p> 
+											</td>
+                                       </tr>
+                                   </tbody>
+                               </table>
+                               <div class="clear"><!-- --></div>
+	                            <div class="float_l" ng-show="docVar.docLegalStatusVO.tableShow">
+								   <a class="btn_linktxt2" href="javascript:void(0);" ng-click="onClickLegalStatShow();" id="devLegalShow"><span class="float_l">더보기</span><span class="ico_plus5 marg_left_05"><!--  --></span></a>
+				                   <a class="btn_linktxt2" href="javascript:void(0);" ng-click="onClickLegalStatHide();" id="devLegalHide" style="display:none;"><span class="float_l">접기</span><span class="ico_minus3 marg_left_05"><!--  --></span></a>
+							   </div>
+							   <p class="float_r info_block"><span class="font_color_gray">Code Color : </span><strong class="font_color_green">Green</strong> = Positive action, &nbsp;<strong class="font_color_red">Red</strong> = Negative action, &nbsp;<strong class="font_color_black">Black</strong> = Neutral action</p>
+							   
+							   	<div class="clear"><!-- --></div>
+
+                            </div>
+                        </div>
+                */
+		});
+		
+		elm.html($compile(innerHtml)(scope));
+		scope.findLegalStatusList();
+		scope.legalStatFn();
+
+	};
+	
+	
+}]);

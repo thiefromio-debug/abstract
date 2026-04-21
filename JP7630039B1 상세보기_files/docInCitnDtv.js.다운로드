@@ -1,0 +1,273 @@
+docApp.directive('docInCitnDtv', ['$timeout','$http','$compile','docCmmUtilFct', 'docCmmFct', 'docCmmLinkFct', function($timeout, $http, $compile, docCmmUtilFct, docCmmFct, docCmmLinkFct){
+	return {
+		restrict: 'A',
+		link : 	postLink  //compile 이 등록되어 있으면 link 는 수행하지 않는다.
+	};
+	
+	function preCompile(scope, elm, attrs, ctrl){
+		/**
+		 * 변수 초기화
+		 */
+		scope.docVar.docInCitnVO.docInCitnPatParamVO.skey = scope.docVar.screenVO.skey;
+		scope.docVar.docInCitnVO.docInCitnPatParamVO.sortField = "XN";
+		scope.docVar.docInCitnVO.docInCitnPatParamVO.sortType = "DESC";
+		scope.docVar.docInCitnVO.docInCitnPatParamVO.pageNum = 1;
+		scope.docVar.docInCitnVO.docInCitnPatParamVO.pageRow = DocCmmConst.PR_PAT_PAGE_ROW;
+		scope.docVar.docInCitnVO.headerList = [
+		                       		       {id:'chk', fieldNm:'', sortField:'', sortType:'', arrClass:''}   //check
+		                       		     , {id:'ORG', fieldNm:'원문', sortField:'', sortType:'', arrClass:''}   //원문
+		                       		     , {id:'AN', fieldNm:'문헌번호', sortField:'XN', sortType:'DESC', arrClass:'ico_arralign ico_default', thClass:'tb_head_backcolor'}   //문서번호
+		                       		     , {id:'AD', fieldNm:'일자', sortField:'XD', sortType:'DESC', arrClass:'ico_arralign ico_default', thClass:'tb_head_backcolor'}   //일자
+		                       		     , {id:'TI', fieldNm:'발명의 명칭', sortField:'', sortType:'', arrClass:''}   //발명의 명칭
+		                       		     , {id:'APPT', fieldNm:'출원인', sortField:'', sortType:'', arrClass:''}   //발명의 명칭
+		                       		];
+		
+		
+		// 전체 카운트
+		scope.docVar.docInCitnVO.pageCountVO.totRsltCnt = 0;
+		// 전체 페이지수 
+		scope.docVar.docInCitnVO.pageCountVO.totPageCnt = 1;
+		// 보유 건수
+		scope.docVar.docInCitnVO.pageCountVO.holdCnt = 0;
+		// 미보유 건수 
+		scope.docVar.docInCitnVO.pageCountVO.missingDocCount = 0;
+		
+		scope.findInCitnList = function() {
+			
+			// 변수 docCmmVar 및 docCmmConst 로 빼기.
+			var url = "../doc/findCitnInnrPat.wips";
+			var obj = { skey : scope.docVar.docInCitnVO.docInCitnPatParamVO.skey
+						, pageNum : scope.docVar.docInCitnVO.docInCitnPatParamVO.pageNum
+						, pageRow : scope.docVar.docInCitnVO.docInCitnPatParamVO.pageRow
+						, sortType : scope.docVar.docInCitnVO.docInCitnPatParamVO.sortType
+						, sortField : scope.docVar.docInCitnVO.docInCitnPatParamVO.sortField
+					  };
+
+			$http.post(url, $.param(obj),{
+				headers: {'Content-Type': scope.docConst.JSON_CONT_TYPE}
+			}).success(function(data){
+				scope.docVar.docInCitnVO.skeys = data.skeys;
+				scope.docVar.docInCitnVO.allChk = false;
+				// 보유목록
+				if(data.citnInnrList != null && data.citnInnrList.length > 0 ) {
+					scope.docVar.docInCitnVO.rsltList = data.citnInnrList;
+					
+					//checkbox 초기화
+					if(scope.docVar.docInCitnVO.rsltList.length > 0 ){
+						
+						for(var i=0; i < scope.docVar.docInCitnVO.rsltList.length; i++){
+							scope.docVar.docInCitnVO.rsltList[i].chk = false;
+						}
+					}
+				}
+				
+				// 미보유 목록
+				if(data.citnInnrNoneList != null && data.citnInnrNoneList.length > 0 ) {
+					scope.docVar.docInCitnVO.missingList = data.citnInnrNoneList;
+				}
+				
+				if(data.citnInnrCnt != null) {
+					// 전체 건수
+					scope.docVar.docInCitnVO.pageCountVO.totRsltCnt = data.citnInnrCnt.totRsltCnt +  data.citnInnrCnt.totNoneRsltCnt;
+					// 전체 페이지
+					if(data.citnInnrCnt.totPageCnt != 0) {
+						scope.docVar.docInCitnVO.pageCountVO.totPageCnt = data.citnInnrCnt.totPageCnt;
+					}
+					// 미보유 건수
+					scope.docVar.docInCitnVO.pageCountVO.missingDocCount = data.citnInnrCnt.totNoneRsltCnt;
+				}
+				
+				
+				scope.docVar.docInCitnVO.pageCountVO.pageNum = scope.docVar.docInCitnVO.docInCitnPatParamVO.pageNum;
+				scope.docVar.docInCitnVO.pageCountVO.pageRow = scope.docVar.docInCitnVO.docInCitnPatParamVO.pageRow;
+				
+				scope.clickDevBtnMarker();
+				scope.docQueryHighLighter($("form#paramForm :input[name=hl]").val());
+			}).error(function(data, status){
+				/*if (/EgovBizException/.test(data.responseText)) {
+		            alert(data.responseText.match(/EgovBizException: &quot;(.*?)&quot;/)[1]);
+		            // error 처리
+		        }
+		        else {
+		            alert("에러가 발생하였습니다. " + status + "\nError: " + data.responseText);
+		        }*/
+			});
+			
+		};
+		
+		/**
+		 * 헤더에서 소트키 클릭시
+		 */
+		scope.inCitnListSort = function(headerIndex){
+			
+			for(var i = 0; i < scope.docVar.docInCitnVO.headerList.length; i++){
+				if(scope.docVar.docInCitnVO.headerList[i].sortField === ''){
+					continue;
+				}
+				
+				if(i === headerIndex) {
+					if(scope.docVar.docInCitnVO.headerList[i].sortType === "DESC") {
+						scope.docVar.docInCitnVO.headerList[i].sortType = "ASC";
+						scope.docVar.docInCitnVO.headerList[i].arrClass = "ico_arralign ico_arrup";
+						//scope.docVar.docInCitnVO.headerList[i].thClass = "tb_head_backcolor font_color_orange";
+						scope.docVar.docInCitnVO.headerList[i].fontClass = "font_color_orange";
+					} else {
+						scope.docVar.docInCitnVO.headerList[i].sortType = "DESC";
+						scope.docVar.docInCitnVO.headerList[i].arrClass = "ico_arralign ico_arrdown";
+						//scope.docVar.docInCitnVO.headerList[i].thClass = "tb_head_backcolor font_color_orange";
+						scope.docVar.docInCitnVO.headerList[i].fontClass = "font_color_orange";
+					}
+					scope.docVar.docInCitnVO.docInCitnPatParamVO.sortField = scope.docVar.docInCitnVO.headerList[i].sortField;
+					scope.docVar.docInCitnVO.docInCitnPatParamVO.sortType = scope.docVar.docInCitnVO.headerList[i].sortType;
+					
+				} else {
+					scope.docVar.docInCitnVO.headerList[i].arrClass = "ico_arralign ico_default";
+					//scope.docVar.docInCitnVO.headerList[i].thClass = "tb_head_backcolor";
+					scope.docVar.docInCitnVO.headerList[i].fontClass = "";
+				}
+			}
+			
+			scope.findInCitnList();
+		};
+		
+		/**
+		 * 이전페이지 클릭시
+		 */
+		scope.prevPageInCitn = function(){
+			if(scope.docVar.docInCitnVO.docInCitnPatParamVO.pageNum == 1){
+				//alert('첫번째 페이지입니다.');
+				return;
+			}
+			
+			scope.docVar.docInCitnVO.docInCitnPatParamVO.pageNum = scope.docVar.docInCitnVO.docInCitnPatParamVO.pageNum - 1;
+			scope.findInCitnList();
+		};
+		
+		/**
+		 * 다음페이지 클릭시
+		 */
+		scope.nextPageInCitn = function(){
+			if(scope.docVar.docInCitnVO.docInCitnPatParamVO.pageNum == scope.docVar.docInCitnVO.pageCountVO.totPageCnt){
+				//alert('마지막 페이지 입니다.');
+				return;
+			}
+			
+			scope.docVar.docInCitnVO.docInCitnPatParamVO.pageNum = scope.docVar.docInCitnVO.docInCitnPatParamVO.pageNum + 1;
+			scope.findInCitnList();
+		};
+		
+		//원문 아이콘 class
+		scope.pdfIconClass = function(pdfGb, ctry) {
+			if(ctry == "CA"){
+				pdfGb = 0;
+			}
+			
+			if(pdfGb == 1 || pdfGb == 2) {
+				return 'btn_openpdf';
+			}
+			else { // null
+				return "btn_dispdf";
+			}
+		};
+		
+	};
+	
+	function postLink(scope, elm, attrs, ctrl){
+		preCompile(scope, elm, attrs, ctrl);
+		elm.empty();
+		var innerHtml = docCmmUtilFct.hereDoc(function() {/*!
+					<div class="devHighlightNg" ng-if="docVar.docInCitnVO.pageCountVO.totRsltCnt > 0">
+						<div class="dc_leftblock">
+                            <span class="first_line">문헌 내 인용</span>
+                        </div>
+						<div class="dc_context_block">
+							<div class="float_l">
+                               <span class="float_l marg_right_20">전체 <span class="font_type_bold page_backcolor_step1_text font_valign_00" ng-bind="docVar.docInCitnVO.pageCountVO.totRsltCnt"></span> 건</span>
+                           </div>
+                           <div class="float_r">
+                           		<div class="paginate_type3 pagenate_align">
+                           		 	<span class="pagenum"><span ng-bind="docVar.docInCitnVO.pageCountVO.pageNum"></span>/<span ng-bind="docVar.docInCitnVO.pageCountVO.totPageCnt"></span></span>
+                               		<a ng-if="docVar.docInCitnVO.pageCountVO.pageNum > 1" href="javascript:void(0);" ng-click="prevPageInCitn();">
+                                    	<span class="direction"><span class="prev"><!-- --></span><span class="ir_pm">이전</span></span>
+                                    </a>
+                                    <span ng-if="docVar.docInCitnVO.pageCountVO.pageNum <= 1"> 
+                                    	<span class="direction btn_dis_type"><span class="prev"><!-- --></span><span class="ir_pm">이전</span></span>
+                                    </span>
+                                    <a ng-if="docVar.docInCitnVO.pageCountVO.totPageCnt > docVar.docInCitnVO.pageCountVO.pageNum" href="javascript:void(0);" ng-click="nextPageInCitn();">
+                                    	<span class="direction"><span class="next"><!-- --></span><span class="ir_pm">다음</span></span>
+                                    </a>
+                                    <span ng-if="docVar.docInCitnVO.pageCountVO.totPageCnt <= 1 || docVar.docInCitnVO.pageCountVO.pageNum == docVar.docInCitnVO.pageCountVO.totPageCnt"> 
+                                    	<span class="direction btn_dis_type"><span class="next"><!-- --></span><span class="ir_pm">다음</span></span>
+                                    </span> 
+                                </div>
+                           </div>
+                           <div class="clear"><!-- float_l table_type2 oneline_width--></div>
+                           
+                           <table class="marg_top_05 table_type2 oneline_width devDocViewOption">
+                               <colgroup>
+                                <col width="30" />
+                                <col width="50" />
+                                <col width="140" />
+                                <col width="90" />
+                                <col width="*" />
+                                <col width="250" />
+                               </colgroup>
+                               <thead>
+                                   <tr>
+	                                   <th class="tb_head_backcolor">No</th>
+	                                   <th class="tb_head_backcolor">원문</th>
+	                                   <th class="tb_head_backcolor"><a href="javascript:void(0);" ng-click="inCitnListSort(2)" ng-class="docVar.docInCitnVO.headerList[2].fontClass"><span ng-bind-html="docVar.docInCitnVO.headerList[2].fieldNm"></span><span ng-class="docVar.docInCitnVO.headerList[2].arrClass"><!-- --></span></a></th>
+	                                   <th class="tb_head_backcolor"><a href="javascript:void(0);" ng-click="inCitnListSort(3)" ng-class="docVar.docInCitnVO.headerList[3].fontClass"><span ng-bind-html="docVar.docInCitnVO.headerList[3].fieldNm"></span><span ng-class="docVar.docInCitnVO.headerList[3].arrClass"><!-- --></span></a></th>
+	                                   <th class="tb_head_backcolor font_align_left">발명의 명칭</th>
+	                                   <th class="tb_head_backcolor txt_type">출원인</th>
+                                   </tr>
+                               </thead>
+                               <tbody>
+                                   <tr ng-show="docVar.docInCitnVO.rsltList.length == 0">
+                                		<td colspan="6" class="font_align_center">
+                                			<p>해당 정보가 없습니다.</p>
+                                		</td>
+                                	</tr>
+                                   	<tr ng-show="docVar.docInCitnVO.rsltList.length > 0" ng-repeat="inCitn in docVar.docInCitnVO.rsltList">
+                                   	    <td class="font_align_center" ng-bind="((docVar.docInCitnVO.pageCountVO.pageNum - 1) * docVar.docInCitnVO.pageCountVO.pageRow) + $index+1"></td>
+                                        <td class="font_align_center">
+                                        	<a ng-hide="inCitn.pdfGb == '0'" doc-pdf-split-func-dtv ng-model="inCitn.patNum" pdf-skey="{{inCitn.skey}}" ng-class="pdfIconClass(inCitn.pdfGb, inCitn.ctry) + ' marg_auto marg_top_05'"><span class="screen_hide">PDF</span></a>
+                                        	<span ng-show="inCitn.pdfGb == '0'" ng-class="pdfIconClass(inCitn.pdfGb, inCitn.ctry) + ' marg_auto marg_top_05'"><span class="screen_hide">PDF</span></span>
+                                        </td>
+                                        <td>
+                                        	<a ng-hide="inCitn.skey == null || inCitn.skey == ''" doc-link-dtv ng-model="inCitn" ng-bind-html="inCitn.patNum"></a>
+                                        	<span ng-show="inCitn.skey == null || inCitn.skey == ''" ng-bind-html="inCitn.patNum"></span>
+                                        </td>
+                                        <td class="font_align_center" ng-bind-html = "inCitn.patDt"></td>
+                                        <td>
+                                        	<a ng-hide="inCitn.skey == null || inCitn.skey == ''" doc-link-dtv ng-model="inCitn" ng-bind-html="inCitn.invTi"></a>
+                                        	<span ng-show="inCitn.skey == null || inCitn.skey == ''" ng-bind-html="inCitn.invTi"></span>
+                                        </td>
+                                        <td class="txt_type" ng-bind-html="inCitn.appt"></td>
+                                   </tr>
+                               </tbody>
+                           </table>
+                           <div class="icon_tipremark_block">
+                               <span class="items_last"><img src="../image/icon/ico_in.gif" class="imgico_align"><span class="info_error_textstyle">기타 57개국</span></span>
+                           </div>
+                           <div class="clear"><!-- --></div>
+                           <div class="remark_footblock">
+                              <p ng-hide="docVar.docInCitnVO.missingList.length == 0">
+                              	 <span class="title_text2">* 미포함 문헌 : <span ng-bind="docVar.docInCitnVO.missingList.length"></span>건 (절차상 미공개 문헌, 과거분 문헌, WIPS 보유 데이터 범위에 포함되지 않는 문헌)</span>
+								 <span ng-repeat="missing in docVar.docInCitnVO.missingList">
+									<span ng-class="{'font_color_888': true, 'text_divbar': !$last, 'float_l': $last}" ng-bind-html="missing.patNum"></span>
+								 </span>
+                              </p> 
+                           </div>
+                           <div class="list_space"><!-- --></div>
+						</div>
+					</div>
+                */
+		});
+		
+		elm.html($compile(innerHtml)(scope));
+		scope.findInCitnList();
+	};
+	
+	
+}]);

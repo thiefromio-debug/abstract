@@ -1,0 +1,27 @@
+;
+docApp.controller('DkrAdminPrntConfirmCtrl', ['$rootScope', '$scope', '$http', 'docCmmFct', 'docCmmLinkFct', 'docCmmUtilFct', 'docCmmUiFct' ,function($rootScope, $scope, $http, docCmmFct, docCmmLinkFct, docCmmUtilFct, docCmmUiFct) {
+	$scope.onClickPrintCancel = function() {
+		$('#devPrntConfirm').hide();
+	};
+	
+	$scope.onClickPrintPopup = function(skey) {
+		$('#devPrntConfirm').hide();
+		
+		var url = "../dkr/dkrAdminPrntPopup.wips";
+		var width = 1120;
+		var height = 850;
+		var popupName = "dkrAdminPrntPopupView";
+		var paramList = [];
+		
+		var toolbar = 0;
+		var menubar = 0;
+		var status = 0;
+		var scrollbars = 1;
+		var resizable = 1;
+		var copyhistory = 0;
+		
+		paramList[paramList.length] = {fieldNm: 'skey', fieldValue: skey};
+		docCmmLinkFct.openPopupUrl(url, popupName, paramList, width, height, toolbar, menubar, status, scrollbars, resizable, copyhistory);
+
+	};
+}]);

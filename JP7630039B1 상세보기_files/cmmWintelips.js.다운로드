@@ -1,0 +1,594 @@
+$(function() {
+	
+	/**
+	 *  
+	 * input 초기화
+	 */
+	$.fn.clearSrchfld = function() {
+	    return this.find("input").each(function() {
+	        var type = this.type, tag = this.tagName.toLowerCase(), inputId = this.id;
+	        if (type === 'text'	// || type === 'password' || type === 'hidden' || tag === 'textarea'
+	        ){
+	            this.value = '';
+	        }
+	        else if (inputId.indexOf('MY') < 0) {
+	        	if (type === 'checkbox'){
+		            this.checked = false;
+		        }
+	        }
+	    });
+	};
+	
+	/**
+	 * 공통 도면팝업 호출
+	 */
+	 $.openImagePopup = function(skey, rDetailImageNum) {
+		var url			= "../lyr/popDrawing.wips",
+		name		= "_popDrawingWT",
+		width 		= 1150,
+		height 		= 720,
+		left 		= window.screenLeft + (document.body.clientWidth - width)/2, 
+		top 		= window.screenTop + (document.body.clientHeight - height)/2,
+		imgPopup	= null,
+		form 		= document.createElement('form');
+		
+		$(form).attr('action', url)
+			   .attr('id', 'devExmpImgForm')
+			   .attr('method', 'post')
+			   .attr('target', name);
+		$(form).html('<input type="hidden" name="skey" value="' + skey +'" />'
+				 + '<input type="hidden" name="rDetailImageNum" value="' + rDetailImageNum +'" />');
+
+		document.body.appendChild(form);
+		
+		imgPopup = window.open("about:blank", name, 'left=' + left + ',top=' + top + ',width=' + width + ',height=' + height + ',toolbar=0,menubar=0,status=1,scrollbars=0,resizable=1,copyhistory=0');
+		
+		//이지뷰어 도면팝업 호출한 경우
+		if (!(typeof imgDrwPopup == "undefined")) {
+			imgDrwPopup = imgPopup;
+		}
+		
+		if (imgPopup === null) {
+			alert("차단된 팝업을 허용해 주십시오.");
+		} else {
+			$(form).submit();
+			$('form#devExmpImgForm').remove();
+			imgPopup.focus();
+		}
+	};
+	
+	/**
+	 * 공통 원본보기 호출
+	 */ 
+	$.openOriginalImageWindow = function(originalImgPath){
+		if(/newImgConverter.wips/.test(originalImgPath)){
+			originalImgPath = (originalImgPath).replace("newImgConverter.wips", "originalImage.wips").replace("&maxWidth=680&maxHeight=680", "");
+		}else{
+			originalImgPath = ("../lyr/originalImage.wips?originImageUrl=" + originalImgPath).replace("-4.jpg", ".tif");
+		}
+		window.open(originalImgPath, "_originalImageWT");
+	}
+	
+	/**
+	 * 공통 NMT 호출
+	 */ 
+	$.openNmtWindow = function(skey, tabGb){
+		if (skey.length == 0) {
+			alert('NMT 실시간 번역 호출 에러 : skey is Empty');
+			return false;
+		}
+		if(tabGb == null){
+			tabGb = "AB";
+		}
+		var form 	= document.createElement('form'),
+			url			= '../doc/docViewNMT.wips?skey='+skey+'&tabGb='+tabGb,
+			popName		= "_nmtViewWT";
+		
+		$(form).attr('action', url)
+			.attr('id', 'nmtForm')
+			.attr('method', 'post')
+			.attr('target', popName);
+		$(form).html('<input type="hidden" name="hl" value="' + $("#hl").val() +'" />');
+		document.body.appendChild(form);
+		
+		window.open('../html/cmm/popup_blank.html', popName, "left=50, top=0, height=1180, width=1200, scrollbars=yes, resizable=yes");
+		$(form).submit();
+	}
+	
+	/**
+	 * 공통 비교보기 팝업
+	 * popupMode = 'Y', popupMode = 'N' 팝업 사용 여부
+	 * skeys : skey ',' 구분 (5415028002685,5415028001272,5415028003202)
+	 * hlKeyword : 
+	 * 
+	 * return : 정상 true, 비정상 false
+	 */
+	$.cmmCopWindowOpen = function(popupMode, skeys, hlKeyword) {
+		var form 		= document.createElement('form'),
+			url			= "../cop/copView.wips",
+			popName		= "_copViewWT",
+			copPop		= null;
+		
+		if (skeys.length == 0) {
+			alert('선택한 특허가 없습니다.');
+			return false;
+		}
+//		var skeysCnt = skeys.replace(/ /g, "").split(",").length;
+//		if (skeysCnt < 2) {
+//			alert('2건 이상의 문헌을 선택해주십시오.');
+//			return false;
+//		}
+//		skeys = LZString.compressToBase64(skeys);
+		if(popupMode == "Y"){
+			$(form).attr('action', url)
+				   .attr('id', 'cmmCopWindowOpenForm')
+				   .attr('method', 'post')
+				   .attr('target', popName);
+			$(form).html('<input type="hidden" name="skeys" value="' + skeys +'" />'
+					+ '<input type="hidden" name="hlKeyword" value="'+ hlKeyword +'" />');
+			document.body.appendChild(form);
+			
+			copPop = window.open('../html/cmm/popup_blank.html', popName, "left=50, top=0, height=500, width=600, scrollbars=yes, resizable=yes");
+			
+			if (copPop === null){
+				alert("차단된 팝업을 허용해 주십시오.");
+			} else {
+				$(form).submit();
+				$('form#cmmCopWindowOpenForm').remove();
+				copPop.focus();
+			}
+		}
+		return true;
+	};
+	
+	/**
+	 * 공통 스마트클라우드 팝업
+	 * popupMode = 'Y', popupMode = 'N' 팝업 사용 여부
+	 * skeys : skey ',' 구분 (5415028002685,5415028001272,5415028003202)
+	 * 
+	 * return : 정상 true, 비정상 false
+	 */
+	$.cmmWcdWindowOpen = function(popupMode, skeys) {
+		
+		var form 		= document.createElement('form'),
+			url				= "../wcd/wcdMain.wips",
+			popName	= (popupMode == "Y" ? "_wcdViewWT" : "_blank"),
+			wcdPop		= null;
+		
+		if (skeys.length == 0) {
+			alert('선택한 문헌이 없습니다.');
+			return false;
+		}
+		
+		// 압축
+		skeys = LZString.compressToBase64(skeys);
+		
+		$(form).attr('action', url)
+			   .attr('id', 'cmmWcdWindowOpenForm')
+			   .attr('method', 'post')
+			   .attr('target', popName);
+		$(form).html('<input type="hidden" name="devSearchedSkeys" value="' + skeys +'" />');
+		document.body.appendChild(form);
+		
+		if(popupMode == "Y"){
+			wcdPop = window.open('../html/cmm/popup_blank.html', popName, "left=50, top=0, height=500, width=600, scrollbars=yes, resizable=yes");
+			
+			if (wcdPop === null){
+				alert("차단된 팝업을 허용해 주십시오.");
+			} else {
+				$(form).submit();
+				$('form#cmmWcdWindowOpenForm').remove();
+				wcdPop.focus();
+			}
+		}
+		else {
+			$(form).submit();
+			$('form#cmmWcdWindowOpenForm').remove();
+		}
+		return true;
+	};
+	
+	/**
+	 * 공통 동향분석 Advisor 팝업
+	 * popupMode = 'Y', popupMode = 'N' 팝업 사용 여부
+	 * skeys : skey ',' 구분 (5415028002685,5415028001272,5415028003202)
+	 * 
+	 * return : 정상 true, 비정상 false
+	 */
+	$.cmmTrdWindowOpen = function(popupMode, skeys) {
+		
+		var form 		= document.createElement('form'),
+			url				= "../trd/trdMain.wips",
+			popName	= (popupMode == "Y" ? "_wcdViewWT" : "_blank"),
+			trdPop		= null;
+		
+		if (skeys.length == 0) {
+			alert('선택한 문헌이 없습니다.');
+			return false;
+		}
+		
+		// 압축
+		skeys = LZString.compressToBase64(skeys);
+		
+		$(form).attr('action', url)
+			   .attr('id', 'cmmTrdWindowOpenForm')
+			   .attr('method', 'post')
+			   .attr('target', popName);
+		$(form).html('<input type="hidden" name="devSearchedSkeys" value="' + skeys +'" />');
+		document.body.appendChild(form);
+		
+		if(popupMode == "Y"){
+			trdPop = window.open('../html/cmm/popup_blank.html', popName, "left=50, top=0, height=500, width=600, scrollbars=yes, resizable=yes");
+			
+			if (trdPop === null){
+				alert("차단된 팝업을 허용해 주십시오.");
+			} else {
+				$(form).submit();
+				$('form#cmmTrdWindowOpenForm').remove();
+				trdPop.focus();
+			}
+		}
+		else {
+			$(form).submit();
+			$('form#cmmTrdWindowOpenForm').remove();
+		}
+		return true;
+	};
+	
+	/**
+	 * 공통 IE 버전 확인
+	 * 
+	 * return : 7 || 8 || 9 || 10
+	 */
+	$.getInternetExplorerVersion = function() {    
+	    var rv = -1; // Return value assumes failure.    
+	    if (navigator.appName == 'Microsoft Internet Explorer') {        
+	         var ua = navigator.userAgent;        
+	         var re = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");        
+	         if (re.exec(ua) != null)            
+	             rv = parseFloat(RegExp.$1);    
+	        }    
+	    return rv; 
+	};
+	
+	/**
+	 * 'DC01'사용 제한 Link Check 함수
+	 * 
+	 */
+	$.checkTestIdLink = function(type) {
+		
+		var url = "";
+		var target = "";
+		var prodCd = $('#devProdCd').val();
+		
+		if (type === "sdi") {
+			url = "../sdi/mySdi.wips";
+			target = "_mySdi";
+		} else if (type === "myf") {
+			url = "../myf/myfPatentMain.wips";
+			target = "_myfPatentMain";
+//		} else if (type === "buy") {
+//			url = "../cts/productBuy.wips";
+//			target = "_self";
+//		} else if (type === "buySvc") {
+//			url = "../cts/productBuy.wips?svc=1";
+//			target = "_self";
+//		} else if (type === "usr") {
+//			url = "../cts/userAgreement.wips";
+//			target = "_self";
+		} else if (type === "join") {
+			url = "../mbr/join.wips";
+			target = "_self";
+		} else if (type === "myp") {
+			url = "../myp/mypMbrInfoMain.wips";
+			target = "_blank";
+		} else if (type === "mypDwn") {
+			url = "../myp/mypDownload.wips";
+			target = "_blank";
+		} else if (type === "mypPnt") {
+			url = "../myp/mypUsePnt.wips";
+			target = "_blank";
+		} else if (type === "mypMemberAuth") {
+			url = "../cmm/mypMemberAuth.wips";
+			target = "_blank";
+		} else if (type === "find") {
+			url = "../mbr/findMembrId.wips";
+			target = "_self";
+		}
+
+		if (type === "join") {
+			alert('!죄송합니다.\n\nNew WINTELIPS 베타 서비스 기간 동안 회원가입이 제한 됩니다. '
+					+ '\nWINTELIPS 서비스를 이용해 주시기 바랍니다.\n정식 오픈 시 바로 사용할 수 있습니다.'
+					+ '\n\n문의 - 윕스 고객센터 (TEL : 02-726-1100 / E-mail : help@wips.co.kr)');
+			return;
+//			var cofm = confirm('!죄송합니다.\n\nNew WIPS ON 베타 서비스 기간 동안 회원가입이 제한 됩니다.\nWIPS ON 회원가입 페이지로 이동하시겠습니까?'
+//					+ '\n\n문의 - 윕스 고객센터 (TEL : 02-726-1100 / E-mail : help@wips.co.kr)');
+//			if (cofm) {
+//				window.open("http://www.wipson.com/service/mbr/memberRegister.wips", '_blank');
+//			} else {
+//				
+//			}
+		} else {
+			if (prodCd === "" || prodCd === "DC01") {
+				alert('!죄송합니다.\n\nNew WINTELIPS 베타 서비스 기간 동안 사용이 제한된 기능입니다. \n정식 오픈 시 바로 사용할 수 있습니다.');
+				return;
+			} else {
+				window.open(url, target);
+			}
+		}
+
+	};
+	
+	/**
+	 * Smart quote(“, ‘)를 Straight quote(", ')로 변경합니다.
+	 */
+	$.convertSmartQuoteToStraightQuote = function(value) {
+		value = value.replace( /\u2018|\u2019|\u201A|\uFFFD/g, "'" );
+	    value = value.replace( /\u201c|\u201d|\u201e/g, '"' );
+	    
+	    return value;
+	};
+	
+	/**
+	 * Full width character를 일반 width character로 변경합니다.
+	 */
+	$.convertFullWidthCharacter = function(value) {
+		value = value.replace(/＂/g, '"');
+		value = value.replace(/＇ /g, "'");
+		
+		return value;
+	};
+
+	/**
+	 * Zero width character를 일반 공백으로 변경합니다.
+	 */
+	$.convertZeroWidthCharacter = function(value) {
+		value = value.replace(/​/g, ' ');
+		
+		return value;
+	};
+});
+
+//프로모션 포인트 충전 
+function updatePromotionPnt(){
+	var returnObj = {};
+	$.ajax({
+	    url         : "../dwn/updatePromotionPnt.wips",
+	    type        : 'POST',
+	    cache       : false,
+	    async       : false,
+	    dataType    : 'json',
+	    success     : function(data, textStatus, jqXHR) {
+	    	alert("프로모션 포인트 충전이 완료 되었습니다.");
+//	    	$(".ico_point_infinity").addClass('disabled');	//프로모션 충전 안내 아이콘 active -> disabled로 변경 
+	    	//promotion_flag = 1 > 주황색아이콘 (충전이력이 있고, 보유포인트가 충전포인트보다 작거나 같다면 아이콘=주황색, 그외=그레이)
+	    	//promotion_flag = 0 > 그레이아이콘 (그외)
+	    	if (data.dwnPointVO.promotionFlag == '1') {
+	    		$(".ico_point_infinity").removeClass('disabled'); // 포인트충전 아이콘 상태 = 주황색	
+	    	}
+	    	else {
+	    		$(".ico_point_infinity").addClass('disabled');	  // 포인트충전 아이콘 상태 = 그레이
+	    	}
+	    	returnObj.data = data;
+	    },
+	    error   : function(jqXHR, textStatus, errorThrown) {
+	    	alert("프로모션 충전에 실패했습니다. ("+jqXHR.status+" "+errorThrown+")");
+	    	return ture;
+	    }
+	});
+	
+	return returnObj.data;
+}
+
+function makeHalfDescription(textDescription, halfLength, serviceNm) {
+	var rsltLeft = ""
+		, rsltRigth = "";
+	var rsltArr = [];
+	if(textDescription == null){
+		textDescription = "";
+	}
+	
+	if(serviceNm === "ezv"){
+		textDescription = textDescription.replace(/\.gif/igm, "*gif");
+		textDescription = textDescription.replace(/\.jpg/igm, "*jpg");
+		textDescription = textDescription.replace(/\.jpg/img, "*jpg");
+		textDescription = textDescription.replace(/\.tif/img, "*tif");
+		textDescription = textDescription.replace(/.wipson.com/img, "*wipson*com");
+		textDescription = textDescription.replace(/\..\/cmm\/imgConverter.wips/igm, "**/cmm/imgConverter*wips");
+		
+		var lang = "";
+			
+		textDescription = textDescription.split("．").join(".");
+		textDescription = textDescription.split("。").join(".");
+			
+		rsltLeft = textDescription.substring(0,halfLength);
+		rsltRigth = textDescription.substring(halfLength, textDescription.length);
+		
+//		var dotIndex = rsltRigth.indexOf(".");
+//			
+//		if(dotIndex >= 0){
+//			rsltLeft = textDescription.substring(0 , halfLength + dotIndex + 1);
+//			rsltRigth = textDescription.substring(halfLength + dotIndex , textDescription.length).replace(/^[.>]{1}/,"");
+//		}
+//		else {
+//			rsltLeft += rsltRigth;
+//			rsltRigth = "";	
+//		}
+		
+		var dotIndex2 = rsltRigth.indexOf("<");
+		var dotIndex = rsltRigth.indexOf(">");
+		
+		if(dotIndex > 0 && dotIndex <  dotIndex2){			
+			rsltLeft = textDescription.substring(0 , rsltLeft.length + dotIndex + 1);
+			rsltRigth = textDescription.substring(rsltLeft.length , textDescription.length).replace(/^[.>]{1}/,"");
+		}
+					
+		rsltLeft = rsltLeft.replace(/\*gif/igm, ".gif");
+		rsltLeft = rsltLeft.replace(/\*jpg/igm, ".jpg");
+		rsltLeft = rsltLeft.replace(/\*jpg/img, ".jpg");
+		rsltLeft = rsltLeft.replace(/\*tif/img, ".tif");
+		rsltLeft = rsltLeft.replace(/\*wipson\*com/img, ".wipson.com");
+		rsltLeft = rsltLeft.replace(/\**\/cmm\/imgConverter\*wips/igm, "../cmm/imgConverter.wips");
+		
+		rsltRigth = rsltRigth.replace(/\*gif/igm, ".gif");
+		rsltRigth = rsltRigth.replace(/\*jpg/igm, ".jpg");
+		rsltRigth = rsltRigth.replace(/\*jpg/img, ".jpg");
+		rsltRigth = rsltRigth.replace(/\*tif/img, ".tif");
+		rsltRigth = rsltRigth.replace(/\*wipson\*com/img, ".wipson.com");
+		rsltRigth = rsltRigth.replace(/\**\/cmm\/imgConverter\*wips/igm, "../cmm/imgConverter.wips");
+		
+	} else {
+		if($('#serviceNm').val() == 'DCA' || $('#serviceNm').val() == 'DAU'){
+			rsltLeft = textDescription;
+			rsltArr.push(rsltLeft, rsltRigth);
+			return rsltArr;
+		} else {
+			var textLength = 0; // 누적 길이
+			var htmlArray = $.parseHTML(textDescription);
+			
+			if(htmlArray.length < 2) {
+				rsltLeft += textDescription;
+			} else {
+			
+				for (var i = 0; i < htmlArray.length; i++) {
+					textLength += htmlArray[i].textContent.length;
+					if(textLength < halfLength) {// 좌측 : 누적된 text 길이가 총 길이의 반(기준)보다 작을 경우
+						if(htmlArray[i].outerHTML != undefined) {
+		//						leftDtlDesc += htmlArray[i].outerHTML;  
+							rsltLeft += htmlArray[i].outerHTML;  
+						} else {
+							if(htmlArray[i].nodeName == "#comment") {
+								//leftDtlDesc += htmlArray[i];
+							} else {
+		//							leftDtlDesc += htmlArray[i].textContent;
+								rsltLeft += htmlArray[i].textContent;
+							}
+						}
+					} else {// 우측
+						if(htmlArray[i].outerHTML != undefined) {
+		//						rightDtlDesc += htmlArray[i].outerHTML;  
+							rsltRigth += htmlArray[i].outerHTML;  
+						} else {
+							if(htmlArray[i].nodeName == "#comment") {
+								//
+							} else {
+		//							rightDtlDesc += htmlArray[i].textContent;
+								rsltRigth += htmlArray[i].textContent;
+							}
+						}
+					}
+				}
+			
+			}
+		}
+	}
+	rsltArr.push(rsltLeft, rsltRigth)
+	return rsltArr;
+};
+
+//[S] Session Storage Function
+//스토리지 읽기
+function fnSessionStorageGet(key){
+	var val = sessionStorage.getItem(key);
+	//console.log("sessionStorage ("+key+") 읽기 : "+val);
+	return val;
+}
+
+//스토리지 읽기 (JSON)
+function fnSessionStorageObjGet(gkey, key){
+	try {
+		var tmp = JSON.parse(sessionStorage.getItem(gkey));
+		if(tmp == null){
+			return '';
+		}
+		var val = eval("tmp."+key);
+		return val;
+	} catch (e) {
+		console.log("sessionStorage.getItem err");
+		return '';
+	}
+}
+
+//스토리지 저장
+function fnSessionStorageSet(key, val){
+	var size = fnSessionStorageSize(val.length);
+	if(size > 4800000){
+		var dataSize = 0;
+		for(var i=0 ; i  <  sessionStorage.length ; i++){
+			var key = sessionStorage.key(i);
+			var value = sessionStorage.getItem(key);
+			
+			sessionStorage.removeItem(key);
+			dataSize = dataSize + dataVal.length;
+			if(dataSize >= val.length){
+				break;
+			}
+		}
+	}
+	sessionStorage.setItem(key, val);
+}
+
+//스토리지 저장 Json 형식
+function fnSessionStorageObjSet(gkey, key, val){
+	try {
+		var tmp = JSON.parse(sessionStorage.getItem(gkey));
+		if(tmp == null){tmp = {};}
+		
+		// sessionStorage 입력 데이터 초과시 입력된순서대로 삭제 처리
+		var size = fnSessionStorageSize(val.length);
+		if(size > 4800000){
+			var dataSize = 0;
+			$.each(tmp, function(key, dataVal){
+				tmp[key] = null;
+				delete tmp[key];
+				dataSize = dataSize + dataVal.length;
+				if(dataSize >= val.length){
+					return false;
+				}
+			});
+		}
+		
+		tmp[key] = val;
+		sessionStorage.setItem(gkey, JSON.stringify(tmp));
+		tmp = null;
+	} catch (e) {
+		console.log("fnSessionStorageObjSet err");
+	}
+}
+
+//Session Storage Size
+function fnSessionStorageSize(dataSize){
+	var size = 0;
+	var key = "";
+	for(var i=0 ; i  <  sessionStorage.length ; i++){
+		key = sessionStorage.key(i);
+		size = size + sessionStorage.getItem(key).length;
+	}
+	var key = null;
+	
+	//console.log("fnSessionStorageSize =" + size);
+	return size+dataSize;
+}
+
+//스토리지 삭제
+function fnSessionStorageRemove(key){
+	sessionStorage.removeItem(key);
+}
+
+//모든 스토리지 삭제
+function fnSessionStorageClear(){
+	sessionStorage.clear();
+}
+
+function fnSessionStorageList(){
+	var size = 0;
+	for(var i=0 ; i  <  sessionStorage.length ; i++){
+		var key = sessionStorage.key(i);
+		var value = sessionStorage.getItem(key);
+		console.log(key + "=" + value + " ===> "+value.length);
+		
+		size = size + value.length;
+		console.log("size =" + size);
+	}
+}
+//[E] Session Storage Function

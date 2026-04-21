@@ -1,0 +1,93 @@
+/*!
+ * jqtimeline Plugin
+ * http://goto.io/jqtimeline
+ *
+ * Copyright 2013 goto.io
+ * Released under the MIT license
+ *
+ * 2015년 8월 24일 (주)WIPS 최성원 수정 - 월 제거
+ */
+;
+(function($) {
+	var pluginName = 'jqTimeline' , 
+		defaults = {
+			numYears : 3,
+			gap : 25, // gap between lines
+			showToolTip : true,
+			groupEventWithinPx : 6, // Will show common tooltip for events within this range of px
+			events : [],
+			click : null //Handler for click event for event
+		};
+	
+	function jqTimeLine(element, options) {
+		this.options = $.extend({}, defaults, options);
+		this.$el = $(element);
+		this._defaults = defaults;
+		this._name = pluginName;
+		this._offset_x = 14; // Starting position of the line
+		//this._current_offset_x = 14; // var used for laying out months to the hor line
+		this._gap = this.options.gap; 
+		this._eDotWidth = 16; // Width of the event dot shown in the ui
+		this.$mainContainer;
+		this.init();
+	};
+
+	/**
+	 * TimeLine 생성시 연표 이벤트 초기화
+	 */
+	jqTimeLine.prototype.init = function() {
+		_this = this;
+		//element 내부를 비운다.
+		_this.$el.empty();
+		this._generateMarkup();
+		//Attach a event handler to global container
+	};
+
+	/**
+	 * 초기 라인 및 이벤트 생성
+	 */
+	jqTimeLine.prototype._generateMarkup = function() {
+		var _this = this;
+		var i = 0,j=0;
+		var totalWidth = (_this.options.numYears) * this._gap + 3;
+		var containerWidth = totalWidth + 30;
+		var $mainContainer = this.$mainContainer = $(
+			'<div class="devTimeLine" style="width:'+containerWidth+'px">' + 
+				'<div class="main_line" style="width:'+totalWidth+'px"></div>' + 
+			'</div>'
+		);
+
+		//Start adding events
+		for(var k=0;k<_this.options.events.length;k++){
+			var e = _this.options.events[k];
+			$mainContainer.append(_this._getEventMarkup(e));
+		}
+		
+		_this.$el.append($mainContainer);
+	};
+
+	/**
+	 * 이벤트 출력부
+	 * @param e
+	 * @returns
+	 */
+	jqTimeLine.prototype._getEventMarkup = function(e){
+		var _this = this;
+		var eName = e.name;
+		var d = e.on == '999' ? '-' : e.on;
+		var yn = e.id;
+		var leftVal = Math.ceil(_this._offset_x + yn * _this.options.gap - _this._eDotWidth/2 + _this.options.gap/2);
+		var $retHtml = $('<div class="event" id="event_'+e.id+'" style="left:'+leftVal+'px;">&nbsp;<div class="year">' + d + '</div><div class="title" style="left:' + (Math.ceil(_this._gap / 2) * -1 + 10) + 'px;width:' + _this._gap + 'px;">' + eName + '</div></div>');
+		return $retHtml;
+	};
+
+	$.fn.jqtimeline = function(options) {
+		return this.each(function() {
+			var element = $(this);
+			if(element.data('devTimeLine')) return;
+			var timeline = new jqTimeLine(this, options);
+			element.data('devTimeLine', timeline);
+		});
+	};
+
+}(jQuery, window));

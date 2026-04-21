@@ -1,0 +1,231 @@
+docApp.directive('docLinkDtv', ['$timeout','$http','$compile','docCmmFct', function($timeout, $http, $compile, docCmmFct){
+	return {
+		restrict: 'A',
+		link : 	postLink  //compile 이 등록되어 있으면 link 는 수행하지 않는다.
+	};
+	
+	function postLink(scope, elm, attrs, ctrl){
+		scope.$watch(attrs.ngModel, function(value){
+			if(value.skey == null || value.skey == '' ){
+				elm.attr("href", "javascript:alert('입력 받은 키가 존재하지 않습니다.');");    
+			} else {
+				var url = docCmmFct.getDocUrl(value.ctry, value.skey) + "?skey=" + value.skey; //DocConst.DOC_URL: '../doc/docView.wips'
+				elm.attr("href", url);
+				elm.prop("target", "_blank");
+			}
+			
+		});
+	};
+}]);
+
+
+docApp.directive('docCitnLinkDtv', ['$timeout','$http','$compile','docCmmFct', function($timeout, $http, $compile, docCmmFct){
+	return {
+		restrict: 'A',
+		link : 	postLink  //compile 이 등록되어 있으면 link 는 수행하지 않는다.
+	};
+	
+	function postLink(scope, elm, attrs, ctrl){
+		scope.$watch(attrs.ngModel, function(value){
+			var skey = value.grtSkey != null ? value.grtSkey : value.publSkey;
+			if(skey == null || skey == ''){
+				elm.attr("href", "javascript:alert('입력 받은 키가 존재하지 않습니다.');");    
+			} else {
+				
+				var url = docCmmFct.getDocUrl(value.ctry, value.skey) + "?skey=" + skey; //DocConst.DOC_URL: '../doc/docView.wips'
+				elm.attr("href", url);
+				elm.prop("target", "_blank");
+			}
+			
+		});
+	};
+}]);
+
+
+docApp.directive('docLinkFmlyDtv', ['$timeout','$http','$compile','docCmmFct', function($timeout, $http, $compile, docCmmFct){
+	return {
+		restrict: 'A',
+		link : 	postLink  //compile 이 등록되어 있으면 link 는 수행하지 않는다.
+	};
+	
+	function postLink(scope, elm, attrs, ctrl){
+		scope.$watch(attrs.ngModel, function(skey){
+			var url = DocCmmConst.DOC_FMLY_URL + "?skey=" + skey; //docConst.DOC_FMLY_URL: '../doc/docFmlyLegal.wips'
+			elm.attr("href", url);    
+			elm.attr("target", "_blank");
+		});
+	};
+}]);
+
+docApp.directive('docLinkRelApplDtv', ['$timeout','$http','$compile','docCmmFct', function($timeout, $http, $compile, docCmmFct){
+	return {
+		restrict: 'A',
+		link : 	postLink  //compile 이 등록되어 있으면 link 는 수행하지 않는다.
+	};
+	
+	function postLink(scope, elm, attrs, ctrl){
+		scope.$watch(attrs.ngModel, function(skey){
+			var url = DocCmmConst.US_REL_APPl_ANALYSIS_URL + "?skey=" + skey; //docConst.DOC_FMLY_URL: '../doc/docFmlyLegal.wips'
+			elm.attr("href", url);    
+			elm.attr("target", "_blank");
+		});
+	};
+}]);
+
+docApp.directive('docLinkCitnDtv', ['$timeout','$http','$compile','docCmmFct', function($timeout, $http, $compile, docCmmFct){
+	return {
+		restrict: 'A',
+		link : 	postLink  //compile 이 등록되어 있으면 link 는 수행하지 않는다.
+	};
+	
+	function postLink(scope, elm, attrs, ctrl){
+		scope.$watch(attrs.ngModel, function(ctry){
+			// 인용 SDI type은 출원번호로 고정.
+			var url = "javascript:registerCitationSdi('" + ctry + "','AN','" + scope.docVar.screenVO.applNum + "');";
+			elm.attr("href", url);    
+			//elm.attr("target", "_blank");
+		});
+		
+	};
+}]);
+
+docApp.directive('docLinkPdfDtv', ['$timeout','$http','$compile','docCmmFct', function($timeout, $http, $compile, docCmmFct){
+	return {
+		restrict: 'A',
+		link : 	postLink  //compile 이 등록되어 있으면 link 는 수행하지 않는다.
+	};
+	
+	function postLink(scope, elm, attrs, ctrl){
+		scope.$watch(attrs.ngModel, function(skey){
+			var url = DocCmmConst.PDF_URL + "?skey=" + skey; //docConst.DOC_FMLY_URL: '../doc/docFmlyLegal.wips'
+			elm.attr("href", url);    
+			elm.attr("target", "_blank");
+		});
+	};
+}]);
+
+docApp.directive('docPdfFunctionDtv', ['$timeout','$http','$compile','docCmmFct', function($timeout, $http, $compile, docCmmFct){
+	return {
+		restrict: 'A',
+		link : 	postLink  //compile 이 등록되어 있으면 link 는 수행하지 않는다.
+	};
+	
+	function postLink(scope, elm, attrs, ctrl){
+		scope.$watch(attrs.ngModel, function(value){
+			var pdfSkey = value.skey;
+			var pdfCtry = value.ctry;
+			
+			if(pdfSkey == null || pdfSkey == '' ){
+				elm.attr("href", "javascript:alert('입력 받은 키가 존재하지 않습니다.');");    
+			} else if($(elm).hasClass("btn_dispdf")){
+				$(elm).attr("disabled", true);
+			} else {
+				var url = "javascript:pdfOpen('" + pdfSkey + "','" + pdfCtry + "');";
+				elm.attr("href", url);    
+			}
+		});
+	};
+}]);
+
+docApp.directive('docCitnPdfFunctionDtv', ['$timeout','$http','$compile','docCmmFct', function($timeout, $http, $compile, docCmmFct){
+	return {
+		restrict: 'A',
+		link : 	postLink  //compile 이 등록되어 있으면 link 는 수행하지 않는다.
+	};
+	
+	function postLink(scope, elm, attrs, ctrl){
+		scope.$watch(attrs.ngModel, function(value){
+			var pdfSkey = attrs.pdfSkey;
+			var pdfCtry = value;
+			
+			if(pdfSkey == null || pdfSkey == '' ){
+				elm.attr("href", "javascript:alert('입력 받은 키가 존재하지 않습니다.');");    
+			} else if($(elm).hasClass("btn_dispdf")){
+				$(elm).attr("disabled", true);
+			} else {
+				var url = "javascript:pdfOpen('" + pdfSkey + "','" + pdfCtry + "');";
+				elm.attr("href", url);    
+			}
+		});
+	};
+}]);
+
+docApp.directive('docPdfSplitFuncDtv', ['$timeout','$http','$compile','docCmmFct', function($timeout, $http, $compile, docCmmFct){
+	return {
+		restrict: 'A',
+		link : 	postLink  //compile 이 등록되어 있으면 link 는 수행하지 않는다.
+	};
+	
+	function postLink(scope, elm, attrs, ctrl){
+		scope.$watch(attrs.ngModel, function(value){
+			var pdfSkey = attrs.pdfSkey;
+			var pdfCtry = '';
+			
+			if(value.split(' ').length > 0) {
+				pdfCtry = value.split(' ')[0];
+			}
+			if(pdfSkey == null || pdfSkey == '' ){
+//				elm.attr("href", "javascript:alert('입력 받은 키가 존재하지 않습니다.');");    
+			} else if($(elm).hasClass("btn_dispdf")){
+				$(elm).attr("disabled", true);
+			} else {
+				var url = "javascript:pdfOpen('" + pdfSkey + "','" + pdfCtry + "');";
+				elm.attr("href", url);    
+			}
+		});
+	};
+}]);
+docApp.directive('docPdfRelApplDtv', ['$timeout','$http','$compile','docCmmFct', function($timeout, $http, $compile, docCmmFct){
+	return {
+		restrict: 'A',
+		link : 	postLink  //compile 이 등록되어 있으면 link 는 수행하지 않는다.
+	};
+	
+	function postLink(scope, elm, attrs, ctrl){
+		scope.$watch(attrs.ngModel, function(value){//pdf-skey="{{relAppl.skey}}" pdf-ctry="{{relAppl.skey}}" 
+			var pdfSkey = attrs.pdfSkey
+				, pdfCtry = value;
+			
+			if(pdfSkey == null || pdfSkey == '' ){
+//				elm.attr("href", "javascript:alert('입력 받은 키가 존재하지 않습니다.');");    
+			} else if($(elm).hasClass("btn_dispdf")){
+				$(elm).attr("disabled", true);
+			} else {
+				var url = "javascript:pdfOpen('" + pdfSkey + "','" + pdfCtry + "');";
+				elm.attr("href", url);    
+			}
+		});
+	};
+}]);
+
+
+
+docApp.directive('docLinkFamilyDtv', ['$timeout','$http','$compile','docCmmFct', function($timeout, $http, $compile, docCmmFct){
+	return {
+		restrict: 'A',
+		link : 	postLink  //compile 이 등록되어 있으면 link 는 수행하지 않는다.
+	};
+	
+	function postLink(scope, elm, attrs, ctrl){
+		scope.$watch(attrs.ngModel, function(ctry){
+			var type = "",
+				url  = "",
+				mngKind = scope.docVar.screenVO.mngKind;
+			
+			if(ctry != "EP" && ctry != "WO"){
+				if(mngKind == "1" || mngKind == "4" || mngKind == "8" || mngKind == "9"){
+					type = "PN";
+				} else {
+					type = "RN"
+				}
+			} else{
+				type = "PN"
+			}
+			
+			url = "javascript:registerFamilySdi('" + ctry + "','" + type + "','" + scope.docVar.screenVO.mngNum + "');";
+			elm.attr("href", url);
+			//elm.attr("target", "_blank");
+		});
+		
+	};
+}]);

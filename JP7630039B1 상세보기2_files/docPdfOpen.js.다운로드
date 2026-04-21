@@ -1,0 +1,34 @@
+function pdfOpenDoc(skey, db , type){
+		var url 	= "",
+		width	= 0,
+		height	= 0,
+		name	= "",
+		frm		= null,
+		frmSkey	= null;
+	
+		if(type == 'D'){
+			url = "../api/transComparePdfView.wips";
+		} else if(type == 'T'){
+			url = "../api/transPdfView.wips";
+		} else {
+			url = "../api/dwn_pdf_dsdirect.wips";
+		}
+		name = "_pdfDirectDownload";
+	
+		frm = $('<form></form>');
+		frm.attr('action', url);
+		frm.attr('method', 'post');
+		frm.attr('target', '_blank');
+		frm.attr('id', 'pdfPopForm');
+		frm.appendTo('body');
+		
+		frmSkey = $('<input type="hidden" name="skey" value="'+ skey +'">');
+		frm.append(frmSkey);
+	
+		frm.submit();
+		$('form#pdfPopForm').remove();
+		
+//		window.open(url, name);
+//	}
+}
+

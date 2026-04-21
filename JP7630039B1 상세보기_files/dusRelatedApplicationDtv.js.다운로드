@@ -1,0 +1,274 @@
+docApp.directive('dusRelatedApplicationDtv', ['$timeout','$http','$compile','docCmmUtilFct', 'docCmmFct', 'docCmmLinkFct', function($timeout, $http, $compile, docCmmUtilFct, docCmmFct, docCmmLinkFct){
+	return {
+		restrict: 'A',
+		link : 	postLink  //compile 이 등록되어 있으면 link 는 수행하지 않는다.
+	};
+	
+	function preCompile(scope, elm, attrs, ctrl){
+		/**
+		 * 변수 초기화
+		 */
+		scope.docVar.dusRelApplVO.dusRelApplParamVO.skey = scope.docVar.screenVO.skey;
+		scope.docVar.dusRelApplVO.dusRelApplParamVO.sortType = "DESC";
+		scope.docVar.dusRelApplVO.dusRelApplParamVO.pageNum = 1;
+		scope.docVar.dusRelApplVO.dusRelApplParamVO.pageRow = scope.docConst.REL_APPL_PAGE_ROW;
+		scope.docVar.dusRelApplVO.headerList = [
+				                       		       {id:'chk', fieldNm:'', sortField:'', sortType:'', arrClass:''}   //check
+					                       		     , {id:'ORG', fieldNm:'원문', sortField:'', sortType:'', arrClass:''}   //원문
+					                       		     , {id:'STATUS', fieldNm:'유형', sortField:'ctry', sortType:'', arrClass:''}   //국가
+					                       		     , {id:'AN', fieldNm:'출원번호', sortField:'appl_num', sortType:'ASC', arrClass:'ico_arralign ico_default', thClass:'tb_head_backcolor'}   //문서번호
+					                       		     , {id:'AD', fieldNm:'출원일자', sortField:'appl_dt', sortType:'DESC', arrClass:'ico_arralign ico_default', thClass:'tb_head_backcolor'}   //일자
+					                       		     , {id:'TI', fieldNm:'발명의 명칭', sortField:'', sortType:'', arrClass:''}   //발명의 명칭
+					                       		];
+		
+		// 전체 카운트
+		scope.docVar.dusRelApplVO.pageCountVO.totRsltCnt = 0;
+		// 전체 페이지수 
+		scope.docVar.dusRelApplVO.pageCountVO.totPageCnt = 1;
+		// 보유 건수 : page 계산 위해 사용
+		scope.docVar.dusRelApplVO.pageCountVO.holdCnt = 0;
+		// 미보유 건수 
+		scope.docVar.dusRelApplVO.pageCountVO.missingDocCount = 0;
+		scope.docVar.dusRelApplVO.pageCountVO.provisionalCount = 0 ;
+		
+		scope.findRelApplList = function() {
+			var url = "../dus/findRelatedApplication.wips";
+			var obj = { skey : scope.docVar.dusRelApplVO.dusRelApplParamVO.skey
+						, sortType : scope.docVar.dusRelApplVO.dusRelApplParamVO.sortType
+						, pageNum:scope.docVar.dusRelApplVO.dusRelApplParamVO.pageNum
+						, rowCount:scope.docVar.dusRelApplVO.dusRelApplParamVO.pageRow
+					  };
+
+			$http.post(url, $.param(obj),{
+				headers: {'Content-Type': scope.docConst.JSON_CONT_TYPE}
+			}).success(function(data){
+				scope.docVar.dusRelApplVO.allChk = false;
+				scope.docVar.dusRelApplVO.maxChk = false;
+				// 보유목록
+				scope.docVar.dusRelApplVO.rsltList = data.relApplTextList;
+				
+				//checkbox 초기화
+				for(var i=0; i < scope.docVar.dusRelApplVO.rsltList.length; i++){
+					scope.docVar.dusRelApplVO.rsltList[i].chk = false;
+				}
+				
+				// Provisional of 목록
+				scope.docVar.dusRelApplVO.provisionalList = data.provisionalList;
+				// 미보유 목록
+				scope.docVar.dusRelApplVO.missingList = data.missingList;
+				
+				// 미보유 건수
+				if(data.missingList != null ) {
+					scope.docVar.dusRelApplVO.pageCountVO.missingDocCount = data.missingList.length;
+				}
+				// provisinal 건수 
+				if(data.provisionalList != null ) {
+					scope.docVar.dusRelApplVO.pageCountVO.provisionalCount = data.provisionalList.length;
+				}
+				
+				// 전체 건수
+				if(data.relApplCnt != null ) {
+					// 전체 보유 건수
+					scope.docVar.dusRelApplVO.pageCountVO.holdCnt = data.relApplCnt.totalRow;
+				}
+				scope.docVar.dusRelApplVO.pageCountVO.totRsltCnt = scope.docVar.dusRelApplVO.pageCountVO.holdCnt + scope.docVar.dusRelApplVO.pageCountVO.missingDocCount + scope.docVar.dusRelApplVO.pageCountVO.provisionalCount;
+				scope.docVar.dusRelApplVO.pageCountVO.pageNum = scope.docVar.dusRelApplVO.dusRelApplParamVO.pageNum;
+				scope.docVar.dusRelApplVO.pageCountVO.pageRow = scope.docVar.dusRelApplVO.dusRelApplParamVO.pageRow;
+				
+				// 전체 skeys
+				scope.docVar.dusRelApplVO.maxSkeys = data.skeys; 
+				// 전체 페이지
+				scope.docVar.dusRelApplVO.pageCountVO.totPageCnt = Math.floor(scope.docVar.dusRelApplVO.pageCountVO.holdCnt / scope.docVar.dusRelApplVO.pageCountVO.pageRow) 
+                + (scope.docVar.dusRelApplVO.pageCountVO.holdCnt % scope.docVar.dusRelApplVO.pageCountVO.pageRow == 0 ? 1 : 1) ;
+				
+				scope.clickDevBtnMarker();
+				//scope.docQueryHighLighter($("form#paramForm :input[name=hl]").val());
+				
+				// 상세보기 오른쪽 메뉴 레이어 메뉴 수정
+				if(scope.docVar.dusRelApplVO.pageCountVO.totRsltCnt > 0){
+					scrollRightSet("devRA", "Related Appl.");
+				}
+			}).error(function(data, status){
+				/*if (/EgovBizException/.test(data.responseText)) {
+		            alert(data.responseText.match(/EgovBizException: &quot;(.*?)&quot;/)[1]);
+		            // error 처리
+		        }
+		        else {
+		            alert("에러가 발생하였습니다. " + status + "\nError: " + data.responseText);
+		        }*/
+			});
+			
+		};
+		
+		/**
+		 * 헤더에서 소트키 클릭시
+		 */
+		scope.relApplListSortUs = function(headerIndex){
+			if(scope.docVar.dusRelApplVO.dusRelApplParamVO.sortType === "DESC") {
+				scope.docVar.dusRelApplVO.dusRelApplParamVO.sortType = "ASC";
+				scope.docVar.dusRelApplVO.headerList[headerIndex].arrClass = "ico_arralign ico_arrup";
+				//scope.docVar.dusRelApplVO.headerList[headerIndex].thClass = "tb_head_backcolor font_color_orange";
+				scope.docVar.dusRelApplVO.headerList[headerIndex].fontClass = "font_color_orange";
+			} else {
+				scope.docVar.dusRelApplVO.dusRelApplParamVO.sortType = "DESC";
+				scope.docVar.dusRelApplVO.headerList[headerIndex].arrClass = "ico_arralign ico_arrdown";
+//				scope.docVar.dusRelApplVO.headerList[headerIndex].thClass = "tb_head_backcolor font_color_orange";
+				scope.docVar.dusRelApplVO.headerList[headerIndex].fontClass = "font_color_orange";
+			}
+			
+			scope.findRelApplList();
+		};
+		
+		/**
+		 * 이전페이지 클릭시
+		 */
+		scope.prevPageRelApplUs = function(){
+			if(scope.docVar.dusRelApplVO.dusRelApplParamVO.pageNum == 1){
+				return;
+			}
+			
+			scope.docVar.dusRelApplVO.dusRelApplParamVO.pageNum = scope.docVar.dusRelApplVO.dusRelApplParamVO.pageNum - 1;
+			scope.findRelApplList();
+		};
+		
+		/**
+		 * 다음페이지 클릭시
+		 */
+		scope.nextPageRelApplUs = function(){
+			if(scope.docVar.dusRelApplVO.dusRelApplParamVO.pageNum == scope.docVar.dusRelApplVO.pageCountVO.totPageCnt){
+				return;
+			}
+			
+			scope.docVar.dusRelApplVO.dusRelApplParamVO.pageNum = scope.docVar.dusRelApplVO.dusRelApplParamVO.pageNum + 1;
+			scope.findRelApplList();
+		};
+
+		/**
+		 * Related Application Analysis
+		 */
+		scope.openRelApplAnalysis = function(skey){
+			var url = DocCmmConst.US_REL_APPl_ANALYSIS_URL;
+//			var url = scope.docConst.US_REL_APPl_ANALYSIS_URL;
+			var form = document.createElement('form');
+			$(form).attr('action', url)
+				   .attr('id', 'relApplForm')
+				   .attr('method', 'post')
+				   .attr('target', '_blank');
+			$(form).html('<input type="hidden" name="skey" value="' + skey +'" />' );
+			document.body.appendChild(form);
+
+			$(form).submit();
+			$('form#relApplForm').remove();	
+		};
+		
+		
+	};
+	
+	function postLink(scope, elm, attrs, ctrl){
+		preCompile(scope, elm, attrs, ctrl);
+		elm.empty();
+		var innerHtml = docCmmUtilFct.hereDoc(function() {/*!
+                          <!-- US일경우 -->
+					<div class="devHighlightNg" ng-if="docVar.dusRelApplVO.pageCountVO.totRsltCnt > 0">
+						<div class="dc_leftblock">
+                            <span class="first_line">Related Application</span>
+                        </div>
+                        
+                        <div class="dc_context_block">
+                            <div class="clear"></div>
+                            
+                            <div class="float_l">
+                                <span class="float_l marg_right_20">전체 <span class="font_type_bold page_backcolor_step1_text font_valign_00" ng-bind="docVar.dusRelApplVO.pageCountVO.totRsltCnt"></span> 건</span>
+                            </div>
+                            <div class="float_r">
+                               <div class="paginate_type3 pagenate_align">
+                                	<span class="pagenum"><span ng-bind="docVar.dusRelApplVO.pageCountVO.pageNum"></span>/<span ng-bind="docVar.dusRelApplVO.pageCountVO.totPageCnt"></span></span>
+                                    <a ng-if="docVar.dusRelApplVO.pageCountVO.totPageCnt > 1" href="javascript:void(0);" ng-click="prevPageRelApplUs();">
+                                    	<span class="direction"><span class="prev"><!-- --></span><span class="ir_pm">이전</span></span>
+                                    </a>
+                                    <span ng-if="docVar.dusRelApplVO.pageCountVO.totPageCnt <= 1"> 
+                                    	<span class="direction btn_dis_type"><span class="prev"><!-- --></span><span class="ir_pm">이전</span></span>
+                                    </span>
+                                    <a ng-if="docVar.dusRelApplVO.pageCountVO.totPageCnt > 1" href="javascript:void(0);" ng-click="nextPageRelApplUs();">
+                                    	<span class="direction"><span class="next"><!-- --></span><span class="ir_pm">다음</span></span>
+                                    </a>
+                                    <span ng-if="docVar.dusRelApplVO.pageCountVO.totPageCnt <= 1"> 
+                                    	<span class="direction btn_dis_type"><span class="next"><!-- --></span><span class="ir_pm">다음</span></span>
+                                    </span> 
+                                </div>
+                           </div>
+                           <div class="clear"><!-- --></div>
+                            <table class="marg_top_05 table_type2 oneline_width devDocViewOption" >
+                                <colgroup>
+                                    <col width="50">
+                                    <col width="70">
+                                    <col width="130">
+                                    <col width="130">
+                                    <col width="130">
+                                    <col width="*">
+                                </colgroup>
+                                <thead>
+                                    <tr>
+	                                    <th class="tb_head_backcolor">원문</th>
+	                                    <th class="tb_head_backcolor">유형</th>
+	                                    <th class="tb_head_backcolor">출원번호</th>
+	                                    <th class="tb_head_backcolor">문헌번호</th>
+	                                    <th class="tb_head_backcolor"><a href="javascript:void(0);" ng-click="relApplListSortUs(4)" ng-class="docVar.dusRelApplVO.headerList[4].fontClass"><span ng-bind-html="docVar.dusRelApplVO.headerList[4].fieldNm"></span><span ng-class="docVar.dusRelApplVO.headerList[4].arrClass"><!-- --></span><!-- 정렬 내림차순 Class명 ico_arrdown 변경--></a></th>
+	                                    <th class="tb_head_backcolor font_align_left">발명의 명칭</th>
+                                	</tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-show="docVar.dusRelApplVO.rsltList.length == 0">
+                                		<td colspan="7" class="font_align_center" ng-class="updateDocFontOption();">
+                                			<p>해당 정보가 없습니다.</p>
+                                		</td>
+                                	</tr>
+                                   	<tr ng-show="docVar.dusRelApplVO.rsltList.length > 0" ng-repeat="relAppl in docVar.dusRelApplVO.rsltList">
+                                        <td class="font_align_center" ng-class="updateDocFontOption();">
+	                                    	<a ng-hide="relAppl.pdfGb == '0'" doc-pdf-split-func-dtv ng-model="relAppl.applNum" pdf-skey="{{relAppl.skey}}" ng-class="relAppl.pdfClass + ' marg_auto marg_top_05'"><span class="screen_hide">PDF</span></a>
+	                                    	<span ng-show="relAppl.pdfGb == '0'" ng-class="relAppl.pdfClass + ' marg_auto marg_top_05'"><span class="screen_hide">PDF</span></span>
+	                                    </td>
+                                        <td class="font_align_center" ng-class="updateDocFontOption();" ng-bind-html="relAppl.desc"></td>
+                                        <td class="font_align_center" ng-class="updateDocFontOption();">
+                                        	<a ng-hide = "relAppl.skey == null || relAppl.skey == ''" doc-link-dtv ng-model="relAppl"><span ng-bind-html="relAppl.applNum"></span></a>
+                                        	<span ng-show = "relAppl.skey == null || relAppl.skey == ''" ng-bind-html="relAppl.applNum"></span>
+                                        </td>
+                                        <td class="font_align_center" ng-class="updateDocFontOption();">
+                                        	<a ng-hide = "relAppl.skey == null || relAppl.skey == ''" doc-link-dtv ng-model="relAppl"><span ng-bind-html="relAppl.mngNum"></span></a>
+                                        	<span ng-show = "relAppl.skey == null || relAppl.skey == ''" ng-bind-html="relAppl.mngNum"></span>
+                                        </td>
+                                        <td class="font_align_center" ng-class="updateDocFontOption();"><span ng-bind-html="relAppl.applDt"></span></td>
+                                        <td ng-class="updateDocFontOption();">
+                                        	<a ng-hide = "relAppl.skey == null || relAppl.skey == ''" doc-link-dtv ng-model="relAppl"><span ng-bind="relAppl.invTi"></span></a>
+                                        	<span ng-show = "relAppl.skey == null || relAppl.skey == ''" ng-bind="relAppl.invTi"></span>
+                                        </td>
+                                   </tr>
+                                </tbody>
+                            </table>
+                            <div class="remark_footblock">
+                              <p ng-hide="docVar.dusRelApplVO.provisionalList.length <= 0">
+                              	<span class="title_text">* Provisional</span>
+                              	<span ng-repeat="provision in docVar.dusRelApplVO.provisionalList"> 
+                                 <span ng-class="{'font_color_888': true, 'text_divbar': !$last, 'float_l': $last}" ng-bind-html="provision.ctry + ' ' + provision.applNum + ' ' + provision.applDt"></span>
+                                </span>
+                              </p> 
+                              <p ng-hide="docVar.dusRelApplVO.missingList.length <= 0">
+                              	<span class="title_text2">* 미포함 문헌 : <span ng-bind="docVar.dusRelApplVO.pageCountVO.missingDocCount" ></span>건 (절차상 미공개 문헌, 과거분 문헌, WIPS 보유 데이터 범위에 포함되지 않는 문헌)</span>
+                                <span ng-repeat="missing in docVar.dusRelApplVO.missingList"> 
+                                 <span ng-class="{'font_color_888': true, 'text_divbar': !$last, 'float_l': $last}" ng-bind-html="missing.ctry + ' ' + missing.applNum + ' ' + missing.applDt"></span>
+                                </span>
+                              </p> 
+                            </div>
+                            <div class="list_space"><!-- --></div> 
+                        </div>
+					</div>
+                */
+		});
+		
+		elm.html($compile(innerHtml)(scope));
+		
+		scope.findRelApplList();
+	};
+	
+	
+}]);

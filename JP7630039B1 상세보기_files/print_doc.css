@@ -1,0 +1,64 @@
+@charset "UTF-8";
+
+@page {
+	size: A4;
+	margin: 1.2cm;
+}
+
+@media print {
+	
+	html, body {zoom:1; font-size:15px;}
+	
+	.change_fontsize_large{font-size:20px !important;}/*UI틀어질 여지가 있어서 웹상에서의 최대크기 이상의 사이즈는 지양한다*/
+	.change_fontsize_default{font-size:15px !important;}/*웹상에서의 최대크기*/
+	.change_fontsize_small{font-size:13px !important;}/*웹상에서의 기본크기*/
+
+	/*상세보기인쇄*/
+	.dc_print_block.adminm_view_list .listing_block .title_text{width:20%;}
+	.dc_print_block.adminm_view_list .table_jdg_print .listing_block .con_text{width:80%;}
+	.doc_summaryinfo_block .dc_leftblock{width:20%; margin-right:0px; display:block;}
+	.doc_summaryinfo_block .dc_context_block{width:80%; display:block;}
+	body .doc_summaryinfo_block ul.bg_line{display:block; float:left;}/*프린트시 페이지바꿈현상으로 추가*/
+	.doc_summaryinfo_block, ul.bg_line>li, ul.bg_line>li>ul,ul.bg_line>li>ul>li{width:100%; float:left; box-sizing:border-box;}
+	#devCitnPos, .devHighlightNg{width:100%; float:left;}
+	.dc_leftblock~div{width:70%; float:left;}
+	.doc_summaryinfo_block li.line_space{box-sizing:border-box;}
+	
+	/*UI 재 설정*/
+	.doc_wrap .container{padding-right:0px; width:100%; float:left;}	
+	#layout_twodivision, #def_container, .def_content, .doc_conblock{float:left; width:100%;}
+	.doc_summaryinfo_block{float:left; width:100%; box-sizing:border-box;}/*프린트시 페이지바꿈현상으로 추가*/
+	.devTimeLine div.event{background: transparent; width:0; height:0;}
+	.devTimeLine div.event:after{
+			content:"";
+			width: 0; 
+		    height: 0; 
+		    border: 5px solid #999999;
+		    border-top-width: 0;
+		    border-right-color: transparent;
+		    border-left-color: transparent;
+		    top: 1px;
+			left: 4px;
+	    	position: absolute;
+	}
+	footer, #cmm_sub_footer{display:block; width:100%; float:left;}
+	footer .copy_text{width:100%; float:left; text-align:right; padding-right:0px;}
+
+	/*상세보기 고정헤더 풀기*/
+	.doc_wrap header{position:relative; width:100%; z-index:200; background:#ffffff; float:left;}
+	.scroll_left{margin-top:0px !important; position:relative !important;}
+	.scroll_right{display:none !important;}
+
+	/*인쇄시 불필요한 UI숨김처리*/
+	.cmm_header_wrap, .cmm_menuDepth2, .sub_footer_wrap, .doc_setlink{display:none !important}
+	.langs_set_us, .langs_set_cn, .langs_set_jp{display:none !important}/*언어툴팁*/
+	.highlighterBox{display:none !important}
+	.btn_cmm_help{display:none !important;}
+	.mini_imgdraw_block.on {float:left; width:158px; height:173px; padding:5px; margin-left:-1px; margin-top:-1px; border:1px solid #d6d6d6; vertical-align:middle; text-align:center; position:relative;}
+
+	/*버튼숨김*/
+	.btn_linktxt3, .btn_dis_type, .paginate_type3 .prev, .paginate_type3 .next{display:none;}
+	
+	/* 상세 팝업 > NMT */
+	.wrap_trans header{position:absolute; top:0; left:0;}
+}

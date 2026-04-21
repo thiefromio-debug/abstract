@@ -1,0 +1,156 @@
+/**
+ * IE8 이하에서 indexOf사용을 위한 처리입니다.
+ */
+if (!Array.prototype.indexOf) {
+    Array.prototype.indexOf = function (elt /*, from*/) {
+        var len = this.length >>> 0;
+        var from = Number(arguments[1]) || 0;
+        from = (from < 0) ? Math.ceil(from) : Math.floor(from);
+        if (from < 0) from += len;
+
+        for (; from < len; from++) {
+            if (from in this && this[from] === elt) return from;
+        }
+        return -1;
+    };
+}
+
+
+/**
+ * IE8 이하에서 forEach사용을 위한 처리
+ */
+if (typeof Array.prototype.forEach != 'function') {
+    Array.prototype.forEach = function(callback){
+      for (var i = 0; i < this.length; i++){
+        callback.apply(this, [this[i], i, this]);
+      }
+    };
+}
+
+
+/**
+ * IE에서 console.log 오류 해결을 위한 스크립트 추가 
+ */
+var console = window.console || {log:function(){}};
+
+
+/**
+ * IE8 이하에서 stopPropagation event 처리를 위해 추가
+ * 
+ * IE7 에서 에러가 나서 일단 막음
+ */
+
+//Event = Event || window.Event;
+//Event.prototype.stopPropagation = Event.prototype.stopPropagation || function() {
+//    this.cancelBubble = true;
+//};
+
+
+if (!Array.prototype.filter)
+{
+	Array.prototype.filter = function(fun /*, thisp */)	{
+		"use strict";
+
+		if (this === void 0 || this === null)
+			throw new TypeError();
+
+		var t = Object(this);
+		var len = t.length >>> 0;
+		if (typeof fun !== "function")
+			throw new TypeError();
+
+		var res = [];
+		var thisp = arguments[1];
+		for (var i = 0; i < len; i++) {
+			if (i in t)	{
+				var val = t[i]; // in case fun mutates this
+				if (fun.call(thisp, val, i, t))
+					res.push(val);
+			}
+		}
+
+		return res;
+	};
+}
+
+/**
+ * IE11 에서 scrollIntoView() 함수 에러 처리
+ */
+if(!document.getElementsByTagName('body')[0].scrollIntoView) {
+	Object.prototype.scrollIntoView = function() {
+		var x, y, ele = this;
+		x = ele.offsetLeft;
+		y = ele.offsetTop;
+		while(ele=ele.offsetParent) {
+			x += ele.offsetLeft;
+			y += ele.offsetTop;
+		}
+		window.scrollTo(x,y);
+	}
+}
+
+/**
+ * escapeXml 처리를 위해 추가
+ */
+String.prototype.htmlEscape = function() {
+	return $('<div/>').text(this.toString()).html();
+};
+
+
+/**
+ * WipsMap 추가
+ */
+WipsMap = function() {
+	this.map = new Object();
+};
+WipsMap.prototype = {
+	put: function(key, value) {
+		this.map[key] = value;
+	},
+	get: function(key) {
+		return this.map[key];
+	},
+	containsKey: function(key) {
+		return key in this.map;
+	},
+	containsValue: function(value) {
+		for(var prop in this.map) {
+			if (this.map[prop] == value) {
+				return true;
+			}
+		}
+		return false;
+	},
+	isEmpty: function(key) {
+		return (this.size()==0);
+	},
+	clear: function() {
+		for (var prop in this.map) {
+			delete this.map[prop];
+		}
+	},
+	remove: function(key) {
+		delete this.map[key];
+	},
+	keys: function() {
+		var keys = new Array();
+		for (var prop in this.map) {
+			keys.push(prop);
+		}
+		return keys;
+	},
+	values: function() {
+		var values = new Array();
+		for (var prop in this.map) {
+			values.push(this.map[prop]);
+		}
+		return values;
+	},
+	size: function() {
+		var count = 0;
+		for (var prop in this.map) {
+			count++;
+		}
+		return count;
+	}
+};

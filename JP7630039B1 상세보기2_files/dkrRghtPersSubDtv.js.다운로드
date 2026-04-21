@@ -1,0 +1,47 @@
+;
+docApp.directive('dkrRghtPersSubDtv', ['$timeout','$http','$compile','docCmmUtilFct', 'docCmmFct', 'docCmmLinkFct', function($timeout, $http, $compile, docCmmUtilFct, docCmmFct, docCmmLinkFct){
+	return {
+		restrict: 'A',
+		link : 	postLink  //compile 이 등록되어 있으면 link 는 수행하지 않는다.
+	};
+	
+	function postLink(scope, elm, attrs, ctrl){
+		scope.$watch(attrs.ngModel, function(biblGrtRghtPers){
+			var innerHtml = "";
+
+			if(scope.$index == 0){
+				//innerHtml = "<span class=\"title_text\">";
+				innerHtml = '<span class="title_text3"><span class="ico_dottype2 ico_dot_changalign7 marg_right_02"><!-- --></span>';
+				innerHtml += biblGrtRghtPers.rankRelCdNm;
+				innerHtml += "</span>";
+			} else if(biblGrtRghtPers.rankRelSeq != null && biblGrtRghtPers.rankRelSeq == 1){
+				//innerHtml = "<span class=\"title_text\">";
+				innerHtml = '<span class="title_text3"><span class="ico_dottype2 ico_dot_changalign7 marg_right_02"><!-- --></span>';
+				innerHtml += biblGrtRghtPers.rankRelCdNm;
+				innerHtml += "</span>";
+			} else{
+				if(biblGrtRghtPers.rankRelCd != null && (biblGrtRghtPers.rankRelCd == '20202' || biblGrtRghtPers.rankRelCd == '20203')){
+					//innerHtml = "<td class='align_left_ch_sub_1'><span class='font_color_gray5'>";
+					innerHtml = "<span class=\"title_text\">&nbsp;";
+					innerHtml += "</span>";
+					
+				} else if (biblGrtRghtPers.rankRelCd != null && biblGrtRghtPers.rankRelCd == '20204') {
+					//innerHtml = "<td class='align_left_ch_sub_2'><span class='font_color_gray5'>";
+					innerHtml = "<span class=\"title_text\">&nbsp;";
+					innerHtml += "</span>";
+				} else {
+					//innerHtml = "<td class='align_left_ch_sub_3'><span class='font_color_gray5'>";
+					innerHtml = "<span class=\"title_text\">&nbsp;";
+					innerHtml += "</span>";
+			    }
+			}
+			innerHtml += "<span class=\"con_text2\">";
+			innerHtml += biblGrtRghtPers.rankRelNm;
+			if(biblGrtRghtPers.rankRelAddr != null && biblGrtRghtPers.rankRelAddr != ''){
+				innerHtml += "(" + biblGrtRghtPers.rankRelAddr + ")";
+			}
+			innerHtml += "</span>";
+			elm.empty().html($compile(innerHtml)(scope));
+		});
+	};
+}]);

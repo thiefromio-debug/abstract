@@ -1,0 +1,138 @@
+docApp.directive('docTabViewDtv', ['$timeout','$http','$compile','docCmmUtilFct', 'docCmmFct', 'docCmmLinkFct', 'docCmmUiFct', 'docInitFct', function($timeout, $http, $compile, docCmmUtilFct, docCmmFct, docCmmLinkFct, docCmmUiFct, docInitFct){
+	return {
+		restrict: 'A',
+		link : 	postLink  //compile 이 등록되어 있으면 link 는 수행하지 않는다.
+	};
+	
+	function postLink(scope, elm, attrs, ctrl){
+		scope.setTabLangsSet = function(elm){
+//			if(elm != null && elm.position() != null){
+//				var top = elm.position().top;
+//				var left = elm.position().left;
+//				if(elm.find('span')){
+//					var langsSetEle = elm.find('span').eq(0);
+//					if(!langsSetEle.hasClass("ico_on")){
+//						langsSetEle.css("top", (top - 14) + "px");
+//						langsSetEle.css("left", (left + 50) + "px");
+//					}
+//				}
+//			}
+		};
+		
+		// 단축키 탭 이동을 위해 scope 변수 셋팅
+		var actTabList = scope.docVar.screenVO.actTabList,
+			activeTab = eval("scope." + attrs.activeTab);
+		actTabList.push(activeTab);
+		
+		scope.$watch(attrs.ngModel, function(value){
+			var activeTab = eval("scope." + attrs.activeTab);
+			var tabChar = attrs.tabChar;
+			var onClassNm = attrs.onClassNm;
+			var offClassNm = attrs.offClassNm;
+			// 단축키 탭 이동을 위해 scope 변수 셋팅
+			scope.docVar.screenVO.activeTab = value;
+			
+			switch (activeTab){
+			case scope.docConst.TABGB.CL:
+				var tabCount = attrs.tabCount;
+				var clTrnsCnt = attrs.clTrnsCnt;
+				var serviceNm = attrs.serviceNm;
+				var clCntView = ((serviceNm == scope.docConst.SERVICENM.DWO
+									|| serviceNm == scope.docConst.SERVICENM.DUT
+									|| serviceNm == scope.docConst.SERVICENM.DAU
+									|| $("#ctry").val() == "IT" || $("#ctry").val() == "NL") ? false : true);
+				var clTopLang = $("#clTopLang").val();	//wo만 사용
+				
+				if(value == activeTab){
+					elm.empty();
+					elm.removeClass(offClassNm);
+					if(!elm.hasClass(onClassNm)){
+						elm.addClass(onClassNm);
+					}
+					if((tabCount != null && (tabCount * 1) > 0) && $("#clReplTagDbNm").val() != 'PCT' && clCntView){
+						tabChar += "(" + tabCount + ")";
+					}
+					tabChar = "<a href='#'>" + tabChar + "</a>";
+//					if(clTrnsCnt != null && (clTrnsCnt * 1) > 0 && (serviceNm == scope.docConst.SERVICENM.DUS || serviceNm == scope.docConst.SERVICENM.DEP || serviceNm == scope.docConst.SERVICENM.DWO)){
+//						if(clTopLang == "JP"){
+//							tabChar += '<span class="langs_set_jp"><span class="screen_out">일한번역</span></span>';
+//						} else {
+//							tabChar += '<span class="langs_set_us"><span class="screen_out">영한번역</span></span>';
+//						}
+////					}else if(clTrnsCnt != null && (clTrnsCnt * 1) > 0 && serviceNm == scope.docConst.SERVICENM.DCN){
+//					}else if(serviceNm == scope.docConst.SERVICENM.DCN){
+//						tabChar += '<span class="langs_set_cn"><span class="screen_out">중한번역</span></span>';
+//					}else if(serviceNm == scope.docConst.SERVICENM.DJP){
+//						tabChar += '<span class="langs_set_jp"><span class="screen_out">일한번역</span></span>';
+//					}
+//					
+//					tabChar += '<span class="ico_on"><!-- --></span>';
+					
+					elm.html(tabChar);
+				}else{
+					elm.empty();
+					elm.removeClass(onClassNm);
+					if(!elm.hasClass(offClassNm)){
+						elm.addClass(offClassNm);
+					}
+					tabChar = '<a href="javascript:$.clickDocTab(\'' + activeTab + '\');">' +  tabChar;
+					if((tabCount != null && (tabCount * 1) > 0) && $("#clReplTagDbNm").val() != 'PCT' && clCntView){
+						tabChar += "(" + tabCount + ")";
+					}
+					tabChar += "</a>";
+//					if(clTrnsCnt != null && (clTrnsCnt * 1) > 0 && (serviceNm == scope.docConst.SERVICENM.DUS || serviceNm == scope.docConst.SERVICENM.DEP || serviceNm == scope.docConst.SERVICENM.DWO)){
+//						if(clTopLang == "JP"){
+//							tabChar += '<span class="langs_set_jp"><span class="screen_out">일한번역</span></span>';
+//						} else {
+//							tabChar += '<span class="langs_set_us"><span class="screen_out">영한번역</span></span>';
+//						}
+//					//}else if(clTrnsCnt != null && (clTrnsCnt * 1) > 0 && serviceNm == scope.docConst.SERVICENM.DCN){
+//					}else if(serviceNm == scope.docConst.SERVICENM.DCN){
+//						tabChar += '<span class="langs_set_cn"><span class="screen_out">중한번역</span></span>';
+//					}else if(serviceNm == scope.docConst.SERVICENM.DJP){
+//						tabChar += '<span class="langs_set_jp"><span class="screen_out">일한번역</span></span>';
+//					}
+					
+					elm.html(tabChar);
+				}
+				scope.setTabLangsSet(elm);
+				break;
+			default:
+				if(value == activeTab){
+					elm.empty();
+					elm.removeClass(offClassNm);
+					if(!elm.hasClass(onClassNm)){
+						elm.addClass(onClassNm);
+					}
+					tabChar = "<a href='#'>" + tabChar + "</a>";
+					tabChar += '<span class="ico_on"><!-- --></span>';
+					
+					if(activeTab == 'PS'){
+						tabChar += '<div class="tooltip_fordoctab">';
+						tabChar += '	<p>평가등급은 유효등록 문헌에만 제공되며,<br>최신 문헌은 평가등급 산정을 위해 준비 중 입니다.</p>';
+						tabChar += '</div>';
+					}
+					
+					elm.html(tabChar);
+				}else{
+					var aTag = '<a href="javascript:$.clickDocTab(\'' + activeTab + '\');">' + tabChar + '</a>';
+					
+					if(activeTab == 'PS'){
+						aTag += '<div class="tooltip_fordoctab">';
+						aTag += '	<p>평가등급은 유효등록 문헌에만 제공되며,<br>최신 문헌은 평가등급 산정을 위해 준비 중 입니다.</p>';
+						aTag += '</div>';
+					}
+					
+					elm.empty();
+					elm.removeClass(onClassNm);
+					if(!elm.hasClass(offClassNm)){
+						elm.addClass(offClassNm);
+					}
+					elm.html(aTag);
+				}
+				break;
+			}
+		},true);
+		
+	}
+}]);

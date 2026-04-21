@@ -1,0 +1,817 @@
+/**
+ * 상세보기 문헌전체 탭
+ * @returns
+ */
+var DocCmmVO = {};
+
+;(function($){
+	
+	//=================================
+	// [S] Related Application
+	//=================================
+	var RelApplPageVO = {};
+	RelApplPageVO.id = 'devRelAppl';
+	RelApplPageVO.item = 'RelAppl';
+	RelApplPageVO.pageRow = 10;
+	RelApplPageVO.prntId = 'devRelAppl';
+	RelApplPageVO.chldId = 'RelAppl';
+	RelApplPageVO.prntPageRow = 20;
+	RelApplPageVO.chldPageRow = 10;
+	
+	$.getRelApplList = function(pageNum, type){
+		//미국은 구조 다름
+		if($("#ctry").val() == "US"){
+			$.getRelApplUsList(pageNum, type)
+		} else {
+			var url = "";
+			if($("#ctry").val() == "AU"){
+				url = '../dau/findRelatedApplication.wips';
+			}
+			var data = {
+					"skey" : $("#skey").val()
+					, "type" : RelApplPageVO.type
+				}
+			
+			// 최초 진입 시
+			if(RelApplPageVO.pageNum == undefined || RelApplPageVO.pageNum == 0 || pageNum == undefined || pageNum == 0){
+				RelApplPageVO.pageNum = 1;
+			} else {
+				RelApplPageVO.pageNum = pageNum;
+			}
+			
+			data.pageNum = parseInt(RelApplPageVO.pageNum);
+			data.rowCount = parseInt(RelApplPageVO.pageRow);
+			
+			$.ajax({
+				url            : url,
+				type         : 'POST',
+				cache       : false,
+				async       : true,
+				dataType  : 'json',
+				data        : data ,
+				success     : function(data, textStatus, jqXHR) {
+					
+					// 최초 진입 시 PAGING COUNT SET
+					RelApplPageVO.totCnt = data.totalRow + data.provisionalList.length + data.missingList.length;
+					RelApplPageVO.totPageCnt = Math.floor(data.totalRow / RelApplPageVO.pageRow) + (data.totalRow % RelApplPageVO.pageRow == 0 ? 0 : 1) ;
+					RelApplPageVO.skeys = data.skeys;
+					RelApplPageVO.prvTotCnt = data.provisionalList.length;
+					RelApplPageVO.addTotCnt = data.addTotCnt;
+					RelApplPageVO.divTotCnt = data.divTotCnt;
+					
+					if(RelApplPageVO.totPageCnt == 0) {RelApplPageVO.totPageCnt = 1;}
+					
+					if(RelApplPageVO.totCnt > 0){
+						if(!$("#"+RelApplPageVO.id).is(':parent')){
+							var theadData = {
+									id: 'devRelAppl'
+									, item: 'RelAppl'
+									, scrollId : 'devRA'
+									, ezvChk: false
+									, myfolderChk: false
+									, copChk: false
+									, allChk: false
+									, pageChk: true
+									, missChk: true
+									, tpCntChk: true
+									, thead:[
+												 {nm:'No', sortField:'', size:'30'}
+									       		, {nm:'원문', sortField:'', size:'40'}
+									       		, {nm:'관계', sortField:'', size:'120'}
+									       		, {nm:'출원번호', sortField:'', size:'120'}
+									       		, {nm:'출원일자', sortField:'', size:'90'}
+									       		, {nm:'문헌번호', sortField:'', size:'120'}
+									       		, {nm:'발명의 명칭', sortField:'', size:'*'}
+									       	]
+							};
+							
+							$("#devRelAppl").append($("#tmplViewTableInfo").render({title:"관련출원", data:theadData}));
+							// 상세보기 오른쪽 메뉴 레이어 메뉴 수정
+							scrollRightSet("devRA", "Related Appl.");
+						}
+						
+						// 데이터 출력 함수 호출
+						$.fnRelApplListSuccess(data);
+						
+					} else {
+						$("#"+RelApplPageVO.id).remove();
+					}
+				},
+				error   : function(jqXHR, textStatus, errorThrown) {
+				}
+			});
+		}
+	}
+	
+	$.fnRelApplListSuccess = function(data){
+		// 공통 객체에 PAGE 객체 저장
+		DocCmmVO.RelAppl = RelApplPageVO;
+		
+		// SETTING
+		$("#"+RelApplPageVO.id+"Cnt").text(RelApplPageVO.totCnt);
+		$("#maxSkey_"+RelApplPageVO.id).val(RelApplPageVO.skeys);
+		$("#devAddCnt").text("("+RelApplPageVO.addTotCnt+")");
+		$("#devDivCnt").text("("+RelApplPageVO.divTotCnt+")");
+		$("#devPrvCnt").text("("+RelApplPageVO.prvTotCnt+")");
+		
+		// PAGING
+		$("#"+RelApplPageVO.id+"Page").empty();
+		$("#"+RelApplPageVO.id+"Page").html($("#tmplViewTablePage").render({pageNum:RelApplPageVO.pageNum, totPageCnt:RelApplPageVO.totPageCnt, type:'', item:RelApplPageVO.item}));
+		
+		// DATA LIST
+		$("#"+RelApplPageVO.id+"List").empty();
+		if(data.relApplTextList.length > 0){
+			var idx = (RelApplPageVO.pageNum - 1 ) * RelApplPageVO.pageRow;
+			$("#"+RelApplPageVO.id+"List").html($("#tmplRelApplDataTableList").render({data:data.relApplTextList, idx:idx, chldIdx:0}));
+		} else {
+			$("#"+RelApplPageVO.id+"List").html("<tr><td colspan='7' class='font_align_center'>해당 정보가 없습니다.</td></tr>");
+		}
+		// ETC DATA List
+		if(data.missingList.length > 0 || data.provisionalList.length > 0){
+			if($("#"+RelApplPageVO.id+"EtcList:not(:has(p))")){
+				$("#"+RelApplPageVO.id+"EtcList").empty();
+				$("#"+RelApplPageVO.id+"EtcList").html($("#tmplEtcViewTable").render({missList:data.missingList, provList:data.provisionalList}));
+			}
+		}
+		
+	}
+	
+	//US용
+	$.getRelApplUsList = function(pageNum, type){
+		
+		// 데이터 조회 타입 선언 (all:전체, prnt:부모, chld:자식)
+		if(RelApplPageVO.type == undefined || RelApplPageVO.type == null || type == undefined || type == null){
+			RelApplPageVO.type = "all";
+		} else {
+			RelApplPageVO.type = type;
+		}
+		
+		var data = {
+				"skey" : $("#skey").val()
+				, "type" : RelApplPageVO.type
+			}
+		
+		// 부모출원 페이징 or 최초 진입 시
+		if(RelApplPageVO.type == "prnt" || RelApplPageVO.type == "all"){
+			if(RelApplPageVO.prntPageNum == undefined || RelApplPageVO.prntPageNum == 0 || pageNum == undefined || pageNum == 0){
+				RelApplPageVO.prntPageNum = 1;
+			} else {
+				RelApplPageVO.prntPageNum = pageNum;
+			}
+			
+			data.pageNum = parseInt(RelApplPageVO.prntPageNum);
+			data.rowCount = parseInt(RelApplPageVO.prntPageRow);
+		}
+		// 자식출원 페이징 or 최초 진입 시
+		if(RelApplPageVO.type == "chld" || RelApplPageVO.type == "all") {
+			if(RelApplPageVO.chldPageNum == undefined || RelApplPageVO.chldPageNum == 0 || pageNum == undefined || pageNum == 0){
+				RelApplPageVO.chldPageNum = 1;
+			} else {
+				RelApplPageVO.chldPageNum = pageNum;
+			}
+			
+			data.pageNum = parseInt(RelApplPageVO.chldPageNum);
+			data.rowCount = parseInt(RelApplPageVO.chldPageRow);
+		}
+		
+		$.ajax({
+			url            : '../dus/findRelatedApplication.wips',
+			type         : 'POST',
+			cache       : false,
+			async       : true,
+			dataType  : 'json',
+			data        : data ,
+			success     : function(data, textStatus, jqXHR) {
+				
+				// 최초 진입 시 PAGING COUNT SET
+				if(RelApplPageVO.type == "all"){
+					RelApplPageVO.prntCnt = data.relApplCnt.prntTotCnt == null ? 0 : data.relApplCnt.prntTotCnt;
+					RelApplPageVO.prntTotCnt = data.relApplCnt.prntTotCnt + data.missingList.length + data.provisionalList.length;
+					RelApplPageVO.chldTotCnt = data.relApplCnt.chldTotCnt == null ? 0 : data.relApplCnt.chldTotCnt;
+					RelApplPageVO.totRsltCnt = RelApplPageVO.prntTotCnt + RelApplPageVO.chldTotCnt;
+					RelApplPageVO.totPrntPageCnt = Math.floor(RelApplPageVO.prntCnt / RelApplPageVO.prntPageRow) + (RelApplPageVO.prntCnt % RelApplPageVO.prntPageRow == 0 ? 0 : 1) ;
+					RelApplPageVO.totChldPageCnt = Math.floor(RelApplPageVO.chldTotCnt / RelApplPageVO.chldPageRow) + (RelApplPageVO.chldTotCnt % RelApplPageVO.chldPageRow == 0 ? 0 : 1) ;
+					
+					RelApplPageVO.skeys = data.skeys;
+				}
+				// 부모출원은 항상 표시해야해서 데이터 없을땐 0
+				if(RelApplPageVO.totPrntPageCnt == 0){
+					RelApplPageVO.prntPageNum = 0;
+				}
+				
+				if(RelApplPageVO.totRsltCnt > 0){
+					if(!$("#"+RelApplPageVO.id).is(':parent')){
+						//부모출원 RA : RA 항목에서 항상 표시
+						var theadData = {
+								id: 'devRelAppl'
+								, item: 'RelAppl'
+								, analysis: 'RA'
+								, scrollId : 'devRA'
+								, ezvChk: false
+								, myfolderChk: false
+								, copChk: false
+								, allChk: false
+								, pageChk: true
+								, missChk: true
+								, tpCntChk: false
+								, chldChk: (RelApplPageVO.chldTotCnt > 0 ? true : false)
+								, thead:[
+											{nm:'No', sortField:'', size:'30'}
+											,{nm:'원문', sortField:'', size:'50'}
+								       		, {nm:'유형', sortField:'', size:'70'}
+								       		, {nm:'출원번호', sortField:'', size:'130'}
+								       		, {nm:'출원일자', sortField:'', size:'130'}
+								       		, {nm:'문헌번호', sortField:'', size:'130'}
+								       		, {nm:'발명의 명칭', sortField:'', size:'*'}
+								       	]
+						};
+						
+						$("#devRelAppl").append($("#tmplRelApplUsViewTable").render({title:"관련출원", data:theadData}));
+						// 상세보기 오른쪽 메뉴 레이어 메뉴 수정
+						scrollRightSet("devRA", "Related Appl.");
+					}
+					
+					// 데이터 출력 함수 호출
+					$.fnRelApplUsListSuccess(data, "prnt");
+					
+					//자식출원 RA : 데이터 없을 때 표시 안함
+					if(RelApplPageVO.chldTotCnt > 0){
+						// 데이터 출력 함수 호출
+						$.fnRelApplUsListSuccess(data, "chld");
+					}
+					
+				} else {
+					$("#"+RelApplPageVO.id).remove();
+				}
+			},
+			error   : function(jqXHR, textStatus, errorThrown) {
+			}
+		});
+	}
+
+
+	$.fnRelApplUsListSuccess = function(data, type){
+		// 공통 객체에 PAGE 객체 저장
+		DocCmmVO.RelAppl = RelApplPageVO;
+		
+		// SETTING
+		$("#"+RelApplPageVO.id+"Cnt").text(RelApplPageVO.totRsltCnt);
+		$("#maxSkey_"+RelApplPageVO.id).val(RelApplPageVO.skeys);
+		$("#prntCnt_"+RelApplPageVO.id).text("("+RelApplPageVO.prntTotCnt+")");
+		$("#chldCnt_"+RelApplPageVO.id).text("("+RelApplPageVO.chldTotCnt+")");
+		
+		if(type == "prnt" && data.relApplTextList != null){
+			// PAGING
+			$("#"+RelApplPageVO.id+"PrntPage").empty();
+			$("#"+RelApplPageVO.id+"PrntPage").html($("#tmplViewTablePage").render({pageNum:RelApplPageVO.prntPageNum, totPageCnt:RelApplPageVO.totPrntPageCnt, type:type, item:RelApplPageVO.item}));
+			
+			// DATA LIST
+			$("#"+RelApplPageVO.id+"PrntList").empty();
+			if(data.relApplTextList.length > 0){
+				var idx = (RelApplPageVO.prntPageNum - 1 ) * RelApplPageVO.prntPageRow;
+				$("#"+RelApplPageVO.id+"PrntList").html($("#tmplRelApplDataTableList").render({data:data.relApplTextList, idx : idx, chldIdx : 0}));
+			} else {
+				$("#"+RelApplPageVO.id+"PrntList").html("<tr><td colspan='7' class='font_align_center'>해당 정보가 없습니다.</td></tr>");
+			}
+			// ETC DATA List
+			if(data.missingList.length > 0 || data.provisionalList.length > 0){
+				if($("#"+RelApplPageVO.id+"EtcList:not(:has(p))")){
+					$("#"+RelApplPageVO.id+"EtcList").empty();
+					$("#"+RelApplPageVO.id+"EtcList").html($("#tmplEtcViewTable").render({missList:data.missingList, provList:data.provisionalList}));
+				}
+			}
+			
+		} else if(type == "chld" && data.relApplTextChldList != null){
+			// PAGING
+			$("#"+RelApplPageVO.id+"ChldPage").empty();
+			$("#"+RelApplPageVO.id+"ChldPage").html($("#tmplViewTablePage").render({pageNum:RelApplPageVO.chldPageNum, totPageCnt:RelApplPageVO.totChldPageCnt, type:type, item:RelApplPageVO.item}));
+			
+			// DATA LIST
+			var chldIdx = (RelApplPageVO.chldPageNum - 1 ) * RelApplPageVO.chldPageRow;
+			$("#"+RelApplPageVO.id+"ChldList").empty();
+			$("#"+RelApplPageVO.id+"ChldList").html($("#tmplRelApplDataTableList").render({data:data.relApplTextChldList, idx : 0, chldIdx : chldIdx}));
+		}
+	}
+	//[E] Relation Application
+	
+	
+	//=================================
+	// [S] Conversion of Application
+	//=================================
+	var ApplMdfcPageVO = {};
+	ApplMdfcPageVO.id = 'devApplMdfc';
+	ApplMdfcPageVO.item = 'ApplMdfc';
+	ApplMdfcPageVO.pageRow = 10;
+	
+	$.getApplMdfcList = function(pageNum){
+		var data = {
+				"skey" : $("#skey").val()
+		}
+		// 최초 진입 시
+		if(ApplMdfcPageVO.pageNum == undefined || ApplMdfcPageVO.pageNum == 0 || pageNum == undefined || pageNum == 0){
+			ApplMdfcPageVO.pageNum = 1;
+		} else {
+			ApplMdfcPageVO.pageNum = pageNum;
+		}
+			
+		data.pageNum = parseInt(ApplMdfcPageVO.pageNum);
+		data.rowCount = parseInt(ApplMdfcPageVO.pageRow);
+		
+		$.ajax({
+			url            : '../dau/findApplModification.wips',
+			type         : 'POST',
+			cache       : false,
+			async       : true,
+			dataType  : 'json',
+			data        : data,
+			success     : function(data, textStatus, jqXHR) {
+				
+				// 최초 진입 시 PAGING COUNT SET
+				ApplMdfcPageVO.totCnt = data.totalRow + data.provisionalList.length + data.missingList.length;
+				ApplMdfcPageVO.totPageCnt = Math.floor(data.totalRow / ApplMdfcPageVO.pageRow) + (data.totalRow % ApplMdfcPageVO.pageRow == 0 ? 0 : 1) ;
+				ApplMdfcPageVO.skeys = data.skeys;
+				
+				if(ApplMdfcPageVO.totPageCnt == 0) {ApplMdfcPageVO.totPageCnt = 1;}
+				
+				if(ApplMdfcPageVO.totCnt > 0){
+					if(!$("#"+ApplMdfcPageVO.id).is(':parent')){
+						var theadData = {
+								id: 'devApplMdfc'
+								, item: 'ApplMdfc'
+								, scrollId : ''
+								, ezvChk: false
+								, myfolderChk: false
+								, copChk: false
+								, allChk: false
+								, pageChk: true
+								, missChk: true
+								, tooltip:null
+								, tpCntData: []
+								, thead:[
+											{nm:'No', sortField:'', size:'30'}
+											,{nm:'원문', sortField:'', size:'50'}
+								       		, {nm:'유형', sortField:'', size:'70'}
+								       		, {nm:'출원번호', sortField:'', size:'130'}
+								       		, {nm:'출원일자', sortField:'', size:'130'}
+								       		, {nm:'문헌번호', sortField:'', size:'130'}
+								       		, {nm:'발명의 명칭', sortField:'', size:'*'}
+								       	]
+						};
+						
+						$("#devApplMdfc").append($("#tmplViewTableInfo").render({title:"변경출원", data:theadData}));
+						// 상세보기 오른쪽 메뉴 레이어 메뉴 수정
+						//scrollRightSet("devRA", "Related Appl.");
+					}
+					
+					// 데이터 출력 함수 호출
+					$.fnApplMdfcListSuccess(data);
+					
+				} else {
+					$("#"+ApplMdfcPageVO.id).remove();
+				}
+			},
+			error   : function(jqXHR, textStatus, errorThrown) {
+			}
+		});
+	}
+	
+	$.fnApplMdfcListSuccess = function(data){
+		// 공통 객체에 PAGE 객체 저장
+		DocCmmVO.ApplMdfc = ApplMdfcPageVO;
+		
+		// SETTING
+		$("#"+ApplMdfcPageVO.id+"Cnt").text(ApplMdfcPageVO.totCnt);
+		$("#maxSkey_"+ApplMdfcPageVO.id).val(ApplMdfcPageVO.skeys);
+		
+		// PAGING
+		$("#"+ApplMdfcPageVO.id+"Page").empty();
+		$("#"+ApplMdfcPageVO.id+"Page").html($("#tmplViewTablePage").render({pageNum:ApplMdfcPageVO.pageNum, totPageCnt:ApplMdfcPageVO.totPageCnt, type:'', item:ApplMdfcPageVO.item}));
+		
+		// DATA LIST
+		$("#"+ApplMdfcPageVO.id+"List").empty();
+		if(data.applMdfcList.length > 0){
+			var idx = (ApplMdfcPageVO.pageNum - 1 ) * ApplMdfcPageVO.pageRow;
+			$("#"+ApplMdfcPageVO.id+"List").html($("#tmplRelApplDataTableList").render({data:data.applMdfcList, idx:idx, chldIdx:0}));
+		} else {
+			$("#"+ApplMdfcPageVO.id+"List").html("<tr><td colspan='7' class='font_align_center'>해당 정보가 없습니다.</td></tr>");
+		}
+		// ETC DATA List
+		if(data.missingList.length > 0 || data.provisionalList.length > 0){
+			if($("#"+ApplMdfcPageVO.id+"EtcList:not(:has(p))")){
+				$("#"+ApplMdfcPageVO.id+"EtcList").empty();
+				$("#"+ApplMdfcPageVO.id+"EtcList").html($("#tmplEtcViewTable").render({missList:data.missingList, provList:data.provisionalList}));
+			}
+		}
+		
+	}
+	// [E] Conversion of Application
+	
+	//=================================
+	// [S] 우선권 항목
+	//=================================
+	var PrPageVO = {};
+	PrPageVO.id = 'devPr';
+	PrPageVO.item = 'Pr';
+	PrPageVO.pageRow = 20;
+	PrPageVO.sortField  = 'appl_dt';
+	PrPageVO.sortType = 'DESC';
+	
+	$.getPrList = function(pageNum){
+		var data = {
+			"skey" : $("#skey").val()
+			, "sortField" : PrPageVO.sortField
+			, "sortType" : PrPageVO.sortType
+		}
+		//테이블 상단 서브 통계
+		var tpCntData = [];
+		//테이블 헤더
+		var thead = [
+						{nm:'No', sortField:'', size:'30'}
+						, {nm:'원문', sortField:'', size:'50'}
+						, {nm:'출원번호', sortField:'', size:'160'}
+						, {nm:'출원일자', sortField:'appl_dt', size:'130'}
+						, {nm:'문헌번호', sortField:'', size:'130'}
+						, {nm:'발명의 명칭', sortField:'', size:'*'}
+				]
+		// 항목 툴팁
+		var tooltip = null;
+		// 최초 진입 시 페이징
+		if(PrPageVO.pageNum == undefined || PrPageVO.pageNum == 0 || pageNum == undefined || pageNum == 0){
+			PrPageVO.pageNum = 1;
+		} else {
+			PrPageVO.pageNum = pageNum;
+		}
+		
+		data.pageNum = parseInt(PrPageVO.pageNum);
+		data.pageRow = parseInt(PrPageVO.pageRow);
+		
+		//thead 유형 있는경우
+		if($("#ctry").val() == "US" || $("#ctry").val() == "AU" || $("#ctry").val() == "WO"){
+			thead = [
+						{nm:'No', sortField:'', size:'30'}
+						, {nm:'원문', sortField:'', size:'50'}
+						, {nm:'유형', sortField:'', size:'170'}
+						, {nm:'출원번호', sortField:'', size:'160'}
+						, {nm:'출원일자', sortField:'appl_dt', size:'100'}
+						, {nm:'문헌번호', sortField:'', size:'160'}
+						, {nm:'발명의 명칭', sortField:'', size:'*'}
+				]
+			tooltip = {
+						id : 'docPrTooltip'
+						, evtId : '#docPrTooltip'
+						, hideCntnt : '우선권 안내툴팁 아이콘'
+						, content : '우선권과 \'Related Application(RA)\'을 함께 제공합니다. </br>우선권은 \'Priority\' 유형으로 표시됩니다.'
+				};
+		}
+		
+		$.ajax({
+			url            : '../doc/findDocPrPat.wips',
+			type         : 'POST',
+			cache       : false,
+			async       : true,
+			dataType  : 'json',
+			data        : data,
+			success     : function(data, textStatus, jqXHR) {
+				
+				// 최초 진입 시 PAGING COUNT SET
+				PrPageVO.totCnt = data.prPatCnt.totalCnt + data.prPatCnt.provisionalCount + data.prPatCnt.missingDocCount;
+				PrPageVO.totPageCnt = data.prPatCnt.totalPage;
+				PrPageVO.skeys = data.skeys;
+				
+				if($("#ctry").val() == "US" || $("#ctry").val() == "AU" || $("#ctry").val() == "WO"){
+					var typeArr = [data.prPatRsltVOList, data.missingList, data.provisionalList].filter(function(arr){
+																									return arr !== null && arr !== undefined;
+																								}).flat();
+					tpCntData = groupByProperty(typeArr, "prTp");
+					tpCntData = combineTypes(tpCntData, 'Priority', 'RA');
+				}
+				
+				if(PrPageVO.totPageCnt == 0) {PrPageVO.totPageCnt = 1;}
+				
+				if(PrPageVO.totCnt > 0){
+					if($("#"+PrPageVO.id).children().length == 0){
+						var theadData = {
+								id: PrPageVO.id
+								, item: PrPageVO.item
+								, scrollId : ''
+								, ezvChk: false
+								, myfolderChk: false
+								, copChk: false
+								, allChk: false
+								, pageChk: true
+								, missChk: true
+								, tooltip:tooltip
+								, tpCntData:tpCntData
+								, thead:thead
+						};
+						
+						$("#devPr").append($("#tmplViewTableInfo").render({title:"우선권번호", data:theadData}));
+						// 상세보기 오른쪽 메뉴 레이어 메뉴 수정
+						//scrollRightSet("devRA", "Related Appl.");
+					}
+					
+					// 데이터 출력 함수 호출
+					$.fnPrListSuccess(data);
+					
+				} else {
+					$("#"+PrPageVO.id).remove();
+				}
+			},
+			error   : function(jqXHR, textStatus, errorThrown) {
+			}
+		});
+	}
+	
+	
+	$.fnPrListSuccess = function(data){
+		// 공통 객체에 PAGE 객체 저장
+		DocCmmVO.Pr = PrPageVO;
+		
+		// SETTING
+		$("#"+PrPageVO.id+"Cnt").text(PrPageVO.totCnt);
+		$("#maxSkey_"+PrPageVO.id).val(PrPageVO.skeys);
+		
+		// PAGING
+		$("#"+PrPageVO.id+"Page").empty();
+		$("#"+PrPageVO.id+"Page").html($("#tmplViewTablePage").render({pageNum:PrPageVO.pageNum, totPageCnt:PrPageVO.totPageCnt, type:'', item:PrPageVO.item}));
+		
+		// DATA LIST
+		$("#"+PrPageVO.id+"List").empty();
+		if(data.prPatRsltVOList.length > 0){
+			var idx = (PrPageVO.pageNum - 1 ) * PrPageVO.pageRow;
+			$("#"+PrPageVO.id+"List").html($("#tmplPrDataTableList").render({data:data.prPatRsltVOList, idx:idx}));
+		} else {
+			$("#"+PrPageVO.id+"List").html("<tr><td colspan='7' class='font_align_center'>해당 정보가 없습니다.</td></tr>");
+		}
+		// ETC DATA List
+		if(data.missingList.length > 0 || data.provisionalList.length > 0){
+			if($("#"+PrPageVO.id+"EtcList:not(:has(p))")){
+				$("#"+PrPageVO.id+"EtcList").empty();
+				$("#"+PrPageVO.id+"EtcList").html($("#tmplEtcViewTable").render({missList:data.missingList, provList:data.provisionalList}));
+			}
+		}
+		
+	}
+	
+	//[E] 우선권 항목
+	
+	/**
+	 * 이전페이지 클릭
+	 */
+	$.prevPage = function(type, item){
+		var pageVO = DocCmmVO[item];
+		
+		if(type != null && type != undefined && type != ""){
+			if(type == "prnt"){
+				pageVO.pageNum = pageVO.prntPageNum;
+				pageVO.totPageCnt = pageVO.totPrntPageCnt;
+			} else {
+				pageVO.pageNum = pageVO.chldPageNum;
+				pageVO.totPageCnt = pageVO.totChldPageCnt;
+			}
+		}
+		
+		if(pageVO.pageNum == '1'){
+			return;
+		}
+		
+		pageVO.pageNum =  parseInt(pageVO.pageNum) - 1;
+		
+		new Function("return $.get" + item + "List('" + pageVO.pageNum +"','" + type + "');")();
+//		if((pageVO.sortField == undefined || pageVO.sortField == '') && (type == undefined || type == '')){
+//			// eval 대체 사용. 
+//			new Function("return $.get" + item + "List('" + pageVO.pageNum +"');")();
+//		} else if(type != undefined || type != ''){
+//			new Function("return $.get" + item + "List('" + pageVO.pageNum +"','" + type + "');")();
+//		}
+	};
+
+	/**
+	 * 다음페이지 클릭
+	 */
+	$.nextPage = function(type, item){
+		var pageVO = DocCmmVO[item];
+		
+		if(type != null && type != undefined && type != ""){
+			if(type == "prnt"){
+				pageVO.pageNum = pageVO.prntPageNum;
+				pageVO.totPageCnt = pageVO.totPrntPageCnt;
+			} else {
+				pageVO.pageNum = pageVO.chldPageNum;
+				pageVO.totPageCnt = pageVO.totChldPageCnt;
+			}
+		}
+		
+		if(pageVO.pageNum == pageVO.totPageCnt){
+			return;
+		}
+		
+		pageVO.pageNum =  parseInt(pageVO.pageNum) + 1;
+		
+		new Function("return $.get" + item + "List('" + pageVO.pageNum +"','" + type + "');")();
+		
+//		if((pageVO.sortField == undefined || pageVO.sortField == '') && (type == undefined || type == '')){
+//			// eval 대체 사용. 
+//			new Function("return $.get" + item + "List('" + pageVO.pageNum +"');")();
+//		} else if(type != undefined || type != ''){
+//			new Function("return $.get" + item + "List('" + pageVO.pageNum +"','" + type + "');")();
+//		}
+	};
+	
+	
+	$.fnDocDataView = function(){
+		if($("#ctry").val() == "AU"){
+			//$.getRelApplList();
+			$.getApplMdfcList();
+		}
+		$.getPrList();
+	}
+	
+})(jQuery);
+//=================================
+// 공통 사용 함수
+//=================================
+
+
+function groupByProperty(targetObjList, property) {
+	// 객체를 그룹화할 때 사용할 객체
+	var groupedObjects = {};
+	
+	// 객체 배열을 순회하면서 그룹화
+	$.each(targetObjList, function(index, obj) {
+		var propertyValues = (obj[property] || '').split(',').map(item => item.trim()); //콤마로 구분된 값을 배열로 분리
+		if (propertyValues.length > 0 && propertyValues[0] !== '') {
+			$.each(propertyValues, function(index, propertyName) {
+				if (propertyName in groupedObjects) {
+					groupedObjects[propertyName].cnt++; // 이미 있는 속성인 경우 개수 증가
+				} else {
+					groupedObjects[propertyName] = { tp: propertyName, cnt: 1 }; // 새로운 속성인 경우 객체 생성
+				}
+			});
+		}
+	});
+	
+	// 결과 리스트 생성
+	var resultList = [];
+	$.each(groupedObjects, function(propertyName, groupedObject) {
+		resultList.push(groupedObject);
+	});
+	
+	return resultList
+}
+
+
+//원하는 유형기준으로 건수 셋팅
+function combineTypes(arr, baseType, otherType) {
+	if (!arr || arr.length === 0) return [];
+	
+	var combined = [];
+	let sum = 0;
+	
+	arr.forEach(function(item){
+		if(item.tp === baseType){
+			combined.push(item);
+		} else {
+			sum += item.cnt
+		}
+	});
+	
+	combined.push({tp:otherType, cnt:sum});
+	
+	return combined;
+}
+//=================================
+//TODO 비특허항목 공보심판 구분되면서 기획팀 확인중
+//비특허 항목
+//=================================
+var viewNpatList = []
+	,fullNpatList = [];
+function getNpatData(){
+	if(viewNpatList.length > 0){
+		fnDocNpatData();
+	}else{
+		$.ajax({
+			url            : '../doc/docNpatData.wips',
+			type         : 'POST',
+			cache       : false,
+			async       : true,
+			dataType  : 'json',
+			data        : {
+				"skey" : $("#skey").val()
+			},
+			success     : function(data, textStatus, jqXHR) {
+				
+				if(data.refNpatList.length > 0){
+					/**
+					 * 인용된 비특허 문헌 리스트 최초 제한 출력
+					 * ITS : 18220
+					 */
+					if(data.refNpatList.length > 100){
+						viewNpatList = data.refNpatList.slice(0,100);
+						fullNpatList = data.refNpatList;
+					} else {
+						viewNpatList = data.refNpatList;
+					}
+					
+					fnDocNpatData();
+				} else {
+					$("#devNpat").remove();
+				}
+			},
+			error   : function(jqXHR, textStatus, errorThrown) {
+			}
+		});
+	}
+}
+
+
+function fnDocNpatData(){
+	
+	$("#devNpatDiv").html($("#tmplNpatList").render({npatList:viewNpatList}));
+	
+	onClickNpatShow = function(){
+		$("#devNpatDiv").html($("#tmplNpatList").render({npatList:fullNpatList}));
+		$("#devNpatShow").hide();
+		$("#devNpatHide").show();
+	}
+	
+	onClickNpatHide = function(){
+		$("#devNpatDiv").html($("#tmplNpatList").render({npatList:viewNpatList}));
+		$("#devNpatHide").hide();
+		$("#devNpatShow").show();
+	}
+}
+
+//KR 심사문헌 조회 버튼 EPO 링크
+function openRegisterEpo(){
+	var ctry = $("#ctry").val()
+		,mngKind = $("#mngKind").val()
+		,kind = ""
+		,applNumKey = $("#applNum").val().replace(/-/gi,'')
+		,applNumParam = applNumKey.substring(2,applNumKey.length);
+	
+	if(mngKind == 1 || mngKind == 2 || mngKind == 3 || mngKind == 21){
+		kind = 'A';
+	} else {
+		kind = 'U';
+	}
+	window.open('https://register.epo.org/ipfwretrieve?apn='+ctry+'.'+applNumParam+'.'+kind+'&lng=en', '_blank');
+}
+
+//[S] 특허분류코드
+function openFmlyClsLayer(skey, dbNm, ctry, clsType, clsIndex) {
+	if($('#'+clsType+'_main'+'_lyr_'+clsIndex+'_0').css("display") == "none"){	//레이어는 만들어 졌으나 hide인 상태
+		layerHide();
+		$('#'+clsType+'_main'+'_lyr_'+clsIndex+'_0').show();
+		$('#'+clsType+'_main'+'_div_'+clsIndex+'_0').attr("style", "position:relative;");
+	} else if($('#'+clsType+'_main'+'_lyr_'+clsIndex+'_0').css("display") == "block"){	//레이터 열린 상태에서 다시 +버튼 누를때 닫기
+		closeClsLayer(clsType , 'main'  , clsIndex , '0') ;
+	} else {	// 레이어가 안만들어 졌을 때 ajax
+		var url = "../doc/docFmlyCls.wips";
+		var obj = { skey : skey, dbNm : dbNm, ctry : ctry, clsType:clsType};
+		
+		$.ajax({
+			url			: url,
+			type		: 'POST',
+			cache		: false,
+			async		: false,
+			dataType	: 'json',
+			data		: obj,
+			success     : function(data, textStatus, jqXHR) {
+				layerHide();
+				if(clsType === 'ipc'){
+					$('#'+clsType+'_main'+'_div_'+clsIndex+'_0 > div').append($("#tmplFmlyClsLayer").render({clsType:clsType, clsIndex:clsIndex, clsList:data.clsList}));
+				} else if(clsType === 'cpc'){
+					$('#'+clsType+'_main'+'_div_'+clsIndex+'_0 > div').append($("#tmplFmlyClsLayer").render({clsType:clsType, clsIndex:clsIndex, clsList:data.clsList}));
+				}
+				$('#'+clsType+'_main'+'_lyr_'+clsIndex+'_0').show();
+				$('#'+clsType+'_main'+'_div_'+clsIndex+'_0').attr("style", "position:relative;");
+			},
+			error   : function(jqXHR, textStatus, errorThrown) {
+			}
+		});
+	}
+	
+};
+
+function layerHide() {
+	var clsKinds = ["cpc", "ipc", "upc", "fi" , "fterm","locarno"];
+	for (var i = 0; i < clsKinds.length; i++) {
+		$( "div[id^="+clsKinds[i]+"_curr_lyr_]").hide();
+		$( "div[id^="+clsKinds[i]+"_curr_div_]").attr("style", "");
+		
+		$( "div[id^="+clsKinds[i]+"_orig_lyr_]").hide();
+		$( "div[id^="+clsKinds[i]+"_orig_div_]").attr("style", "");
+		
+		//wips 패밀리 IPC/CPC
+		$( "div[id^="+clsKinds[i]+"_main_lyr_]").hide();
+		$( "div[id^="+clsKinds[i]+"_main_div_]").attr("style", "");
+	}
+};
+
+function closeClsLayer(clsType , clsStatus  , clsIndex , clsMode) {
+	$('#'+clsType+'_'+clsStatus+'_lyr_'+clsIndex+'_'+clsMode).hide();
+	$('#'+clsType+'_'+clsStatus+'_div_'+clsIndex+'_'+clsMode).attr("style", "");
+};
+//[E] 특허분류코드
+

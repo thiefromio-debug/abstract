@@ -1,0 +1,415 @@
+/*
+ wipsHighLighter v 1.0
+ 윕스 형광펜 구현을 위한 jQuery plugin
+ 
+ 김성훈
+ <mailto:shkimbbr@gmail.com>
+
+
+ 발견된 버그
+ 1. 검색어가 html 태그에도 존재하고 검색대상인 본문에 존재하는 경우에 있어서
+    본문의 매치되는 텍스트 사이에 html tag가 존재하는 경우 html 태그를 포함하고 있는 본문은 HighLight 되지 못하는 버그
+ 2. html 스타일을 유지하기 위해 위치가 변경되지 않아야 하는 tag가 정의되어 있다. (예, <sup> , <sub>)
+    이때 이 태그에 이어 하이라이트에 관여하는 <span> 태그가 붙어오는 경우에 HighLight가 되지 못하는 버그   
+
+ 참조 : 검색어가 본문에도 존재하고 html 태그에도 존재하는 경우는 아래 플러그인을 인용.
+ http://johannburkard.de/blog/programming/javascript/highlight-javascript-text-higlighting-jquery-plugin.html
+ */
+
+
+
+;(function($) {
+
+	$.fn.saveOriginHtml = function() {		
+		$element = $(this);
+		var originHtmlArray = new Array();
+		$element.each(function(i) {
+			originHtmlArray[i] = $(this).html();
+		});
+		return originHtmlArray;
+	};
+	
+	$.fn.restoreOriginHtml = function(originHtmlArray) {
+		$element = $(this);	
+		$element.each(function(i) {
+			$(this).html(originHtmlArray[i]);
+		});
+	};	
+	
+	//형광펜 clear
+	$.fn.clearHighLight = function(className) {
+		$element = $(this);	
+		$element.find('.' + className).each(function() {
+			$(this).replaceWith($(this).contents());
+		});
+	};
+	
+	//형광펜 clear한후 해당 html 을 리턴한다. elemet 하나로 수행한다.
+	$.fn.clearHighLightByElement = function(className) {
+		$element = $(this);
+		$element.find('.' + className).each(function() {
+			$(this).replaceWith($(this).contents());
+		});
+		return $element.html();
+	};
+	
+	//형광펜 적용시 엘리먼트를 받아 건수와 html을 리턴한다.
+	//jquery 테스트 처리시 사용한다.
+	$.fn.highLight = function(keyword, className) {
+		var rsltObj = {"cnt":0, "html":""};
+		var totalMatchedCount = 0;
+		
+		var element = $(this);
+		var html = element.html();
+		// '&'가 &amp; 로 변환되어 replace 시킴 (2016.03.04)
+		html = html.replace(/&amp;/gi, '&');
+		html = html.replace(/&quot;/gi, '\"');
+//		html = html.replace(/&lt;/gi, '<'); (ITS-20579, 다른 서비스에는 해당 로직 없음으로 일단 삭제)
+//		html = html.replace(/&gt;/gi, '>');
+		html = html.replace(/&apos;/gi, '\'');
+		var txt = element.text();	
+		
+		var keyReg = new RegExp('(' + quotedRegx(keyword) + ')', 'ig');	
+		var txtMatchCount = txt.match(keyReg) ? txt.match(keyReg).length : 0;
+		var htmlMatchCount = html.match(keyReg) ? html.match(keyReg).length : 0;
+		
+		totalMatchedCount += txtMatchCount;
+					
+		if (txtMatchCount == 0) {
+			
+		}else if (txtMatchCount == htmlMatchCount) {
+			var lightedHtml = html.replace(keyReg, "<span class='" + className + "'>$1</span>");
+			element.html(lightedHtml);		
+		}else if (txtMatchCount > htmlMatchCount) {
+			
+			html = html.replace(/\r\n/g, '');
+			html = html.replace(/\n/g, '');				
+			var keywordArray = keyword.split('');
+			
+			var regKeyword = '';
+			for (var i = 0; i < keywordArray.length; i++) {
+				if (i == keywordArray.length - 1) {
+					regKeyword += quotedRegx(keywordArray[i]);
+				}
+				else {
+					regKeyword += quotedRegx(keywordArray[i]) + "((?:<[^>]+>)*?)";
+				}
+			}
+			
+			var regKeywordObject = new RegExp(regKeyword, 'ig');
+			var resultArray = regKeywordObject.exec(html);
+			
+			var targetHtml = html;
+			var changedHtml = "";
+			var extraHtml = "";
+			
+			while (resultArray) {
+				var regMatchObject = new RegExp("^(.*?)(" + quotedRegx(resultArray[0]) + ")" + "(.*?)$", "i");
+				targetHtml = targetHtml.replace(regMatchObject, function($0, $1, $2, $3) {
+					extraHtml = $3;
+					var matchedHtml = $2;
+					
+					matchedHtml = makeMatchedHtml(matchedHtml, resultArray, keyword.length);					
+					var rest = makeRest(resultArray, keyword.length);
+					changedHtml = changedHtml + $1 + "<span class='" + className + "'>" + matchedHtml + "</span>" + rest;
+					
+				});
+				targetHtml = extraHtml;
+				resultArray = regKeywordObject.exec(html);
+			}
+			changedHtml = changedHtml + targetHtml;
+			element.html(changedHtml);			
+		} else {		
+			//its 19174 - 나누어진 Text node 병합
+			element[0].normalize();
+			element.mixedHighLight(keyword, className);
+		}
+		
+		rsltObj.cnt = totalMatchedCount;
+		rsltObj.html = element.html();
+		
+		return rsltObj;
+	};
+
+	/**
+	 * 전각문자로 변경한다.
+	 * @param src 변경할값
+	 * @return String 변경된값
+	 * ASCII table 참고 : http://web.cs.mun.ca/~michael/c/ascii-table.html
+	 */
+	function toFullChar(src) {
+		// 입력된 스트링이 null 이면 null 을 리턴
+		if (src === null) {
+			return null;
+		}
+		
+		// 변환된 문자들을 쌓아놓을 StringBuffer 를 마련한다
+		var strBuf 		 = ""
+			, c 		 = 0
+			, nSrcLength = src.length;
+		
+		for (var i = 0; i < nSrcLength; i++) {
+			c = src.charCodeAt(i);
+			//영문이거나 특수 문자일경우. 
+			if ( (c >= 0x21 && c <= 0x7e) ) { 
+				c += 0xfee0;
+			}else if (c == 0x20) { //공백일경우
+				c = 0x3000;
+			}
+			// 문자열 버퍼에 변환된 문자를 쌓는다
+			strBuf += String.fromCharCode(c);
+		}
+		return strBuf;
+	}
+	
+	//형광펜 적용후 전체 건수를 리턴한다.
+	$.fn.executeHighLight = function(keyword, className) {
+		var totalMatchedCount = 0;
+		 
+		$element = $(this);
+		$element.each(function(i) {
+			$element2 = $(this);
+			var fullChar = toFullChar(keyword);// 전각 문자 
+			if(keyword !== fullChar) {
+				var rsltFullCharObj = $element2.highLight(fullChar, className);
+				totalMatchedCount += rsltFullCharObj.cnt;
+			}
+			var rsltObj = $element2.highLight(keyword, className);
+			totalMatchedCount += rsltObj.cnt;
+			
+		});
+		
+		return totalMatchedCount;
+	};
+	
+	$.fn.mixedHighLight = function(keyword, className) {
+		function exceptTagHighLight(node, keyword, className) {
+			var skip = 0;
+			if (node.nodeType == 3) {	//nodeType 3 = Text_Node
+				//EP문헌 중 1518015001713.skey ΐ 을 toUpperCase() 변경하면 Ϊ́으로 변경 되면서 길이가 늘어난 이슈 발생 search 로 변경
+				//var pos = node.data.toUpperCase().indexOf(keyword);
+				var regex = new RegExp(quotedRegx(keyword), 'gi');
+				var pos = node.data.search(regex);
+				if (pos >= 0) {
+					var spannode = document.createElement('span');
+					spannode.className = className;					
+					var middlebit = node.splitText(pos);			
+					var endbit = middlebit.splitText(keyword.length);
+					var middleclone = middlebit.cloneNode(true);
+					spannode.appendChild(middleclone);
+					middlebit.parentNode.replaceChild(spannode, middlebit);	
+					skip = 1;
+				}
+			}
+			//its - 8381 description-of-embodiments > script 포함으로 형광펜 안되는 이슈 수정
+			//else if (node.nodeType == 1 && node.childNodes && !/(script|style)/i.test(node.tagName)) {
+			else if (node.nodeType == 1 && node.childNodes && !/(javascript|style)/i.test(node.tagName)) {
+				for (var i = 0; i < node.childNodes.length; ++i) {
+					i += exceptTagHighLight(node.childNodes[i], keyword, className);
+				}
+			}
+			return skip;
+		}		
+		
+		return this.each(function() {
+			exceptTagHighLight(this, keyword, className);
+		});
+	};
+			
+	var noRemovedTagArray = new Array('</?sub', '</?sup');
+	
+	function isContains(noREmovedTagArray, htmlTag) {
+		htmlTag = htmlTag == undefined ? '' : htmlTag;
+		for (var i = 0; i < noREmovedTagArray.length; i++) {			
+			if (htmlTag.match(noREmovedTagArray[i])) {
+				return false;
+			}		
+		}			
+		return true;
+	}
+	
+
+	function makeRest(resultArray, len) {
+		var rest = '';
+		for (var i = 1; i < len; i++) {
+			if (isContains(noRemovedTagArray, resultArray[i]) == true) {
+				rest += resultArray[i] == undefined ? '' : resultArray[i];
+			}
+		}
+		return rest;
+	}
+	
+	function makeMatchedHtml(matchedHtml, resultArray, len) {
+		for (var i = 1; i < len; i++) {			
+			if (isContains(noRemovedTagArray, resultArray[i]) == true) {
+				matchedHtml = matchedHtml.replace(quotedRegx(resultArray[i]), '');  
+			}
+		}
+		return matchedHtml;
+	}
+	
+	function quotedRegx(keyword) {
+		keyword = keyword == undefined ? '' : keyword;
+		var regexpSpecialChars = /([\[\]\^\$\|\(\)\\\+\*\?\{\}\!\.])/gi;
+		var quotedKeyword = keyword.replace(regexpSpecialChars, '\\$1');
+	
+		return quotedKeyword;
+	}
+	
+
+//  keyword에 줄바뀜 탭 공백들이 들어왔을때 처리 (htmlTag 문제)
+	$.fn.multiHighLight = function(kwdLoc, keyword, className) {
+		var $element = $(this);
+		var html = $element.html()
+		var beforeHtml = html.substring(0, kwdLoc)
+		var afterHtml = html.substring(kwdLoc, html.length)			
+		var shiftLoc = 0;
+		
+		// afterHtml 초반에 포함된 Tag길이를 알아오자.
+		afterHtmlReg = afterHtml.match(/^(?:<[^>]+>\s*)+/)
+		if (afterHtmlReg != undefined) {
+			shiftLoc = afterHtmlReg[0].length
+		}
+		kwdLoc = kwdLoc + shiftLoc
+		var beforeHtml = html.substring(0, kwdLoc)
+		var afterHtml = html.substring(kwdLoc, html.length)
+		
+		
+		afterHtml = afterHtml.replace(/[ ]{2,}/ig, ' ')
+		afterHtml = afterHtml.replace(/\r\n/g, ' ');
+		afterHtml = afterHtml.replace(/\n/g, ' ');
+		
+
+		
+		var keyRegBrowserMatch = new RegExp('(^' + quotedRegx(keyword) + ')', 'i')
+		if (afterHtml.match(keyRegBrowserMatch)) {
+//			console.log("Match")
+		}
+		else {			
+			// browser 판단.
+			// IE에서 저장된 것을 Chrome에서 읽어들이면 index 값을 줄여나가야함.
+			var agent = navigator.userAgent.toLowerCase();
+			if (agent.indexOf('chrome') != -1) {		// chrome   값을 줄여나간다.
+				
+				var limit = 0
+				while(!afterHtml.match(keyRegBrowserMatch)) {
+					kwdLoc = kwdLoc - 1
+					beforeHtml = html.substring(0, kwdLoc)
+					afterHtml = html.substring(kwdLoc, html.length)
+					limit = limit + 1
+					if (limit == 1000 || kwdLoc == 0) {
+						break
+					}
+				}				
+			}
+			else {		// ie  값을 늘려나간다.
+//				var limit = 0
+//				while(!afterHtml.match(keyRegBrowserMatch)) {
+//					kwdLoc = kwdLoc + 1
+//					beforeHtml = html.substring(0, kwdLoc)
+//					afterHtml = html.substring(kwdLoc, html.length)
+//					limit = limit + 1
+//					if (limit == 1000) {
+//						break
+//					}
+//				}
+			}		
+		}
+		
+		
+		var orgkeyword = keyword
+		keyword = quotedRegx(keyword)
+//		keyword = keyword.replace(/ /g, '\\s*')
+		
+		var keyReg = new RegExp('(' + keyword + ')', 'i');
+		
+		// 특이Tag sub sup가 있는지 확인후 처리한다.
+//		var afterTxt = $element.text()
+		var afterTxt = $($.parseHTML(afterHtml)).text()
+		
+		var txtMatchCount = afterTxt.match(keyReg) ? afterTxt.match(keyReg).length : 0;
+		var htmlMatchCount = afterHtml.match(keyReg) ? afterHtml.match(keyReg).length : 0;
+		
+		if (txtMatchCount == 0) {
+			
+		}
+		else if (txtMatchCount == htmlMatchCount) {
+			var lightedHtml = afterHtml.replace(keyReg, "<span class='" + className + "'>$1</span>");
+			var changedHtml = beforeHtml + lightedHtml
+			$element.html(changedHtml);
+		}
+		else if (txtMatchCount > htmlMatchCount) {		// sup sub 존재
+			var keywordArray = orgkeyword.split('')
+			var regKeyword = ''
+			for (var i = 0; i < keywordArray.length; i++) {
+				if (i == keywordArray.length - 1) {
+					regKeyword += quotedRegx(keywordArray[i]);
+				}
+				else {
+					regKeyword += quotedRegx(keywordArray[i]) + "((?:<[^>]+>)*?)";
+				}
+			}
+			
+			var regKeywordObject = new RegExp(regKeyword, 'i');
+			var resultArray = regKeywordObject.exec(afterHtml);
+			
+			var targetHtml = afterHtml;
+			var changedHtml = ""
+			var extraHtml = "";
+			
+			while (resultArray) {
+				var regMatchObject = new RegExp("^(.*?)(" + quotedRegx(resultArray[0]) + ")" + "(.*?)$", "i");
+				targetHtml = targetHtml.replace(regMatchObject, function($0, $1, $2, $3) {
+					extraHtml = $3;
+					var matchedHtml = $2;
+					
+					matchedHtml = makeMatchedHtml(matchedHtml, resultArray, keyword.length);
+					var rest = makeRest(resultArray, keyword.length);
+					changedHtml = changedHtml + $1 + "<span class='" + className + "'>" + matchedHtml + "</span>" + rest;					
+				});
+				targetHtml = extraHtml;
+				resultArray = null			// 1회 매핑
+			}
+			shiftLoc = shiftLoc + changedHtml.length - orgkeyword.length - 39
+			changedHtml = beforeHtml + changedHtml + targetHtml;
+			$element.html(changedHtml);
+				
+			
+		}
+		
+		
+		return shiftLoc
+	}	
+	
+	
+	/**
+	 * @param kwdLoc : 매칭되는 최초 위치
+	 * @param keyword : 키워드
+	 * @param className : 형광펜 클래스명
+	 * @return void
+	 * $("div.highlightText, span.highlightText").executeHighLight(keyworld, className);
+	 * highlight_text1
+	 */
+	$.fn.executeMultiHighLight = function(kwdLoc, keywords, className) {
+		
+		var $element = $(this);
+		var H_TAG_LENGTH = 39			// 하이라이트 키워드를 위한 Tag 길이
+		var shiftLoc = 0
+		
+		// 키워드 분해
+		keywords = keywords.replace(/\r/g, '')
+		keywords = keywords.replace(/[ ]{2,}/g, ' ')
+		keywordArray = keywords.split(/[\t\n]|(?:@#@)/)
+		for (var i = 0; i < keywordArray.length; i++) {
+			keyword = keywordArray[i]
+			keyword = keyword.replace(/^[ ]+/, '');
+			if (keyword != '') {
+			
+				shiftLoc = $element.multiHighLight(kwdLoc, keyword, className)
+				kwdLoc = kwdLoc + keyword.length + H_TAG_LENGTH + shiftLoc
+			}
+		}
+		
+	}
+		
+})(jQuery);

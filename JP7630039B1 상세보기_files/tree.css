@@ -1,0 +1,58 @@
+@charset "UTF-8";
+
+/*
+.tree_wrap{padding:0; min-width:100%; box-sizing:border-box; width:100%;}
+.tree_wrap>ul>li{padding-left:0px;}
+.tree_wrap ul li{white-space:nowrap; min-width:100%; box-sizing:border-box; float:left; text-indent: 4px;}
+.tree_wrap p{min-width:100%; box-sizing:border-box; margin-left:0; float:left; position:relative;}
+.tree_wrap p.on:before{width:160px; height:26px; background:#e5eef7; content:""; position:absolute; left:-160px; top:0;}*/
+
+/* 화살표 */
+.tree_wrap{padding:10px 0px;}
+.tree_wrap a{}
+.tree_wrap li a, .tree_wrap li span.tit_tree{float:left; line-height:26px; color:#4c4c4c;}
+.tree_wrap li input{float:left; margin-top:2px; margin-left:3px; margin-right:23px;}
+.tree_wrap .tit_tree{white-space:nowrap;  margin-right:20px; text-indent:5px;}
+.tree_wrap ul li{padding-left:13px;}
+.tree_wrap p{position:relative; box-sizing:border-box; min-width:100%; display:inline-block; padding-right:10px; padding-left:40px;}
+.tree_wrap p.on::before{z-index:-1; content:""; position:absolute; top:0px; left:-160px; width:160px; height:26px; background:#e5eef7;}
+.tree_wrap p.on{background:#e5eef7 !important;}/* 모든 depth 공통 */
+.tree_wrap p.select_oper{background:#ffe9d8;}
+.tree_wrap li p::after{content:""; display:block; clear:both;}
+.tree_wrap .btn_tree_setup{position:relative; top:1px; margin-left:-10px;}
+
+
+.myf_wrap .tree_wrap>div>ul>li{padding-left:0px;}/* 마이폴더 */
+.pcc_wrap .tree_wrap{padding:0px;}/* 특허분류코드 */
+.pcc_wrap .tree_wrap>ul:first-of-type>li{padding-left:30px;}/* 특허분류코드 */
+.pcc_wrap .tree_wrap p{padding-left:0px;}/* 특허분류코드 */
+.sdi_wrap .tree_wrap>ul>li{padding-left:0px;}/* SDI */
+.sdi_wrap .tree_wrap p{padding-left:30px;}/* SDI */
+.layer_operate_folder .tree_wrap>ul>li>ul>ul>li{padding-left:0px;}/* 마이폴더 / 폴더연산 */
+
+/* line-height와 height 같음. height +값/2만큼 bg-position -시키기 */
+.tree_wrap.arrow .toggle{overflow:hidden; width:10px; height:26px; margin-left:-10px; background:url('../image/btn/btn.png?version=20170908') no-repeat; text-indent:-9999px;}
+.tree_wrap.arrow .toggle.plus{background-position:-218px -371px;}
+.tree_wrap.arrow .toggle.plus:hover{background-position:-220px -412px;}
+.tree_wrap.arrow .toggle.minus{background-position:-220px -450px;}
+.tree_wrap.arrow .toggle.minus:hover{background-position:-220px -412px;}
+.tree_wrap.arrow .toggle.none{background-position:-218px -493px;}
+.tree_wrap .num{padding:0px 3px;}
+
+.tooltip_tree_setup{position:absolute; top:0; left:0; z-index:100; min-width:90px; padding:7px 5px; border:1px solid #888888; background-color:#ffffff;}
+.tooltip_tree_setup ul{padding:3px 7px; border-bottom:1px solid #e6e6e6;}
+.tooltip_tree_setup ul:last-child{border-bottom:0 none;}
+.tooltip_tree_setup ul li{position:relative; line-height:17px;}
+.tooltip_tree_setup ul li a, .tooltip_tree_setup ul li span{text-decoration:none; font-size:11px; color:#4c4c4c;}
+.tooltip_tree_setup ul li.disabled a, .tooltip_tree_setup ul li.disabled span{color:#c9c9c9;}
+.tooltip_tree_setup ul li .ico_new_service{top:-5px; left:auto; right:0;}
+
+
+/* 스마트앵글 출원인 정비 참고 / small whiter PLUS/MINUS*/
+.tree .sublist_block{}
+.tree .sublist_block li{padding-left:17px; background:url('../image/bg/bg_dot_line1.gif?version=20170908') no-repeat 3px -7px; line-height:20px;}
+.tree .sublist_block li:last-child{background:url('../image/bg/bg_dot_line3.gif?version=20170908') no-repeat 3px -7px;}
+.tree .tree_title{}
+.tree .tree_title .btn_smallPlus_white, .tree .tree_title .btn_smallMinus_white{padding-right:4px;}
+.tree.on .tree_title{background:url('../image/bg/bg_dot_line2.gif?version=20170908') no-repeat 3px 15px; font-weight:bold;}
+

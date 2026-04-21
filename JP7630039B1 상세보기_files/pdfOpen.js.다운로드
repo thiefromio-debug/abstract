@@ -1,0 +1,27 @@
+function pdfOpen(skey, db){
+		var url 	= "",
+		width	= 0,
+		height	= 0,
+		name	= "",
+		frm		= null,
+		frmSkey	= null,
+		pdfPopup= null;
+	
+		var agent = navigator.userAgent.toLowerCase();
+		url = "../api/dwn_pdf_dsdirect.wips";
+		name = "_pdfDirectDownload";
+	
+		frm = $('<form></form>');
+		frm.attr('action', url);
+		frm.attr('method', 'post');
+		frm.attr('target', '_blank');
+		frm.attr('id', 'pdfPopForm');
+		frm.appendTo('body');
+		
+		frmSkey = $('<input type="hidden" name="skey" value="'+ skey +'">');
+		frm.append(frmSkey);
+	
+		frm.submit();
+		$('form#pdfPopForm').remove();
+	
+}

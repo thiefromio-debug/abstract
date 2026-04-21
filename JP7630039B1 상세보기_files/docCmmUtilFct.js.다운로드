@@ -1,0 +1,15 @@
+;
+docApp.factory("docCmmUtilFct", ['$rootScope','$http', '$timeout', function($rootScope, $http, $timeout){
+	/**
+	 * 멀티라인의 일반 TEXT(HTML) 처리 함수 
+	 */
+	function hereDoc(f) {
+		return f.toString().
+							replace(/^[^\/]+\/\*!?/, '').
+							replace(/\*\/[^\/]+$/, '');
+	};
+	
+	return {
+		  hereDoc: hereDoc
+	};
+}]);

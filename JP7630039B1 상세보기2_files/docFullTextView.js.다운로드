@@ -1,0 +1,111 @@
+var fullText = [];
+var fullTextTrns = [];
+var leftDtlDesc = [];
+var rightDtlDesc = [];
+;(function($){
+	$.makeHalfDescriptionFT = function(textDescription){
+		if(textDescription == null){
+			textDescription = "";
+		}
+		textDescription = textDescription.replace(/\.gif/igm, "*gif");
+		textDescription = textDescription.replace(/\.jpg/igm, "*jpg");
+		textDescription = textDescription.replace(/\.jpg/img, "*jpg");
+		textDescription = textDescription.replace(/\.tif/img, "*tif");
+		textDescription = textDescription.replace(/203.236.86./img, "203*236*86*");
+		textDescription = textDescription.replace(/\..\/cmm\/imgConverter.wips/igm, "**/cmm/imgConverter*wips");
+		
+		var lang = "";
+			
+		textDescription = textDescription.split("．").join(".");
+		textDescription = textDescription.split("。").join(".");
+			
+		var halfLength = textDescription.length / 2;
+		
+		leftDescription = textDescription.substring(0,halfLength);
+		rigthDescription = textDescription.substring(halfLength, textDescription.length);
+		
+		var dotIndex = rigthDescription.indexOf(".");
+			
+		if(dotIndex >= 0){
+			leftDescription = textDescription.substring(0 , halfLength + dotIndex + 1);
+			rigthDescription = textDescription.substring(halfLength + dotIndex , textDescription.length).replace(/^[.>]{1}/,"");
+		}
+		else {
+			leftDescription += rigthDescription;
+			rigthDescription = "";	
+		}
+		
+		var dotIndex2 = rigthDescription.indexOf("<");
+		dotIndex = rigthDescription.indexOf(">");
+		
+		if(dotIndex > 0 && dotIndex <  dotIndex2){			
+			leftDescription = textDescription.substring(0 , leftDescription.length + dotIndex + 1);
+			rigthDescription = textDescription.substring(leftDescription.length , textDescription.length).replace(/^[.>]{1}/,"");
+		}
+		
+		// 태그 정리 추가
+		// 1. 맨 마지막의 </table> 태그를 찾아 그 부분까지 자른다.
+		var tableIndex = rigthDescription.indexOf("</table>");
+		tableIndex += "</table>".length;
+		
+		if(tableIndex > 0 ) {
+			leftDescription = leftDescription + rigthDescription.substring(0, tableIndex);
+			rigthDescription = rigthDescription.substring(tableIndex, rigthDescription.length - tableIndex );
+		}
+					
+		leftDescription = leftDescription.replace(/\*gif/igm, ".gif");
+		leftDescription = leftDescription.replace(/\*jpg/igm, ".jpg");
+		leftDescription = leftDescription.replace(/\*jpg/img, ".jpg");
+		leftDescription = leftDescription.replace(/\*tif/img, ".tif");
+		leftDescription = leftDescription.replace(/203\*236\*86\*/img, "203.236.86.");
+		leftDescription = leftDescription.replace(/\**\/cmm\/imgConverter\*wips/igm, "../cmm/imgConverter.wips");
+		
+		leftDtlDesc = leftDescription;
+		
+		rigthDescription = rigthDescription.replace(/\*gif/igm, ".gif");
+		rigthDescription = rigthDescription.replace(/\*jpg/igm, ".jpg");
+		rigthDescription = rigthDescription.replace(/\*jpg/img, ".jpg");
+		rigthDescription = rigthDescription.replace(/\*tif/img, ".tif");
+		rigthDescription = rigthDescription.replace(/203\*236\*86\*/img, "203.236.86.");
+		rigthDescription = rigthDescription.replace(/\**\/cmm\/imgConverter\*wips/igm, "../cmm/imgConverter.wips");
+
+		rightDtlDesc = rigthDescription;
+	};
+})(jQuery);
+
+function dataFTView(){
+
+	$("#devFullTextView").empty();
+	if($("#devViewMulti").prop('checked')){
+		// 번역동시보기
+		$("#devFullTextView").html($("#tmplFullTextRight").render({leftDtlDesc:fullText, rightDtlDesc:fullTextTrns}));
+	}
+	else{
+		// 다단보기
+		if($("#devViewTwoColumn").prop('checked')){
+			if($("#devViewTrans").prop('checked')){
+				// 번역문보기
+				$.makeHalfDescriptionFT(fullTextTrns, '');
+			}
+			else{
+				// 원문보기
+				$.makeHalfDescriptionFT(fullText, '');
+			}
+			
+			$("#devFullTextView").html($("#tmplFullTextRight").render({leftDtlDesc:leftDtlDesc, rightDtlDesc:rightDtlDesc}));
+		}
+		else{
+			if($("#devViewTrans").prop('checked')){
+				// 번역문보기
+				$("#devFullTextView").html($("#tmplFullTextLeft").render({leftDtlDesc:fullTextTrns}));
+			}
+			else{
+				// 원문보기
+				$("#devFullTextView").html($("#tmplFullTextLeft").render({leftDtlDesc:fullText}));
+			}
+		}
+	}
+	// 검색식 하이라이트 체크박스
+	$.checkHighlight();
+	
+}

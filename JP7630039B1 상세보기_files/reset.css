@@ -1,0 +1,52 @@
+@CHARSET "UTF-8";
+
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strike, strong, sub, sup, tt, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, nav, output, ruby, section, time, mark, audio, video {margin:0;padding:0;border:0 none;}
+html, body{width:100%; height:100%;}
+article, aside, details, figcaption, figure, footer, header, hgroup, nav, section{display: block;}
+body{font-family:"맑은 고딕", "malgun gothic", AppleGothicNeoSD, "Apple SD 산돌고딕 Neo", "Microsoft NeoGothic", "Droid sans", sans-serif; color:#4c4c4c; -webkit-text-size-adjust:none; font-size:12.5px;} /* font-family, color 등은 수정 필요 */
+ol, ul{list-style-type:none;}
+table{border-collapse:collapse; border-spacing:0;}
+caption, legend{overflow:hidden; width:1px; height:1px; position:absolute; left:-5000em; font-size:0; line-height:0;}
+a{color:#0255a5; text-decoration:none; outline:none;}
+a:visited{color:#733c97;}
+a:hover{text-decoration:underline;}
+a:active{text-decoration:none; outline:none;}
+input[type="radio"]{
+	border:0 none;
+}
+button, input[type="button"], input[type="reset"], input[type="submit"]{
+	padding:0;
+	margin:0;
+	border:0 none;
+	line-height:1;
+	cursor:pointer;
+}
+input[type="text"]{
+	padding:0;
+	margin:0;
+}
+button, input, select, option {
+	padding:1px;
+	font-family:"맑은 고딕", "malgun gothic", AppleGothicNeoSD, "Apple SD 산돌고딕 Neo", "Microsoft NeoGothic", "Droid sans", sans-serif;
+	font-size:inherit;
+	vertical-align:middle;
+	color:inherit;
+}
+
+button:focus{outline:none;}
+
+textarea {
+	overflow:hidden;
+	width:100%;
+	resize:none;
+	padding:2px;
+	font-family:"맑은 고딕", "malgun gothic", AppleGothicNeoSD, "Apple SD 산돌고딕 Neo", "Microsoft NeoGothic", "Droid sans", sans-serif;
+	font-size:inherit;
+	vertical-align:middle;
+}
+input[type='checkbox'] {-webkit-appearance:checkbox}
+input[type='radio'] {-webkit-appearance:radio}
+input[type='checkbox'], input[type='radio'] {margin:0; padding:0;}
+input[type='checkbox'] {-webkit-appearance:checkbox;}
+input[type='radio'] {-webkit-appearance:radio;}
+legend, caption {display: block; overflow: hidden; position: absolute; top: 0; left: -1000em;}

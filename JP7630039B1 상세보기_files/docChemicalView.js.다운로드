@@ -1,0 +1,167 @@
+function initChemicalEvent() {
+	$('button.tab_doc_chem').on('click', function() {
+		var clickId = $(this).attr('id');
+		
+		if (clickId === 'devChemicalDrawingButton') {
+			$('#devChemicalDrawingDiv').show();
+			$('#devChemicalImageDiv').hide();
+			$('#devChemicalDrawingButton').removeClass('disabled');
+			$('#devChemicalImageButton').addClass('disabled');
+			
+			//최초 로딩시
+			if ($('#devChemicalDrawingUl').html() == "") {
+				
+				// 대용량의 경우 대용량 표시X 문구 띄어줌
+				if ($('#isDescOver').val() == true || $('#isDescOver').val() == "true") {
+					
+					var html = '<div class="largeData_warnning_wrap"><span class="ico_chem_warnning"><!--에러아이콘--></span><span class="txt_chem_warnning">해당 정보는 데이터 용량이 커서 화면에 표시할 수 없습니다.</span></div>';
+					$("#devChemicalDrawingUl").html(html);
+					
+				} else {
+					$.openLoadingBar();
+					
+					setTimeout(function() {
+						goWithContent();
+						
+					});
+				}
+				// 로딩바 hide
+				$.closeLoadingBar();
+			}
+			
+			// 문구 변경
+			$('#devChemicalInfoText').html('<strong class="font_color_orange marg_right_05">!</strong> 명세서에 기재된 화합물 명칭과 윕스 화합물명칭이 매칭된 경우, 매칭된 전체 화합물을 모아 구조식 이미지로 제공합니다. (화합물이 활용된 특허에서 제공됩니다.)');
+			
+		} else if (clickId === 'devChemicalImageButton') {
+			$('#devChemicalDrawingDiv').hide();
+			$('#devChemicalImageDiv').show();
+			$('#devChemicalDrawingButton').addClass('disabled');
+			$('#devChemicalImageButton').removeClass('disabled');
+			
+			//최초 로딩시
+			if ($('#devChemicalImageUl').html() == "") {
+				$.openLoadingBar();
+				
+				setTimeout(function() {
+					selectDocChemicalImage();
+				});
+			}
+			
+			// 문구 변경
+			$('#devChemicalInfoText').html('<strong class="font_color_orange marg_right_05">!</strong> 명세서 내 이미지로 존재하는 화합물을 모아 제공합니다. (화합물이 활용된 특허에서 제공됩니다.)');
+		}
+	});
+};
+
+// 문헌 내 이미지 화합물 조회
+function selectDocChemicalImage() {
+	var html = selectDocChemicalImageHtml();
+	
+	if (html == "") {
+		$('#devChemicalImageUl').parent().append(getNoImageBlock());
+		$('#devChemicalImageUl').remove();
+	} else {
+		$('#devChemicalImageUl').html(html);
+	}
+	
+	// 로딩바 hide
+	$.closeLoadingBar();
+};
+
+function getNoImageBlock() {
+	
+	var html = '<div class="largeData_warnning_wrap">'
+		+ '<span class="ico_chem_warnning"><!--에러아이콘--></span>'
+		+ '<span class="txt_chem_warnning">명세서 내 이미지 화합물 없음</span>'
+		+ '</div>';
+	
+	return html;
+};
+
+function makeDocChemicalImageHtml(imgData, type) {
+	
+	var imgList = imgData.split(' ');
+	
+	var html = [];
+	for (var i = 0; i < imgList.length; i++) {
+		var imgPath = imgList[i];
+		
+		// -4 -> -6으로 출력
+		if (type == "draw") {
+			imgPath = imgPath.replace('-4.', '-6.');
+		}
+		
+		html.push('<li class="mini_imgdraw_block">');
+		html.push('<table>');
+		html.push('<tbody>');
+		html.push('<tr>');
+		html.push('<td align="center" class="img_area">');
+		if (type == "draw") {
+			html.push('<img src="'+ imgPath +'">');
+		} else {
+			html.push('<img src="../cmm/imgConverter.wips?originImageUrl='+ imgPath +'&maxWidth=155&maxHeight=82">');
+		}
+		html.push('</td>');
+		html.push('</tr>');
+		html.push('</tbody>');
+		html.push('</table>');
+		html.push('</li>');
+	}
+	
+	return html.join('\n')
+};
+
+function selectDocChemicalImageHtml() {
+	
+	var skey = $('#skey').val();
+	var ctry = $('#ctry').val();
+	var dbName = ctry + "db";
+	
+	var chemImageData = "";
+	
+	// KR, US, JP 문헌 만 임베디드 이미지 조회
+//	if (ctry == "KR" || ctry == "US" || ctry == "JP") {
+	if (ctry == "KR" || ctry == "US") {
+		
+		$.ajax({
+			url: "../chm/wraPythonApiForAjax.wips",
+			type: 'POST',
+			cache: false,
+			async: false,
+			dataType: 'json',
+			data: {
+				pyUrl: "http://203.236.86.55:8090/chm/predictimage/estimageskey.py",
+				pyType: "post",
+				pyParamMap: {skey: skey, dbName: dbName}
+			},
+			success: function(data, textStatus, jqXHR) {
+				// 화학식 리스트 출력
+				chemImageData = data.content;
+			},
+			error: function (xhr, textStatus, errorThrown) {
+				console.log(textStatus);
+			}
+		});
+	}
+	
+	chemImageData = chemImageData.replace(/\n/, '');
+	
+	var drawHtml = "";
+	var imgHtml = "";
+	if (chemImageData != "") {
+		var imgData = chemImageData.split('|');
+		
+		// 도면 중 화학식이 있는 도면을 출력
+		// 일단 임베디드 이미지만 출력!!!
+//		if (imgData[0] != "") {
+//			drawHtml = makeDocChemicalImageHtml(imgData[0], 'draw');
+//		}
+		
+		// 화학식 이미지 중 화학식이 있는 도면을 출력
+		if (imgData[1] != "") {
+			imgHtml = makeDocChemicalImageHtml(imgData[1], 'image');
+		}
+	}
+	
+	return drawHtml + imgHtml;
+};

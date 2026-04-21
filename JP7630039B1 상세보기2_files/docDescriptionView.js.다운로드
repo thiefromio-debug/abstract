@@ -1,0 +1,470 @@
+var descList = [];
+var descTrnsList = [];
+var leftDtlDesc = "";
+var rightDtlDesc = "";
+var getNmtDataYn = false;
+
+;(function($){
+	$.makeHalfDescription = function(textDescription){
+		leftDtlDesc = "";
+		rightDtlDesc = "";
+		if(textDescription == null){
+			textDescription = "";
+		}
+		
+		var halfLength = textDescription.replace(/<img (.+?)>/ig,"").length / 2; // 기준 길이
+		var textLength = 0; // 누적 길이
+		var htmlArray = $.parseHTML(textDescription);
+		
+		if(htmlArray.length < 2) {
+			leftDtlDesc += textDescription;
+		} else {
+		
+			for (var i = 0; i < htmlArray.length; i++) {
+				textLength += htmlArray[i].textContent.length;
+				if(textLength < halfLength) {// 좌측 : 누적된 text 길이가 총 길이의 반(기준)보다 작을 경우
+					if(htmlArray[i].outerHTML != undefined) {
+						leftDtlDesc += htmlArray[i].outerHTML;  
+					} else {
+						if(htmlArray[i].nodeName == "#comment") {
+							//leftDtlDesc += htmlArray[i];
+						} else {
+							leftDtlDesc += htmlArray[i].textContent;
+						}
+					}
+				} else {// 우측
+					if(htmlArray[i].outerHTML != undefined) {
+						rightDtlDesc += htmlArray[i].outerHTML;  
+					} else {
+						if(htmlArray[i].nodeName == "#comment") {
+							//
+						} else {
+							rightDtlDesc += htmlArray[i].textContent;
+						}
+					}
+				}
+			}
+		
+		}
+	};
+	
+	
+	//NMT 번역
+	$.ajaxGetNMTData = function(item, langCd){
+		
+		if(getNmtDataYn == false){
+			$.openLoadingBar();
+			
+			$.ajax({
+				url: "../doc/selectTrnsNMT.wips",
+				type: "post",
+			    cache: false,
+			    async: true,
+			    dataType: 'json',
+				data: {
+					skey: $('#skey').val()
+					,item : item
+					,langCd : langCd
+					,ctry : $("#ctry").val()
+					,entryWay : "DOC"
+				},
+				success: function(data, textStatus, jqXHR) {
+					descTrnsList.push(data.nmtVO);
+					dataDSView();
+					$("#devNmtBlock").hide();
+					$.closeLoadingBar();
+					getNmtDataYn = true;
+				},
+				error: function (xhr, textStatus, errorThrown) {
+					$.closeLoadingBar();
+				}
+			});
+		} else {
+			dataDSView();
+		}
+	}
+})(jQuery);
+
+function dataDSView(){
+	
+	// [S] 데이터 언어 데이터 분리 작업
+	// 원문 보기 데이터
+	var tmplDtlDesc = DSDataContentsLangCd(0, descList, $("#devLangCd").val());
+	// 번역문 보기 데이터
+	var tmplDtlDescTrns = DSDataContentsLangCd(1, descTrnsList, $("#devLangCdTrns").val())
+	// [E] 데이터 언어 데이터 분리 작업
+	
+	tmplDtlDesc = dataTitleConverters(tmplDtlDesc);
+	tmplDtlDescTrns = dataTitleConverters(tmplDtlDescTrns);
+	
+	var splitArr = [];
+	$("#devDescriptionView").empty();
+	if($("#devViewMulti").prop('checked')){
+		// 번역동시보기
+		$("#devDescriptionView").html($("#tmplDescriptionRight").render({leftDtlDesc:tmplDtlDesc, rightDtlDesc:tmplDtlDescTrns}));
+	}
+	else{
+		// 다단보기
+		if($("#devViewTwoColumn").prop('checked')){
+			if($("#devViewTrans").prop('checked')){
+				// 번영문보기
+//				$.makeHalfDescription(tmplDtlDescTrns, '');
+				splitArr = makeHalfDescription(tmplDtlDescTrns, tmplDtlDescTrns.replace(/<img (.+?)>/ig,"").length / 2, "doc");
+				leftDtlDesc = splitArr[0];
+				rightDtlDesc = splitArr[1];
+			}
+			else{
+				splitArr = makeHalfDescription(tmplDtlDesc, tmplDtlDesc.replace(/<img (.+?)>/ig,"").length / 2, "doc");
+				// 원문보기
+//				$.makeHalfDescription(tmplDtlDesc, '');
+				leftDtlDesc = splitArr[0];
+				rightDtlDesc = splitArr[1];
+			}
+			
+			$("#devDescriptionView").html($("#tmplDescriptionRight").render({leftDtlDesc:leftDtlDesc, rightDtlDesc:rightDtlDesc}));
+		}
+		else{
+			if($("#devViewTrans").prop('checked')){
+				// 번영문보기
+				$("#devDescriptionView").html($("#tmplDescriptionLeft").render({leftDtlDesc:tmplDtlDescTrns}));
+			}
+			else{
+				// 원문보기
+				$("#devDescriptionView").html($("#tmplDescriptionLeft").render({leftDtlDesc:tmplDtlDesc}));
+			}
+		}
+	}
+	// [S] 발명의 설명(문헌 타이틀, 형광펜)
+	titleLinkListView();
+	
+	// [S] 바로 가기 링크 삭제
+	if($("#techField").attr("id") == undefined){
+		$("#linktechField").attr("onclick", ";");
+		$("#linktechField").removeClass("btn_cltxt").addClass("btn_cltxt_no");
+	}
+	if($("#backGroundTech").attr("id") == undefined){
+		$("#linkbackGroundTech").attr("onclick", ";");
+		$("#linkbackGroundTech").removeClass("btn_cltxt").addClass("btn_cltxt_no");
+	}
+	if($("#advantageousEffects").attr("id") == undefined){
+		$("#linkadvantageousEffects").attr("onclick", ";");
+		$("#linkadvantageousEffects").removeClass("btn_cltxt").addClass("btn_cltxt_no");
+	}
+	if($("#techSolution").attr("id") == undefined){
+		$("#linktechSolution").attr("onclick", ";");
+		$("#linktechSolution").removeClass("btn_cltxt").addClass("btn_cltxt_no");
+	}
+	if($("#techProblem").attr("id") == undefined){
+		$("#linktechProblem").attr("onclick", ";");
+		$("#linktechProblem").removeClass("btn_cltxt").addClass("btn_cltxt_no");
+	}
+	if($("#invention").attr("id") == undefined){
+		$("#linkinvention").attr("onclick", ";");
+		$("#linkinvention").removeClass("btn_cltxt").addClass("btn_cltxt_no");
+	}
+	if($("#embodiments").attr("id") == undefined){
+		$("#linkembodiments").attr("onclick", ";");
+		$("#linkembodiments").removeClass("btn_cltxt").addClass("btn_cltxt_no");
+	}
+	// [E] 바로 가기 링크 삭제
+	
+	// 발명의 설명 화학식 레이어 노출
+	if($("#chem").val() == "Y"){
+		var dtlDescText = "";
+		if($("#devViewTrans").prop('checked')){
+			dtlDescText = tmplDtlDescTrns
+		} else if($("#devViewOrigin").prop('checked')){
+			dtlDescText = tmplDtlDesc
+		} else {
+			dtlDescText = tmplDtlDesc + tmplDtlDescTrns
+		}
+		
+		//컨텐츠를 이용하여 cid 추출 및 정보
+		highlight_ds_obj = goWithDisplayContent(dtlDescText, "desc");
+		markerHighLighterDocWithChemicalName(highlight_ds_obj);
+		
+		$('input[name="marker"]').on('keypress', function() {	//형광펜 매칭 이후 제거되는 마우스 이벤트 재 연동
+			highlightDraw();
+		});
+		
+	}
+	// 하이라이트 스타일 있을 경우 화합물 배칭 안되서 2개는 나중에 매칭함.
+	// 형광펜 실행
+	markerHighLighter();
+	// 검색식 하이라이트 체크박스
+	$.checkHighlight();
+}
+
+function quotedRegx(keyword) {
+	keyword = keyword == undefined ? '' : keyword;
+	var regexpSpecialChars = /([\[\]\^\$\|\(\)\\\+\*\?\{\}\!\.])/gi;
+	var quotedKeyword = keyword.replace(regexpSpecialChars, '\\$1');
+
+	return quotedKeyword;
+}
+
+function sortNameDesc(obj) {
+	var cidArr = Object.keys(obj);
+	var mapped = cidArr.map(function(cid, i) {
+		return {index: i, value: obj[cid]};
+	});
+	
+	mapped.sort(function(a, b) {
+		return +(a.value < b.value) || +(a.value === b.value) - 1;
+	});
+	
+	return mapped.map(function(el) {
+		return cidArr[el.index];
+	});
+}
+
+function markerHighLighterDocWithChemicalName(cidObj) {
+	
+	//이름의 역순으로 정렬 (최장일치로 하이라이트 처리하기 위함)
+	var sortedArr = sortNameDesc(cidObj);
+	
+	var className = 'highlight_text_chem highlight_draw_text';
+	
+	$("div.highlightText, span.highlightText").each(function() {
+		var replaced = $(this).html();
+		
+		sortedArr.forEach(function(cid) {
+			var cnameArr = cidObj[cid];
+			cnameArr.forEach(function(cname) {
+				var keyword = cname.replace(/(^\s*)|(\s*$)/gi, '');
+				
+				if(keyword.lastIndexOf('(\u200B') > -1){
+					keyword = keyword.substring(0, keyword.lastIndexOf('(\u200B'));
+				}
+				var keyReg = new RegExp('(\\s|\\(|\>)(' + quotedRegx(keyword) + ')(\\s|\\.|\\,|\\)|\<)', 'ig');
+				replaced = replaced.replace(keyReg, '$1<span class="' + className + '" cid="' + cid + '" >$2</span>$3');
+			});
+		});
+		
+		$(this).html(replaced);
+	});
+	
+	highlightDraw();
+}
+
+
+var highlightDraw = function(){
+	$('.highlight_draw_text').hover(function() {// 마우스 오버 했을 때
+		
+		var cid = $(this).attr('cid');
+		
+		var IMAGE_HEIGHT = 242;
+		
+		var highlightText_top = $(this).outerHeight() + $(this).offset().top;
+		var highlightText_left = $(this).offset().left;
+		
+		if (highlightText_top - $(window).scrollTop() + IMAGE_HEIGHT > $(window).height()) {
+			highlightText_top = $(this).offset().top - IMAGE_HEIGHT; 
+		}
+		
+		if ($('#devCidImage' + cid).length === 0) {
+			makeImageDiv(cid);
+		}
+		
+		$('#devCidDiv' + cid).show();
+		$('#devCidDiv' + cid).css({'top':highlightText_top+"px",'left':highlightText_left+"px"});
+	}, function() {// 마우스 아웃 했을 때
+		
+		$('.highlight_draw_img').hide();
+	});
+};
+
+//데이터 언어 데이터 분리 작업
+function DSDataContentsLangCd(trns, list, langCd){
+	var tmpList = "";
+	
+	//대체정보
+	var replTag = "";
+	var trnsView = trns == 1 ? 2 : 0;
+	var ctry = $("#ctry").val();
+	if(langCd != ''){
+		$.each(list, function(idx, val){
+			if(langCd == val.langCd.toLowerCase()){
+				tmpList = val.dtlDesc;
+				if(val.docKind != null && val.docKind != ''){
+					replTag = "<div class='title_trans'>↓" + val.ctry +" " + val.docNum + " " + val.docKind + " 문헌의 발명의 설명</div><br/>";
+				}
+				if(trns == 1){
+					if(ctry == "WO"){
+						trnsView = val.trns;
+					}
+				}
+			}
+		});
+	}
+	else{
+		if(list != null && list.length > 0){
+			tmpList = list[0].dtlDesc;
+			if(list[0].docKind != null && list[0].docKind != ''){
+				replTag = "<div class='title_trans'>↓" + list[0].ctry +" " + list[0].docNum + " " + list[0].docKind + " 문헌의 발명의 설명</div><br/>";
+			}
+			if(trns == 1){
+				if(ctry == "WO"){
+					trnsView = list[0].trns;
+				}
+			}
+		}
+	}
+	
+	if((tmpList != null && trns == 1)){
+		tmpList = (trnsView == 2 ? "<p class='title_trans'>기계번역</p><div class='clear'><!--  --></div>" : "") 
+					+ (replTag != "" ? replTag : "")
+					+ tmpList;
+	}
+	
+	return tmpList;
+}
+
+function titleLinkListView(){
+	var innertHtml = '<div class="aside_wrap';
+	// 한글이면 폰트 크기 변경
+	if($('#serviceNm').val() == 'DKR'){
+		innertHtml += ' kor';
+	}
+	innertHtml += '">';
+	
+	if($('#serviceNm').val() == 'DKR'){
+		innertHtml += '<span id="linktechField" onclick="$.devScrollsOffset(\'techField\');" class="text_divbar btn_cltxt">기술분야</span>';
+		innertHtml += '<span id="linkbackGroundTech" onclick="$.devScrollsOffset(\'backGroundTech\');" class="text_divbar btn_cltxt">배경기술</span>';
+		innertHtml += '<span id="linktechProblem" onclick="$.devScrollsOffset(\'techProblem\');" class="text_divbar btn_cltxt">해결과제</span>';
+		innertHtml += '<span id="linktechSolution" onclick="$.devScrollsOffset(\'techSolution\');" class="text_divbar btn_cltxt">해결수단</span>';
+		innertHtml += '<span id="linkadvantageousEffects" onclick="$.devScrollsOffset(\'advantageousEffects\');" class="btn_cltxt">발명효과</span>';
+	}else if($('#serviceNm').val() == 'DJP'){
+		innertHtml += '<span id="linktechField" onclick="$.devScrollsOffset(\'techField\');" class="text_divbar btn_cltxt">기술분야</span>';
+		innertHtml += '<span id="linkbackGroundTech" onclick="$.devScrollsOffset(\'backGroundTech\');" class="text_divbar btn_cltxt">배경기술</span>';
+		innertHtml += '<span id="linktechProblem" onclick="$.devScrollsOffset(\'techProblem\');" class="text_divbar btn_cltxt">해결과제</span>';
+		innertHtml += '<span id="linktechSolution" onclick="$.devScrollsOffset(\'techSolution\');" class="text_divbar btn_cltxt">해결수단</span>';
+		innertHtml += '<span id="linkadvantageousEffects" onclick="$.devScrollsOffset(\'advantageousEffects\');" class="btn_cltxt">발명효과</span>';
+	}else if($('#serviceNm').val() == 'DUS'){
+		innertHtml += '<span id="linktechField" onclick="$.devScrollsOffset(\'techField\');" class="text_divbar btn_cltxt">TECHNICAL FIELD</span>';
+		innertHtml += '<span id="linkbackGroundTech" onclick="$.devScrollsOffset(\'backGroundTech\');" class="text_divbar btn_cltxt">BACKGROUND ART</span>';
+		innertHtml += '<span id="linkinvention" onclick="$.devScrollsOffset(\'invention\');" class="btn_cltxt">SUMMARY OF THE INVENTION</span>';
+	}else if($('#serviceNm').val() == 'DCN'){
+		innertHtml += '<span id="linktechField" onclick="$.devScrollsOffset(\'techField\');" class="text_divbar btn_cltxt">TECHNICAL FIELD</span>';
+		innertHtml += '<span id="linkbackGroundTech" onclick="$.devScrollsOffset(\'backGroundTech\');" class="text_divbar btn_cltxt">BACKGROUND ART</span>';
+		innertHtml += '<span id="linkinvention" onclick="$.devScrollsOffset(\'invention\');" class="text_divbar btn_cltxt">SUMMARY OF THE INVENTION</span>';			
+		innertHtml += '<span id="linkembodiments" onclick="$.devScrollsOffset(\'embodiments\');" class="btn_cltxt">DESCRIPTION OF EMBODIMENTS</span>';
+	}else if($('#serviceNm').val() == 'DLN' || $('#serviceNm').val() == 'DWO' || $('#serviceNm').val() == 'DIN' || $('#descReplTagDbNm').val() == 'PCT'
+		|| $('#serviceNm').val() == 'DCA' || $('#serviceNm').val() == 'DAU'){
+		innertHtml += '';
+	}else if( $('#serviceNm').val() == 'DUT'){
+		innertHtml += '<p class="font_color_888 font_size_11 marg_top_10"><span class="font_type_bold marg_right_03">!</span> 미국 과거분은 원천데이터 상의 이유로 내용이 완전하지 않을 수 있습니다. 원문을 확인해주시기 바랍니다.</p>';
+	}else{
+		innertHtml += '<span id="linktechField" onclick="$.devScrollsOffset(\'techField\');" class="text_divbar btn_cltxt">TECHNICAL FIELD</span>';
+		innertHtml += '<span id="linkbackGroundTech" onclick="$.devScrollsOffset(\'backGroundTech\');" class="text_divbar btn_cltxt">BACKGROUND ART</span>';
+		innertHtml += '<span id="linkinvention" onclick="$.devScrollsOffset(\'invention\');" class="text_divbar btn_cltxt">SUMMARY OF THE INVENTION</span>';
+		innertHtml += '<span id="linkadvantageousEffects" onclick="$.devScrollsOffset(\'advantageousEffects\');" class="btn_cltxt">ADVANTAGEOUS EFFECTS</span>';			
+	}
+	innertHtml += '</div>';
+	innertHtml += '<div class="highlighterBox" id="idDsHighlighterBox">';
+	innertHtml += '</div>';
+//	$('#devDtlDescDiv').empty();
+	if(innertHtml != ""){
+		$('#devDtlDescDiv').html(innertHtml);
+	}
+	
+};
+
+function dataTitleConverters(dtlDesc){
+	if($('#ctry').val() == "KR"){
+		dtlDesc = dtlDesc.replace(/<BR><FONT COLOR=("RED"|RED)>(\[(.+?)\])<\/FONT><BR>/igm,"<br /><p class=\"detail_color_type font_type_bold\">$2</p>");
+		dtlDesc = dtlDesc.replace(/<P class="detail_color_type font_type_bold">(\[(기술분야)\])<\/P>/igm,"<p id=\"techField\" class=\"clear detail_color_type font_type_bold\">$1</p>");
+		dtlDesc = dtlDesc.replace(/<P class="detail_color_type font_type_bold">(\[(((발명|고안)이 속하는 기술 및 그 분야의 종래기술)|배경기술)\])<\/P>/igm,"<p id=\"backGroundTech\" class=\"detail_color_type font_type_bold\">$1</p>");
+		dtlDesc = dtlDesc.replace(/<P class="detail_color_type font_type_bold">(\[(((발명|고안)의 효과)|효과)\])<\/P>/igm,"<p id=\"advantageousEffects\" class=\"detail_color_type font_type_bold\">$1</p>");
+		dtlDesc = dtlDesc.replace(/<P class="detail_color_type font_type_bold">(\[(과제 해결수단)\])<\/P>/igm,"<p id=\"techSolution\" class=\"detail_color_type font_type_bold\">$1</p>");
+		dtlDesc = dtlDesc.replace(/<P class="detail_color_type font_type_bold">(\[(((발명|고안)이 이루고자 하는 기술적 과제)|해결 하고자하는 과제)\])<\/P>/igm,"<p id=\"techProblem\" class=\"detail_color_type font_type_bold\">$1</p>");
+	}else if($('#ctry').val() == "US"){
+		//태그변환처리된 부분 Class 적용
+		//dtlDesc = dtlDesc.replace(/(<section>)?(<BR>)?<B>(<PDAT>)?(\s*)?(\n)?(([0-9])?.+?)(\s*)?(\n)?(<\/PDAT>)?<\/B>(<BR>)?(<\/section>)?/igm,"<p class=\"detail_color_type font_type_bold\">$6</p>");
+		//기술분야
+		dtlDesc = dtlDesc.replace(/(<section>)?(<BR>)?<B>(<PDAT>)?(\s*)?(\n)?(([0-9]\.(\s)?)?Field of (THE\s)?Invention|((\[PAC\](\s)?|[0-9]\.)(\s)?)?Technical Field(\s(AND|OF THE) INVENTION)?(\s*)?(\n)?(<\/PDAT>)?<\/B>(<BR>)?(<\/section>)?)/igm,"<br /><p id=\"techField\" class=\"clear detail_color_type font_type_bold\">$6</p>");
+		//dtlDesc = dtlDesc.replace(/(<section>)?(<BR>)?<B>(<PDAT>)?(\s*)?(\n)?((\[PAC\](\s)?|[0-9]\.(\s)?)?((발명의\s|기술\s)(분야(와 발명)?|기술(\s)?분야)))(\s*)?(\n)?(<\/PDAT>)?<\/B>(<BR>)?(<\/section>)?/igm,"<BR><p id=\"techField\" class=\"clear detail_color_type font_type_bold\">$6</p>");	
+		//배경기술
+		dtlDesc = dtlDesc.replace(/(<section>)?(<BR>)?<B>(<PDAT>)?(\s*)?(\n)?(([0-9]\.(\s)?)?((Discussion of the(\s)?|\[PAC\])(\s)?)?Background(\sArt)?|([0-9]\.\s)?(Description of the\s)?Related Art(s)?|PRIOR ART(\sBackground)?|(BACKGROUND|PURPOSE|FIELD)(\s)?((OF|AND)\s)?(THE\s)?(INVENTION|DISCLOSURE|OBJECTS|BACKGROUND)(\sOF THE INVENTION)?)(\s*)?(\n)?(<\/PDAT>)?<\/B>(<BR>)?(<\/section>)?/igm,"<br /><p id=\"backGroundTech\" class=\"detail_color_type font_type_bold\">$6</p>");
+		//dtlDesc = dtlDesc.replace(/(<section>)?(<BR>)?<B>(<PDAT>)?(\s*)?(\n)?((\[PAC\](\s)?|[0-9]\.(\s)?)?((관련|종래|배경|선행|공개의|배경과|분야와|(본\s)?발명의)\s(기술(의 (설명|논의 기술))?|기술 배경|배경|목적|물체|발명의 (목적|배경))|배경))(\s*)?(\n)?(<\/PDAT>)?<\/B>(<BR>)?(<\/section>)?/igm,"<BR><p id=\"backGroundTech\" class=\"clear detail_color_type font_type_bold\">$6</p>");
+		//발명의내용
+		dtlDesc = dtlDesc.replace(/(<section>)?(<BR>)?<B>(<PDAT>)?(\s*)?(\n)?((((\[PAC\]\s)?DISCLOSURE OF|BRIEF|FIELD OF|BACKGROUND, SUMMARY AND OBJECTS OF|BACKGROUND AND SUMMARY OF|BACKGROUND AND BRIEF DESCRIPTION OF|OBJECTS AND)\s?)?(AND\s)?(SUMMARY (OF|AND)\s)?((BRIEF\s)?DESCRIPTION OF\s)?(THE\s)?(PRESENT\s)?(Objects|SUMMARY|DISCLOSURE|INVENTION)?(\s((AND|OF)\s?(\sTHE)?(\s)?(STATE OF THE PRIOR ART|OBJECTS|Invention)?)?)?)(\s*)?(\n)?(<\/PDAT>)?<\/B>(<BR>)?(<\/section>)?/igm,"<br /><p id=\"invention\" class=\"detail_color_type font_type_bold\">$6</p>");
+		//dtlDesc = dtlDesc.replace(/(<section>)?(<BR>)?<B>(<PDAT>)?(\s*)?(\n)?((\[PAC\](\s)?|[0-9]\.(\s)?)?((((짧은\s)?본\s)?발명의(\s간략한)?|공개의|선행 기술의|물체와|간략한|배경, 요약서 및 발명의|배경과 발명의|배경과 짧은 본 발명의)\s((발명의\s)?요약(과\s(물체|상태))?|개요|목적|공개|요약서(와 물체)?|명세|분야|(짧은 본 발명의\s)?설명)|본 발명|요약서))(\s*)?(\n)?(<\/PDAT>)?<\/B>(<BR>)?(<\/section>)?/igm,"<BR><p id=\"invention\" class=\"clear detail_color_type font_type_bold\">$6</p>");
+		
+		//NMT 번역문
+		//기술분야
+		dtlDesc = dtlDesc.replace(/(<section>)?(<BR>)?<B>(<PDAT>)?(\s*)?(\n)?((\[PAC\](\s)?|[0-9]\.(\s)?)?((본\s)?(발명의\s|기술\s)(분야(와 발명)?|기술(\s분야)?|필드|및 발명)))(\s*)?(\n)?(<\/PDAT>)?<\/B>(<BR>)?(<\/section>)?/igm,"<BR><p id=\"techField\" class=\"clear detail_color_type font_type_bold\">$6</p>");
+		//배결기술
+		dtlDesc = dtlDesc.replace(/(<section>)?(<BR>)?<B>(<PDAT>)?(\s*)?(\n)?((\[PAC\](\s)?|[0-9]\.(\s)?)?((관련|종래|배경|선행|공개의|개시의|배경과|분야와|(본\s)?발명의)\s(기술((의|\s)?(설명|논의 기술|배경|논의))?|기술 배경|배경|목적|물체|발명의 (목적|배경)|아트|(및\s)|(본\s)?발명의|필드)(\s(및\s)?(배경|객체|목적))?|배경))(\s*)?(\n)?(<\/PDAT>)?<\/B>(<BR>)?(<\/section>)?/igm,"<BR><p id=\"backGroundTech\" class=\"clear detail_color_type font_type_bold\">$6</p>");
+		//발명의 내용
+		dtlDesc = dtlDesc.replace(/(<section>)?(<BR>)?<B>(<PDAT>)?(\s*)?(\n)?((\[PAC\](\s)?|[0-9]\.(\s)?)?((((짧은\s)?본\s)?(발명|개시)의(\s간략한)?|공개의|선행 기술의|물체와|간략한|배경, 요약서 및 발명의|배경과 발명의|배경과 짧은 본 발명의|발명|종래 기술의|간략)\s((발명의\s)?요약(과\s(물체|상태))?|개요|목적|공개|요약서(와 물체)?|명세|분야|(짧은 본 발명의\s)?설명)|본 발명|요약서|필드|개시))(\s*)?(\n)?(<\/PDAT>)?<\/B>(<BR>)?(<\/section>)?/igm,"<BR><p id=\"invention\" class=\"clear detail_color_type font_type_bold\">$6</p>");
+	}else if($('#ctry').val() == "JP"){
+		//태그변환처리된 부분 Class 적용 (ITS 이슈 : 12938 "(", ")" 삭제처리 )
+		//dtlDesc = dtlDesc.replace(/((\[|\(|［|〈|<|〔|【)([^0-9a-zA-Z]+?)(】|〉|〕|>|］|\)|\]))/igm,"<p class=\"detail_color_type font_type_bold\">$1</p>");
+		dtlDesc = dtlDesc.replace(/((\[|［|〈|<|〔|【)([^0-9a-zA-Z]+?)(】|〉|〕|>|］|\]))/igm,"<p class=\"detail_color_type font_type_bold\">$1</p>");
+		//기술분야
+		dtlDesc = dtlDesc.replace(/<P class="detail_color_type font_type_bold">((\[|\(|［|〈|<|〔|【){1}(\W*?分野|\W*?분야|technical-field)(】|〉|〕|>|］|\)|\]){1})<\/P>/igm,"<br /><p id=\"techField\" class=\"clear detail_color_type font_type_bold\">$1</p>");
+		//배경기술
+		dtlDesc = dtlDesc.replace(/<P class="detail_color_type font_type_bold">((\[|\(|［|〈|<|〔|【){1}(\W*?技術\W*?|\W*?背景\W*?|\W*?기술|\W*?그 문제점||발명의 배경|background-art)(】|〉|〕|>|］|\)|\]){1})<\/P>/igm,"<br /><p id=\"backGroundTech\" class=\"detail_color_type font_type_bold\">$1</p>");
+		dtlDesc = dtlDesc.replace(/<P class="detail_color_type font_type_bold">(従来技術］|従来の技術］|종래 기술］|종래의 기술］)<\/P>/igm,"<br /><p id=\"backGroundTech\" class=\"detail_color_type font_type_bold\">$1</p>");
+		//해결과제 
+		dtlDesc = dtlDesc.replace(/<P class="detail_color_type font_type_bold">((\[|\(|［|〈|<|〔|【){1}(\W*?課題|\W*?目的|\W*?概要|(\W*?)?問題(点)?|\W*?과제|\W*?목적|\W*?개요|\W*?문제(점)?|tech-problem)(】|〉|〕|>|］|\)|\]){1})<\/P>/igm,"<br /><p id=\"techProblem\" class=\"detail_color_type font_type_bold\">$1</p>");
+		//해결수단
+		dtlDesc = dtlDesc.replace(/<P class="detail_color_type font_type_bold">((\[|\(|［|〈|<|〔|【){1}(\W*?手段|\W*?수단|tech-solution|\W*?手段\W*?)(】|〉|〕|>|］|\)|\]){1})<\/P>/igm,"<br /><p id=\"techSolution\" class=\"detail_color_type font_type_bold\">$1</p>");
+		//발명효과  
+		dtlDesc = dtlDesc.replace(/<P class="detail_color_type font_type_bold">((\[|\(|［|〈|<|〔|【){1}(\W*?効果|\W*?효과|効果|효과|advantageous-effects)(】|〉|〕|>|］|\)|\]){1})<\/P>/igm,"<br /><p id=\"advantageousEffects\" class=\"clear detail_color_type font_type_bold\">$1</p>");
+		dtlDesc = dtlDesc.replace(/<P class="detail_color_type font_type_bold">(発明の効果］|발명의 효과］)<\/P>/igm,"<br /><p id=\"advantageousEffects\" class=\"clear detail_color_type font_type_bold\">$1</p>");
+	}else if($('#ctry').val() == "CN"){
+		dtlDesc = dtlDesc.replace(/(class="change_fontsize_default change_fontthick_default change_lineheight_default")/igm,"");				
+		//기술분야
+		dtlDesc = dtlDesc.replace(/<P(.*?)><B>\s*\n*((相关技术|技术|所属|发明|一、技术)领域)\s*\n*<\/B><\/P>/igm, "<P$1 class=\"marg_top_15 clear detail_color_type font_type_bold\"><span id=\"techField\">$2</span></P>");
+		dtlDesc = dtlDesc.replace(/<P(.*?)><B>((Correlative technology|Technical|Affiliated|Invention|One, technical) FIELD)<\/B><\/P>/igm, "<P$1 class=\"marg_top_15 clear detail_color_type font_type_bold\"><span id=\"techField\">$2</span></P>");
+		//dtlDesc = dtlDesc.replace(/<P(.*?)><B>(\s*\n*((관련 기술|기술|소속|발명|1, 기술) 영역|기술분야)\s*\n*)<\/B><\/P>/igm, "<P$1 class=\"marg_top_15 clear detail_color_type font_type_bold\"><span id=\"techField\">$2</span></P>");
+		
+		//배경기술
+		dtlDesc = dtlDesc.replace(/<P(.*?)><B>\s*\n*(背景技术|发明背景|背景|背景技术文件：|技术背景)\s*\n*<\/B><\/P>/igm, "<P$1 class=\"marg_top_15 clear detail_color_type font_type_bold\"><span id=\"backGroundTech\">$2</span></P>");
+		dtlDesc = dtlDesc.replace(/<P(.*?)><B>((The|Technical)?\s*Background\s*(technology|technique|of invention|technology file:)?)<\/B><\/P>/igm, "<P$1 class=\"marg_top_15 clear detail_color_type font_type_bold\"><span id=\"backGroundTech\">$2</span></P>");
+		//dtlDesc = dtlDesc.replace(/<P(.*?)><B>(\s*\n*(발명|기술)?\s*배경\s*(기술|기술 파일 :)?\s*\n*)<\/B><\/P>/igm, "<P$1 class=\"marg_top_15 clear detail_color_type font_type_bold\"><span id=\"backGroundTech\">$2</span></P>");
+		
+		//발명의내용
+		dtlDesc = dtlDesc.replace(/<P(.*?)><B>\s*\n*(发明内容|发明简述|本发明的目的和概要|简要说明|发明概述|概述)\s*\n*<\/B><\/P>/igm, "<P$1 class=\"marg_top_15 clear detail_color_type font_type_bold\"><span id=\"invention\">$2</span></P>");
+		dtlDesc = dtlDesc.replace(/<P(.*?)><B>(((DISCLOSURE OF( THE)?|Summary of the|The|The purpose of the present|The content of the|)?\s*Invention\s*((and )?summary|content)?)|(Brief description|General introduction))<\/B><\/P>/igm, "<P$1 class=\"marg_top_15 clear detail_color_type font_type_bold\"><span id=\"invention\">$2</span></P>");
+		//dtlDesc = dtlDesc.replace(/<P(.*?)><B>\s*\n*(((본)?\s*발명\s*(의 요약|내용|요약|의 목적과 개요|소개)?)|(간단 명료하 설명|소개한다))\s*\n*<\/B><\/P>/igm, "<P$1 class=\"marg_top_15 clear detail_color_type font_type_bold\"><span id=\"invention\">$2</span></P>");
+		
+		//구체적 실시방식
+		dtlDesc = dtlDesc.replace(/<P(.*?)><B>\s*\n*(具体实施方式|本发明的详细说明|详细描述|发明详述)\s*\n*<\/B><\/P>/igm, "<P$1 class=\"marg_top_15 clear detail_color_type font_type_bold\"><span id=\"embodiments\">$2</span></P>");
+		dtlDesc = dtlDesc.replace(/<P(.*?)><B>(((Specific)?( implementation mode)?(\s*Embodiment)?)|((It is described in|described in)?\s*detail(ed)?\s*(description of the invention|Description Of The Invention)?))<\/B><\/P>/igm, "<P$1 class=\"marg_top_15 clear detail_color_type font_type_bold\"><span id=\"embodiments\">$2</span></P>");
+		//dtlDesc = dtlDesc.replace(/<P(.*?)><B>\s*\n*(구체 실시 방법|상세한 설명|발명이 상술한다|구체적인 실시방법)\s*\n*<\/B><\/P>/igm, "<P$1 class=\"marg_top_15 clear detail_color_type font_type_bold\"><span id=\"embodiments\">$2</span></P>");
+		
+		//NMT 번역문
+		//기술분야
+		dtlDesc = dtlDesc.replace(/<P(.*?)>\s*\n*<BR><B>(\s*\n*((관련 기술|기술|소속|발명|1, 기술|하나는,)(\s)?(영역|분야)?)\s*\n*)<\/B><BR><\/P>/igm, "<P$1 class=\"marg_top_15 clear detail_color_type font_type_bold\"><span id=\"techField\">$2</span></P>");
+		//배경기술
+		dtlDesc = dtlDesc.replace(/<P(.*?)>\s*\n*<BR><B>(\s*\n*(발명|기술(적)?)?\s*배경\s*(기술 (파일|문서)(\s)?:|기술)?\s*\n*)<\/B><BR><\/P>/igm, "<P$1 class=\"marg_top_15 clear detail_color_type font_type_bold\"><span id=\"backGroundTech\">$2</span></P>");
+		//발명내용
+		dtlDesc = dtlDesc.replace(/<P(.*?)>\s*\n*<BR><B>\s*\n*(((본)?\s*발명\s*(의 요약|내용|요약|의 목적(과|\s및) 개요|소개|약술)?)|(간단 명료하 설명|소개한다)|간략한 설명|개요)\s*\n*<\/B><BR><\/P>/igm, "<P$1 class=\"marg_top_15 clear detail_color_type font_type_bold\"><span id=\"invention\">$2</span></P>");
+		//구체실시방법
+		dtlDesc = dtlDesc.replace(/<P(.*?)>\s*\n*<BR><B>\s*\n*(((본\s)?발명(의\s|\s)?)?(구체 실시 방법|상세(한)? 설명(은)?|발명이 상술한다|구체적인 실시(\s)?(방법|예)|상술))\s*\n*<\/B><BR><\/P>/igm, "<P$1 class=\"marg_top_15 clear detail_color_type font_type_bold\"><span id=\"embodiments\">$2</span></P>");
+	}else if($('#ctry').val() == "EP"){
+		dtlDesc = dtlDesc.replace(/<BR><B>(\s*)?(\n)?(<b>)?(<u>)?(([0-9]\.(\s)?)?(Field of (the\s)?Invention|(\[)?Technical (Field(\])?|DOMAIN|FIELD OF THE INVENTION)))(<\/u>)?(<\/b>)?(\s*)?(\n)?<\/B><BR>/igm,"<br /><p id=\"techField\" class=\"detail_color_type font_type_bold\">$5</p>");
+		//dtlDesc = dtlDesc.replace(/<BR><B>(\s*)?(\n)?(<b>)?(<u>)?(([0-9]\.(\s)?)?(발명의 (분야|기술 분야)|(\[)?기술(적)? (분야(\])?|도메인)))(<\/u>)?(<\/b>)?(\s*)?(\n)?<\/B><BR>/igm,"<br /><p id=\"techField\" class=\"detail_color_type font_type_bold\">$5</p>");
+		
+		dtlDesc = dtlDesc.replace(/<BR><B>(\s*)?(\n)?(<b>)?(<u>)?(([0-9]\.(\s)?)?((Description of\s)?(the\s)?(Related|(\[)?Background|Prior) Art(\])?(s)?|(Discussion of the Prior|Related(\sBackground)?|STATE OF THE) Art|BACKGROUND(\sOF THE INVENTION)?|PRIOR ART STATEMENT))(<\/u>)?(<\/b>)?(\s*)?(\n)?<\/B><BR>/igm,"<br /><p id=\"backGroundTech\" class=\"detail_color_type font_type_bold\">$5</p>");
+		//dtlDesc = dtlDesc.replace(/<BR><B>(\s*)?(\n)?(<b>)?(<u>)?(([0-9]\.(\s)?)?((관련|배경|종래) 기술의 설명|(Related|관련|(\[)?종래) 기술(\])?|선행 기술(의 토론|\s스테이트먼트)|(발명의\s)?배경|관련 배경기술|기술 수준))(<\/u>)?(<\/b>)?(\s*)?(\n)?<\/B><BR>/igm,"<br /><p id=\"backGroundTech\" class=\"detail_color_type font_type_bold\">$5</p>");
+		dtlDesc = dtlDesc.replace(/<BR><B>(\s*)?(\n)?(<b>)?(<u>)?(([0-9]\.(\s)?)?((SUMMARY|STATEMENT|DISCLOSURE|BRIEF SUMMARY|BRIEF DESCRIPTION|(\[)?Contents) OF (THE\s)?INVENTION(\])?((\s)?:(\s)?)?|SUMMARY))(<\/u>)?(<\/b>)?(\s*)?(\n)?<\/B><BR>/igm,"<br /><p id=\"invention\" class=\"detail_color_type font_type_bold\">$5</p>");
+		//dtlDesc = dtlDesc.replace(/<BR><B>(\s*)?(\n)?(<b>)?(<u>)?(([0-9]\.(\s)?)?((짧은\s)?((\[)?본\s)?발명의 (요약|스테이트먼트|명세|공개|개요|설명|콘(탠|텐)츠(\])?)((\s)?:(\s)?)?|요약서))(<\/u>)?(<\/b>)?(\s*)?(\n)?<\/B><BR>/igm,"<br /><p id=\"invention\" class=\"detail_color_type font_type_bold\">$5</p>");			 
+		
+		dtlDesc = dtlDesc.replace(/<BR><B>(\s*)?(\n)?(<b>)?(<u>)?\s*\n*(([0-9]\.(\s)?)?(EFFECT OF THE INVENTION|- Effects -|본 발명의 효과|- 효과 -))(<\/u>)?(<\/b>)?(\s*)?(\n)?<\/B><BR>/igm,"<br /><p id=\"advantageousEffects\" class=\"detail_color_type font_type_bold\">$5</p>");
+		
+		//NMT 번역문
+		//기술분야
+		dtlDesc = dtlDesc.replace(/<BR><B>(\s*)?(\n)?(<b>)?(<u>)?\s*\n*(([0-9]\.(\s)?)?((\(상기\))?(본\s)?발명(\s|의 )?(분야|기술 분야|필드|발명)|(\[)?기술(적)? (분야(\])?|도메인)))(<\/u>)?(<\/b>)?(\s*)?(\n)?<\/B><BR>/igm,"<br /><p id=\"techField\" class=\"detail_color_type font_type_bold\">$5</p>");
+		//배결기술
+		dtlDesc = dtlDesc.replace(/<BR><B>(\s*)?(\n)?(<b>)?(<u>)?\s*\n*(([0-9]\.(\s)?)?((Related|배경|관련|선행|(\[)?종래) 기술(\s|의\s|\])?(설명|\(S\)기술|상태|토론|논의|스테이트먼트|설명|문장)?|(본\s)?(발명의\s)?배경|관련 배경 기술|기술 (수준|상태)))(<\/u>)?(<\/b>)?(\s*)?(\n)?<\/B><BR>/igm,"<br /><p id=\"backGroundTech\" class=\"detail_color_type font_type_bold\">$5</p>");
+		//발명의 내용
+		dtlDesc = dtlDesc.replace(/<BR><B>(\s*)?(\n)?(<b>)?(<u>)?\s*\n*(([0-9]\.(\s)?)?((짧은\s)?((\[)?본\s)?발명(의\s|\s)?(요약|스테이트먼트|명세|공개|개요|설명|콘(탠|텐)츠(\])?|명|개시|간략한 (요약|설명)|내용)((\s)?:(\s)?)?|요약서|요약))(<\/u>)?(<\/b>)?(\s*)?(\n)?<\/B><BR>/igm,"<br /><p id=\"invention\" class=\"detail_color_type font_type_bold\">$5</p>");
+		//발명의 효과
+		//dtlDesc = dtlDesc.replace(/<BR><B>(\s*)?(\n)?(<b>)?(<u>)?(([0-9]\.(\s)?)?(본 발명의 효과|- 효과 -))(<\/u>)?(<\/b>)?(\s*)?(\n)?<\/B><BR>/igm,"<br /><p id=\"advantageousEffects\" class=\"detail_color_type font_type_bold\">$5</p>");
+	}
+	return dtlDesc;
+}

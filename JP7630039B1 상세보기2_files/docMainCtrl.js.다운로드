@@ -1,0 +1,30 @@
+;
+docApp.controller('DocMainCtrl', ['$rootScope', '$scope', '$http', 'docCmmFct', 'docCmmLinkFct', 'docCmmUtilFct', 'docCmmUiFct' ,function($rootScope, $scope, $http, docCmmFct, docCmmLinkFct, docCmmUtilFct, docCmmUiFct) {
+	/**
+	 * Controller 초기화 함수
+	 */
+	$scope.initCtrl = function(){
+		$.highlightProc = function(){
+			$scope.clickDevBtnMarker();
+			
+			if($scope.docVar.screenVO.tabGb != DocCmmConst.TABGB.CL && $scope.docVar.screenVO.tabGb != DocCmmConst.TABGB.DS){
+				$scope.docQueryHighLighter($("form#paramForm :input[name=hl]").val());
+			}
+		};
+		
+		docCmmFct.initVar($scope);
+	};
+	
+	$.clickDocTab = function(tabGb, divId){
+		$scope.docVar.screenVO.tabGb = tabGb;
+		
+		if(divId != null && divId != ""){
+			$scope.docVar.screenVO.divId = divId;
+		} else {
+			$(window).scrollTop(0);
+		}
+		$scope.$apply();
+	};
+	
+	$scope.initCtrl();
+}]);

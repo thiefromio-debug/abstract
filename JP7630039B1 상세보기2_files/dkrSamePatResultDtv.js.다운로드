@@ -1,0 +1,162 @@
+
+
+docApp.directive('dkrSamePatResultDtv', ['$timeout','$http','$compile','docCmmUtilFct', 'docCmmFct', 'docCmmLinkFct', function($timeout, $http, $compile, docCmmUtilFct, docCmmFct, docCmmLinkFct){
+	return {
+		restrict: 'A',
+		link : 	postLink  //compile 이 등록되어 있으면 link 는 수행하지 않는다.
+	};
+	
+	function preCompile(scope, elm, attrs, ctrl){
+		/**
+		 * 변수 초기화
+		 */
+		scope.docVar.samePatVO.skey = scope.docVar.screenVO.skey;
+		scope.docVar.samePatVO.orderField = "mng_dt";
+		scope.docVar.samePatVO.orderType = "DESC";
+		scope.docVar.samePatVO.headerList = [
+			                       		       {id:'chk', fieldNm:'', sortField:'', sortType:'', arrClass:''}   //check
+			                       		     , {id:'ORG', fieldNm:'원문', sortField:'', sortType:'', arrClass:''}   //원문
+			                       		     , {id:'AN', fieldNm:'문헌번호', sortField:'mng_num', sortType:'DESC', arrClass:'ico_arralign ico_default', thClass:'tb_head_backcolor font_align_center'}   //문서번호
+			                       		     , {id:'AD', fieldNm:'일자', sortField:'mng_dt', sortType:'DESC', arrClass:'ico_arralign ico_default', thClass:'tb_head_backcolor font_align_center'}   //일자
+			                       		     , {id:'TI', fieldNm:'발명의 명칭', sortField:'', sortType:'', arrClass:''}   //발명의 명칭
+			                       		     , {id:'APPT', fieldNm:'출원인', sortField:'', sortType:'', arrClass:''}   //발명의 명칭
+			                       		];
+		
+		scope.findSamePatList = function() {
+			
+			// 변수 docCmmVar 및 docCmmConst 로 빼기.
+			var url = "../dkr/findSamePatList.wips";
+			var obj = { skey : scope.docVar.samePatVO.skey, orderType : scope.docVar.samePatVO.orderType, orderColumn : scope.docVar.samePatVO.orderField, samePatType: $('input[name=devSamePat]:checked').val()};//$('input[name=devSamePat]:checked')
+
+			$http.post(url, $.param(obj),{
+				headers: {'Content-Type': scope.docConst.JSON_CONT_TYPE}
+			}).success(function(data){
+				scope.docVar.samePatVO.allChk = false;
+				scope.docVar.samePatVO.rsltList = data.samePatList;
+				scope.docVar.samePatVO.allSkeys = '';
+				
+				//checkbox 초기화
+				for(var i=0; i < scope.docVar.samePatVO.rsltList.length; i++){
+					scope.docVar.samePatVO.rsltList[i].chk = false;
+				}
+				
+				scope.clickDevBtnMarker();
+			}).error(function(data, status){
+				/*if (/EgovBizException/.test(data.responseText)) {
+		            alert(data.responseText.match(/EgovBizException: &quot;(.*?)&quot;/)[1]);
+		            // error 처리
+		        }
+		        else {
+		            alert("에러가 발생하였습니다. " + status + "\nError: " + data.responseText);
+		        }*/
+			});
+			
+		};
+		
+		/**
+		 * 헤더에서 소트키 클릭시
+		 */
+		scope.samePatListSort = function(headerIndex){
+			/*if(scope.docVar.samePatVO.orderType === "DESC") {
+				scope.docVar.samePatVO.orderType = "ASC";
+			} else {
+				scope.docVar.samePatVO.orderType = "DESC";
+			}*/
+			for(var i = 0; i < scope.docVar.samePatVO.headerList.length; i++){
+				if(scope.docVar.samePatVO.headerList[i].sortField === ''){
+					continue;
+				}
+				if(i === headerIndex) {
+					if(scope.docVar.samePatVO.headerList[i].sortType === "DESC") {
+						scope.docVar.samePatVO.headerList[i].sortType = "ASC";
+						scope.docVar.samePatVO.headerList[i].arrClass = "ico_arralign ico_arrup";
+						//scope.docVar.samePatVO.headerList[i].thClass="tb_head_backcolor font_align_center font_color_orange";
+						scope.docVar.samePatVO.headerList[i].fontClass="font_color_orange";
+					} else {
+						scope.docVar.samePatVO.headerList[i].sortType = "DESC";
+						scope.docVar.samePatVO.headerList[i].arrClass = "ico_arralign ico_arrdown";
+						//scope.docVar.samePatVO.headerList[i].thClass="tb_head_backcolor font_align_center font_color_orange";
+						scope.docVar.samePatVO.headerList[i].fontClass="font_color_orange";
+					}
+					scope.docVar.samePatVO.orderField = scope.docVar.samePatVO.headerList[i].sortField;
+					scope.docVar.samePatVO.orderType = scope.docVar.samePatVO.headerList[i].sortType;
+					
+				} else {
+					scope.docVar.samePatVO.headerList[i].arrClass = "ico_arralign ico_default";
+					//scope.docVar.samePatVO.headerList[i].thClass = "tb_head_backcolor font_align_center";
+					scope.docVar.samePatVO.headerList[i].fontClass="";
+				}
+			}
+			
+			scope.findSamePatList();
+		};
+		
+		/**
+		 * 본 출원인의 동일 기술분야 특허 Type 변경
+		 */
+		scope.samePatTypeRdo = function(curMode){
+			scope.findSamePatList();
+		};
+		
+	};
+	
+	function postLink(scope, elm, attrs, ctrl){
+		preCompile(scope, elm, attrs, ctrl);
+		elm.empty();
+		var innerHtml = docCmmUtilFct.hereDoc(function() {/*!
+						
+						<div ng-hide="docVar.samePatVO.rsltList.length == 0" class="devHighlightNg">
+							<div class="dc_leftblock">
+	                            <span class="first_line letter_spacing_05">본 출원인의<br />동일 기술분야 특허</span>
+	                            <!--<span class="second_line"></span>-->
+	                        </div>
+	                        <div class="dc_context_block">
+	                        	<div class="fullBlockWrap marg_bottom_05">
+	                               <div class="float_l">
+	                                   <span class="marg_right_20"><input type="radio" id="devNear" checked="checked" name="devSamePat" value="Near" ng-click="samePatTypeRdo('Near');"><label for="devNear"> 본 특허와 가까운 일자 기준</label></span>
+	                                   <input type="radio" id="devNewest" name="devSamePat" value="New" ng-click="samePatTypeRdo('New');"><label for="devNewest"> 최근 일자 기준</label>
+	                               </div>
+                               </div>
+                               <div class="clear"><!-- --></div>
+                               <table class="marg_top_05 table_type2 oneline_width devDocViewOption">
+                                   <colgroup>
+                                    <col width="50">
+                                    <col width="150">
+                                    <col width="120">
+                                    <col width="*">
+                                   </colgroup>
+                                   <thead>
+                                       <th class="tb_head_backcolor">원문</th>
+                                       <th class="tb_head_backcolor font_align_center"><a href="javascript:void(0);" ng-click="samePatListSort(2)" ng-class="docVar.samePatVO.headerList[2].fontClass">문헌번호<span ng-class="docVar.samePatVO.headerList[2].arrClass"><!-- --></span></a></th>
+                                       <th class="tb_head_backcolor font_align_center"><a href="javascript:void(0);" ng-click="samePatListSort(3)" ng-class="docVar.samePatVO.headerList[3].fontClass">일자<span ng-class="docVar.samePatVO.headerList[3].arrClass"><!-- --></span></a></th>
+                                       <th class="tb_head_backcolor font_align_left">발명의 명칭</th>
+                                   </tr></thead>
+                                   <tbody>
+                                       <tr ng-repeat="samePat in docVar.samePatVO.rsltList">
+                                            <td class="lineheight_reset_padd font_align_center" ng-class="updateDocFontOption();">
+                                            	<a ng-hide="samePat.pdfGb == '0'" doc-pdf-function-dtv ng-model="samePat" ng-class="samePat.pdfClass + ' marg_auto'"><span class="screen_hide">PDF</span></a>
+                                        		<span ng-show="samePat.pdfGb == '0'" ng-class="samePat.pdfClass + ' marg_auto'"><span class="screen_hide">PDF</span></span>
+                                            </td>
+                                            <td class="lineheight_reset_padd" ng-class="updateDocFontOption();">
+                                            	<a ng-hide = "samePat.skey == null || samePat.skey == ''" doc-link-dtv ng-model="samePat"><span ng-bind-html="samePat.ctry + ' ' + samePat.mngNum + ' ' + samePat.docKind"></span></a>
+                                    			<span ng-show = "samePat.skey == null || samePat.skey == ''" ng-bind-html="samePat.ctry + ' ' + samePat.mngNum + ' ' + samePat.docKind"></span>
+                                            </td>
+                                            <td class="lineheight_reset_padd font_align_center" ng-class="updateDocFontOption();"><span ng-bind-html="samePat.mngDt"></span></td>
+                                            <td class="lineheight_reset_padd" ng-class="updateDocFontOption();">
+                                            	<a ng-hide = "samePat.skey == null || samePat.skey == ''" doc-link-dtv ng-model="samePat"><span ng-bind-html="samePat.invTi"></span></a>
+                                    			<span ng-show = "samePat.skey == null || samePat.skey == ''" ng-bind-html="samePat.invTi"></span>
+                                            </td>
+                                       </tr>
+                                   </tbody>
+                               </table>
+							</div>    
+						</div>       
+                */
+		});
+		
+		elm.html($compile(innerHtml)(scope));
+		scope.findSamePatList();
+	};
+	
+	
+}]);

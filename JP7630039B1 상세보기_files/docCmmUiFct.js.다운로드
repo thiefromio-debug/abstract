@@ -1,0 +1,897 @@
+/**
+ * 작성자 : 김혜진
+ * 작성일 : 2015.04.30
+ * 회사명 : WIPS
+ * 
+ * 화면에 관련된 script단 UI 처리ㄷㅁ요
+ * 
+ */
+;
+docApp.factory("docCmmUiFct", ['$rootScope','$http', '$timeout', '$compile', 'docCmmUtilFct', function($rootScope, $http, $timeout, $compile, docCmmUtilFct){
+	
+	var target = document.getElementById('loading_default');
+	//var target = document.getElementById('loading_bar');
+	var opts = {
+		      lines: 11             // The number of lines to draw
+		    , length: 7             // The length of each line
+		    , width: 5              // The line thickness
+		    , radius: 10            // The radius of the inner circle
+		    , scale: 1.5            // Scales overall size of the spinner
+		    , corners: 1            // Roundness (0..1)
+		    , color: '#000000'         // #rgb or #rrggbb
+		    , opacity: 1/4          // Opacity of the lines
+		    , rotate: 0             // Rotation offset
+		    , direction: 1          // 1: clockwise, -1: counterclockwise
+		    , speed: 1              // Rounds per second
+		    , trail: 100            // Afterglow percentage
+		    , fps: 20               // Frames per second when using setTimeout()
+		    , zIndex: 2e9           // Use a high z-index by default
+		    , className: 'spinner'  // CSS class to assign to the elemently
+		    , shadow: false         // Whether to render a shadow
+		    , hwaccel: false        // Whether to use hardware acceleration (might be buggy)
+		    , position: 'absolute'  // Element positioning
+	};
+	var spinner = new Spinner(opts);
+	
+	/**
+	 * 로딩바 호출
+	 * 
+	 */
+	$.openLoadingBar = function(){
+		//$('#devLoadingBg').css("top", ($('#devTabBlock').position().top + $('#devTabBlock').height() + 10) + 'px'); // top부터 tab 까지 
+		$('#devLoadingBg').css("top", ($('#devTabBlock').position().top + 10) + 'px');
+		//$('#devLoadingBg').css("top", ($('#srch_header').height()) + 'px');
+		$(".layer_pop_spin").show();
+		//$(".spin_largeblock").show();
+		spinner.spin(target);
+	};
+	
+	$.closeLoadingBar = function(){
+		spinner.stop();
+		$('.layer_pop_spin').hide();
+	};
+	
+	//TimeLine 객에의 이벤트를 처리한다.
+	function loadPage(event){
+		alert(event.id);
+	};
+	
+	function docMarkerHighLighter(){
+		$('input[name=marker]').each(function(i){
+			var className = 'highlight_text' + $(this).attr('class').replace('highlight_iptype highlight_color', '');
+			var hlword = $(this).val().replace(/(^\s*)|(\s*$)/gi, '');
+			$('.highlightText').clearHighLight(className);
+			
+			if(hlword.lastIndexOf('(\u200B') > -1){
+				hlword = hlword.substring(0, hlword.lastIndexOf('(\u200B'));
+			}
+			
+			if(hlword.length > 0){
+				var count = $("div.highlightText:visible").executeHighLight(hlword, className);
+				$(this).val(hlword + '(\u200B' + count + ')');
+				$('input[name=highlighters]').eq(i).val(hlword);
+				return count;
+			}else{
+				$(this).val("");
+				$('input[name=highlighters]').eq(i).val("");
+				return 0;
+			}
+		});
+	};
+	
+	// TODO 추후 삭제
+	//형광펜 사용자 설정 세팅 
+	function setHighLighterConfiguration(){
+
+		var strHliOption = getHliConfiguration();
+		var arrHliOption = strHliOption.split(',');
+
+		$("input[name='highlightersClass']").val('');
+		for(var i = 0; i < arrHliOption.length; i++){
+			$("input[name='highlightersClass']").eq(i).val(arrHliOption[i]);
+		}
+	}
+	
+	// TODO 추후 삭제
+	// 형광펜 default 설정 
+	function initHighLights(){
+		$('input[name=chkMarker]').prop('checked', false);
+	    $('input[name=marker]').each(function(i){
+	    	$(this).val($('input[name=highlighters]').eq(i).val());
+	    	$(this).attr('class', 'highlight_iptype highlight_color'+ $('input[name=highlightersClass]').eq(i).val());
+	    	//$(this).val($('input[name=hl]').eq(i).val());
+	    	$('#devChkMarker' + $('input[name=highlightersClass]').eq(i).val()).prop('checked', true);
+	    });	    
+	    
+    	$('input[name="chkMarker"]:not(:checked)').prop('disabled',true);
+    	
+    	for (var i = $('input[name="chkMarker"]:checked').length; i < $('input[name=marker]').length; i++) {
+    		$('input[name=marker]').eq(i).attr('class', 'highlight_iptype');
+    		$('input[name=marker]').eq(i).prop('disabled',true);
+    	}
+	};
+	
+	function getJsonDataHighlight(inputStr, hlword, className){
+		var tmpDiv = "<div>" + (inputStr == null ? "" : inputStr) + "</div>";
+		if(className != "font_color_orange"){
+			//검색어 하이라이트인 경우에는 초기화 하지 않는다.
+			tmpDiv = "<div>" + $(tmpDiv).clearHighLightByElement(className) + "</div>";
+		}
+		
+		var outRsltVO = $(tmpDiv).highLight(hlword, className);
+		if(outRsltVO.html == 'undefined' || outRsltVO.html == null){
+			outRsltVO.html = '';
+			outRsltVO.cnt = 0;
+		}
+		return outRsltVO;
+	};
+	
+	function ready(scope) {
+		// jQuery.style.js/jQuery.style.event.js 내 doc관련 event 및 ui 처리 추가
+	    // 전체 색상 일괄적용 -> 20151224  헤더 변경으로 주석처리
+	    /**
+	     * 특허분류코드 조회
+	     */
+		$.ajaxDevCls = function() {
+			var url = "../doc/docClassification.wips";
+			$.ajax({
+				type: "post",
+				url: url,
+				data: {
+					skey : $("#skey").val(),
+					ctry : $("#ctry").val()
+				},
+				dataType: "json",
+				async: true,
+				success: function(data, textStatus) {
+					var clsChk = false;
+					Object.keys(data.msriClassificationVO).forEach(function(item){
+						if(data.msriClassificationVO[item] != null){
+							clsChk = true;
+							return ;
+						}
+					});
+					
+					if(clsChk){
+						$("#devClsTable").html($("#tmplCls").render({data : data.msriClassificationVO, docKind : $("#docKind").val(), ctry : $("#ctry").val()}));
+						$.devClsToggle();
+						// 테마코드
+						if(data.msriClassificationVO.docPageFtermCurrRsltList != null){
+							$('#devCls').after("<li class='line_space' id='devTheme'></li>");
+							$("#devTheme").html($("#tmplThemeCode").render({ThemeList : data.msriClassificationVO.docPageFtermCurrRsltList}));
+						}
+					} else {
+						$("#devCls").remove();
+					}
+				}
+			});
+		};
+		var toggleState = false;
+
+		$.devClsToggle = function(){
+			if(toggleState){
+				$("#devClsToggle>a").html("<span class='float_l'>Original 코드접기</span><span class='ico_minus3 marg_left_05'><!--  --></span>");
+				$("#devCol col:nth-child(2)").attr("width", "43%");
+				$("#devCol col:nth-child(3)").attr("width", "43%");
+				$("#devCol col:nth-child(3)").show();
+				$(".devClsToggle").show();
+				toggleState = false;
+			}else{
+				$("#devClsToggle>a").html("<span class='float_l'>Original 코드보기</span><span class='ico_plus5 marg_left_05'><!--  --></span>");
+				$("#devCol col:nth-child(2)").attr("width", "86%");
+				$("#devCol col:nth-child(3)").hide();
+				$(".devClsToggle").hide();
+				toggleState = true;
+			}
+		}
+		/**
+		* 전체도면 버튼 클릭시 개별도면 조회 AJAX
+		*/
+		var drwImgList 	= {};
+		$.ajaxDevDrw = function() {
+			var url = "";
+			if($('#ctry').val() =='KR') {
+				url = "../dkr/findDrwImage.wips";
+			} else if($('#ctry').val() =='US') {
+				url = "../dus/findDrwImage.wips";
+			} else if($('#ctry').val() =='EP') {
+				url = "../dep/findDrwImage.wips";
+			} else if($('#ctry').val() =='JP') {
+				url = "../djp/findDrwImage.wips";
+			} else if($('#ctry').val() =='IN') {
+				url = "../din/findDrwImage.wips";
+			} else if($('#ctry').val() =='CN') {
+				url = "../dcn/findDrwImage.wips";
+			} else if($('#serviceNm').val() == 'DLN') {
+				url = "../dln/findDrwImage.wips";
+			} else if($('#ctry').val() == 'AU') {
+				url = "../dau/findDrwImage.wips";
+			} else if($('#ctry').val() == 'WO') {
+				url = "../dwo/findDrwImage.wips";
+			} else if($('#ctry').val() =='USPAST') {
+				url = "../dut/findDrwImage.wips";
+			}
+
+			if(url != ''){
+				$.ajax({
+					type: "post",
+					url: url,
+					data: {
+						skey: $('#skey').val()
+					},
+					dataType: "json",
+					async: false,
+					success: function(data, textStatus) {
+						drwImgList 	= data.drwImgList;
+						scope.docVar.screenVO.drwImgList = drwImgList;
+						$.resultDevDrw(drwImgList, 0, 3);
+						
+					}
+				});
+			}
+		};
+
+		/**
+		* 전체도면 버튼 클릭시 개별도면 조회 Result
+		*/
+		$.resultDevDrw = function(drwImgList, start, end) {
+			if(start == undefined){
+				start = 0;
+			}
+			if(end == undefined || end > drwImgList.length){
+				end = drwImgList.length;
+			}
+			if(start > end){
+				return false;
+			}
+			
+			//대체 개별도면 표시
+			if(drwImgList.length > 0 && (drwImgList[0].tag != null && drwImgList[0].tag != "") && $("#ctry").val() == "EP"){
+				scope.docVar.docPageSummaryRsltVO.drwImgTag = drwImgList[0].tag;
+				if($("#devDrgImgTag").length < 1){
+					if($("#devDrwTag").length > 0){
+						$("#devDrwTag").append("<span id='devDrgImgTag'> ," + scope.docVar.docPageSummaryRsltVO.drwImgTag + "</span>");
+					} else {
+						$("#devDrwInfo").append("<span id='devDrgImgTag'>↓ " + scope.docVar.docPageSummaryRsltVO.drwImgTag + "</span>");
+					}
+				}
+			}
+			
+			for (var i = start ; i < end ; i++) {
+				var drwUrl = drwImgList[i].drwUrl
+					, seq = drwImgList[i].seq
+					, rnum = i+1
+					, skey = drwImgList[i].skey
+					, drwNum = drwImgList[i].drwNum
+					, insertHtml = [];
+				
+				/*if($('#ctry').val() =='IN') {
+					seq = drwImgList[i].rnum;
+				} */
+				if(drwNum == null ) {
+					drwNum = '';
+				}
+				insertHtml.push('<li class="mini_imgdraw_block');
+				if(i >= 3){insertHtml.push(' _2depth');}
+				insertHtml.push('" ng-class="{\'on\' : docVar.screenVO.abCurImgNum == ' + (i+1) + '}"');
+				
+				insertHtml.push('>');
+				
+				insertHtml.push('<table>');
+				insertHtml.push('<tr>');
+				insertHtml.push('<td align="middle" class="img_area" ng-click="onClickDrw(' + skey + ',' + rnum + ');">');
+				insertHtml.push('<a href="javascript:void(0);">');
+				insertHtml.push('<img src="' + drwUrl + '" alt="도면이미지" />');
+				insertHtml.push('</a>');
+				insertHtml.push('</td>');
+				insertHtml.push('</tr>');
+				insertHtml.push('<tr>');
+				insertHtml.push('<td class="font_size_11"><div class="draw_txt_ellipsis">도면 ' + drwNum + '</div></td>');
+				insertHtml.push('</tr>');
+				insertHtml.push('</table>');
+				insertHtml.push('</li>');
+				$('#devDrwImage').append($compile(insertHtml.join('\n'))(scope));
+			}
+			
+			if(end > 3){
+				$("#devScreenHide").toggle();
+			}
+		}
+		
+		/**
+		* 전체도면 버튼 클릭시 개별도면 조회
+		*/
+		$('#devDrwBtn').on('click', function() {
+			if($("._2depth").length > 0){
+				$("._2depth").toggle();
+				$("#devScreenHide").toggle();
+				
+				if($("#devScreenHide").css('display') == 'none' && scope.docVar.screenVO.abCurImgNum >= 4){
+					scope.docVar.screenVO.abCurImgNum = 0;
+					scope.$apply();
+				}
+			}
+			else{
+				$.resultDevDrw(drwImgList, 3);
+			}
+			
+			$("#devDrwImage").toggleClass('on');
+		});
+
+		$('#devScreenHide').on('click', function() {
+			$("._2depth").toggle();
+			$("#devScreenHide").toggle();
+			$.devScrolls('devDrwa');
+			
+			if($("#devScreenHide").css('display') == 'none' && scope.docVar.screenVO.abCurImgNum >= 4){
+				scope.docVar.screenVO.abCurImgNum = 0;
+				scope.$apply();
+			}
+			$("#devDrwImage").toggleClass('on');
+		});
+		
+		/**
+		 * skey 하나를 받아 다운로드 팝업을 호출한다.
+		 */
+		$.openDownload = function(skey){
+			skey = LZString.compressToBase64(skey);
+			var form = document.createElement('form');
+			$(form).attr('action', '../dwn/dwnView.wips')
+				   .attr('id', 'dwlndForm')
+				   .attr('method', 'post')
+				   .attr('target', '_dwnViewWT');
+			$(form).html('<input type="hidden" name="skeys" value="' + skey +'" />' +
+						 '<input type="hidden" name="allSkeys" value="' + skey +'" />' +
+						 '<input type="hidden" name="query" value="" />' +
+						 '<input type="hidden" name="srchitem" value="" />' +
+						 '<input type="hidden" name="countryCount" value="" />' +
+						 '<input type="hidden" name="entryWay" value="DOC" />' +
+						 '<input type="hidden" name="ttlCnt" value="1" />'
+			);
+			document.body.appendChild(form);
+			
+			var dwnView = window.open("../html/cmm/popup_blank.html", "_dwnViewWT");
+			
+			if (dwnView === null) {
+				alert("차단된 팝업을 허용해 주십시오.");
+			} else {
+				$(form).submit();
+				$('form#dwlndForm').remove();
+			}
+		};
+		
+		/**
+		 * skey 하나를 받아 레포트를 호출한다.
+		 */
+		$.openReport = function(skey ,type){
+			//skey = LZString.compressToBase64(skey);
+			var url = "../rpt/rptSummary.wips";
+			if (type == "search") {
+				url	= "../rpt/rptSearch.wips";
+			} else if (type == "tech") {
+				url = "../rpt/rptTechnology.wips";
+			}
+			
+			
+			var form = document.createElement('form');
+			$(form).attr('action', url)
+				   .attr('id', 'reportForm')
+				   .attr('method', 'post')
+				   .attr('target', '_rptViewWT');
+			$(form).html('<input type="hidden" name="skeys" value="' + skey +'" />'
+			);
+			document.body.appendChild(form);
+			
+			var dwnView = window.open("../html/cmm/popup_blank.html", "_rptViewWT");
+			
+			if (dwnView === null) {
+				alert("차단된 팝업을 허용해 주십시오.");
+			} else {
+				$(form).submit();
+				$('form#reportForm').remove();
+			}
+		};
+		
+		/**
+		 * 인용분석 링크 
+		 */
+		$.openCitnAnalysis = function(skey){
+			var form = document.createElement('form');
+			$(form).attr('action', '../cia/ciaSearch.wips')
+				   .attr('id', 'citnParamForm')
+				   .attr('method', 'get')
+				   .attr('target', '_blank');
+			$(form).html('<input type="hidden" name="skey" value="' + skey +'" />'
+			);
+			document.body.appendChild(form);
+			
+			$(form).submit();
+			$('form#citnParamForm').remove();
+		};
+		
+		/**
+		 * 청구항분석 링크 
+		 */
+		$.openClaimAnalysis = function(skey){
+			var form = document.createElement('form');
+			$(form).attr('action', '../cla/claSearch.wips')
+				   .attr('id', 'claimParamForm')
+				   .attr('method', 'get')
+				   .attr('target', '_blank');
+			$(form).html('<input type="hidden" name="skey" value="' + skey +'" />'
+			);
+			document.body.appendChild(form);
+			
+			$(form).submit();
+			$('form#claimParamForm').remove();
+		};
+		
+		/**
+		 * 패밀리분석 링크 
+		 */
+		$.openFamilyAnalysis = function(skey){
+			var form = document.createElement('form');
+			$(form).attr('action', '../ftl/familySearch.wips')
+				   .attr('id', 'familyParamForm')
+				   .attr('method', 'get')
+				   .attr('target', '_blank');
+			$(form).html('<input type="hidden" name="skey" value="' + $("#skey").val() +'" />' );
+			document.body.appendChild(form);
+			
+			$(form).submit();
+			$('form#familyParamForm').remove();
+		};
+		
+		$.openWrapRequest = function(skey){
+//			$.ajax({
+//				type: "post",
+//				url: "../doc/docWrapReqstAjax.wips",
+//				dataType: "JSON",
+//				async : true,
+//				data: {
+//					skey: skey
+//				},
+//				success: function(data, textStatus, jqXHR) {
+//					var form = document.createElement('form');
+//					//$(form).attr('action', 'https://www.wipscorp.com/sch/filewrapperAply.wips')
+//					$(form).attr('action', 'https://www.wipscorp.com/inquiry04#anchor')
+//						   .attr('id', 'wrapForm')
+//						   .attr('method', 'get')
+//						   .attr('target', '_wrapViewWT');
+//					
+//					// 전화번호 값이 없는 경우 [WT2MemberServicedb].[member].[membr_info] 내 value는 '--' 들어가 있음..  포대신청에서 값을 제대로 받지 못함.   
+//					var telNum = data.wrapMemberList[0].telNum;
+//					if(telNum == null || telNum == '--') {
+//						telNum = '';
+//					}
+//					
+//					var mobileNum = data.wrapMemberList[0].mobileNum;
+//					if(mobileNum == null || mobileNum == '--') {
+//						mobileNum = '';
+//					} 
+//					
+//					$(form).html('<input type="hidden" id="wrapName" name="wrapName" value="' + data.wrapMemberList[0].membrNm +'" />' +
+//								 '<input type="hidden" id="wrapComName" name="wrapComName" value="' + data.wrapMemberList[0].comNm +'" />' +
+//								 '<input type="hidden" id="wrapTelNumber" name="wrapTelNumber" value="' + telNum +'" />' +
+//								 '<input type="hidden" id="wrapMobileNumber" name="wrapMobileNumber" value="' + mobileNum +'" />' +
+//								 '<input type="hidden" id="wrapEmail" name="wrapEmail"  value="' + data.wrapMemberList[0].email +'" />' +
+//								 '<input type="hidden" id="wrapCtry" name="wrapCtry"  value="' + data.wrapPatentList[0].ctry +'"/>' +
+//								 '<input type="hidden" id="wrapPatentNumType" name="wrapPatentNumType" value="' + data.wrapPatentList[0].patentNumType +'" />' +
+//								 '<input type="hidden" id="wrapPatentNumber" name="wrapPatentNumber"  value="' + data.wrapPatentList[0].patentNumber +'" />' +
+//								 '<input type="hidden" id="wrapInvTi" name="wrapInvTi"  value="' + data.wrapPatentList[0].invTi +'" />'
+//					);
+//					document.body.appendChild(form);
+//
+//					$(form).submit();
+//					$('form#wrapForm').remove();
+//				}
+//			});
+			
+			var form = document.createElement('form');
+			$(form).attr('action', 'https://www.wipscorp.com/inquiry04#anchor')
+				   .attr('id', 'wrapForm')
+				   .attr('method', 'get')
+				   .attr('target', '_wrapViewWT');
+			
+			document.body.appendChild(form);
+
+			$(form).submit();
+			$('form#wrapForm').remove();
+		};
+		
+		$('#devLinkPrNum').unbind('click');
+		$('#devLinkPrNum').bind('click', function() {
+			$(document).scrollTop($("#devPrNum").position().top - ($('.scroll_left').position().top));
+		});
+		
+		$.docMarkerHighLighterRemover = function(){
+			markerHighLighterRemover();
+			
+			for(var j=0; j < scope.docVar.docPageCmmRsltVO.invTiList.length; j++){
+				var tmpDiv = "<div>" + scope.docVar.docPageCmmRsltVO.invTiList[j].invTi + "</div>";
+				scope.docVar.docPageCmmRsltVO.invTiList[j].invTi =  tmpDiv;
+			}
+		};
+		
+		/**
+		 * 검색시 하이라이트 처리
+		 */
+		scope.docQueryHighLighter = function(hl){
+			var className = "font_color_orange";
+			$(".queryHighlightText").clearHighLight(className);
+			if(hl != null && hl != ""){
+				var keywordArray = hl.split('||');
+				for (var i = 0; i < keywordArray.length; i++) {
+					var hlword = keywordArray[i];
+					
+					if(hlword == "" || hlword == " "){
+						continue;
+					}
+					
+					if(scope.docVar.screenVO.tabGb == DocCmmConst.TABGB.AB){ //요약정보 탭일경우 JSON 처리						
+						//요약 하이라이트 처리
+						switch (scope.docVar.screenVO.serviceNm){
+						case DocCmmConst.SERVICENM.DCN:
+						case DocCmmConst.SERVICENM.DDB:
+						case DocCmmConst.SERVICENM.DEP:
+						case DocCmmConst.SERVICENM.DJP:
+						case DocCmmConst.SERVICENM.DLN:
+						case DocCmmConst.SERVICENM.DWO:
+							{
+								for(var j=0; j < scope.docVar.docPageSummaryRsltVO.abList.length; j++){
+									var rsltObj = getJsonDataHighlight(scope.docVar.docPageSummaryRsltVO.abList[j].ab, hlword, className);
+									// 요약정보 xml 태그 삭제
+									var rsltObjAbHtml = rsltObj.html.replace(/(<\?xml([^>]+)>)/gi, "");
+									scope.docVar.docPageSummaryRsltVO.abList[j].ab = rsltObjAbHtml;
+								}
+								for(var j=0; j < scope.docVar.docPageSummaryRsltVO.exmpClList.length; j++){
+									var rsltObj = getJsonDataHighlight(scope.docVar.docPageSummaryRsltVO.exmpClList[j].exmpCl, hlword, className);
+									// 요약정보 xml 태그 삭제
+									var rsltObjAbHtml = rsltObj.html.replace(/(<\?xml([^>]+)>)/gi, "");
+									scope.docVar.docPageSummaryRsltVO.exmpClList[j].exmpCl = rsltObjAbHtml;
+								}
+							}
+							break;
+						case DocCmmConst.SERVICENM.DJT:
+						case DocCmmConst.SERVICENM.DKP:
+						case DocCmmConst.SERVICENM.DKR:
+						case DocCmmConst.SERVICENM.DKT:
+						case DocCmmConst.SERVICENM.DPJ:
+						case DocCmmConst.SERVICENM.DUS:
+						case DocCmmConst.SERVICENM.DUT:
+							break;
+						}
+						
+					}					
+					$(".queryHighlightText").executeHighLight(keywordArray[i], className);
+			    }	
+			}
+		};
+		
+		/**
+		 * 형광펜 클릭시 형광펜 하이라리트 처리
+		 */
+		scope.clickDevBtnMarker = function(){
+			// 청구항, 발명의 설명 에서만 적용
+			if(!(scope.docVar.screenVO.tabGb == "CL" || scope.docVar.screenVO.tabGb == "DS")){
+				return false;
+			}
+			
+			$('input[name=marker]').each(function(i){
+				if($(this).attr('class').indexOf('highlight_color')> 0){
+					var className = 'highlight_text' + $('input[name=highlightersClass]').eq(i).val();
+					//its 7854 처리
+					var hlword = $(this).val().replace(/(^\s*)|(\s*$)/gi, '');
+					$('.highlightText').clearHighLight(className);
+					
+					if(hlword.lastIndexOf('(\u200B') > -1){
+						hlword = hlword.substring(0, hlword.lastIndexOf('(\u200B'));
+					}
+					
+					if(hlword.length == 0){
+						//$('input[name=highlighters]').eq(i).val(hlword);
+						//$('.devHighlightNg').clearHighLight(className);
+					}
+					else if(hlword.length > 0){
+						var count = 0;
+						
+						count += $(".highlightText:visible").executeHighLight(hlword, className);
+						$(this).val(hlword + '(\u200B' + count + ')');
+						$('input[name=highlighters]').eq(i).val(hlword);
+					}else{
+						$(this).val("");
+						$('input[name=highlighters]').eq(i).val("");
+					}
+				}
+			});
+		};
+		
+		
+		$.devScrolls = function(divId){
+			if($('#' + divId).position() != null){
+				//$(document).scrollTop($('#' + divId).position().top - $('#nav-holder').height());
+				$(document).scrollTop($('#' + divId).offset().top - $('#nav-holder').height()-5);
+			}
+		};
+		
+		// 플로팅 클릭 표시 a
+		$("#idUlScrollRight, #idUlScrollRightAD, #idUlScrollRightFT").off();
+		$("#idUlScrollRight, #idUlScrollRightAD, #idUlScrollRightFT").on("click", "a", function(){
+			$(this).closest("ul").find(".on").removeClass("on");
+			$(this).addClass("on");
+		});
+		// 플로팅 클릭 표시 input
+		$("#idUlScrollRightCL, #idUlScrollRightDS, #idUlScrollRightFT").off();
+		$("#idUlScrollRightCL, #idUlScrollRightDS, #idUlScrollRightFT").on("click", "input", function(){
+			$.each($(this).parent().parent().find("input"), function(idx, val){
+				if($(this).prop("checked")){
+					$(this).parent().addClass("on");
+				}
+				else{
+					$(this).parent().removeClass("on");
+				}
+			});
+		});
+		
+		$.idUlScrollRightClick = function(id){
+			if(id == ""){
+				return false;
+			}
+			var tmpId = id.substr(3,id.length);
+			
+			$("#"+tmpId).closest("ul").find(".on").removeClass("on");
+			
+			$("#"+tmpId).addClass("on");
+			
+			setTimeout(function(){
+				$.devScrolls(id);
+			}, 500);
+			
+		}
+		
+		// 도움말 layer on/off 함수
+		$.onOffHelpLayer = function() {
+			if ($('#devHelpLayer').is(':visible')) {
+				$('#devHelpLayer').hide();
+			} else {
+				$('#devHelpLayer').show();
+			}
+		};
+		// 발명의 명칭 화면단 setting
+		$.invTiSetting = function () {
+			if( $('.languagetext2').find('li').length < 2) {
+				$('.languagetext2').hide();
+			} 
+			
+			$('.devInvTitle').find('span').removeClass('highlightText queryHighlightText');
+			$('.devInvTitle').find('span:visible').addClass('highlightText queryHighlightText');
+			
+			scope.setTabLangsSet($("#devClTab"));
+		};
+		
+		// 발명의 명칭 언어 변경 버튼 함수 
+		$.showSelectTiLang = function(langCdNm){
+			$('#devSelectTitleLang').find('span').each(function(){
+				if($(this).prop('lang') == langCdNm){
+					if(!$(this).hasClass('on')){
+						$(this).addClass('on');
+						$(this).attr('onClick', ';');
+//						$(this).attr('style', 'cursor:default;');
+					}
+					//$(this).attr('class', 'on');
+					$('#devLang'+langCdNm).show();
+					//$(this).html(langCdNm);
+				} else{
+					if($(this).hasClass('on')){
+						$(this).removeClass('on');
+						$(this).attr('onClick', '$.showSelectTiLang(\''+$(this).prop('lang') +'\');');
+//						$(this).attr('style', 'cursor:pointer;');
+					}
+					//$(this).attr('class', '');
+					$('#devLang'+$(this).prop('lang')).hide();
+					//$(this).html('<a href="javascript:$.showSelectTiLang(\''+$(this).prop('lang') +'\');">'+$(this).text()+'</a>');
+					
+				}
+			});
+			
+			$('.devInvTitle').find('span').removeClass('highlightText queryHighlightText');
+			$('.devInvTitle').find('span:visible').addClass('highlightText queryHighlightText');
+			if($('#devSelectTitleLang').length > 0) {
+				scope.clickDevBtnMarker();
+			}
+			//컨텐츠영역 마진탑 개선
+			$.scrollMarginTop();
+		};
+
+		/**
+		 *  NEW ICON (출원히스토리, 인용/피 인용 특허문헌>인용참증단계)
+		 */
+		$("#clickExpertLayer").on("mouseover", function(){
+			$(this).parent().find("div").show();
+		}).on("mouseleave", function(){
+			$(this).parent().find("div").hide();
+		});
+		
+		
+		//형광펜 input 박스 class 설정, 검색어 입력 및 형광펜 레이어 체크박스 설정
+	    //var markerClassValues = JSON.parse($('#highlighters').val());
+		scope.setTopFixed = function(){
+			$('.scroll_left').css("margin-top", ($('#nav-holder').height() + 3) + 'px');
+			if($('.scroll_right').height() != null){
+				$('.scroll_right').css("margin-top", ($('#nav-holder').height() + 3) + 'px');
+			}
+		};
+		
+		
+		$(window).resize(function(event) {
+			scope.setTopFixed();
+		});
+		
+		/**
+		 * 이미지 에러 처리
+		 */
+		$(document).ready(function(){
+			$(".dc_description > .dc_subbox > .txt_description").css("text-indent", $(".dc_description > .dc_subbox > .btn_docLang_changOp").width() + 10);
+			
+			/*
+				번역신고
+			*/
+			/* $(".quickbox").on("click", ".btn_wordcheck", function () {
+				if($(".layer_wordcheck").css("display") == "none"){
+					$(this).addClass("on")
+					//$(".quickbox .layer_wordcheck").show();
+				}else{
+					$(this).removeClass("on")
+					//$(".quickbox .layer_wordcheck").hide();
+				}
+				return false;
+			}); */
+			
+			/*
+				출력옵션
+			*/
+			/* $(".quickbox").on("click", ".btn_option", function () {
+				if($(".layer_toc_setup").css("display") == "none"){
+					$(this).addClass("on")
+					//$(".quickbox .layer_toc_setup").show();
+				}else{
+					$(this).removeClass("on")
+					//$(".quickbox .layer_toc_setup").hide();
+				}
+				return false;
+			}); */
+			
+			var anquer = $("input[name='divId']").val();
+			$("input[name='divId']").val("");
+			
+			$('img').each(function(i){
+				$(this).error(function(){
+					if($(this).attr("name") == "exmpDrwImg"){
+						$(this).attr("src", "../image/img/bg_noimg.gif");
+					}
+				});
+			});
+			
+			if(anquer != null && anquer != ""){
+				$.devScrolls(anquer);
+			}
+			
+			/**
+			* 문헌전체 내용 구분선 적용
+			*/
+			setTimeout(function(){
+				$.each($("#docSummaryInfo > li > ul"), function(inx, val){
+					if(inx > 0){
+						$(this).find("li:not(:hidden)").first().addClass("block_divdotted_top");
+					}
+				});
+			}, 800);
+		});
+		
+		initHighLights();
+	    $.invTiSetting();
+	    $.scrollMarginTop();
+	    
+	    /**
+		 * 도면 팝업 호출
+		 */
+		scope.openImagePopup = function(skey,seq) {
+			$("a").blur();
+			var winHeight = document.body.clientHeight; //현재창의 높이 
+			var winWidth = document.body.clientWidth; //현재창의 너비 
+			var winX = window.screenLeft; //현재창의 x좌표 
+			var winY = window.screenTop; //현재창의 y좌표 
+			
+			var url		= "../lyr/popDrawing.wips",
+				name		= "_imgPopup",
+				width 	= 1150,
+				height 	= 720,
+				left 		= winX + (winWidth - width)/2, 
+				top 		= winY + (winHeight - height)/2,
+				imgPopup	= null,
+				form 		= document.createElement('form');
+			
+			$(form).attr('action', url)
+					.attr('id', 'docDrawPopUpView')
+					.attr('method', 'post')
+					.attr('target', name);
+			
+			$(form).html('<input type="hidden" name="skey" value="' + skey +'" />'
+					+ '<input type="hidden" name="rDetailImageNum" value="' + seq +'" />');
+			
+			document.body.appendChild(form);
+			
+			imgPopup = window.open("../html/cmm/popup_blank.html", name, 'left=' + left + ',top=' + top + ',width=' + width + ',height=' + height + ',toolbar=0,menubar=0,status=1,scrollbars=0,resizable=1,copyhistory=0');
+			
+			if (imgPopup === null) {
+				alert("차단된 팝업을 허용해 주십시오.");
+			} else {
+				$(form).submit();
+				$('form#devExmpImgForm').remove();
+				imgPopup.focus();
+			}
+			
+			if(scope.docVar.screenVO.tabGb == scope.docConst.TABGB.AB){
+				scope.docVar.screenVO.abCurImgNum = seq;
+			}else if (scope.docVar.screenVO.tabGb == scope.docConst.TABGB.CL){
+				scope.docVar.screenVO.clCurImgNum = seq;
+			}else if (scope.docVar.screenVO.tabGb == scope.docConst.TABGB.DS){
+				scope.docVar.screenVO.descCurImgNum = seq;
+			}
+			
+		};
+	};
+	
+	function openLoadingBar(scope){
+		$.openLoadingBar();
+	};
+	
+	function closeLoadingBar(scope){
+		spinner.stop();
+		$('.layer_pop_spin').hide();
+	};
+	
+	function timeLine(scope){
+		$('#devTimeLine').jqtimeline({
+			events : scope.docVar.applHistory,
+			numYears: scope.docVar.applHistory.length,
+			gap: 630 / scope.docVar.applHistory.length,
+			showToolTip: true,
+			click:function(e,event){
+				loadPage(event);
+			}
+		});
+	};
+	
+	return {
+		  ready : ready
+		, openLoadingBar : openLoadingBar
+		, closeLoadingBar : closeLoadingBar
+		, timeLine : timeLine
+		, initHighLights : initHighLights
+		, setHighLighterConfiguration : setHighLighterConfiguration
+	};
+}]);
+
+
+/**
+ * tooltip show
+ */
+function showTooltip(id) {
+	$('#' + id).show();
+};
+
+/**
+ * tooltip hide
+ */
+function hideTooltip(id) {
+	$('#' + id).hide();
+};
+
+function tooltipEvent(id) {
+	if($('#wrapTooltip').is(':visible')) {
+		$('#' + id).hide();
+	} else {
+		$('#' + id).show();
+	}
+}

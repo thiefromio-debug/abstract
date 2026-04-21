@@ -1,0 +1,41 @@
+//;(function($){
+//	
+//	// 세션이 만료된 Ajax 호출시 메인화면으로 처리
+//    $.ajaxSetup({
+//    	global:true,
+//        error: function (jqXHR, textStatus, errorThrown) {
+//        	alert('jquery.ajaxSetupError');
+//            if (jqXHR.status == 403 || jqXHR.responseText.indexOf('<title>Login alert</title>') > 0) {
+////                alert("세션이 만료되었습니다. 다시 로그인해 주십시오.");
+//                window.location.href ="../lgn/alertSessionOut.wips"; //로그아웃 시킨 후 -  다른곳에서 로그인되어 현재 로그인 상태가 종료되었습니다.
+//            }else {
+//            	  alert("에러가 발생하였습니다. " + jqXHR.status + "\nError: " + errorThrown);
+////                alert("잘못된 접근입니다.");
+////                window.location.href ="../lgn/login.wips?errorCode=770"; //error=770 - 잘못된 접근입니다.
+//            }
+//        }
+//    });	
+//	
+//	
+//})(jQuery);
+
+$(document).ajaxError(function(event, jqXHR, textStatus, errorThrown) {
+	if (jqXHR.status == 403 || (jqXHR.responseText && jqXHR.responseText.indexOf('Login alert') > 0)) {
+		window.location.href ="../lgn/alertSessionOut.wips"; //로그아웃 시킨 후 -  다른곳에서 로그인되어 현재 로그인 상태가 종료되었습니다.
+	} else if (/EgovBizException/.test(jqXHR.responseText)) {
+        alert(jqXHR.responseText.match(/EgovBizException: &quot;(.*?)&quot;/)[1]);
+        // error 처리
+    } else if(jqXHR.status == 500) {
+    	if(textStatus.url.indexOf('fileTrnsNumber.wips') > -1) {
+	    	//파일 업로드 시 에러 메세지 안 띄움
+    	} else if(textStatus.url.indexOf("KeyWordSrchList.wips") > -1){
+			alert("입력방식이 올바르지 않습니다. 다시 입력해 주십시오.");
+			closeLoading();
+		} else if(textStatus.url.indexOf(/wcd/) > -1){
+			alert("오류가 발생하였습니다.");
+			_wcdCmmJS.hideLoader();
+		} else {
+    		alert("잘못된 접근입니다.");
+		}
+	}
+});
