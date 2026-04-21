@@ -1,0 +1,357 @@
+발명의 설명
+특허평가
+심판
+화합물
+표준특허
+상태정보
+상태정보 출력 안내툴팁 아이콘
+등록 (특허)
+현재진행상태보기
+특허번호
+7630039 B1 (2025.02.05) (See Also : 2025-080220 A )
+문헌종류 코드보기
+발행일
+2025.02.14
+출원번호
+2024-178839 (2024.10.11) 
+출원인
+AMADA CO LTD (株式会社アマダ) (JP) 神奈川県伊勢原市石田200番地
+출원인 대표명화
+AMADA CO LTD
+출원인식별기호
+390014672
+현재권리자
+AMADA CO LTD (株式会社アマダ)  神奈川県伊勢原市
+현재권리자 대표명화
+AMADA CO LTD
+출원히스토리
+ 
+2023.11.13
+최우선출원(JP-Priority)
+ 
+2024.10.11
+출원
+ 
+2025.02.05
+등록
+ 
+2025.05.23
+공개
+ 
+2044.10.12
+소멸
+요약
+【요약】
+
+【과제】도금 강판을 절단해 절단면을 용접하는 경우에도 용접 품질을 향상시킬 수 있다.
+
+【해결 수단】판금의 용접 방법은 도금층이 형성된 모재에서 판금을 잘라내 용접하기 위한 가공 프로그램을 취득하고 취득한 가공 프로그램에서 판금을 절단하는 절단 위치를 취득하고 취득한 절단 위치 중에서 용접되는 절단 위치인 용접 절단 위치를 특정하고 특정한 용접 절단 위치의 양측에, 레이저 가공기 100에서 레이저 빔을 조사하는 조사 영역을 설정하고 설정한 조사 영역에 레이저 빔을 조사해 도금층을 제거하고 절단 위치에 레이저 빔을 조사해 모재에서 판금을 잘라내, 절단된 판금을 용접한다.
+
+【선택도】도 4
+
+[ABSTRACT]
+
+[Technical problem] Welding quality can be raised even if it is a case where cut a plating steel plate and a cutting plane is welded.
+
+[Means for Solution]A welding process of sheet metal acquires a processing program for cutting down and welding sheet metal from a base material in which a plating layer was formed, Acquire a cut position which cuts sheet metal from an acquired processing program, and it pinpoints a welding cut position which is a cut position welded out of an acquired cut position, An irradiation field which irradiates both sides of a pinpointed welding cut position with a laser beam from the laser beam machine 100 is set up, a set-up irradiation field is irradiated with a laser beam, a plating layer is removed, a cut position is irradiated with a laser beam, sheet metal is cut down from a base material and cut-down sheet metal is welded.
+
+[Chosen drawing] Drawing 4
+
+【要約】
+
+【課題】めっき鋼板を切断して切断面を溶接する場合であっても溶接品質を向上させることができる。
+【解決手段】板金の溶接方法は、めっき層が形成された母材から板金を切り出して溶接するための加工プログラムを取得し、取得した加工プログラムから板金を切断する切断位置を取得し、取得した切断位置の中から溶接される切断位置である溶接切断位置を特定し、特定した溶接切断位置の両側に、レーザ加工機100からレーザビームを照射する照射領域を設定し、設定した照射領域にレーザビームを照射してめっき層を除去し、切断位置にレーザビームを照射して母材から板金を切り出し、切り出された板金を溶接する。
+【選択図】図4
+
+발명의 설명 새창보기
+도면
+개별도면 전체 19
+열기
+
+
+대표도면
+	
+
+도면 1
+	
+
+도면 2
+	
+
+도면 3
+대표청구항
+
+청구항 1항 (대표청구항)
+
+[Claim1]
+The processing program for cutting down and welding sheet metal is acquired from the base material in which the plating layer was formed,
+
+The cut position which cuts the above-mentioned sheet metal from the acquired above-mentioned processing program is acquired,
+
+The welding cut position which is a cut position welded out of the acquired above-mentioned cut position is pinpointed,
+
+The irradiation field which irradiates the both sides of the pinpointed above-mentioned welding cut position with a laser beam from a laser beam machine is set up,
+
+The set-up above-mentioned irradiation field is irradiated with a laser beam, and the above-mentioned plating layer is removed,
+
+The above-mentioned cut position is irradiated with a laser beam, and the above-mentioned sheet metal is cut down from the above-mentioned base material,
+
+The cut-down above-mentioned sheet metal is welded.
+
+A welding process of sheet metal.
+
+【청구항1】
+도금층이 형성된 모재에서 판금을 잘라내 용접하기 위한 가공 프로그램을 취득하고
+
+취득한 상기 가공 프로그램에서 상기 판금을 절단하는 절단 위치를 취득하고
+
+취득한 상기 절단 위치 중에서, 용접되는 절단 위치인 용접 절단 위치를 특정하고
+
+특정한 상기 용접 절단 위치의 양측에, 레이저 가공기에서 레이저 빔을 조사하는 조사 영역을 설정하고
+
+설정한 상기 조사 영역에 레이저 빔을 조사해 상기 도금층을 제거하고
+
+상기 절단 위치에 레이저 빔을 조사해 상기 모재에서 상기 판금을 잘라내,
+
+절단된 상기 판금을 용접한다
+
+판금의 용접 방법.
+
+【請求項1】
+めっき層が形成された母材から板金を切り出して溶接するための加工プログラムを取得し、
+取得した前記加工プログラムから前記板金を切断する切断位置を取得し、
+取得した前記切断位置の中から、溶接される切断位置である溶接切断位置を特定し、
+特定した前記溶接切断位置の両側に、レーザ加工機からレーザビームを照射する照射領域を設定し、
+設定した前記照射領域にレーザビームを照射して前記めっき層を除去し、
+前記切断位置にレーザビームを照射して前記母材から前記板金を切り出し、
+切り出された前記板金を溶接する
+板金の溶接方法。
+
+청구항 새창보기 (11)
+특허분류코드
+Original 코드보기
+특허분류	Current
+CPC	
+Ver.2015 : 
+B23K-0026/082
+B23K-0026/21
+Ver.2013 : 
+B23K-0026/36
+ ; 
+B23K-0026/04
+ ; 
+B23K-0026/38
+ ; 
+B23K-0026/08
+
+IPC	
+Ver.2014 : 
+B23K-026/21
+B23K-026/04
+ ; 
+B23K-026/08
+ ; 
+B23K-026/082
+ ; 
+B23K-026/36
+ ; 
+B23K-026/38
+
+FI	
+B23K-026/04
+ ; 
+B23K-026/08 Z
+ ; 
+B23K-026/082
+ ; 
+B23K-026/21 E
+ ; 
+B23K-026/21 W
+ ; 
+B23K-026/36
+ ; 
+B23K-026/38 A
+
+F-term	
+4E168 : 
+AD01  
+AD07  
+BA04  
+BA14  
+BA52  
+BA83  
+BA88  
+CB04  
+DA26  
+DA28  
+DA29  
+EA15  
+EA17  
+FB02  
+FB03  
+FB05  
+JA02  
+JA28  
+테마코드
+4E168
+조사분야
+IPC : B23K-026/00 - 026/70
+발명자
+野澤 戒 神奈川県伊勢原市石田200番地
+江藤 有彩 神奈川県伊勢原市石田200番地
+대리인
+三好 秀和
+原 裕子
+森 太士
+심사청구여부
+Y  (2024.11.05)
+심사관
+松田 長親
+최우선출원
+[Priority] JP 2023-192863 (2023.11.13)
+법적상태
+일자	종류	설명
+2025.02.13	R150	
+
+CERTIFICATE OF PATENT OR REGISTRATION OF UTILITY MODEL
+Ref Document Number : 7630039
+Country of Ref Document : JP
+Further Information : JAPANESE INTERMEDIATE CODE : R150
+
+
+
+2025.02.05	A61	
+
+FIRST PAYMENT OF ANNUAL FEES (DURING GRANT PROCEDURE)
+Further Information : JAPANESE INTERMEDIATE CODE : A61
+Effective Date : 20250203
+
+
+
+2025.01.07	A01	
+
+WRITTEN DECISION TO GRANT A PATENT OR TO GRANT A REGISTRATION (UTILITY MODEL)
+Further Information : JAPANESE INTERMEDIATE CODE : A01
+Effective Date : 20250107
+
+
+
+2024.12.12	TRDD	
+
+DECISION OF GRANT OR REJECTION WRITTEN
+
+
+
+2024.11.05	A621	
+
+WRITTEN REQUEST FOR APPLICATION EXAMINATION
+Further Information : JAPANESE INTERMEDIATE CODE : A621
+Effective Date : 20241105
+
+
+Code Color : Green = Positive action,  Red = Negative action,  Black = Neutral action
+
+우선권번호
+전체 1 건
+1/1
+이전
+다음
+No	원문	출원번호	출원일자 	문헌번호	발명의 명칭
+해당 정보가 없습니다.
+
+* 미포함 문헌 1건 (절차상 미공개 문헌, 과거분 문헌, WIPS 보유 데이터 범위에 포함되지 않는 문헌)
+JP 2023-192863 (2023.11.13)
+
+본 특허를
+우선권으로 한 특허
+전체 1 건
+ 중복제거
+1/1
+이전
+다음
+No	원문	문헌번호	일자	발명의 명칭
+1	
+PDF
+	WO WO2025-105389 A1	2025.05.22	SHEET METAL WELDING METHOD, PROCESSING PROGRAM CREATION METHOD, AND PROCESSING PROGRAM CREATION DEVICE
+패밀리
+전체 3 건
+ WIPS Extended
+ EPO Simple
+ 중복제거
+1/1
+이전
+다음
+No	원문	문헌번호	일자	발명의 명칭	IPC(Main)	CPC(Main)
+1	
+PDF
+	WO WO2025-105389 A1	2025.05.22	SHEET METAL WELDING METHOD, PROCESSING PROGRAM CREATION METHOD, AND PROCESSING PROGRAM CREATION DEVICE	
+B23K-026/36
+IPC아이콘
+	
+B23K-0026/082
+CPC아이콘
+
+2	
+PDF
+	JP 7630039 B1	2025.02.05	판금의 용접 방법, 가공 프로그램의 작성 방법 및 가공 프로그램 작성 장치	
+B23K-026/21
+IPC아이콘
+	
+B23K-0026/082
+CPC아이콘
+Basic Patent
+기타 57개국
+
+* 미포함 문헌 : 1건 (절차상 미공개 문헌, 과거분 문헌, WIPS 보유 데이터 범위에 포함되지 않는 문헌)
+JP 2023-192863 (2023.11.13)
+
+패밀리 법적상태
+패밀리 법적상태 보기
+인용/피 인용 특허문헌
+전체 3 건   인용(3) 피인용(0)
+ 심사관/ 심판 참증단계 보기
+1/1
+이전
+다음
+No	Depth	국가	문헌번호	
+인용참증단계
+	발명의 명칭	일자	출원인
+1	B1	JP	
+PDF
+6535478 B2
+PDF
+2016-150370 A
+	
+선행기술조사,특허결정	레이저광에 의한 워크의 전처리 방법 및 레이저 가공기(レーザ光によるワークの前処理方法及びレーザ加工機)	2019.06.07	AMADA CO LTD
+2	B1	JP	
+PDF
+2000-197983 A
+	
+선행기술조사,특허결정	레이저 절단 방법 및 레이저 절단 장치(レ―ザ切断方法およびレ―ザ切断装置)	2000.07.18	TOSHIBA CORP | TOSHIBA ENG CO LTD
+3	B1	JP	
+PDF
+3159593 B2
+PDF
+1995-236984 A
+	
+선행기술조사,특허결정	레이저 가공 방법 및 그 장치(レーザ加工方法及びその装置)	2001.02.16	MITSUBISHI ELECTRIC CORP
+심사관 인용(Backward by Examiner)
+ 
+심사관 피 인용(Forward by Examiner)
+1/1
+이전
+다음
+문헌 내 인용
+전체 1 건
+1/1
+이전
+다음
+No	원문	문헌번호	일자	발명의 명칭	출원인
+1	
+PDF
+	JP 2019-069457 A	2019.05.09	도금 강판의 레이저 절단 가공 방법 및 레이저 가공 헤드 및 레이저 가공 장치(めっき鋼板のレーザ切断加工方法及びレーザ加工ヘッド並びにレーザ加工装置)	AMADA CO LTD
+기타 57개국
+Tel : 02-726-1100 / 1105
+help@wips.co.kr
+카톡상담 : @윕스
+Copyright ⓒ 2026 WIPS Co.,Ltd. All rights reserved.

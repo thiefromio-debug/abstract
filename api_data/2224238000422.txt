@@ -1,0 +1,184 @@
+발명의 설명
+특허평가
+심판
+화합물
+표준특허
+상태정보
+상태정보 출력 안내툴팁 아이콘
+출원 (공개특허)
+현재진행상태보기
+공개번호
+2024-176111 A (2024.12.19)
+문헌종류 코드보기
+관련특허
+PAJ문서보기
+출원번호
+2023-094370 (2023.06.07) 
+출원인
+KOBE STEEL LTD (株式会社神戸製鋼所) (JP) 兵庫県神戸市中央区脇浜海岸通二丁目2番4号
+출원인 대표명화
+KOBE STEEL LTD
+출원인식별기호
+000001199
+출원히스토리
+ 
+2023.06.07
+출원
+최우선출원(JP)
+ 
+2024.12.19
+공개
+요약
+【요약】
+
+【과제】강판 표면의 도금층을 제거할 때의 강판 변형을 억제할 수 있고 이로 인해 용접 시의 블로우홀 발생을 방지할 수 있는 레이저 용접 조인트 제조 방법을 제공한다.
+
+【해결 수단】레이저 용접 조인트 제조 방법은 제1 강판 1의 제1 영역 1 a 및 제2 강판 2의 제2 영역의 도금층에 대해 레이저광 12를 조사하고 도금층을 제거하는 제거 공정을 갖는다. 이 제거 공정에 있어서, 도금층이 제거되는 제거 영역에서의 폭방향의 길이를 폭 WA (mm)로 하고, 제거 영역의 판 두께를 t (mm)로 할 경우에, 폭 WA가 , 하기 식 (1)에 의해 산출되는 값 WC 이하가 되도록 레이저광 12를 조사한다. 이후 제1 영역 1 a와 제2 영역을 대향시켜 배치하고 접합 공정에 있어서, 제거 영역보다 내측의 범위에 대해 용접 금속이 형성되도록 레이저 용접을 실시한다. 식 (1) :WC=0.70t6-0.37t3+6.00
+
+【선택도】도 1A
+
+[ABSTRACT]
+
+[Technical problem] Modification of the steel plate at the time of removing the plating layer on the surface of a steel plate can be controlled, and this provides the manufacturing method of the laser welding joint which can prevent generating of the blow hole at the time of welding.
+
+[Means for Solution]A manufacturing method of a laser welding joint irradiates with the laser beam 12 to a plating layer of the 1st field 1a in the 1st steel plate 1, and the 2nd field in the 2nd steel plate 2, and has the removal process of removing a plating layer. It is the width W about the length of the transverse direction in the removal field to which a plating layer is removed in this removal process. A It is referred to as (mm), It is the width W when setting board thickness in a removal field to t (mm). Value W with which A is computed by a following formula (1) C It irradiates with the laser beam 12 so that it may become the following. Then, the 1st field 1a and the 2nd field are made to counter, and it arranges, and in a junction process, laser welding is carried out so that a weld metal may be formed to the range inside a removal field. Formula (1) :W C = 0.70t 6 -0.37t 3 +6.00
+
+[Chosen drawing] Drawing 1A
+
+【要約】
+
+【課題】鋼板表面のめっき層を除去する際の鋼板の変形を抑制することができ、これにより、溶接時のブローホールの発生を防止することができる、レーザ溶接継手の製造方法を提供する。
+【解決手段】レーザ溶接継手の製造方法は、第1鋼板1における第1領域1a及び第2鋼板2における第2領域のめっき層に対してレーザ光12を照射し、めっき層を除去する除去工程を有する。この除去工程において、めっき層が除去される除去領域における短手方向の長さを幅WA(mm)とし、除去領域における板厚をt(mm)とする場合に、幅WAが、下記式(1)により算出される値WC以下となるようにレーザ光12を照射する。その後、第1領域1aと第2領域とを対向させて配置し、接合工程において、除去領域よりも内側の範囲に対して溶接金属が形成されるようにレーザ溶接を実施する。式(1):WC=0.70t6-0.37t3+6.00
+【選択図】図1A
+
+발명의 설명 새창보기
+도면
+개별도면 전체 8
+열기
+
+
+대표도면
+	
+
+도면 1A
+	
+
+도면 1B
+	
+
+도면 1C
+대표청구항
+
+청구항 1항 (대표청구항)
+
+[Claim1]
+It is a manufacturing method of the laser welding joint which has the junction process of joining the arrangement process which the 1st field of the 1st steel plate and the 2nd field of the 2nd steel plate are made countering, and is arranged in piles, and the 1st above-mentioned steel plate and the 2nd above-mentioned steel plate by laser welding,
+
+At least 1 side has a zinc system plating layer among the 1st above-mentioned steel plate and the 2nd above-mentioned steel plate,
+
+Before the above-mentioned arrangement process, it irradiates with a laser beam to the zinc system plating layer in the 1st above-mentioned field and the 2nd above-mentioned field, and has the removal process of removing the zinc system plating layer in the 1st above-mentioned field and the 2nd above-mentioned field,
+
+It is the width W about the length of the transverse direction in the removal field to which the above-mentioned zinc system plating layer is removed in the above-mentioned removal process. A It is referred to as (mm), When setting board thickness in the above-mentioned removal field to t (mm), it is the above-mentioned width W. A Value W computed by a following formula (1) C It irradiates with the above-mentioned laser beam so that it may become the following,
+
+A manufacturing method of the laser welding joint carrying out laser welding in the above-mentioned junction process so that a weld metal may be formed to the range inside the above-mentioned removal field.
+
+Formula (1) :W C = 0.70t 6 -0.37t 3 +6.00
+
+【청구항1】
+제1 강판의 제1 영역과 제2 강판의 제2 영역을 대향시켜 겹쳐 배치하는 배치 공정과 상기 제1 강판과 상기 제2 강판을 레이저 용접에 의해 접합하는 접합 공정을 갖는 레이저 용접 조인트 제조 방법으로서,
+
+상기 제1 강판 및 상기 제2 강판 중 적어도 하나는 아연계 도금층을 가지며,
+
+상기 배치 공정 이전에 상기 제1 영역 및 상기 제2 영역의 아연계 도금층에 대해 레이저광을 조사하고 상기 제1 영역 및 상기 제2 영역의 아연계 도금층을 제거하는 제거 공정을 가지며,
+
+상기 제거 공정에 있어서, 상기 아연계 도금층이 제거되는 제거 영역에서의 폭방향의 길이를 폭 WA (mm)로 하고, 상기 제거 영역의 판 두께를 t (mm)로 할 경우에, 상기 폭 WA가 , 하기 식 (1)에 의해 산출되는 값 WC 이하가 되도록 상기 레이저광을 조사하고
+
+상기 접합 공정에 있어서, 상기 제거 영역보다 내측의 범위에 대해 용접 금속이 형성되도록 레이저 용접을 실시하는 것을 특징으로 하는 레이저 용접 조인트 제조 방법.
+
+식 (1) :WC=0.70t6-0.37t3+6.00
+
+【請求項1】
+第1鋼板の第1領域と第2鋼板の第2領域とを対向させて、重ねて配置する配置工程と、前記第1鋼板と前記第2鋼板とをレーザ溶接により接合する接合工程と、を有するレーザ溶接継手の製造方法であって、
+前記第1鋼板及び前記第2鋼板のうち、少なくとも一方は亜鉛系めっき層を有し、
+前記配置工程より前に、前記第1領域及び前記第2領域における亜鉛系めっき層に対してレーザ光を照射し、前記第1領域及び前記第2領域における亜鉛系めっき層を除去する除去工程を有し、
+前記除去工程において、前記亜鉛系めっき層が除去される除去領域における短手方向の長さを幅WA(mm)とし、前記除去領域における板厚をt(mm)とする場合に、前記幅WAが、下記式(1)により算出される値WC以下となるように前記レーザ光を照射し、
+前記接合工程において、前記除去領域よりも内側の範囲に対して溶接金属が形成されるようにレーザ溶接を実施することを特徴とする、レーザ溶接継手の製造方法。
+式(1):WC=0.70t6-0.37t3+6.00
+
+청구항 새창보기 (6)
+특허분류코드
+Original 코드보기
+특허분류	Current
+IPC	
+Ver.2014 : 
+B23K-026/322
+B23K-026/082
+ ; 
+B23K-026/21
+ ; 
+B23K-026/36
+
+FI	
+B23K-026/322
+ ; 
+B23K-026/36
+ ; 
+B23K-026/21 G
+ ; 
+B23K-026/082
+
+F-term	
+4E168 : 
+AD00  
+BA02  
+BA88  
+CB04  
+DA28  
+DA32  
+DA38  
+EA15  
+테마코드
+4E168
+발명자
+前田 恭兵 兵庫県神戸市中央区脇浜海岸通二丁目2番4号 株式会社神戸製鋼所内
+대리인
+弁理士法人栄光事務所
+최우선출원
+JP 2023-094370 (2023.06.07)
+패밀리
+전체 1 건
+ WIPS Extended
+ EPO Simple
+ 중복제거
+1/1
+이전
+다음
+No	원문	문헌번호	일자	발명의 명칭	IPC(Main)	CPC(Main)
+1	
+PDF
+	JP 2024-176111 A 	2024.12.19	레이저 용접 조인트 제조 방법 및 레이저 용접 조인트	
+B23K-026/322
+IPC아이콘
+	
+-
+Basic Patent
+기타 57개국
+패밀리 법적상태
+패밀리 법적상태 보기
+문헌 내 인용
+전체 2 건
+1/1
+이전
+다음
+No	원문	문헌번호	일자	발명의 명칭	출원인
+1	
+PDF
+	JP 2010-253492 A	2010.11.11	레이저 용접 장치(レーザー溶接装置)	SUMITOMO WIRING SYST LTD
+2	
+PDF
+	JP 2003-275889 A	2003.09.30	레이저 가공 장치 및 박막의 가공 방법(レーザ加工装置および薄膜の加工方法)	YASKAWA ELECTRIC CORP | JAPAN SCIENCE & TECHNOLOGY CORP
+기타 57개국
+Tel : 02-726-1100 / 1105
+help@wips.co.kr
+카톡상담 : @윕스
+Copyright ⓒ 2026 WIPS Co.,Ltd. All rights reserved.

@@ -1,0 +1,297 @@
+발명의 설명
+특허평가
+심판
+화합물
+표준특허
+상태정보
+상태정보 출력 안내툴팁 아이콘
+등록 (특허)
+현재진행상태보기
+특허번호
+7639752 B2 (2025.02.25) (See Also : 2023-148122 A )
+문헌종류 코드보기
+발행일
+2025.03.05
+공개번호
+2023-148122 (2023.10.13)
+출원번호
+2022-055991 (2022.03.30) 
+출원인
+TOYOTA MOTOR CORP (トヨタ自動車株式会社) (JP) 愛知県豊田市トヨタ町1番地
+출원인 대표명화
+TOYOTA MOTOR CORP
+출원인식별기호
+000003207
+현재권리자
+TOYOTA MOTOR CORP (トヨタ自動車株式会社)  愛知県豊田市
+현재권리자 대표명화
+TOYOTA MOTOR CORP
+출원히스토리
+ 
+2022.03.30
+출원
+최우선출원(JP)
+ 
+2023.10.13
+공개
+ 
+2025.02.25
+등록
+ 
+2042.03.31
+소멸
+요약
+↓JP-A 문헌의 요약
+【요약】 【과제】복잡한 작업을 필요로 하지 않고 아연 등의 도금 금속의 증기 말풍선에 의한 용접 불량을 감소시킬 수 있는 레이저 용접 방법을 제공한다. 【해결 수단】모재 금속판보다 낮은 융점의 금속으로 도금된 복수의 금속 도금판을 중첩해 용접하는 레이저 용접 방법으로서, 복수의 금속 도금판을 중첩하는 중합 공정과 중합 공정에서 중첩된 최상층의 금속 도금판의 표면 용접 영역에 도금 제거용 레이저광을 조사하고 도금 제거용 레이저광을 최하층의 금속 도금판에 도달시켜 중첩된 금속 도금판 사이의 도금층을 증발시키는 도금층 증발 공정과 도금층 증발 공정 후에, 용접 영역에, 도금 제거용 레이저광보다 집광경이 큰 본용접용 레이저광을 조사하고 모재 금속판을 용융해 복수의 금속 도금판을 접합하는 접합 공정을 갖는다. 【선택도】도 2
+↓JP-A 문헌의 요약
+[ABSTRACT]
+
+[Technical problem] The laser welding method which can reduce the poor weld by blow off of steam of plating metal, such as zinc, is provided, without requiring complicated work.
+
+[Means for Solution]A superposition process of being a laser welding method which piles up and welds a plurality of metal plating boards plated with metal of the melting point lower than a base material metal plate, and piling up a plurality of metal plating boards, A welding area of the surface of a metal plating board of the top layer piled up in a superposition process is irradiated with a laser beam for plating removal, metal plating which made a laser beam for plating removal reach a metal plating board of the bottom of the heap, and was piled upwith a metal skin evaporation process of evaporating a metal skin of a wooden floor, It has the junction process of irradiating with a laser beam for final weld with a larger diameter of condensing than a laser beam for plating removal, carrying out the melting of the base material metal plate, and joining a plurality of metal plating boards after a metal skin evaporation process in a welding area.
+
+[Chosen drawing] Drawing 2
+
+↓JP-A 문헌의 요약
+【要約】
+
+【課題】煩雑な作業を要することなく、亜鉛等のメッキ金属の蒸気の吹き出しによる溶接不良を低減できるレーザー溶接方法を提供する。
+【解決手段】母材金属板よりも低い融点の金属でメッキされた複数の金属メッキ板を重ね合わせて溶接するレーザー溶接方法であって、複数の金属メッキ板を重ね合わせる重ね合わせ工程と、重ね合わせ工程において重ね合わされた最上層の金属メッキ板の表面の溶接領域にメッキ除去用のレーザー光を照射し、メッキ除去用のレーザー光を最下層の金属メッキ板に到達させて、重ね合わされた金属メッキ板の間のメッキ層を蒸発させるメッキ層蒸発工程と、メッキ層蒸発工程の後に、溶接領域に、メッキ除去用のレーザー光よりも集光径の大きい本溶接用のレーザー光を照射し、母材金属板を溶融して複数の金属メッキ板を接合する接合工程と、を有する。
+【選択図】図2
+
+발명의 설명 새창보기
+도면
+개별도면 전체 10
+열기
+
+
+대표도면
+	
+
+도면 1
+	
+
+도면 2
+	
+
+도면 3
+대표청구항
+
+청구항 1항 (대표청구항)
+
+[Claim1]
+It is a laser welding method which piles up and welds a plurality of metal plating boards plated with the metal of the melting point lower than a base material metal plate,
+
+The superposition process of piling up said plurality of metal plating boards,
+
+The welding area of the surface of the above-mentioned metal plating board of the top layer piled up in the above-mentioned superposition process is irradiated with the laser beam for plating removal, The metal skin evaporation process of making the laser beam for the above-mentioned plating removal reaching the above-mentioned metal plating board of the bottom of the heap, and evaporating the metal skin between the piled-up above-mentioned metal plating boards,
+
+The junction process of irradiating with the laser beam for final weld with a larger diameter of condensing than the laser beam for the above-mentioned plating removal, carrying out the melting of the above-mentioned base material metal plate, and joining said plurality of metal plating boards after the above-mentioned metal skin evaporation process in the above-mentioned welding area,
+
+を有 It carries out,
+
+In the above-mentioned metal skin evaporation process, it irradiates with the laser beam for the above-mentioned plating removal two or more times to the above-mentioned welding area so that the molten pool of a field smaller than the above-mentioned welding area may be formed in the above-mentioned welding area one by one, Laser welding method.
+
+【청구항1】
+모재 금속판보다 낮은 융점의 금속으로 도금된 복수의 금속 도금판을 중첩해 용접하는 레이저 용접 방법으로서,
+
+상기 복수의 금속 도금판을 중첩하는 중합 공정과
+
+상기 중합 공정에서 중첩된 최상층의 상기 금속 도금판의 표면 용접 영역에 도금 제거용 레이저광을 조사하고 상기 도금 제거용 레이저광을 최하층의 상기 금속 도금판에 도달시켜 중첩된 상기 금속 도금판 사이의 도금층을 증발시키는 도금층 증발 공정과
+
+상기 도금층 증발 공정 후에, 상기 용접 영역에, 상기 도금 제거용 레이저광보다 집광경이 큰 본용접용 레이저광을 조사하고 상기 모재 금속판을 용융해 상기 복수의 금속 도금판을 접합하는 접합 공정과
+
+(을)를 유 하고
+
+상기 도금층 증발 공정에 있어서, 상기 용접 영역보다 작은 영역의 용융지를 순차 상기 용접 영역 내에 형성하도록, 상기 도금 제거용 레이저광을 상기 용접 영역에 대해 여러 차례 조사 하는 레이저 용접 방법.
+
+【請求項1】
+母材金属板よりも低い融点の金属でメッキされた複数の金属メッキ板を重ね合わせて溶接するレーザー溶接方法であって、
+前記複数の金属メッキ板を重ね合わせる重ね合わせ工程と、
+前記重ね合わせ工程において重ね合わされた最上層の前記金属メッキ板の表面の溶接領域にメッキ除去用のレーザー光を照射し、前記メッキ除去用のレーザー光を最下層の前記金属メッキ板に到達させて、重ね合わされた前記金属メッキ板の間のメッキ層を蒸発させるメッキ層蒸発工程と、
+前記メッキ層蒸発工程の後に、前記溶接領域に、前記メッキ除去用のレーザー光よりも集光径の大きい本溶接用のレーザー光を照射し、前記母材金属板を溶融して前記複数の金属メッキ板を接合する接合工程と、
+を有し、
+前記メッキ層蒸発工程において、前記溶接領域よりも小さい領域の溶融池を順次前記溶接領域内に形成するように、前記メッキ除去用のレーザー光を前記溶接領域に対して複数回照射する、レーザー溶接方法。
+
+청구항 새창보기 (4)
+특허분류코드
+Original 코드보기
+특허분류	Current
+IPC	
+Ver.2014 : 
+B23K-026/21
+B23K-026/322
+
+FI	
+B23K-026/21 G
+ ; 
+B23K-026/21 W
+ ; 
+B23K-026/322
+
+F-term	
+4E168 : 
+BA02  
+BA54  
+BA83  
+BA87  
+BA88  
+CB03  
+CB12  
+DA39  
+EA15  
+EA24  
+테마코드
+4E168
+조사분야
+IPC : B23K-026/21
+IPC : B23K-026/322
+발명자
+松尾 隆太 愛知県豊田市トヨタ町1番地 トヨタ自動車株式会社内
+대리인
+弁理士法人明成国際特許事務所
+심사청구여부
+Y  (2024.04.11)
+심사관
+柏原 郁昭
+최우선출원
+JP 2022-055991 (2022.03.30)
+법적상태
+일자	종류	설명
+2025.03.10	R150	
+
+CERTIFICATE OF PATENT OR REGISTRATION OF UTILITY MODEL
+Ref Document Number : 7639752
+Country of Ref Document : JP
+Further Information : JAPANESE INTERMEDIATE CODE : R150
+
+
+
+2025.02.25	A61	
+
+FIRST PAYMENT OF ANNUAL FEES (DURING GRANT PROCEDURE)
+Further Information : JAPANESE INTERMEDIATE CODE : A61
+Effective Date : 20250203
+
+
+
+2025.01.21	A01	
+
+WRITTEN DECISION TO GRANT A PATENT OR TO GRANT A REGISTRATION (UTILITY MODEL)
+Further Information : JAPANESE INTERMEDIATE CODE : A01
+Effective Date : 20250121
+
+
+
+2025.01.20	TRDD	
+
+DECISION OF GRANT OR REJECTION WRITTEN
+
+
+
+2024.12.10	A521	
+
+REQUEST FOR WRITTEN AMENDMENT FILED
+Further Information : JAPANESE INTERMEDIATE CODE : A523
+Effective Date : 20241210
+
+
+
+2024.10.15	A131	
+
+NOTIFICATION OF REASONS FOR REFUSAL
+Further Information : JAPANESE INTERMEDIATE CODE : A131
+Effective Date : 20241015
+
+
+
+2024.10.04	A977	
+
+REPORT ON RETRIEVAL
+Further Information : JAPANESE INTERMEDIATE CODE : A971007
+Effective Date : 20241004
+
+
+
+2024.04.11	A621	
+
+WRITTEN REQUEST FOR APPLICATION EXAMINATION
+Further Information : JAPANESE INTERMEDIATE CODE : A621
+Effective Date : 20240411
+
+
+Code Color : Green = Positive action,  Red = Negative action,  Black = Neutral action
+
+패밀리
+전체 1 건
+ WIPS Extended
+ EPO Simple
+ 중복제거
+1/1
+이전
+다음
+No	원문	문헌번호	일자	발명의 명칭	IPC(Main)	CPC(Main)
+1	
+PDF
+	JP 7639752 B2 	2025.02.25	레이저 용접 방법	
+B23K-026/21
+IPC아이콘
+	
+-
+Basic Patent
+기타 57개국
+패밀리 법적상태
+패밀리 법적상태 보기
+인용/피 인용 특허문헌
+전체 4 건   인용(4) 피인용(0)
+ 심사관/ 심판 참증단계 보기
+1/1
+이전
+다음
+No	Depth	국가	문헌번호	
+인용참증단계
+	발명의 명칭	일자	출원인
+1	B1	WO	
+PDF
+WO2015-104781 A1
+	
+선행기술조사,특허결정	LASER WELDING METHOD AND LASER WELDING DEVICE(레이저 용접 방법 및 레이저 용접 장치)	2015.07.16	PANASONIC INTELLECTUAL PROPERTY MANAGEMENT CO., LTD.
+2	B1	US	
+PDF
+2020-0047285 A1
+	
+선행기술조사,특허결정	LASER WELDING OF COATED STEELS ASSISTED BY THE FORMATION OF AT LEAST ONE PRELIMINARY WELD DEPOSIT(적어도 하나의 예비 용접 증착물의 형성에 의해 보조되는 코팅된 강의레이저 용접)	2020.02.13	GM GLOBAL TECHNOLOGY OPERATIONS LLC
+3	B1	JP	
+PDF
+6299136 B2
+PDF
+2015-074012 A
+	
+거절이유 통지,특허결정	강판의 레이저 용접 방법 및 레이저 용접 장치(鋼板のレーザー溶接方法およびレーザー溶接装置)	2018.03.09	NISSAN MOTOR CO LTD
+4	B1	JP	
+PDF
+4612076 B2
+PDF
+2009-262186 A
+	
+선행기술조사,특허결정	금속 도금판의 레이저 용접 방법(金属メッキ板のレーザー溶接方法)	2010.10.22	TOA KOGYO KK
+심사관 인용(Backward by Examiner)
+ 
+심사관 피 인용(Forward by Examiner)
+1/1
+이전
+다음
+문헌 내 인용
+전체 1 건
+1/1
+이전
+다음
+No	원문	문헌번호	일자	발명의 명칭	출원인
+1	
+PDF
+	JP 2011-115836 A	2011.06.16	금속 도금판의 레이저 용접 방법(金属メッキ板のレーザー溶接方法)	TOA KOGYO KK
+기타 57개국
+Tel : 02-726-1100 / 1105
+help@wips.co.kr
+카톡상담 : @윕스
+Copyright ⓒ 2026 WIPS Co.,Ltd. All rights reserved.

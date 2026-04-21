@@ -1,0 +1,197 @@
+발명의 설명
+행정사항
+특허평가
+화합물
+표준특허
+상태정보
+등록
+등록번호
+115026432 B (2025.02.25) (See Also : 115026432 A )
+문헌종류 코드보기
+공개번호
+115026432 A (2022.09.09)
+출원번호
+2022-10758914 (2022.06.29) 
+출원인
+INNER MONGOLIA University OF TECHNOLOGY(内蒙古工业大学) (CN) 010051 内蒙古自治区呼和浩特市新城区爱民街49号
+TIANJIN SUNKE DIGITAL CONTROL TECHNOLOGY Co.,Ltd.(天津商科数控技术股份有限公司)
+출원인 대표명화
+Inner Mongolia University of Technology
+현재권리자
+INNER MONGOLIA University OF TECHNOLOGY (内蒙古工业大学)  010051 内蒙古自治区呼和浩特市新城区爱民街49号
+TIANJIN SUNKE DIGITAL CONTROL TECHNOLOGY Co.,Ltd. (天津商科数控技术股份有限公司)  
+현재권리자 대표명화
+Inner Mongolia University of Technology
+출원히스토리
+ 
+2022.06.29
+출원
+최우선출원(CN)
+ 
+2022.09.09
+공개
+ 
+2025.02.25
+등록
+ 
+2042.06.30
+소멸
+요약
+The invention discloses a laser-assisted MAG high-speed welding process for a galvanized sheet, which is characterized in that the galvanized sheet is used as a base material, a carbon steel argon arc welding material is used as a welding wire, a laser-assisted MAG arc is selected as a composite heat source, and a paraxial composite mode that the laser is in the front and the MAG arc is in the rear is adopted for welding. According to the laser-assisted MAG high-speed welding process for the galvanized sheet, the phenomena that a galvanized layer is damaged and zinc plating is burnt out can be avoided while high-speed welding of the automotive galvanized sheet is guaranteed, and the welding seam defects such as humps caused by too high welding speed during welding of the conventional automotive galvanized sheet can be avoided.
+
+
+
+本发明公开镀锌板的激光辅助MAG高速焊接工艺，以镀锌板为母材，碳钢氩弧焊材为焊丝，选择激光辅助MAG电弧为复合热源，采用激光在前MAG电弧在后的旁轴复合方式进行焊接。本发明镀锌板的激光辅助MAG高速焊接工艺可以在保证车用镀锌薄板实现高速焊接的同时，避免出现镀锌层被破坏、镀锌烧损的现象，且可以避免常规车用镀锌板焊接时，因焊接速度过高导致的驼峰等焊缝缺陷。
+
+중국어
+한국어
+발명의 설명 새창보기
+도면
+개별도면 전체 25
+열기
+
+
+대표도면
+	
+
+도면 0001
+	
+
+도면 0002
+	
+
+도면 0003
+대표청구항
+
+청구항 0001항 (대표청구항)
+
+
+1. The laser-assisted MAG high-speed welding process of the galvanized sheet is characterized in that the galvanized sheet is used as a base material, a carbon steel argon arc welding material is used as a welding wire, a laser-assisted MAG arc is selected as a composite heat source, and a paraxial composite mode that laser is used before the MAG arc is used for welding;
+The laser beam in the composite heat source is provided by a paraxial optical fiber laser PLW3000, the maximum output power is 3KW, the laser wavelength is 1070 mu m under the continuous output mode, and the focal spot diameter is 300 mu m;
+The working power of the laser is 560-1360W, the included angle beta between the laser beam and the surface of the galvanized sheet is 110-120 degrees, the laser defocusing amount is 0, the galvanized sheet is welded in a lap joint or butt joint mode, and the inclination angle is 22 degrees when the galvanized sheet is welded in a lap joint mode;
+The arc welding power supply is a TPS2700 welding machine, the shielding gas in the MAG welding gun is 100% carbon dioxide gas, and the flow rate of the shielding gas is 17L/min;
+The included angle between the MAG welding gun and the surface of the galvanized sheet is 65 degrees, the focal distance between the welding wire on the MAG welding gun and the laser beam on the surface of the galvanized sheet is 2mm, and the elongation of the welding wire between the conductive nozzle of the MAG welding gun and the surface of the galvanized sheet is 10mm;
+during welding, the arc current of the MAG welding gun is 70-90A, and the welding speed is 150-240 cm/min;
+When the welding current is 70A-90A and the laser power is 500W-1360W, the energy ratio of the MAG arc heat source and the laser heat source in the composite heat source is 1.05-2.94.
+
+
+1.镀锌板的激光辅助MAG高速焊接工艺，其特征在于，以镀锌板为母材，碳钢氩弧焊材为焊丝，选择激光辅助MAG电弧为复合热源，采用激光在前MAG电弧在后的旁轴复合方式进行焊接；
+复合热源中的激光束由旁轴式光纤激光器PLW3000提供，其最大输出功率为3KW，连续输出模式下激光波长为1070μm，焦点光斑直径为300μm；采用水冷机对激光器进行冷却；
+焊接时，激光器的工作功率为560～1360W，激光束与镀锌板表面的夹角β为110～120°，激光离焦量0；镀锌板焊接的方式为搭接或对接，镀锌板搭接焊接时，倾斜角度为22°；
+弧焊电源为TPS2700焊机，MAG焊枪枪内保护气体为100％二氧化碳气体，保护气体的流量为17L/min；
+MAG焊枪与镀锌板表面的夹角为65°，MAG焊枪上焊丝与激光束在镀锌板表面的焦点距离为2mm；MAG焊枪导电嘴至镀锌板表面之间的焊丝的伸长量为10mm；
+焊接时，MAG焊枪的电弧电流为70～90A，焊接速度为150～240cm/min；
+当焊接电流为70A～90A，激光功率为500W～1360W时，复合热源中MAG电弧热源与激光热源的能量比例为1.05～2.94。
+
+중국어
+한국어
+청구항 새창보기 (4)
+특허분류코드
+특허분류	
+Current CPC	
+Ver.2015 : 
+B23K-0026/348 
+Ver.2013 : 
+B23K-0035/24  ;  
+C22C-0038/02  ;  
+C22C-0038/04  ;  
+C22C-0038/58  ;  
+C22C-0038/42  ;  
+C22C-0038/20  ;  
+C22C-0038/38  ;  
+C22C-0038/08  ;  
+C22C-0038/16 
+
+IPC	
+Ver.2014 : 
+B23K-026/348
+Ver.2006 : 
+B23K-035/24  ; 
+C22C-038/02  ; 
+C22C-038/04  ; 
+C22C-038/08  ; 
+C22C-038/16  ; 
+C22C-038/20  ; 
+C22C-038/38  ; 
+C22C-038/42  ; 
+C22C-038/58
+발명자
+Sun Zhenbang ; Shi Lei ; Han Yongquan ; Du Maohua ; Nie Lanmin
+孙振邦 ; 石磊 ; 韩永全 ; 杜茂华 ; 聂兰民
+대리인
+北京冠榆知识产权代理事务所(特殊普通合伙) 11666(王道川)
+심사관
+张一鸣
+최우선출원
+CN 2022-10758914 (2022.06.29)
+법적상태
+일자	종류	설명
+2025.02.25	GR01	
+
+PATENT GRANT
+
+
+
+2022.09.30	SE01	
+
+ENTRY INTO FORCE OF REQUEST FOR SUBSTANTIVE EXAMINATION
+
+
+
+2022.09.09	PB01	
+
+PUBLICATION
+
+
+Code Color : Green = Positive action,  Red = Negative action,  Black = Neutral action
+
+패밀리
+전체 1 건
+ WIPS Extended
+ EPO Simple
+ 중복제거
+1/1
+이전
+다음
+No	원문	문헌번호	일자	발명의 명칭	IPC(Main)	CPC(Main)
+1	
+PDF
+	CN 115026432 B 	2025.02.25	Laser-assisted MAG high-speed welding process for galvanized sheet	
+B23K-026/348
+IPC아이콘
+	
+B23K-0026/348
+CPC아이콘
+Basic Patent
+기타 57개국
+패밀리 법적상태
+패밀리 법적상태 보기
+인용/피 인용 특허문헌
+전체 2 건   인용(2) 피인용(0)
+ 심사관/ 심판 참증단계 보기
+1/1
+이전
+다음
+No	Depth	국가	문헌번호	
+인용참증단계
+	발명의 명칭	일자	출원인
+1	B1	JP	
+PDF
+2019-089099 A
+	출원서	아연계 도금 강판의 복합 용접 방법(亜鉛系めっき鋼板の複合溶接方法)	2019.06.13	NIPPON STEEL NISSHIN CO LTD
+2	B1	JP	
+PDF
+3767350 B2
+PDF
+2002-066774 A
+	출원서	아연 도금 강판의 용접 방법(亜鉛めっき鋼板の溶接方法)	2006.02.10	JFE STEEL CORP
+심사관 인용(Backward by Examiner)
+ 
+심사관 피 인용(Forward by Examiner)
+1/1
+이전
+다음
+Tel : 02-726-1100 / 1105
+help@wips.co.kr
+카톡상담 : @윕스
+Copyright ⓒ 2026 WIPS Co.,Ltd. All rights reserved.

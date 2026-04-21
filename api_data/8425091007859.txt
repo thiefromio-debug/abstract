@@ -1,0 +1,136 @@
+발명의 설명
+행정사항
+특허평가
+화합물
+표준특허
+상태정보
+심사중
+공개번호
+119489234 A (2025.02.21)
+문헌종류 코드보기
+출원번호
+2023-11022192 (2023.08.15) 
+출원인
+BAOSHAN IRON & STEEL Co.,Ltd.(宝山钢铁股份有限公司) (CN) 201900 上海市宝山区富锦路885号
+출원인 대표명화
+Baoshan Iron ＆ Steel Co., Ltd.
+출원히스토리
+ 
+2023.08.15
+출원
+최우선출원(CN)
+ 
+2025.02.21
+공개
+요약
+The invention discloses a laser melt-brazing method for steel-aluminum dissimilar metal. The laser melt-brazing method comprises the steps that a steel part and an aluminum part are in lap joint to form a connector; an aluminum-based welding wire is used, laser melt-brazing welding is adopted for welding the joint, an adopted laser spot is circular, and the first light intensity I1 in a first circular range with the center of the spot as the circle center and the radius R1 is equal to (45%-65%) * I0; the second light intensity I2 in a second circle range with the light spot center as the circle center and the radius R2 is larger than or equal to 90% * I0; r1 ranges from 0.5 mm to 0.8 mm, R2 ranges from 1.5 mm to 2.0 mm, and I0 represents the total light intensity of the laser beam. According to the method, the spreading width of the weld metal on the surface of the steel plate and the thickness of the intermetallic compound layer on the surface of the steel plate can be synchronously controlled in the laser melt-brazing process of the steel-aluminum dissimilar metal, so that the steel-aluminum dissimilar metal component with excellent joint performance is prepared.
+
+
+
+本发明公开了一种钢铝异种金属的激光熔钎焊方法，包括步骤：将钢制件和铝制件搭接形成接头；使用铝基焊丝，采用激光熔钎焊对接头进行焊接：其中采用的激光光斑为圆形，且以光斑中心为圆心，半径为R1的第一圆形范围内的第一光强度I1＝(45％～65％)·I0；以光斑中心为圆心，半径为R2的第二圆形范围内的第二光强度I2≥90％·I0；R1为0.5～0.8mm，R2为1.5～2.0mm，I0表示激光束总光强度。本发明能够实现在钢铝异种金属激光熔钎焊过程中，对焊缝金属在钢板表面铺展宽度以及钢板表面金属间化合物层厚度进行同步控制，从而制备出具有优异接头性能的钢铝异种金属构件。
+
+중국어
+한국어
+발명의 설명 새창보기
+도면
+개별도면 전체 13
+열기
+
+
+대표도면
+	
+
+도면 0001
+	
+
+도면 0002
+	
+
+도면 0003
+대표청구항
+
+청구항 0001항 (대표청구항)
+
+
+1. A laser melting brazing method of steel aluminum dissimilar metals is characterized by comprising the following steps:
+Overlapping the steel piece and the aluminum piece to form a joint;
+The method comprises the steps of welding joints by using an aluminum-based welding wire and adopting laser fusion brazing, wherein a laser spot is round, the center of the laser spot is used as the center of the circle, the first light intensity I 1＝(45％～65％)·I0 in a first round range with the radius of R 1 is used as the center of the circle, the second light intensity I 2≥90％·I0;R1 in a second round range with the radius of R 2 is used as the center of the circle, the second light intensity I 2≥90％·I0;R1 in the second round range with the radius of R 2 is 0.5-0.8 mm, R 2 is 1.5-2.0 mm, and I 0 represents the total light intensity of a laser beam.
+
+
+1.一种钢铝异种金属的激光熔钎焊方法，其特征在于，包括步骤：
+将钢制件和铝制件搭接形成接头；
+使用铝基焊丝，采用激光熔钎焊对接头进行焊接：其中采用的激光光斑为圆形，且以光斑中心为圆心，半径为R1的第一圆形范围内的第一光强度I1＝(45％～65％)·I0；以光斑中心为圆心，半径为R2的第二圆形范围内的第二光强度I2≥90％·I0；R1为0.5～0.8mm，R2为1.5～2.0mm，I0表示激光束总光强度。
+
+중국어
+한국어
+청구항 새창보기 (11)
+특허분류코드
+특허분류	
+Current CPC	
+Ver.2018 : 
+B23K-2103/20 
+Ver.2015 : 
+B23K-0026/60  ;  
+B23K-0026/70 
+Ver.2013 : 
+B23K-0001/0056  ;  
+B23K-0001/19  ;  
+B23K-0026/0006 
+
+IPC	
+Ver.2014 : 
+B23K-026/00  ; 
+B23K-026/60  ; 
+B23K-026/70
+Ver.2006 : 
+B23K-001/005
+B23K-001/19  ; 
+B23K-103/20
+발명자
+Wu Tianhai ; Pan Hua ; Lei Ming ; Wu Yue ; Liu Chengjie ; Wen Zhongling
+吴天海 ; 潘华 ; 雷鸣 ; 吴岳 ; 刘成杰 ; 温中令
+대리인
+上海东信专利商标事务所(普通合伙) 31228(李丹)
+上海东信专利商标事务所(普通合伙) 31228(杨丹莉)
+최우선출원
+CN 2023-11022192 (2023.08.15)
+법적상태
+일자	종류	설명
+2025.03.11	SE01	
+
+ENTRY INTO FORCE OF REQUEST FOR SUBSTANTIVE EXAMINATION
+
+
+
+2025.02.21	PB01	
+
+PUBLICATION
+
+
+Code Color : Green = Positive action,  Red = Negative action,  Black = Neutral action
+
+패밀리
+전체 1 건
+ WIPS Extended
+ EPO Simple
+ 중복제거
+1/1
+이전
+다음
+No	원문	문헌번호	일자	발명의 명칭	IPC(Main)	CPC(Main)
+1	
+PDF
+	CN 119489234 A 	2025.02.21	Laser melt-brazing method for steel-aluminum dissimilar metal	
+B23K-001/005
+IPC아이콘
+	
+B23K-2103/20
+CPC아이콘
+Basic Patent
+기타 57개국
+패밀리 법적상태
+패밀리 법적상태 보기
+Tel : 02-726-1100 / 1105
+help@wips.co.kr
+카톡상담 : @윕스
+Copyright ⓒ 2026 WIPS Co.,Ltd. All rights reserved.

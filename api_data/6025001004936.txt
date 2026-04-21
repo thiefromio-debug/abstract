@@ -1,0 +1,225 @@
+발명의 설명
+화합물
+표준특허
+공개번호
+WO2025-004829 A1 (2025.01.02)
+문헌종류 코드보기
+발행일
+2025.01.02
+출원번호
+PCT-JP2024-021518 (2024.06.13) 
+출원인
+KAWASAKI JUKOGYO KABUSHIKI KAISHA(JP)   (*-*, Higashikawasaki-cho *-chome, Chuo-ku, Kobe-shi, Hyogo, *******)
+NISSAN MOTOR CO., LTD.(JP)   (*, Takara-cho, Kanagawa-ku, Yokohama-shi, Kanagawa, *******)
+출원인 대표명화
+KAWASAKI HEAVY INDUSTRIES LTD
+Nissan Motor Co Ltd
+출원히스토리
+ 
+2023.06.29
+최우선출원(JP-Priority)
+ 
+2024.06.13
+출원
+ 
+2025.01.02
+공개
+요약
+
+
+
+마찰 교반 점접합 방법은 핀 (11)을 겹침부 (30)에서 퇴피시키면서 숄더 (12)를 겹침부 (30)의 소정 제1 압입 위치까지 압입함으로써, 제1 부재 (31)의 도막을 특정 위치에 편재시키도록 제1 부재 (31)와 제2 부재 (32)를 접합하는 것과 핀 (11)을 겹침부 (30)에 접근하면서 숄더 (12)를 상기 제1 압입 위치에서 퇴피시키는 것과 핀 (11)을 겹침부 (30)에서 퇴피시키면서 숄더 (12)를 겹침부 (30)의 소정 제2 압입 위치까지 압입함으로써, 상기 특정 위치에 편재한 상기 도막을 분산시키는 것을 구비한다.
+
+
+
+
+
+A friction stir spot welding method comprises: press fitting a shoulder (12) to a prescribed first press-fitting position of an overlapping part (30) while retracting a pin (11) from the overlapping part (30), thereby joining a first member (31) and a second member (32) so that a coating film of the first member (31) is unevenly distributed at a specific position; retracting the shoulder (12) from the first press-fitting position while bringing the pin (11) close to the overlapping part (30); and press-fitting the shoulder (12) to a prescribed second press-fitting position of the overlapping part (30) while retracting the pin (11) from the overlapping part (30), thereby dispersing the coating film unevenly distributed at the specific position.
+
+영어
+불어
+일본어
+발명의 설명 새창보기
+도면
+개별도면 전체 31
+열기
+
+
+대표도면
+	
+
+도면 1
+	
+
+도면 2
+	
+
+도면 3
+대표청구항
+
+!PCT의 대표청구항은 원천데이터 상의 이유로 내용이 완전하지 않을 수 있습니다. 원문 또는 명세서를 확인해주시기 바랍니다.
+
+적어도 하나에 도막이 형성된 제1 부재 및 제2 부재이며 이재의 관계에 있는 제1 부재 및 제2 부재를 마찰열로 연화시켜 접합하는 마찰 교반 점접합 방법으로서, 핀과 상기 핀이 내삽되는 중공부를 포함하는 원통형 숄더를 갖는 마찰 교반 점접합 장치를 준비하는 것과 상기 제1 부재와 상기 제2 부재가 중첩되는 겹침부를 형성함과 동시에, 상기 핀 및 상기 숄더를 상기 겹침부에 대향하여 배치하는 것과 상기 핀을 상기 겹침부에서 퇴피시키면서 상기 숄더를 상기 겹침부의 소정 제1 압입 위치까지 압입함으로써 상기 숄더의 내측에 상기 제2 부재가 융기한 앵커를 형성하고 상기 도막을 특정 위치에 편재시켜 상기 제1 부재와 상기 제2 부재를 접합하는 것과 상기 핀을 상기 겹침부에 접근하면서 상기 숄더를 상기 제1 압입 위치에서 퇴피시키는 것과 상기 핀을 상기 겹침부에서 퇴피시키면서 상기 숄더를 상기 겹침부의 소정 제2 압입 위치까지 압입함으로써, 상기 특정 위치에 편재한 상기 도막을 분산시키는 것과 상기 핀을 상기 겹침부에 접근하면서 상기 숄더를 상기 제2 압입 위치에서 퇴피시키는 것을 구비하는 마찰 교반 점접합 방법.
+
+A friction stirring point welding method in which the first member and the second member in which a coating film is formed on at least one of the members and are related to each other of different materials are softened and bonded by frictional heat,
+Preparing a friction stirring point junction apparatus comprising a pin and a cylindrical shoulder including a hollow portion to which the pin is interpolated;
+Forming an overlapping portion in which the first member and the second member overlap, and arranging the pin and the shoulder facing each other;
+By retracting the pin from the overlapping portion and pressing the shoulder to a predetermined first press-fit position of the overlapping portion, the second member is formed inside the shoulder to form an anchor in which the second member is raised, and the coating film is unevenly distributed at a specific position, and the first member and the second member are joined;
+Evacuate the shoulder from the first press-in position while bringing the pin closer to the overlapping portion;
+While retracting the pin from the overlapping portion, the shoulder is pressed into a predetermined second press-fit position of the overlapping portion to disperse the coating film unevenly distributed at the specific position;
+Evacuate the shoulder from the second press-fit position while bringing the pin closer to the overlapping portion;
+A friction stirring point bonding method.
+
+영어
+일본어
+청구항 새창보기
+특허분류코드
+특허분류	
+Current CPC	
+Ver.2013 : 
+B23K-0020/12 
+
+IPC	
+Ver.2006 : 
+B23K-020/12
+발명자
+HATANO, Ryoichi 
+TAKEOKA, Naoki 
+YOSHIKAWA, Shuhei 
+MURAMATSU, Yoshitaka 
+GAO, Li(JP) c/o Nissan Motor Co., Ltd. Intellectual Property Department, *-*, Morinosatoaoyama, Atsugi-shi, Kanagawa, *******
+MIYAZAWA, Tomonori(JP) c/o Nissan Motor Co., Ltd. Intellectual Property Department, *-*, Morinosatoaoyama, Atsugi-shi, Kanagawa, *******
+OIKI, Daisuke(JP) c/o Nissan Motor Co., Ltd. Intellectual Property Department, *-*, Morinosatoaoyama, Atsugi-shi, Kanagawa, *******
+대리인
+SANKYO PATENT ATTORNEYS OFFICE et al.
+최우선출원
+[Priority] JP 2023-107312 (2023.06.29)
+지정국
+개별국(National Protection)
+국가코드보기
+AE, AG, AL, AM, AO, AT, AU, AZ, BA, BB, BG, BH, BN, BR, BW, BY, BZ, CA, CH, CL, CN, CO, CR, CU, CV, CZ, DE, DJ, DK, DM, DO, DZ, EC, EE, EG, ES, FI, GB, GD, GE, GH, GM, GT, HN, HR, HU, ID, IL, IN, IQ, IR, IS, IT, JM, JO, JP, KE, KG, KH, KN, KP, KR, KW, KZ, LA, LC, LK, LR, LS, LU, LY, MA, MD, MG, MK, MN, MU, MW, MX, MY, MZ, NA, NG, NI, NO, NZ, OM, PA, PE, PG, PH, PL, PT, QA, RO, RS, RU, RW, SA, SC, SD, SE, SG, SK, SL, ST, SV, SY, TH, TJ, TM, TN, TR, TT, TZ, UA, UG, US, UZ, VC, VN, WS, ZA, ZM, ZW
+지역특허제도국(Regional Protection)
+[European] AL, AT, BE, BG, CH, CY, CZ, DE, DK, EE, ES, FI, FR, GB, GR, HR, HU, IE, IS, IT, LT, LU, LV, MC, ME, MK, MT, NL, NO, PL, PT, RO, RS, SE, SI, SK, SM, TR
+[OAPI] BF, BJ, CF, CG, CI, CM, GA, GN, GQ, GW, KM, ML, MR, NE, SN, TD, TG
+[ARIPO] BW, CV, GH, GM, KE, LR, LS, MW, MZ, NA, RW, SC, SD, SL, ST, SZ, TZ, UG, ZM, ZW
+[Eurasian] AM, AZ, BY, KG, KZ, RU, TJ, TM
+법적상태
+일자	종류	설명
+2026.01.29	WWE	
+
+WIPO INFORMATION: ENTRY INTO NATIONAL PHASE
+Ref Document Number : 112024002770
+Country of Ref Document : DE
+
+
+
+2025.12.18	ENP	
+
+ENTRY INTO THE NATIONAL PHASE
+Ref Country Code : JP
+Ref Document Number : 2025529631
+Country of Ref Document : JP
+Kind Code of Ref Document : A
+
+
+
+2025.12.18	WWE	
+
+WIPO INFORMATION: ENTRY INTO NATIONAL PHASE
+Ref Document Number : 2025529631
+Country of Ref Document : JP
+
+
+
+2025.02.19	121	
+
+EP: THE EPO HAS BEEN INFORMED BY WIPO THAT EP WAS DESIGNATED IN THIS APPLICATION
+Ref Document Number : 24831694
+Country of Ref Document : EP
+Kind Code of Ref Document : A1
+
+
+Code Color : Green = Positive action,  Red = Negative action,  Black = Neutral action
+
+우선권번호
+우선권 안내툴팁 아이콘
+전체 1 건 Priority (1) RA (0)
+1/1
+이전
+다음
+No	원문	유형	출원번호	출원일자 	문헌번호	발명의 명칭
+해당 정보가 없습니다.
+
+* 미포함 문헌 1건 (절차상 미공개 문헌, 과거분 문헌, WIPS 보유 데이터 범위에 포함되지 않는 문헌)
+[Priority] JP 2023-107312 (2023.06.29)
+
+본 특허를
+우선권으로 한 특허
+전체 1 건
+ 중복제거
+1/1
+이전
+다음
+No	원문	문헌번호	일자	발명의 명칭
+1	
+PDF
+	CN 121398924 A	2026.01.23	Friction stir spot welding method and friction stir spot welding device
+패밀리
+전체 3 건
+ WIPS Extended
+ EPO Simple
+ 중복제거
+1/1
+이전
+다음
+No	원문	문헌번호	일자	발명의 명칭	IPC(Main)	CPC(Main)
+1	
+PDF
+	CN 121398924 A	2026.01.23	Friction stir spot welding method and friction stir spot welding device	
+B23K-020/12
+IPC아이콘
+	
+B23K-0020/12
+CPC아이콘
+
+2	
+PDF
+	WO WO2025-004829 A1	2025.01.02	FRICTION STIR SPOT WELDING METHOD AND FRICTION STIR SPOT WELDING DEVICE	
+B23K-020/12
+IPC아이콘
+	
+B23K-0020/12
+CPC아이콘
+Basic Patent
+기타 57개국
+
+* 미포함 문헌 : 1건 (절차상 미공개 문헌, 과거분 문헌, WIPS 보유 데이터 범위에 포함되지 않는 문헌)
+JP 2023-107312 (2023.06.29)
+
+패밀리 법적상태
+패밀리 법적상태 보기
+국제조사보고서의
+인용문헌
+전체 3 건
+1/1
+이전
+다음
+No	원문	카테고리	문헌번호	유형	발명의 명칭	출원인
+1	
+PDF
+	A	WO WO2019-049814 A1	ISR 국제조사보고서	DOUBLE-ACTION FRICTION STIR SPOT WELDING METHOD AND DOUBLE-ACTION FRICTION STIR SPOT WELDING DEVICE(복동식 마찰 교반 점접합 방법 및 복동식 마찰 교반 점접합 장치)	KAWASAKI JUKOGYO KABUSHIKI KAISHA
+2	
+PDF
+	A	JP 2017-164788 A	ISR 국제조사보고서	마찰 교반 점접합 방법 및 마찰 교반 점접합 장치(摩擦攪拌点接合方法及び摩擦攪拌点接合装置)	KAWASAKI HEAVY IND LTD
+3	
+PDF
+	A	WO WO2022-054905 A1	ISR 국제조사보고서	FRICTION STIR SPOT WELDING METHOD AND WELDED BODY USING SAME(마찰 교반 점접합 방법 및 이것을 이용한 접합체)	KAWASAKI JUKOGYO KABUSHIKI KAISHA
+인용문헌의 카테고리 설명
+기타 57개국
+
+! 발행처의 조사보고서 텍스트 데이터는 원문 이미지 정보와 상이할 수 있습니다.
+
+Tel : 02-726-1100 / 1105
+help@wips.co.kr
+카톡상담 : @윕스
+Copyright ⓒ 2026 WIPS Co.,Ltd. All rights reserved.

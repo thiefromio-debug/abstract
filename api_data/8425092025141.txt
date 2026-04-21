@@ -1,0 +1,133 @@
+발명의 설명
+행정사항
+특허평가
+화합물
+표준특허
+상태정보
+심사중
+공개번호
+119506759 A (2025.02.25)
+문헌종류 코드보기
+출원번호
+2024-11739124 (2024.11.29) 
+출원인
+Bond Cooling Technology (Suzhou) Co.,Ltd.(邦德散热科技(苏州)有限公司) (CN) 215000 江苏省苏州市常熟市常福街道阳光大道89号
+출원히스토리
+ 
+2024.11.29
+출원
+최우선출원(CN)
+ 
+2025.02.25
+공개
+요약
+The invention belongs to the technical field of electric arc zinc spraying, and particularly relates to a micro-channel zinc spraying aluminum flat pipe surface zinc spraying technology, a used zinc spraying device comprises a spraying box, a cooling component and a preheating component, the cooling component is arranged at the right end of the interior of the spraying box, and the preheating component is arranged at the left end of the interior of the spraying box. According to the cooling device, the aluminum flat pipe subjected to electric arc zinc spraying is cooled through the cooling component, hot air flow is not generated through heat exchange, the hot air flow is made to conduct preheating treatment on the aluminum flat pipe not subjected to zinc spraying through the preheating component, and heat is reused; meanwhile, the screw pitch of the spiral spoiler is gradually reduced leftwards, that is, the airflow is gradually reduced along a spiral leftward channel of the spiral spoiler, so that the flowing speed of the airflow is gradually increased, the speed of hot airflow entering the preheating sleeve through the air inlet pipe, the purification box and the air outlet pipe is increased, and heat loss of the hot airflow in the flowing transmission process can be reduced; and the preheating effect on the aluminum flat pipe is improved.
+
+
+
+本发明属于电弧喷锌技术领域，具体为一种微通道喷锌铝扁管表面喷锌工艺，所用喷锌装置包括喷涂箱、冷却部件和预热部件，冷却部件设置在喷涂箱的内部右端，预热部件设置在喷涂箱的内部左端。通过冷却部件对电弧喷锌后的铝扁管进行冷却降温，并未通过热量交换产生热气流，使热气流通过预热部件对未喷锌的铝扁管进行预热处理，对热量进行再次利用，由于冷却装置中冷却套的左端逐渐缩小，同时螺旋扰流片的螺距向左逐渐减小，即气流沿螺旋扰流片螺旋向左的通道逐渐减小，因此气流的流速逐渐加快，从而使热气流通过进风管、净化箱及出风管进入至预热套内部的速度加快，可减少热气流在流动传输过程中的热量损耗，提高对铝扁管的预热效果。
+
+중국어
+한국어
+발명의 설명 새창보기
+도면
+개별도면 전체 9
+열기
+
+
+대표도면
+	
+
+도면 0001
+	
+
+도면 0002
+	
+
+도면 0003
+대표청구항
+
+청구항 0001항 (대표청구항)
+
+
+1. A micro-channel zinc-spraying aluminum flat tube surface zinc spraying process comprises the following steps:
+s1, an aluminum flat tube stretches into an inlet at the left end of a spraying box (100) of a zinc spraying device, the aluminum flat tube sequentially passes through the inside of a preheating sleeve (303), then passes through the inside of a sealing ring (102), passes through the inside of a flow blocking ring (2004), then passes through the inside of a spiral spoiler (206), and finally passes out of an outlet at the right end of a cooling sleeve (201);
+S2, during processing, an aluminum flat pipe is pulled by external traction equipment to slowly move rightwards at a uniform speed, four arc spray heads (500) jointly perform arc zinc spraying operation on the surface of the aluminum flat pipe, along with the rightward movement of the aluminum flat pipe, the zinc sprayed aluminum flat pipe section moves rightwards to the inside of a cooling sleeve (201), air is blown by two fans (208), and is sent into the inside of the cooling sleeve (201) through an air duct (209) and an air inlet (207), so that air flow flowing leftwards is generated in the cooling sleeve (201), the air flow flows leftwards in a spiral manner through a spiral spoiler (206), and the flowing cold air flow continuously absorbs heat on the surface of the aluminum flat pipe which is just sprayed with zinc;
+S3, when the hot air flow passes through the interior of the purifying box (301), firstly dust and some fallen zinc powder in the air flow pass through a plurality of preheating components (300) which are distributed up and down, as the preheating components (300) generate a high-voltage electric field, the air flow is ionized under the action of the high-voltage electric field to generate cations and anions, the dust particles and the zinc powder adsorb the anions and are negatively charged, the dust particles and the zinc powder with the negative charge are adsorbed by a plurality of adsorption polar plates (308) with positive charges in the process of flowing leftwards along with the air flow, and the dust and the zinc powder in the air flow are intercepted and filtered so as to prevent the dust and the zinc powder from entering the interior of the preheating sleeve (303) along with the air flow;
+the zinc spraying device comprises a spraying box (100), a cooling component (200) and a preheating component (300), and is characterized in that the cooling component (200) is arranged at the right end of the inside of the spraying box (100), the preheating component (300) is arranged at the left end of the inside of the spraying box (100), and the preheating component (300) penetrates through the top and the bottom of the spraying box (100);
+The cooling component (200) comprises a cooling sleeve (201) fixedly arranged at the right end inside the spraying box (100), a guide cover (202) is fixedly arranged at the left end of the cooling sleeve (201), a standing plate (203) is fixedly arranged at the left end of the guide cover (202), the standing plate (203) is fixedly arranged on the inner wall of the spraying box (100), a guide block (204) is fixedly arranged on the right side surface of the standing plate (203), a spiral spoiler (206) is fixedly arranged inside the cooling sleeve (201), an air inlet (207) is formed in the right end of the top of the cooling sleeve (201), an air channel (209) is fixedly arranged at the top of the air inlet (207), fans (208) are fixedly arranged at the front part and the rear part of the air channel (209), air holes (205) are formed in the top and the bottom of the guide cover (202), and an air inlet pipe (2010) is fixedly arranged at the top and the bottom of the guide cover (202);
+The preheating component (300) comprises two purifying boxes (301) fixedly installed at the top of the spraying box (100) and at the bottom of the spraying box (100), air outlet pipes (302) are fixedly installed at the left ends of the purifying boxes (301), preheating sleeves (303) are fixedly installed at one ends, close to each other, of the two air outlet pipes (302), and the preheating sleeves (303) are located at the left end of the inside of the spraying box (100).
+
+
+1.一种微通道喷锌铝扁管表面喷锌工艺，包括以下步骤：
+S1:将铝扁管从喷锌装置的喷涂箱(100)左端的入口伸入，使铝扁管依次从预热套(303)的内部穿过后，然后从止密圈(102)的内部穿过，再从挡流圈(2004)的内部穿过后，贯穿螺旋扰流片(206)的内部，最终从冷却套(201)右端的出口穿出；
+S2:加工时，由外部的牵引设备牵引铝扁管缓慢地向右匀速移动，四个电弧喷头(500)共同对铝扁管的表面进行电弧喷锌作业，随着铝扁管向右移动，被喷锌的铝扁管段向右移动至冷却套(201)的内部后，通过两个风机(208)鼓风，并通过风道(209)及开设的进风口(207)将风送入冷却套(201)的内部，使得冷却套(201)内部产生向左流向的气流，气流通过螺旋扰流片(206)呈螺旋式向左流动，流动的冷气流不断地吸收刚喷锌的铝扁管表面的热量；
+S3:当热气流通过净化箱(301)内部的过程中，首先气流中的灰尘及一些脱落的锌粉通过多个上下分布的预热部件(300)时，由于预热部件(300)产生高压电场，气流在高压电场的作用下被电离，产生阳离子和阴离子，灰尘颗粒和锌粉吸附阴离子带负电，带有负电的灰尘颗粒和锌粉吸在随气流向左流动的过程中被多个带有正电荷的吸附极板(308)吸附，将气流中的灰尘和锌粉进行拦截过滤，避免其随气流一同进入预热套(303)的内部；
+所述喷锌装置包括喷涂箱(100)、冷却部件(200)和预热部件(300)，其特征在于：所述冷却部件(200)设置在喷涂箱(100)的内部右端，所述预热部件(300)设置在喷涂箱(100)的内部左端，且所述预热部件(300)贯穿喷涂箱(100)的顶部及底部；
+所述冷却部件(200)包括固定安装在喷涂箱(100)内部右端的冷却套(201)，所述冷却套(201)的左端固定安装有导流罩(202)，所述导流罩(202)的左端固定安装有站板(203)，所述站板(203)固定安装在喷涂箱(100)的内壁上，所述站板(203)的右侧面固定安装有导流块(204)，所述冷却套(201)的内部固定安装有螺旋扰流片(206)，所述冷却套(201)的顶部右端开设有进风口(207)，所述进风口(207)的顶部固定安装有风道(209)，所述风道(209)的前部及后部均固定安装有风机(208)，导流罩(202)的顶部及底部均开设有气孔(205)，所述导流罩(202)的顶部及底部均固定安装有进风管(2010)；
+所述预热部件(300)包括固定安装在喷涂箱(100)顶部以及固定安装在喷涂箱(100)底部的两个净化箱(301)，所述净化箱(301)的左端均固定安装有出风管(302)，两个所述出风管(302)相靠近的一端共同固定安装有预热套(303)，所述预热套(303)位于喷涂箱(100)的内部左端。
+
+중국어
+한국어
+청구항 새창보기 (10)
+특허분류코드
+특허분류	
+Current CPC	
+Ver.2016 : 
+C23C-0004/131 
+Ver.2013 : 
+C23C-0004/08  ;  
+C23C-0004/16 
+
+IPC	
+Ver.2016 : 
+C23C-004/131
+C23C-004/08  ; 
+C23C-004/16
+발명자
+Xue Cheng ; Wu Guoliang ; Huang Yanchao ; Hou Jiang
+薛成 ; 吴国良 ; 黄彦超 ; 侯江
+대리인
+威海恒誉润达专利代理事务所(普通合伙) 37260(孙佳)
+최우선출원
+CN 2024-11739124 (2024.11.29)
+법적상태
+일자	종류	설명
+2025.03.14	SE01	
+
+ENTRY INTO FORCE OF REQUEST FOR SUBSTANTIVE EXAMINATION
+
+
+
+2025.02.25	PB01	
+
+PUBLICATION
+
+
+Code Color : Green = Positive action,  Red = Negative action,  Black = Neutral action
+
+패밀리
+전체 1 건
+ WIPS Extended
+ EPO Simple
+ 중복제거
+1/1
+이전
+다음
+No	원문	문헌번호	일자	발명의 명칭	IPC(Main)	CPC(Main)
+1	
+PDF
+	CN 119506759 A 	2025.02.25	Process for spraying zinc on surface of micro-channel zinc-sprayed aluminum flat tube	
+C23C-004/131
+IPC아이콘
+	
+C23C-0004/131
+CPC아이콘
+Basic Patent
+기타 57개국
+패밀리 법적상태
+패밀리 법적상태 보기
+Tel : 02-726-1100 / 1105
+help@wips.co.kr
+카톡상담 : @윕스
+Copyright ⓒ 2026 WIPS Co.,Ltd. All rights reserved.

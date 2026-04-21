@@ -1,0 +1,430 @@
+발명의 설명
+특허평가
+심판
+화합물
+표준특허
+상태정보
+상태정보 출력 안내툴팁 아이콘
+등록 (특허)
+현재진행상태보기
+특허번호
+7626304 B2 (2025.01.27) (See Also : 2021-091928 A )
+문헌종류 코드보기
+발행일
+2025.02.07
+공개번호
+2021-091928 (2021.06.17)
+출원번호
+2019-222003 (2019.12.09) 
+출원인
+NIPPON STEEL CORP (日本製鉄株式会社) (JP) 東京都千代田区丸の内二丁目6番1号
+출원인 대표명화
+NIPPON STEEL
+출원인식별기호
+000006655
+현재권리자
+NIPPON STEEL CORP (日本製鉄株式会社)  東京都千代田区
+현재권리자 대표명화
+NIPPON STEEL
+출원히스토리
+ 
+2019.12.09
+출원
+최우선출원(JP)
+ 
+2021.06.17
+공개
+ 
+2025.01.27
+등록
+ 
+2039.12.10
+소멸
+요약
+↓JP-A 문헌의 요약
+【요약】
+
+【과제】패치워크 블랭크의 레이저 용접부의 강도를 향상시킬 수 있는 강재 및 이것을 이용하여 형성된 블랭크를 제공한다.
+【해결 수단】모재 중 적어도 한쪽 표면에 Al도금층이 실시된 강재로서, Al도금층이 실시되어 있는 표면 중 적어도 어느 한쪽에는 Al도금층의 비형성 영역이 있고, 비형성 영역은 강재의 단부에서 5 mm 이상 떨어진 위치에 형성되어 있고 Al도금층은 질량%로 Si:0.05~15.00%, Zn:0~30.00%, Mg:0~5.00%, Fe:0~30.00%, Ca:0~3.00%, Sb:0~0.50%, Pb:0~0.50%, Cu:0~1.00%, Sn:0~1.00%, Ti:0~1.00%, Sr:0~0.50%, Cr:0~1.00%, Ni:0~1.00% 및 Mn:0~1.00%를 함유하고 잔부가 Al 및 1.00%다음의 불순물로 이루어진다. 【선택도】도 4
+
+↓JP-A 문헌의 요약
+[ABSTRACT]
+
+[Technical problem] The blank formed using the possible steel materials and this of raising the intensity of the laser welding part of a patchwork blank is provided.
+[Means for Solution]Are the steel materials in which aluminum plating layer was given to the surface of at least 1 side of a base material, and at least among the surfaces where aluminum plating layer is given to any 1 side, There is an agenesis field of aluminum plating layer and an agenesis field, It is formed in a position away from an end of steel materials 5 mm or more, and aluminum plating layer, With the mass %, Si:0.05~15.00%, Zn:0~30.00%, Mg: 0~5.00%, Fe: 0~30.00%, Ca : 0~3.00%, Sb: 0~0.50%, Pb: 0~0.50%, Cu : 0~1.00%, Sn: 0~1.00%, Ti: 0~1.00%, Sr: 0~0.50%, Cr: 0~1.00%, nickel: 0~1.00% and Mn: Contain 0~1.00% and the remainder consists of aluminum and 1.00% or less of impurities. [Chosen drawing] Drawing 4
+
+↓JP-A 문헌의 요약
+【要約】
+
+【課題】パッチワークブランクのレーザー溶接部の強度を向上させることの可能な鋼材及びこれを用いて形成されたブランクを提供する。
+【解決手段】母材の少なくとも一方の表面にAlめっき層が施された鋼材であって、Alめっき層が施されている表面のうち少なくともいずれか一方には、Alめっき層の非形成領域があり、非形成領域は、鋼材の端部から5mm以上離れた位置に形成されており、Alめっき層は、質量%で、Si:0.05~15.00%、Zn:0~30.00%、Mg:0~5.00%、Fe:0~30.00%、Ca:0~3.00%、Sb:0~0.50%、Pb:0~0.50%、Cu:0~1.00%、Sn:0~1.00%、Ti:0~1.00%、Sr:0~0.50%、Cr:0~1.00%、Ni:0~1.00%、及び、Mn:0~1.00%、を含有し、残部がAl及び1.00%以下の不純物からなる。
+【選択図】図4
+
+발명의 설명 새창보기
+도면
+개별도면 전체 14
+열기
+
+
+대표도면
+	
+
+도면 1A
+	
+
+도면 1B
+	
+
+도면 1C
+대표청구항
+
+청구항 1항 (대표청구항)
+
+[Claim1]
+They are the steel materials in which aluminum plating layer was given to the surface of at least 1 side of a base material,
+
+In any 1 side at least, it is among the surfaces where the above-mentioned aluminum plating layer is given, Plurality which is mutually parallel There is an agenesis field of the above-mentioned aluminum plating layer,
+
+The above-mentioned agenesis field is formed in the position away from the end of the above-mentioned steel materials 5 mm or more,
+
+The above-mentioned aluminum plating layer is the mass %,
+
+Si: 0.05~15.00%,
+
+Zn: 0~30.00%,
+
+Mg: 0~5.00%,
+
+Fe: 0~30.00%,
+
+Ca: 0~3.00%,
+
+Sb: 0~0.50%,
+
+Pb: 0~0.50%,
+
+Cu: 0~1.00%,
+
+Sn: 0~1.00%,
+
+Ti: 0~1.00%,
+
+Sr: 0~0.50%,
+
+Cr: 0~1.00%,
+
+nickel: Reach 0~1.00%,
+
+Mn: 0~1.00%,
+
+containingthe remainderaluminum and 1.00% or less of impuritiesfrom り,
+
+In at least a part of adjoining above-mentioned agenesis field, the ratio of the interval W of the above-mentioned agenesis field and the board thickness t of the above-mentioned steel materials fills following the (1) type. Steel materials.
+
+W/t≧20 ... (1)
+
+【청구항1】
+모재 중 적어도 하나의 표면에 Al도금층이 실시된 강재로서,
+
+상기 Al도금층이 실시되어 있는 표면 중 적어도 어느 한 쪽에는, 서로 병행하는 복수의 상기 Al도금층의 비형성 영역이 있고,
+
+상기 비형성 영역은 상기 강재의 단부에서 5 mm 이상 떨어진 위치에 형성되어 있고
+
+상기 Al도금층은 질량%로,
+
+Si:0.05~15.00%,
+
+Zn:0~30.00%,
+
+Mg:0~5.00%,
+
+Fe:0~30.00%,
+
+Ca:0~3.00%,
+
+Sb:0~0.50%,
+
+Pb:0~0.50%,
+
+Cu:0~1.00%,
+
+Sn:0~1.00%,
+
+Ti:0~1.00%,
+
+Sr:0~0.50%,
+
+Cr:0~1.00%,
+
+Ni:0~1.00% 및
+
+Mn:0~1.00%,
+
+(을)를 함유하고 잔부가 Al 및 1.00%이하의 불순물로부터한 ,
+
+인접한 상기 비형성 영역의 적어도 일부에 있어서, 상기 비형성 영역의 간격 W와 상기 강재의 판 두께 t의 비가 하기 (1) 식을 만족한다 , 강재.
+
+W/t≧20 ···(1)
+
+【請求項1】
+母材の少なくとも一方の表面にAlめっき層が施された鋼材であって、
+前記Alめっき層が施されている表面のうち少なくともいずれか一方には、互いに並行する複数の前記Alめっき層の非形成領域があり、
+前記非形成領域は、前記鋼材の端部から5mm以上離れた位置に形成されており、
+前記Alめっき層は、質量%で、
+Si:0.05~15.00%、
+Zn:0~30.00%、
+Mg:0~5.00%、
+Fe:0~30.00%、
+Ca:0~3.00%、
+Sb:0~0.50%、
+Pb:0~0.50%、
+Cu:0~1.00%、
+Sn:0~1.00%、
+Ti:0~1.00%、
+Sr:0~0.50%、
+Cr:0~1.00%、
+Ni:0~1.00%、及び、
+Mn:0~1.00%、
+を含有し、残部がAl及び1.00%以下の不純物からなり、
+隣接する前記非形成領域の少なくとも一部において、前記非形成領域の間隔Wと前記鋼材の板厚tとの比が下記(1)式を満たす、鋼材。
+W/t≧20 ・・・(1)
+
+청구항 새창보기 (7)
+특허분류코드
+Original 코드보기
+특허분류	Current
+IPC	
+Ver.2014 : 
+B23K-026/21
+B23K-026/322
+Ver.2006 : 
+C23C-002/12
+ ; 
+C21D-001/18
+ ; 
+C21D-009/00
+ ; 
+C22C-021/02
+ ; 
+C23C-002/26
+ ; 
+C23C-002/40
+
+FI	
+C23C-002/12
+ ; 
+C21D-009/00 A
+ ; 
+C21D-001/18 C
+ ; 
+C22C-021/02
+ ; 
+C23C-002/40
+ ; 
+C23C-002/26
+ ; 
+B23K-026/322
+ ; 
+B23K-026/21 W
+
+F-term	
+4E168 : 
+AD03  
+BA02  
+BA52  
+BA83  
+BA88  
+4K027 : 
+AA03  
+AA05  
+AA22  
+AB13  
+AB48  
+AC78  
+4K042 : 
+AA24  
+AA25  
+BA01  
+BA10  
+BA14  
+DA01  
+DB07  
+DC02  
+DD01  
+테마코드
+4E168 ; 4K027 ; 4K042
+조사분야
+IPC : C23C-002/00
+IPC : C23C-026/00
+IPC : C23C-028/00
+IPC : B23K-026/00
+발명자
+伊藤 泰弘 東京都千代田区丸の内二丁目6番1号 日本製鉄株式会社内
+대리인
+弁理士法人ブライタス
+심사청구여부
+Y  (2022.08.03)
+최우선출원
+JP 2019-222003 (2019.12.09)
+기타인명
+粟野 正明
+井上 猛
+池渕 立
+법적상태
+일자	종류	설명
+2025.02.06	R150	
+
+CERTIFICATE OF PATENT OR REGISTRATION OF UTILITY MODEL
+Ref Document Number : 7626304
+Country of Ref Document : JP
+Further Information : JAPANESE INTERMEDIATE CODE : R150
+
+
+
+2025.01.27	A61	
+
+FIRST PAYMENT OF ANNUAL FEES (DURING GRANT PROCEDURE)
+Further Information : JAPANESE INTERMEDIATE CODE : A61
+Effective Date : 20250107
+
+
+
+2023.10.17	A02	
+
+DECISION OF REFUSAL
+Further Information : JAPANESE INTERMEDIATE CODE : A02
+Effective Date : 20231017
+
+
+
+2023.07.20	A521	
+
+REQUEST FOR WRITTEN AMENDMENT FILED
+Further Information : JAPANESE INTERMEDIATE CODE : A523
+Effective Date : 20230720
+
+
+
+2023.06.06	A131	
+
+NOTIFICATION OF REASONS FOR REFUSAL
+Further Information : JAPANESE INTERMEDIATE CODE : A131
+Effective Date : 20230606
+
+
+
+2023.05.29	A977	
+
+REPORT ON RETRIEVAL
+Further Information : JAPANESE INTERMEDIATE CODE : A971007
+Effective Date : 20230529
+
+
+
+2022.08.03	A621	
+
+WRITTEN REQUEST FOR APPLICATION EXAMINATION
+Further Information : JAPANESE INTERMEDIATE CODE : A621
+Effective Date : 20220803
+
+
+Code Color : Green = Positive action,  Red = Negative action,  Black = Neutral action
+
+패밀리
+전체 1 건
+ WIPS Extended
+ EPO Simple
+ 중복제거
+1/1
+이전
+다음
+No	원문	문헌번호	일자	발명의 명칭	IPC(Main)	CPC(Main)
+1	
+PDF
+	JP 7626304 B2 	2025.01.27	강재, 블랭크 및 핫 스탬프 부재 제조 방법	
+B23K-026/21
+IPC아이콘
+	
+-
+Basic Patent
+기타 57개국
+패밀리 법적상태
+패밀리 법적상태 보기
+인용/피 인용 특허문헌
+전체 8 건   인용(7) 피인용(1)
+ 심사관/ 심판 참증단계 보기
+1/1
+이전
+다음
+No	Depth	국가	문헌번호	
+인용참증단계
+	발명의 명칭	일자	출원인
+1	B1	WO	
+PDF
+WO2019-194308 A1
+	
+거절결정,거절이유 통지	LAYERED BLANK FOR HOT STAMPING, METHOD FOR MANUFACTURING LAYERED HOT STAMPING MOLDED BODY, AND LAYERED HOT STAMPING MOLDED BODY(핫 스탬프용 중첩 블랭크, 중첩 핫 스탬프 성형체 제조 방법 및 중첩 핫 스탬프 성형체)	2019.10.10	NIPPON STEEL CORPORATION
+2	B1	JP	
+PDF
+6907080 B2
+PDF
+2019-054704 A
+	
+거절결정	전기 기기 수납용 상자체 및 전기 기기 수납용 상자체에 이용하는 금속판 접합 방법(電気機器収納用箱体及び電気機器収納用箱体に用いる金属板の接合方法)	2021.07.02	KAWAMURA ELECTRIC INC
+3	B1	JP	
+PDF
+6495383 B2
+PDF
+2019-013935 A
+	
+거절결정,거절이유 통지	프레스 성형품 제조 방법(プレス成形品の製造方法)	2019.03.15	TOA KOGYO KK
+4	B1	JP	
+PDF
+6334500 B2
+PDF
+2018-039013 A
+	
+거절결정,거절이유 통지	알루미늄 도금 강판의 용접 방법(アルミニウムめっき鋼板の溶接方法)	2018.05.11	G-TEKT CORP
+5	B1	JP	
+PDF
+2006-187786 A
+	
+거절결정	티탄 박판의 접속 방법 및 그것을 이용하여 접속한 접속 부재(チタン薄板の接続方法及びそれを用いて接続した接続部材)	2006.07.20	HITACHI CABLE LTD
+6	B1	JP	
+PDF
+2006-142917 A
+	
+거절결정,거절이유 통지	충격 흡수 특성이 우수한 충격 흡수 부재 및 그 용접 방법(衝撃吸収特性に優れた衝撃吸収部材およびその溶接方法)	2006.06.08	NIPPON STEEL CORP
+7	B1	JP	
+PDF
+1992-081287 A
+	
+거절결정	LAP WELDING METHOD OF METALLIC FOIL	1992.03.13	KAWASAKI STEEL CORP
+8	F1	KR	
+PDF
+10-2412625 B1
+	
+심사관	핫 스탬핑 부품, 및 이의 제조 방법(Hot stamping component and method of manufacturing the same)	2022.06.20	현대제철 주식회사
+심사관 인용(Backward by Examiner)
+ 
+심사관 피 인용(Forward by Examiner)
+1/1
+이전
+다음
+문헌 내 인용
+전체 2 건
+1/1
+이전
+다음
+No	원문	문헌번호	일자	발명의 명칭	출원인
+1	
+PDF
+	JP 6334500 B2	2018.05.11	알루미늄 도금 강판의 용접 방법(アルミニウムめっき鋼板の溶接方法)	G-TEKT CORP
+2	
+PDF
+	JP 2019-010678 A	2019.01.24	용접 후 프레스 경화되는 알루미늄 도금 강판 제조 방법(溶接され、次いでプレス硬化されるアルミニウムめっき鋼板の製造方法)	ARCELORMITTAL
+기타 57개국
+Tel : 02-726-1100 / 1105
+help@wips.co.kr
+카톡상담 : @윕스
+Copyright ⓒ 2026 WIPS Co.,Ltd. All rights reserved.

@@ -1,0 +1,306 @@
+발명의 설명
+특허평가
+심판
+화합물
+표준특허
+상태정보
+상태정보 출력 안내툴팁 아이콘
+등록 (특허)
+현재진행상태보기
+특허번호
+7593355 B2 (2024.11.25) (See Also : 2023-132685 A )
+문헌종류 코드보기
+발행일
+2024.12.03
+공개번호
+2023-132685 (2023.09.22)
+출원번호
+2022-038160 (2022.03.11) 
+출원인
+TOYOTA MOTOR CORP (トヨタ自動車株式会社) (JP) 愛知県豊田市トヨタ町1番地
+출원인 대표명화
+TOYOTA MOTOR CORP
+출원인식별기호
+000003207
+현재권리자
+TOYOTA MOTOR CORP (トヨタ自動車株式会社)  愛知県豊田市
+현재권리자 대표명화
+TOYOTA MOTOR CORP
+출원히스토리
+ 
+2022.03.11
+출원
+최우선출원(JP)
+ 
+2023.09.22
+공개
+ 
+2024.11.25
+등록
+ 
+2042.03.12
+소멸
+요약
+↓JP-A 문헌의 요약
+【요약】
+
+【과제】품질 좋게 용접할 수 있는 레이저 용접 방법을 제공하는 것.
+
+【해결 수단】레이저광의 레이저 출력과 주사 속도와 집광경을 조건으로서 포함하는 조사 조건의 각각 설정값을 설정하는 설정 공정과 조사 조건을 제1조사 조건으로 설정한 레이저광을 주사해 복수의 금속 대상물의 피조사면에 용융지를 형성하는 제1공정과 제1공정 후에, 조사 조건을 제1조사 조건과는 다른 제2조사 조건으로 설정한 레이저광을 용융지의 범위 내에 주사하는 제2공정과 제1공정과 제2공정 사이에 수행되는 연결 공정이고 제1조사 조건과 제2조사 조건으로 설정값이 다른 조건에 대해, 제1조사 조건의 설정값과 제2조사 조건의 설정값 사이의값을 설정값으로 하는 조사 조건으로 설정한 레이저광을 제1공정의 주사 종료 위치에서 제2공정의 주사 개시 위치를 향해 주사하는 연결 공정을 구비하는 레이저 용접 방법.
+
+【선택도】도 1
+
+↓JP-A 문헌의 요약
+[ABSTRACT]
+
+[Technical problem] Provide the laser welding method which can be welded with sufficient quality.
+
+[Means for Solution]A setting process of setting up each preset value of irradiation conditions which contain a laser output, a scan speed, and a diameter of condensing of a laser beam as conditions, The 1st process of scanning a laser beam which set irradiation conditions as the 1st irradiation conditions, and forming a molten pool in an irradiated plane of a plurality of metal subjects, The 2nd process of scanning a laser beam which set irradiation conditions as the different 2nd irradiation conditions from the 1st irradiation conditions within the limits of a molten pool after the 1st process, About conditions from which it is a connection process performed between the 1st process and the 2nd process, and a preset value differs on the 1st irradiation conditions and the 2nd irradiation conditions, a preset value of the 1st irradiation conditions, A laser welding method provided with a connection process of turning to a scan start position of the 2nd process a laser beam which set a value between preset values of the 2nd irradiation conditions as irradiation conditions made into a preset value, and scanning it from an end position of a scanning of the 1st process.
+
+[Chosen drawing] Drawing 1
+
+↓JP-A 문헌의 요약
+【要約】
+
+【課題】品質よく溶接できるレーザ溶接方法を提供すること。
+【解決手段】レーザ光のレーザ出力と、走査速度と、集光径と、を条件として含む照射条件の各々の設定値を設定する設定工程と、照射条件を第1照射条件に設定したレーザ光を走査して複数の金属対象物の被照射面に溶融池を形成する第1工程と、第1工程の後に、照射条件を第1照射条件とは異なる第2照射条件に設定したレーザ光を溶融池の範囲内に走査する第2工程と、第1工程と、第2工程との間に行われる接続工程であって、第1照射条件と第2照射条件とで設定値が異なる条件について、第1照射条件の設定値と、第2照射条件の設定値との間の値を設定値とする照射条件に設定したレーザ光を、第1工程の走査終了位置から第2工程の走査開始位置に向けて走査する接続工程と、を備える、レーザ溶接方法。
+【選択図】図1
+
+발명의 설명 새창보기
+도면
+개별도면 전체 8
+열기
+
+
+대표도면
+	
+
+도면 1
+	
+
+도면 2
+	
+
+도면 3
+대표청구항
+
+청구항 1항 (대표청구항)
+
+[Claim1]
+It is a laser welding method which scans the laser beam with which it irradiates towards the irradiated plane of a plurality of piled-up metal subjects, and welds said plurality of metal subjects,
+
+The setting process of setting up each preset value of the irradiation conditions which contain the laser output, the scan speed, and the diameter of condensing of the above-mentioned laser beam as conditions,
+
+The 1st process of scanning the above-mentioned laser beam which set the above-mentioned irradiation conditions as the 1st irradiation conditions, and forming a molten pool in the above-mentioned irradiated plane,
+
+The 2nd process of scanning the above-mentioned laser beam which set the above-mentioned irradiation conditions as the different 2nd irradiation conditions from the above-mentioned 1st irradiation conditions within the limits of the above-mentioned molten pool after the 1st above-mentioned process,
+
+About the above-mentioned conditions from which it is a connection process performed between the 1st above-mentioned process and the 2nd above-mentioned process, and the above-mentioned preset value differs on the above-mentioned 1st irradiation conditions and the above-mentioned 2nd irradiation conditions, the above-mentioned preset value of the above-mentioned 1st irradiation conditions, A laser welding method provided with the connection process of turning to the scan start position of the 2nd above-mentioned process the above-mentioned laser beam which set the value between the above-mentioned preset values of the above-mentioned 2nd irradiation conditions as the above-mentioned irradiation conditions made into the above-mentioned preset value, and scanning it from the end position of a scanning of the 1st above-mentioned process.
+
+【청구항1】
+겹쳐진 복수의 금속 대상물의 피조사면을 향해 조사하는 레이저광을 주사해 상기 복수의 금속 대상물끼리를 용접하는 레이저 용접 방법으로서,
+
+상기 레이저광의 레이저 출력과 주사 속도와 집광경을 조건으로 포함하는 조사 조건의 각각 설정값을 설정하는 설정 공정과
+
+상기 조사 조건을 제1 조사 조건으로 설정한 상기 레이저광을 주사해 상기 피조사면에 용융지를 형성하는 제1 공정과
+
+상기 제1 공정 후에, 상기 조사 조건을 상기 제1 조사 조건과는 다른 제2 조사 조건으로 설정한 상기 레이저광을 상기 용융지의 범위 내에 주사하는 제2 공정과
+
+상기 제1 공정과 상기 제2 공정 사이에 수행되는 연결 공정이고 상기 제1 조사 조건과 상기 제2 조사 조건으로 상기 설정값이 다른 상기 조건에 대해, 상기 제1 조사 조건의 상기 설정값과 상기 제2 조사 조건의 상기 설정값 사이의값을 상기 설정값으로 하는 상기 조사 조건으로 설정한 상기 레이저광을 상기 제1 공정의 주사 종료 위치에서 상기 제2 공정의 주사 개시 위치를 향해 주사하는 연결 공정을 구비하는 레이저 용접 방법.
+
+【請求項1】
+重ねられた複数の金属対象物の被照射面に向けて照射するレーザ光を走査して前記複数の金属対象物同士を溶接するレーザ溶接方法であって、
+前記レーザ光のレーザ出力と、走査速度と、集光径と、を条件として含む照射条件の各々の設定値を設定する設定工程と、
+前記照射条件を第1照射条件に設定した前記レーザ光を走査して前記被照射面に溶融池を形成する第1工程と、
+前記第1工程の後に、前記照射条件を前記第1照射条件とは異なる第2照射条件に設定した前記レーザ光を前記溶融池の範囲内に走査する第2工程と、
+前記第1工程と、前記第2工程との間に行われる接続工程であって、前記第1照射条件と前記第2照射条件とで前記設定値が異なる前記条件について、前記第1照射条件の前記設定値と、前記第2照射条件の前記設定値との間の値を前記設定値とする前記照射条件に設定した前記レーザ光を、前記第1工程の走査終了位置から前記第2工程の走査開始位置に向けて走査する接続工程と、を備える、レーザ溶接方法。
+
+청구항 새창보기 (7)
+특허분류코드
+Original 코드보기
+특허분류	Current
+IPC	
+Ver.2014 : 
+B23K-026/21
+B23K-026/00
+ ; 
+B23K-026/322
+Ver.2006 : 
+B23K-026/22
+
+FI	
+B23K-026/00 N
+ ; 
+B23K-026/21 G
+ ; 
+B23K-026/22
+ ; 
+B23K-026/322
+
+F-term	
+4E168 : 
+BA02  
+BA71  
+BA83  
+BA88  
+CB04  
+CB08  
+CB13  
+DA37  
+EA11  
+EA15  
+EA17  
+EA24  
+테마코드
+4E168
+조사분야
+IPC : B23K-026/21
+IPC : B23K-026/00
+IPC : B23K-026/22
+IPC : B23K-026/322
+발명자
+松尾 隆太 愛知県豊田市トヨタ町1番地 トヨタ自動車株式会社内
+山本 健史 愛知県豊田市トヨタ町1番地 トヨタ自動車株式会社内
+本吉 隆 福岡県北九州市八幡西区黒崎城石2番1号 株式会社安川電機内
+대리인
+弁理士法人明成国際特許事務所
+심사청구여부
+Y  (2024.04.11)
+심사관
+柏原 郁昭
+최우선출원
+JP 2022-038160 (2022.03.11)
+법적상태
+일자	종류	설명
+2024.12.05	R150	
+
+CERTIFICATE OF PATENT OR REGISTRATION OF UTILITY MODEL
+Ref Document Number : 7593355
+Country of Ref Document : JP
+Further Information : JAPANESE INTERMEDIATE CODE : R150
+
+
+
+2024.11.25	A61	
+
+FIRST PAYMENT OF ANNUAL FEES (DURING GRANT PROCEDURE)
+Further Information : JAPANESE INTERMEDIATE CODE : A61
+Effective Date : 20241104
+
+
+
+2024.10.22	A01	
+
+WRITTEN DECISION TO GRANT A PATENT OR TO GRANT A REGISTRATION (UTILITY MODEL)
+Further Information : JAPANESE INTERMEDIATE CODE : A01
+Effective Date : 20241022
+
+
+
+2024.10.15	TRDD	
+
+DECISION OF GRANT OR REJECTION WRITTEN
+
+
+
+2024.10.04	A977	
+
+REPORT ON RETRIEVAL
+Further Information : JAPANESE INTERMEDIATE CODE : A971007
+Effective Date : 20241004
+
+
+
+2024.04.11	A621	
+
+WRITTEN REQUEST FOR APPLICATION EXAMINATION
+Further Information : JAPANESE INTERMEDIATE CODE : A621
+Effective Date : 20240411
+
+
+Code Color : Green = Positive action,  Red = Negative action,  Black = Neutral action
+
+패밀리
+전체 1 건
+ WIPS Extended
+ EPO Simple
+ 중복제거
+1/1
+이전
+다음
+No	원문	문헌번호	일자	발명의 명칭	IPC(Main)	CPC(Main)
+1	
+PDF
+	JP 7593355 B2 	2024.11.25	레이저 용접 방법 및 레이저 용접 장치	
+B23K-026/21
+IPC아이콘
+	
+-
+Basic Patent
+기타 57개국
+패밀리 법적상태
+패밀리 법적상태 보기
+인용/피 인용 특허문헌
+전체 6 건   인용(6) 피인용(0)
+ 심사관/ 심판 참증단계 보기
+1/1
+이전
+다음
+No	Depth	국가	문헌번호	
+인용참증단계
+	발명의 명칭	일자	출원인
+1	B1	WO	
+PDF
+WO2022-075211 A1
+	
+특허결정	LASER WELDING METHOD AND LASER WELDING DEVICE(레이저 용접 방법 및 레이저 용접 장치)	2022.04.14	PANASONIC INTELLECTUAL PROPERTY MANAGEMENT CO., LTD.
+2	B1	WO	
+PDF
+WO2015-104781 A1
+	
+특허결정	LASER WELDING METHOD AND LASER WELDING DEVICE(레이저 용접 방법 및 레이저 용접 장치)	2015.07.16	PANASONIC INTELLECTUAL PROPERTY MANAGEMENT CO., LTD.
+3	B1	JP	
+PDF
+6795567 B2
+PDF
+2020-069492 A
+	선행기술조사	가공 조건 설정 장치 및 삼차원 레이저 가공 시스템(加工条件設定装置及び三次元レーザ加工システム)	2020.11.16	FANUC LTD
+4	B1	JP	
+PDF
+5527526 B2
+PDF
+2011-173146 A
+	
+특허결정	레이저 용접 방법(レーザ溶接方法)	2014.04.25	MAZDA MOTOR CORP
+5	B1	JP	
+PDF
+4915315 B2
+PDF
+2009-050894 A
+	
+특허결정	레이저 용접 방법 및 레이저 용접 장치(レーザ溶接方法及びレーザ溶接装置)	2012.02.03	MAZDA MOTOR CORP
+6	B1	JP	
+PDF
+2008-126298 A
+	
+특허결정	레이저 용접 방법 및 그 장치(レーザ溶接方法およびその装置)	2008.06.05	MAZDA MOTOR CORP
+심사관 인용(Backward by Examiner)
+ 
+심사관 피 인용(Forward by Examiner)
+1/1
+이전
+다음
+문헌 내 인용
+전체 1 건
+1/1
+이전
+다음
+No	원문	문헌번호	일자	발명의 명칭	출원인
+1	
+PDF
+	JP 2012-115876 A	2012.06.21	레이저 용접 방법(レーザ溶接方法)	TOYOTA MOTOR CORP
+기타 57개국
+Tel : 02-726-1100 / 1105
+help@wips.co.kr
+카톡상담 : @윕스
+Copyright ⓒ 2026 WIPS Co.,Ltd. All rights reserved.

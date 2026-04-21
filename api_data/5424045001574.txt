@@ -1,0 +1,415 @@
+발명의 설명
+행정사항
+특허평가
+심판
+소송
+화합물
+표준특허
+상태정보
+등록
+현재진행상태보기
+공개번호
+2024-0367262 A1 (2024.11.07) (See Also : 12318865 B2)
+문헌종류 코드보기
+출원번호
+18/741833 (2024.06.13) 
+출원인
+TRUMPF LASER- UND SYSTEMTECHNIK GMBH JOHANN-MAUS-STRASSE *, DITZINGEN, GERMANY (DE)
+
+!US Assignment 정보를 반영한 출원인을 제공합니다.
+
+출원인 대표명화
+TRUMPF LASER & SYSTEMTECHN
+출원히스토리
+ 
+2021.12.17
+최우선출원(US-RA)
+ 
+2022.12.07
+국제출원(EP)
+ 
+2023.06.22
+국제공개(WO)
+ 
+2024.06.13
+출원
+ 
+2024.11.07
+공개
+ 
+2025.06.03
+등록
+ 
+2042.12.08
+소멸
+요약
+
+두 개의 금속 시트를 용접하는 방법은 제 1 용접 표면을 가지는 제 1 시트와 제 2 용접 표면을 가지는 제 2 시트를 제공하는 단계를 포함한다. 상기 제 1 시트는 상기 제 1 용접 표면 상에 아연 코팅을 가진다. 상기 방법은 상기 제 1 및 상기 제 2 용접면이 그 사이에 갭을 가지고 서로 마주보도록 상기 제 1 및 상기 제 2 용접면을 배치하는 단계, 및 상기 제 1 및 상기 제 2 용접면에 레이저 빔을 조사하는 단계를 추가적으로 포함한다. 레이저 빔은 가상 피드 라인을 따라 그리고 가상 피드 라인에 수직인 피드 방향으로 워블링 모션으로 이동된다. 가상 급전선을 따른 레이저 빔의 경로는 주기적인 형상이다. 가상 급전선에 수직인 경로의 폭은 가상 급전선을 따른 경로의 주기의 길이보다 크다.
+
+
+
+
+A method of welding two metal sheets includes providing a first sheet having a first weld surface and a second sheet having a second weld surface. The first sheet has a zinc coating on the first weld surface. The method further includes arranging the first and the second weld surfaces such that the first and the second weld surfaces face each other with a gap therebetween, and irradiating the first and the second weld surfaces with a laser beam. The laser beam is moved with a wobbling motion in a feed direction along an imaginary feed line and perpendicular to the imaginary feed line. A path of the laser beam along the imaginary feed line is of a periodic shape. A width of the path perpendicular to the imaginary feed line is greater than a length of a period of the path along the imaginary feed line.
+
+발명의 설명 새창보기
+도면
+
+
+대표도면
+	
+
+도면 1
+	
+
+도면 2
+	
+
+도면 3
+대표청구항
+
+청구항 1항 (대표청구항)
+
+1. 두 개의 금속 시트를 용접하는 방법, 상기 방법을 포함하는 방법:
+
+제 1 용접 표면을 가지는 제 1 시트와 제 2 용접 표면을 가지는 제 2 시트를 제공하며, 상기 제 1 시트는 상기 제 1 용접 표면 상에 아연 코팅을 가진다;
+
+제1 용접면과 제2 용접면이 서로 마주보도록 제1 용접면과 제2 용접면을 배치하는 것, 제1 용접 표면과 제2 용접 표면 사이에 갭을 가진; 그리고
+
+상기 제 1 용접 표면과 상기 제 2 용접 표면에 레이저 빔을 조사하며, 상기 레이저 빔은 상이한 강도 프로파일을 가진 내부 코어와 외부 링을 가진다,
+
+레이저 빔은 가상 피드 라인을 따라 그리고 가상 피드 라인에 수직인 피드 방향으로 워블링 모션으로 이동되고, 가상 피드 라인에 수직인 레이저 빔은 가상 피드 라인을 따라 피드 방향으로 워블링 모션으로 이동된다.
+
+상기 가상 공급 라인을 따른 상기 레이저 빔의 경로는 주기적인 형상이며, 상기 가상 공급 라인에 수직인 상기 경로의 폭은 상기 가상 공급 라인을 따른 상기 경로의 주기의 길이보다 크다.
+
+1. A method of welding two metal sheets, the method comprising:
+
+providing a first sheet having a first weld surface and a second sheet having a second weld surface, the first sheet having a zinc coating on the first weld surface;
+
+arranging the first weld surface and the second weld surface such that the first weld surface and the second weld surface face each other, with a gap between the first weld surface and the second weld surface; and
+
+irradiating the first weld surface and the second weld surface with a laser beam, the laser beam having an inner core and an outer ring with different intensity profiles,
+
+wherein the laser beam is moved with a wobbling motion in a feed direction along an imaginary feed line and perpendicular to the imaginary feed line, and
+
+wherein a path of the laser beam along the imaginary feed line is of a periodic shape, a width of the path perpendicular to the imaginary feed line being greater than a length of a period of the path along the imaginary feed line.
+
+청구항 새창보기 (18)
+특허분류코드
+Original 코드보기
+특허분류	Current
+CPC	
+Ver.2018 : 
+B23K-2101/006
+B23K-2101/18
+ ; 
+B23K-2101/34
+ ; 
+B23K-2103/04
+Ver.2015 : 
+B23K-0026/244
+ ; 
+B23K-0026/062
+ ; 
+B23K-0026/082
+Ver.2013 : 
+B23K-0026/0626
+ ; 
+B23K-0026/0006
+ ; 
+B23K-0026/0665
+ ; 
+B23K-0026/073
+ ; 
+B23K-0026/0876
+ ; 
+B23K-0026/322
+
+IPC	
+Ver.2014 : 
+B23K-026/00
+B23K-026/06
+ ; 
+B23K-026/082
+ ; 
+B23K-026/244
+ ; 
+B23K-026/322
+Ver.2006 : 
+B23K-023/00
+ ; 
+B23K-101/34
+ ; 
+B23K-103/04
+발명자
+Travis Stempky Livonia MI (US)
+Chonghua Jiang Livonia MI (US)
+최우선출원
+[RA] US 63/290760 (2021.12.17)
+Assignment
+1건 보기
+법적상태
+일자	종류	설명
+2025.05.21	STCF	
+
+INFORMATION ON STATUS: PATENT GRANT
+Further Information : PATENTED CASE
+
+
+
+2025.01.23	STPP	
+
+INFORMATION ON STATUS: PATENT APPLICATION AND GRANTING PROCEDURE IN GENERAL
+Further Information : ADVISORY ACTION MAILED
+
+
+
+2025.01.15	STPP	
+
+INFORMATION ON STATUS: PATENT APPLICATION AND GRANTING PROCEDURE IN GENERAL
+Further Information : RESPONSE AFTER FINAL ACTION FORWARDED TO EXAMINER
+
+
+
+2024.11.06	STPP	
+
+INFORMATION ON STATUS: PATENT APPLICATION AND GRANTING PROCEDURE IN GENERAL
+Further Information : FINAL REJECTION MAILED
+
+
+
+2024.06.19	AS	
+
+ASSIGNMENT
+Owner name : TRUMPF LASER- UND SYSTEMTECHNIK GMBH, GERMANY
+Further Information : ASSIGNMENT OF ASSIGNORS INTEREST;ASSIGNORS : STEMPKY, TRAVIS;JIANG, CHONGHUA;SIGNING DATES FROM 20240605 TO 20240617;REEL/FRAME : 067769/0683
+
+
+
+2024.06.13	FEPP	
+
+FEE PAYMENT PROCEDURE
+Further Information : ENTITY STATUS SET TO UNDISCOUNTED (ORIGINAL EVENT CODE : BIG.); ENTITY STATUS OF PATENT OWNER : LARGE ENTITY
+
+
+Code Color : Green = Positive action,  Red = Negative action,  Black = Neutral action
+
+우선권번호
+우선권 안내툴팁 아이콘
+전체 3 건 Priority (1) RA (1)
+1/1
+이전
+다음
+No	원문	유형	출원번호	출원일자 	문헌번호	발명의 명칭
+1	
+PDF
+	Continuation	WO PCT-EP2022-084803	2022.12.07	WO WO2023-110583 A1	METHOD FOR WELDING ZINC-COATED STEEL SHEETS USING A LASER BEAM
+2	
+PDF
+	Priority	DE 10-2022-121053	2022.08.19	DE 10-2022-121053 A1	Process for welding zinc-coated sheet metal
+
+* Provisional
+US 63/290760 (2021.12.17)
+
+패밀리
+전체 5 건
+ WIPS Extended
+ EPO Simple
+ 중복제거
+1/1
+이전
+다음
+No	원문	문헌번호	일자	발명의 명칭	IPC(Main)	CPC(Main)
+1	
+PDF
+	US 12318865 B2	2025.06.03	Method for welding zinc-coated sheets	
+B23K-026/00
+IPC아이콘
+	
+B23K-2101/006
+CPC아이콘
+
+2	
+PDF
+	CN 118401332 A	2024.07.26	Method for welding steel sheet coated with zinc by means of laser beam	
+B23K-026/08
+IPC아이콘
+	
+B23K-2101/34
+CPC아이콘
+
+3	
+PDF
+	WO WO2023-110583 A1	2023.06.22	METHOD FOR WELDING ZINC-COATED STEEL SHEETS USING A LASER BEAM	
+B23K-026/08
+IPC아이콘
+	
+B23K-2103/04
+CPC아이콘
+
+4	
+PDF
+	DE 10-2022-121053 A1	2023.06.22	Process for welding zinc-coated sheet metal	
+B23K-026/28
+IPC아이콘
+	
+B23K-2101/34
+CPC아이콘
+Basic Patent
+기타 57개국
+
+* Provisional
+US 63/290760 (2021.12.17)
+
+패밀리 법적상태
+패밀리 법적상태 보기
+인용/피 인용 특허문헌
+전체 85 건   인용(85) 피인용(0)
+ 심사관/ 심판 참증단계 보기
+1/5
+이전
+다음
+No	Depth	국가	문헌번호	
+인용참증단계
+	발명의 명칭	일자	출원인
+1	B1	US	
+PDF
+2022-0126396 A1
+	출원서	OPTICAL APPARATUS FOR THE LASER WELDING OF A WORKPIECE, WITH A PLURALITY OF PARTIAL BEAMS HAVING A CORE ZONE AND A RING ZONE IN THE BEAM PROFILE(코어 구역과 빔 프로파일에 링 구역을 갖는 복수의 부분 빔을 가진 워크피스의 레이저 용접을 위한 광학 장치)	2022.04.28	TRUMPF LASER- UND SYSTEMTECHNIK GMBH
+2	B1	US	
+PDF
+11701738 B2
+PDF
+2022-0097172 A1
+	
+심사관	Laser welded assembly having a heat affected zone reinforcement and method of making the same(열 영향 구역 보강재를 가지는 레이저 용접 조립체 및 동일한 것을 제조하는 방법)	2023.07.18	THE PENN STATE RESEARCH FOUNDATION
+3	B1	US	
+PDF
+2021-0094124 A1
+	
+심사관	MANUFACTURING METHOD OF COMPONENT(부품의 제조 방법)	2021.04.01	FUTABA INDUSTRIAL CO., LTD.
+4	B1	US	
+PDF
+11806808 B2
+PDF
+2021-0053152 A1
+	
+심사관	Method for butt laser welding two metal sheets(두 개의 금속 시트를 맞대기 레이저 용접하기 위한 방법)	2023.11.07	ARCELORMITTAL
+5	B1	US	
+PDF
+2021-0008664 A1
+	
+심사관	LASER WELDING OF TRANSPARENT WORKPIECES(투명 워크피스의 레이저 용접)	2021.01.14	TRUMPF LASER- UND SYSTEMTECHNIK GMBH
+6	B1	US	
+PDF
+12544857 B2
+PDF
+2020-0384574 A1
+	
+심사관	Welding method and welding apparatus(용접 방법과 용접 장치)	2026.02.10	FURUKAWA ELECTRIC CO., LTD.
+7	B1	US	
+PDF
+11945503 B2
+PDF
+2020-0353983 A1
+	
+심사관	Method for producing a welded steel blank and associated welded blank(용접 강철 블랭크 및 관련 용접 블랭크를 생산하기 위한 방법)	2024.04.02	ARCELORMITTAL
+8	B1	US	
+PDF
+11077522 B2
+PDF
+2020-0316713 A1
+	
+심사관	Method of laser spot welding coated steels(레이저 스폿 용접 코팅 강의의 방법)	2021.08.03	GM GLOBAL TECHNOLOGY OPERATIONS LLC
+9	B1	US	
+PDF
+11389894 B2
+PDF
+2020-0254562 A1
+	출원서	Laser welding method(레이저 용접 방법)	2022.07.19	COHERENT, INC.
+10	B1	US	
+PDF
+11491580 B2
+PDF
+2020-0171603 A1
+	
+심사관	Method for laser welding metal workpieces using a combination of weld paths(용접 경로의 조합을 사용한 금속 공작물 레이저 용접 방법)	2022.11.08	GM GLOBAL TECHNOLOGY OPERATIONS LLC
+11	B1	US	
+PDF
+11235422 B2
+PDF
+2020-0094350 A1
+	
+심사관	Method for smoothing the surface of a laser weld joint(레이저 용접 접합부의 표면을 평활화하기 위한 방법)	2022.02.01	GM GLOBAL TECHNOLOGY OPERATIONS LLC
+12	B1	US	
+PDF
+2020-0047285 A1
+	
+심사관	LASER WELDING OF COATED STEELS ASSISTED BY THE FORMATION OF AT LEAST ONE PRELIMINARY WELD DEPOSIT(적어도 하나의 예비 용접 증착물의 형성에 의해 보조되는 코팅된 강의레이저 용접)	2020.02.13	GM GLOBAL TECHNOLOGY OPERATIONS LLC
+13	B1	US	
+PDF
+12036624 B2
+PDF
+2019-0389001 A1
+	
+심사관	Welding method and welding apparatus(용접 방법 및 용접 장치)	2024.07.16	FURUKAWA ELECTRIC CO., LTD.
+14	B1	US	
+PDF
+2019-0375046 A1
+	
+심사관	Method for Welding Components(부품 용접 방법)	2019.12.12	Bayerische Motoren Werke Aktiengesellschaft
+15	B1	US	
+PDF
+11400548 B2
+PDF
+2019-0262942 A1
+	
+심사관	Methods and laser welding devices for deep welding a workpiece(워크피스를 딥 용접하기 위한 방법과 레이저 용접 장치)	2022.08.02	TRUMPF LASER- UND SYSTEMTECHNIK GMBH
+16	B1	US	
+PDF
+11148226 B2
+PDF
+2019-0240780 A1
+	
+심사관	Multi-beam laser spot welding of coated steels(코팅 강철의 다중 빔 레이저 스폿 용접)	2021.10.19	GM GLOBAL TECHNOLOGY OPERATIONS LLC
+17	B1	US	
+PDF
+10946479 B2
+PDF
+2019-0126398 A1
+	
+심사관	Laser spot welding of overlapping aluminum workpieces(중첩된 알루미늄 공작물의 레이저 스폿 용접)	2021.03.16	GM GLOBAL TECHNOLOGY OPERATIONS LLC
+18	B1	US	
+PDF
+10953497 B2
+PDF
+2019-0118307 A1
+	
+심사관	Method for laser welding steel workpieces(스틸 공작물 레이저 용접 방법)	2021.03.23	GM GLOBAL TECHNOLOGY OPERATIONS LLC
+19	B1	US	
+PDF
+10919113 B2
+PDF
+2019-0076963 A1
+	
+심사관	Laser lap-welded joint, method of manufacturing the same, and automobile framework component(레이저 랩 용접 접합부, 동일한 것을 제조하는 방법 자동차 프레임워크 구성 요소)	2021.02.16	JFE STEEL CORPORATION
+20	B1	US	
+PDF
+10857624 B2
+PDF
+2018-0361507 A1
+	
+심사관	Laser-beam welding method and laser-beam welding apparatus(레이저 빔 용접 방법과 레이저 빔 용접 장치)	2020.12.08	TOYOTA JIDOSHA KABUSHIKI KAISHA
+심사관 인용(Backward by Examiner)
+ 
+심사관 피 인용(Forward by Examiner)
+1/5
+이전
+다음
+
+* 미포함 문헌 : 1건 (절차상 미공개 문헌, 과거분 문헌, WIPS 보유 데이터 범위에 포함되지 않는 문헌)
+US 3881084 A
+
+Tel : 02-726-1100 / 1105
+help@wips.co.kr
+카톡상담 : @윕스
+Copyright ⓒ 2026 WIPS Co.,Ltd. All rights reserved.

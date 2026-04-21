@@ -1,0 +1,189 @@
+발명의 설명
+특허평가
+심판
+화합물
+표준특허
+상태정보
+상태정보 출력 안내툴팁 아이콘
+심사중 (공개특허)
+현재진행상태보기
+공개번호
+2024-160780 A (2024.11.15)
+문헌종류 코드보기
+관련특허
+PAJ문서보기
+출원번호
+2023-076127 (2023.05.02) 
+출원인
+NIPPON STEEL CORP (日本製鉄株式会社) (JP) 東京都千代田区丸の内二丁目6番1号
+출원인 대표명화
+NIPPON STEEL
+출원인식별기호
+000006655
+출원히스토리
+ 
+2023.05.02
+출원
+최우선출원(JP)
+ 
+2024.11.15
+공개
+요약
+【요약】
+
+【과제】수소 취화에 의한 균열을 억제할 수 있는 레이저 용접 조인트와 자동차용 부재를 제공한다.
+
+【해결 수단】적어도 하나의 고강도 강재 20으로 적어도 하나의 저강도 강재 10과 상기 고강도 강재 20과 상기 저강도 강재 10을 접합하는 용접 금속 100을 구비하는 레이저 용접 조인트 1으로서, 상기 고강도 강재 20의 인장 강도가 980 MPa 이상이며 상기 저강도 강재 10의 인장 강도가 980 MPa 미만이며 상기 용접 금속 100의 종단부 101을 상기 용접 금속 100의 연장 방향을 따라 상기 용접 금속 100의 말단에서 10 mm까지의 범위로 했을 때, 상기 용접 금속 100의 상기 종단부 101은 상기 저강도 강재 10에만 접하는 것을 특징으로 하는 레이저 용접 조인트 1과 이것을 이용한 자동차용 부재를 제공한다.
+
+【선택도】도 3
+
+[ABSTRACT]
+
+[Technical problem] The laser welding joint and the member for cars which can control the crack by hydrogen embrittlement are provided.
+
+[Means for Solution]At least one high tension steel 20 and at least one low intensity steel materials 10, It is the laser welding joint 1 provided with the weld metal 100 which joins the high tension steel 20 and the low intensity steel materials 10, Tensile strength of the high tension steel 20 is 980 or more MPa, and tensile strength of the low intensity steel materials 10 is less than 980 MPa, When the termination part 101 of the weld metal 100 is made into a range from an end of the weld metal 100 to 10 mm along an extending direction of the weld metal 100, The termination part 101 of the weld metal 100 provides a member for cars using the laser welding joint 1 and this touching only the low intensity steel materials 10.
+
+[Chosen drawing] Drawing 3
+
+【要約】
+
+【課題】水素脆化による割れを抑制できるレーザ溶接継手と自動車用部材を提供する。
+【解決手段】少なくとも1つの高強度鋼材20と、少なくとも1つの低強度鋼材10と、前記高強度鋼材20と前記低強度鋼材10とを接合する溶接金属100とを備えるレーザ溶接継手1であって、前記高強度鋼材20の引張強度が980MPa以上であり、前記低強度鋼材10の引張強度が980MPa未満であり、前記溶接金属100の終端部101を、前記溶接金属100の延在方向に沿って前記溶接金属100の末端から10mmまでの範囲としたとき、前記溶接金属100の前記終端部101は、前記低強度鋼材10のみに接することを特徴とするレーザ溶接継手1とこれを用いた自動車用部材を提供する。
+【選択図】図3
+
+발명의 설명 새창보기
+도면
+개별도면 전체 15
+열기
+
+
+대표도면
+	
+
+도면 1
+	
+
+도면 2
+	
+
+도면 3
+대표청구항
+
+청구항 1항 (대표청구항)
+
+[Claim1]
+It is a laser welding joint provided with the weld metal which joins at least one high tension steel, at least one low intensity steel materials, and the above-mentioned high tension steel and the above-mentioned low intensity steel materials,
+
+The tensile strength of the above-mentioned high tension steel is 980 or more MPa,
+
+The tensile strength of the above-mentioned low intensity steel materials is less than 980 MPa,
+
+When the termination part of the above-mentioned weld metal is made into the range from the end of the above-mentioned weld metal to 10 mm along the extending direction of the above-mentioned weld metal, the above-mentioned termination part of the above-mentioned weld metal touches only the above-mentioned low intensity steel materials.
+
+The laser welding joint characterized by things.
+
+【청구항1】
+적어도 하나의 고강도 강재와 적어도 하나의 저강도 강재와 상기 고강도 강재와 상기 저강도 강재를 접합하는 용접 금속을 구비하는 레이저 용접 조인트로서,
+
+상기 고강도 강재의 인장 강도가 980 MPa 이상이며
+
+상기 저강도 강재의 인장 강도가 980 MPa 미만이며
+
+상기 용접 금속의 종단부를 상기 용접 금속의 연장 방향을 따라 상기 용접 금속의 말단에서 10 mm까지의 범위로 했을 때, 상기 용접 금속의 상기 종단부는 상기 저강도 강재에만 접한다
+
+일을 특징으로 하는 레이저 용접 조인트.
+
+【請求項1】
+少なくとも1つの高強度鋼材と、少なくとも1つの低強度鋼材と、前記高強度鋼材と前記低強度鋼材とを接合する溶接金属とを備えるレーザ溶接継手であって、
+前記高強度鋼材の引張強度が980MPa以上であり、
+前記低強度鋼材の引張強度が980MPa未満であり、
+前記溶接金属の終端部を、前記溶接金属の延在方向に沿って前記溶接金属の末端から10mmまでの範囲としたとき、前記溶接金属の前記終端部は、前記低強度鋼材のみに接する
+ことを特徴とするレーザ溶接継手。
+
+청구항 새창보기 (4)
+특허분류코드
+Original 코드보기
+특허분류	Current
+IPC	
+Ver.2014 : 
+B23K-026/323
+
+FI	
+B23K-026/323
+ ; 
+B23K-026/323
+
+F-term	
+4E168 : 
+BA02  
+BA03  
+BA85  
+BA89  
+DA02  
+DA23  
+DA28  
+DA29  
+FB03  
+테마코드
+4E168
+발명자
+▲徳▼永 仁寿 東京都千代田区丸の内二丁目6番1号 日本製鉄株式会社内
+芦田 肇 東京都千代田区丸の内二丁目6番1号 日本製鉄株式会社内
+대리인
+松沼 泰史
+大浪 一徳
+勝俣 智夫
+山口 洋
+堀田 耕一郎
+山口 健吾
+飯田 恭宏
+井口 翔太
+심사청구여부
+Y  (2026.01.15)
+최우선출원
+JP 2023-076127 (2023.05.02)
+법적상태
+일자	종류	설명
+2026.01.15	A621	
+
+WRITTEN REQUEST FOR APPLICATION EXAMINATION
+Further Information : JAPANESE INTERMEDIATE CODE : A621
+Effective Date : 20260115
+
+
+Code Color : Green = Positive action,  Red = Negative action,  Black = Neutral action
+
+패밀리
+전체 1 건
+ WIPS Extended
+ EPO Simple
+ 중복제거
+1/1
+이전
+다음
+No	원문	문헌번호	일자	발명의 명칭	IPC(Main)	CPC(Main)
+1	
+PDF
+	JP 2024-160780 A 	2024.11.15	레이저 용접 조인트 및 자동차용 부재	
+B23K-026/323
+IPC아이콘
+	
+-
+Basic Patent
+기타 57개국
+패밀리 법적상태
+패밀리 법적상태 보기
+문헌 내 인용
+전체 1 건
+1/1
+이전
+다음
+No	원문	문헌번호	일자	발명의 명칭	출원인
+1	
+PDF
+	JP 2012-240083 A	2012.12.10	내지연 파괴 특성이 우수한 강판 용접부 제조 방법 및 그 용접부를 가지는 강 구조물(耐遅れ破壊特性に優れた鋼板溶接部の製造方法およびその溶接部を有する鋼構造物)	NIPPON STEEL CORP
+기타 57개국
+Tel : 02-726-1100 / 1105
+help@wips.co.kr
+카톡상담 : @윕스
+Copyright ⓒ 2026 WIPS Co.,Ltd. All rights reserved.

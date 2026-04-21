@@ -1,0 +1,356 @@
+발명의 설명
+특허평가
+심판
+화합물
+표준특허
+상태정보
+상태정보 출력 안내툴팁 아이콘
+등록 (특허)
+현재진행상태보기
+특허번호
+7631729 B2 (2025.02.10) (See Also : 2022-069169 A )
+문헌종류 코드보기
+발행일
+2025.02.19
+공개번호
+2022-069169 (2022.05.11)
+출원번호
+2020-178191 (2020.10.23) 
+출원인
+RESONAC HOLDINGS CORP (株式会社レゾナック) (JP) 東京都港区東新橋一丁目9番1号
+출원인 대표명화
+Resonac Holdings Corporation
+출원인식별기호
+000004455
+현재권리자
+RESONAC HOLDINGS CORP (株式会社レゾナック)  東京都港区
+현재권리자 대표명화
+Resonac Holdings Corporation
+출원히스토리
+ 
+2020.10.23
+출원
+최우선출원(JP)
+ 
+2022.05.11
+공개
+ 
+2025.02.10
+등록
+ 
+2040.10.24
+소멸
+요약
+↓JP-A 문헌의 요약
+【요약】
+
+【과제】용접부의 외관의 아름다움이나 품질을 높일 수 있는 용접 방법 등을 제공한다.
+
+【해결 수단】두께가 2mm이하인 평판형 2개의 부재 및 재질이 다른 2개의 부재중 적어도 하나의 2개의 부재 중첩부에 레이저광을 조사함으로써 2개의 부재를 접합하는 용접 방법으로서, 2개의 부재 중의 한쪽 부재에 대해 레이저광을 디포커스시켜 조사하고 한쪽 부재의 열을 2개의 부재 중의 다른 쪽의 부재에 전도시킴으로써, 다른 쪽의 부재를 용융시켜 한쪽 부재와 다른 쪽의 부재를 접합시키는 용접 방법.
+
+【선택도】도 1
+
+↓JP-A 문헌의 요약
+[ABSTRACT]
+
+[Technical problem] The welding process etc. which can raise the beauty and quality of appearance of a welding part are provided.
+
+[Means for Solution]A member whose thickness is plate-like two [ of 2 mm or less ], and two members from which the quality of the material differs, の -- it being a welding process which joins two members, and by irradiating a superposition part of one of two members with a laser beam, even if small, A welding process to which the melting of the member of another side is carried out, and one member and a member of another side are joined by making a laser beam defocus to one member of the two members, glaring, and making a member of another side of the two members conduct heat of one member.
+
+[Chosen drawing] Drawing 1
+
+↓JP-A 문헌의 요약
+【要約】
+
+【課題】溶接部の外観の美しさや品質を高めることができる溶接方法等を提供する。
+【解決手段】厚さが2mm以下の平板状の2つの部材、及び、材質が異なる2つの部材、の少なくともいずれかの2つの部材の重ね合わせ部にレーザ光を照射することで2つの部材を接合する溶接方法であって、2つの部材の内の一方の部材に対してレーザ光をデフォーカスさせて照射し、一方の部材の熱を2つの部材の内の他方の部材に伝導させることにより、他方の部材を溶融させて、一方の部材と他方の部材とを接合させる溶接方法。
+【選択図】図1
+
+발명의 설명 새창보기
+도면
+개별도면 전체 10
+열기
+
+
+대표도면
+	
+
+도면 1
+	
+
+도면 2
+	
+
+도면 3
+대표청구항
+
+청구항 1항 (대표청구항)
+
+[Claim1]
+It is a welding process which joins the two members concerned by irradiating with a laser beam the superposition part of the member whose thickness is plate-like two of 2 mm or less ], and two members of at least either of the two members 、 from which the quality of the material differs,
+
+By making the above-mentioned laser beam defocus to one member of the two above-mentioned members, glaring, and making the member of another side of the two members concerned conduct the heat of concerned one member, Carry out the melting of the member of the another side concerned, a welding part is made to form by the fusion zone of concerned one member, and the fusion zone of the member of the another side concerned, and concerned one member and the member of the another side concerned are joined. 、
+
+The quality of the material of above-mentioned one member is aluminum, and the member of above-mentioned another side is the quality of the material in which the melting point is lower than the melting point of concerned one member.
+
+Welding process.
+
+【청구항1】
+두께가 2 mm이하인 평판형 2개의 부재 및 재질이 다른 2개의 부재, 중 적어도 하나의 2개의 부재의 중첩부에 레이저광을 조사함으로써 그 2개의 부재를 접합하는 용접 방법으로서,
+
+상기 2개의 부재 중의 한쪽 부재에 대해 상기 레이저광을 디포커스시켜 조사하고 그 한쪽 부재의 열을 그 2개의 부재 중의 다른 쪽의 부재에 전도시킴으로써, 그 다른 쪽의 부재를 용융시켜 그 한쪽 부재의 용융부와 그 다른 쪽의 부재 용융부로 용접부를 형성해 그 한쪽 부재와 그 다른 쪽의 부재를 접합시켜 ,
+
+상기 한쪽 부재의 재질은 알루미늄이며 상기 다른 쪽의 부재는 융점이 그 한쪽 부재의 융점보다 낮은 재질이다
+
+용접 방법.
+
+【請求項1】
+厚さが2mm以下の平板状の2つの部材、及び、材質が異なる2つの部材、の少なくともいずれかの2つの部材の重ね合わせ部にレーザ光を照射することで当該2つの部材を接合する溶接方法であって、
+前記2つの部材の内の一方の部材に対して前記レーザ光をデフォーカスさせて照射し、当該一方の部材の熱を当該2つの部材の内の他方の部材に伝導させることにより、当該他方の部材を溶融させて、当該一方の部材の溶融部と当該他方の部材の溶融部とで溶接部を形成させ、当該一方の部材と当該他方の部材とを接合させ、
+前記一方の部材の材質はアルミニウムであり、前記他方の部材は、融点が当該一方の部材の融点よりも低い材質である
+溶接方法。
+
+청구항 새창보기 (7)
+특허분류코드
+Original 코드보기
+특허분류	Current
+IPC	
+Ver.2014 : 
+B23K-026/323
+B23K-026/21
+ ; 
+B23K-026/322
+
+FI	
+B23K-026/21 F
+ ; 
+B23K-026/21 G
+ ; 
+B23K-026/322
+ ; 
+B23K-026/323
+
+F-term	
+4E168 : 
+BA02  
+BA87  
+BA88  
+BA89  
+CB03  
+DA32  
+DA37  
+KA04  
+테마코드
+4E168
+조사분야
+IPC : B23K-026/323
+IPC : B23K-026/21
+IPC : B23K-026/322
+발명자
+金井 俊典 栃木県小山市犬塚1-480 昭和電工株式会社 小山事業所内
+岸 正幸 栃木県小山市犬塚1-480 昭和電工株式会社 小山事業所内
+平野 智哉 栃木県小山市犬塚1-480 昭和電工株式会社 小山事業所内
+대리인
+古部 次郎
+尾形 文雄
+高梨 桜子
+심사청구여부
+Y  (2023.08.18)
+심사관
+杉田 隼一
+최우선출원
+JP 2020-178191 (2020.10.23)
+법적상태
+일자	종류	설명
+2025.02.21	R150	
+
+CERTIFICATE OF PATENT OR REGISTRATION OF UTILITY MODEL
+Ref Document Number : 7631729
+Country of Ref Document : JP
+Further Information : JAPANESE INTERMEDIATE CODE : R150
+
+
+
+2025.02.10	A61	
+
+FIRST PAYMENT OF ANNUAL FEES (DURING GRANT PROCEDURE)
+Further Information : JAPANESE INTERMEDIATE CODE : A61
+Effective Date : 20250120
+
+
+
+2025.01.07	A01	
+
+WRITTEN DECISION TO GRANT A PATENT OR TO GRANT A REGISTRATION (UTILITY MODEL)
+Further Information : JAPANESE INTERMEDIATE CODE : A01
+Effective Date : 20250107
+
+
+
+2024.12.24	TRDD	
+
+DECISION OF GRANT OR REJECTION WRITTEN
+
+
+
+2024.11.01	A521	
+
+REQUEST FOR WRITTEN AMENDMENT FILED
+Further Information : JAPANESE INTERMEDIATE CODE : A523
+Effective Date : 20241101
+
+
+
+2024.09.03	A131	
+
+NOTIFICATION OF REASONS FOR REFUSAL
+Further Information : JAPANESE INTERMEDIATE CODE : A131
+Effective Date : 20240903
+
+
+
+2024.06.21	A521	
+
+REQUEST FOR WRITTEN AMENDMENT FILED
+Further Information : JAPANESE INTERMEDIATE CODE : A523
+Effective Date : 20240621
+
+
+
+2024.04.23	A131	
+
+NOTIFICATION OF REASONS FOR REFUSAL
+Further Information : JAPANESE INTERMEDIATE CODE : A131
+Effective Date : 20240423
+
+
+
+2024.04.17	A977	
+
+REPORT ON RETRIEVAL
+Further Information : JAPANESE INTERMEDIATE CODE : A971007
+Effective Date : 20240417
+
+
+
+2023.08.18	A621	
+
+WRITTEN REQUEST FOR APPLICATION EXAMINATION
+Further Information : JAPANESE INTERMEDIATE CODE : A621
+Effective Date : 20230818
+
+
+더보기
+
+Code Color : Green = Positive action,  Red = Negative action,  Black = Neutral action
+
+패밀리
+전체 1 건
+ WIPS Extended
+ EPO Simple
+ 중복제거
+1/1
+이전
+다음
+No	원문	문헌번호	일자	발명의 명칭	IPC(Main)	CPC(Main)
+1	
+PDF
+	JP 7631729 B2 	2025.02.10	용접 방법, 구조물	
+B23K-026/323
+IPC아이콘
+	
+-
+Basic Patent
+기타 57개국
+패밀리 법적상태
+패밀리 법적상태 보기
+인용/피 인용 특허문헌
+전체 11 건   인용(11) 피인용(0)
+ 심사관/ 심판 참증단계 보기
+1/1
+이전
+다음
+No	Depth	국가	문헌번호	
+인용참증단계
+	발명의 명칭	일자	출원인
+1	B1	JP	
+PDF
+2017-123318 A
+	
+선행기술조사,특허결정	이종 도전 부재 제조 방법(異種導電部材の製造方法)	2017.07.13	KOBE STEEL LTD
+2	B1	JP	
+PDF
+2016-162643 A
+	
+거절이유 통지,선행기술조사,특허결정	도전 부재(導電部材)	2016.09.05	KOBE STEEL LTD
+3	B1	JP	
+PDF
+6400916 B2
+PDF
+2015-147237 A
+	
+선행기술조사,특허결정	접합체 제조 방법(接合体の製造方法)	2018.09.14	KOBE STEEL LTD
+4	B1	JP	
+PDF
+5780976 B2
+PDF
+2013-163196 A
+	
+선행기술조사,특허결정	우수한 인물 용접용 플럭스 코어드 와이어 및 우수한 인물 용접 방법(異材溶接用フラックス入りワイヤ及び異材溶接方法)	2015.07.24	KOBE STEEL LTD
+5	B1	JP	
+PDF
+2013-154399 A
+	
+거절이유 통지,선행기술조사,특허결정	이종 금속 접합체(異種金属接合体)	2013.08.15	PROTERIAL LTD | SAITAMA UNIV
+6	B1	JP	
+PDF
+2012-061474 A
+	
+선행기술조사,특허결정	이종 금속의 접합 방법 및 이종 금속으로 된 접합물(異種金属の接合方法および異種金属からなる接合物)	2012.03.29	PROTERIAL LTD | SAITAMA UNIV
+7	B1	JP	
+PDF
+5207156 B2
+PDF
+2011-240409 A
+	
+거절이유 통지,선행기술조사,특허결정	이종 재료의 접합 장치(異種材料の接合装置)	2013.03.01	NISSAN MOTOR CO LTD
+8	B1	JP	
+PDF
+2011-005499 A
+	
+선행기술조사,특허결정	알루미늄 부재와 동 부재와의 맞대기 레이저 용접 방법(アルミニウム部材と銅部材との突き合わせレーザ溶接方法)	2011.01.13	KOBE STEEL LTD
+9	B1	JP	
+PDF
+2008-264820 A
+	
+거절이유 통지,선행기술조사,특허결정	이종 금속의 접합 구조 및 접합 방법(異種金属の接合構造及び接合方法)	2008.11.06	NISSAN MOTOR CO LTD
+10	B1	JP	
+PDF
+2006-224134 A
+	
+거절이유 통지,특허결정	고에너지 빔에 의한 이종 금속의 접합 구조, 접합 방법 및 접합 장치(高エネルギビームによる異種金属の接合構造、接合方法及び接合装置)	2006.08.31	NISSAN MOTOR CO LTD
+11	B1	JP	
+PDF
+2004-174529 A
+	
+거절이유 통지,특허결정	레이저 용접 장치(レーザ溶接装置)	2004.06.24	SUZUKI MOTOR CORP
+심사관 인용(Backward by Examiner)
+ 
+심사관 피 인용(Forward by Examiner)
+1/1
+이전
+다음
+문헌 내 인용
+전체 1 건
+1/1
+이전
+다음
+No	원문	문헌번호	일자	발명의 명칭	출원인
+1	
+PDF
+	JP 2017-094382 A	2017.06.01	레이저 용접 조인트(レーザ溶接継手)	FUJI ELECTRIC CO LTD
+기타 57개국
+Tel : 02-726-1100 / 1105
+help@wips.co.kr
+카톡상담 : @윕스
+Copyright ⓒ 2026 WIPS Co.,Ltd. All rights reserved.

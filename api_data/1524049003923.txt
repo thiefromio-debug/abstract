@@ -1,0 +1,530 @@
+발명의 설명
+행정사항
+특허평가
+심판
+화합물
+표준특허
+상태정보
+등록
+현재진행상태보기
+특허번호
+3175947 B1 (2024.12.04 Bulletin 2024/49) (See Also : 3175947 A1)
+문헌종류 코드보기
+발행일
+2024.12.04
+공개일
+2017.06.07 Bulletin 2017/23
+출원번호
+2016-194283 (2016.10.18) 
+출원인
+Hobart Brothers Company (US) 400 Trade Square EastTroy, Ohio 45373
+출원인 대표명화
+HOBART BROTHERS CO
+출원히스토리
+ 
+2015.12.04
+최우선출원(US-Priority)
+ 
+2016.10.18
+출원
+ 
+2017.06.07
+공개
+ 
+2024.12.04
+등록
+ 
+2036.10.19
+소멸
+요약
+
+↓EP-A1 문헌의 요약
+
+
+용접 시스템 (10)은 펄스 전기 양극 직류 (DCEP)를 제공하도록 구성된 용접 전원 (30)을 포함한다. 적어도 90%아르곤 (Ar)인 차폐 가스 흐름을 제공하도록 구성된 가스 공급 시스템 (16) 튜브형 용접 와이어를 제공하도록 구성된 용접 와이어 공급기 (14). 관형 용접 와이어인 DCEP 상기 차폐 가스 흐름은 결합되어 아연 코팅된 공작물 (22)상에 용접 증착물을 형성한다. 여기에서 원통형 용접 와이어의 대략 10 wt%미만이 아연 코팅된 가공물 (22)상에 용접 증착물을 형성하면서 스패터로 변환된다.
+
+↓EP-A1 문헌의 요약
+
+
+A welding system (10) includes a welding power source (30) configured to provide pulsed electropositive direct current (DCEP), a gas supply system (16) configured to provide a shielding gas flow that is at least 90% argon (Ar), a welding wire feeder (14) configured to provide tubular welding wire. The DCEP, the tubular welding wire, and the shielding gas flow are combined to form a weld deposit on a zinc-coated workpiece (22), wherein less than approximately 10 wt% of the tubular welding wire is converted to spatter while forming the weld deposit on the zinc-coated workpiece (22).
+
+영어
+발명의 설명 새창보기
+도면
+
+
+대표도면
+	
+
+도면 1,2
+	
+
+도면 3,4
+대표청구항
+
+청구항 0001항 (대표청구항)
+
+아연 코팅 워크피스 상에 용접 증착물을 형성하는 방법을 포함하는 방법: 관형 용접 와이어(50)를 아연 코팅 워크피스의 표면을 향해 공급; 관형 용접 와이어(50)근처의 아연 코팅 워크피스의 표면을 향해 차폐 가스의 흐름을 지시한다, 차폐 가스의 흐름은 적어도 90%아르곤(Ar)이다;
+그리고 상기 용접 와이어(50)는 금속 외피(52)의 내부에 배치된 입상 코어(54)를 포함하는 관형 용접 와이어(50)이며, 여기에서 상기 입상 코어(54)는 하나 이상의 I족 또는 II족 금속에 결합된 안정화제 성분을 포함한다; 흑연, 그래핀, 카본 블랙, 램프 블랙, 카본 나노 튜브, 다이아몬드, 또는 이들의 조합을 포함하는 탄소 성분; 그리고 I족 또는 II족 금속 산화물, 티타늄 산화물, 및 망간 산화물을 포함하는 응집체, 상기 특징 상기 용접 와이어(50)는 펄스형 양전위 직류 전류(DCEP)로 통전되며, 여기서 상기 용접 와이어(50)는 펄스형 양전위 직류 전류(DCEP)로 통전된다. 안정화제 성분은 하나 이상의 I족 또는 II족 금속에 결합된 하나 이상의 유기 분자 또는 유기 중합체를 포함하는 유기 성분이다; 상기 방법은 추가적으로 포함한다:
+상기 용접 용착물 근처에 차폐 가스의 흐름을 제공하면서 상기 관형 용접 와이어 (50)를 사용하여 상기 아연 코팅 워크피스 상에 상기 용접 용착물을 형성하는 동시에 상기 아연 코팅 워크피스 상에 상기 용접 용착물을 형성하는 단계, 여기에서 상기 관형 용접 와이어 (50)의 10 wt%미만이 상기 아연 코팅 워크피스 상에 상기 용접 용착물을 형성하는 동안 스패터로 변환된다.
+
+A method of forming a weld deposit on a zinc-coated workpiece, comprising:- feeding a tubular welding wire (50) toward a surface of a zinc-coated workpiece; - directing a flow of shielding gas toward the surface of the zinc-coated workpiece near the tubular welding wire (50), wherein the flow of shielding gas is at least 90% argon (Ar);
+and wherein the welding wire (50) is a tubular welding wire (50) comprising a granular core (54) disposed inside of a metallic sheath (52), wherein the granular core (54) comprises a stabilizer component bound to one or more Group I or Group II metals; a carbon component comprising graphite, graphene, carbon black, lamp black, carbon nanotubes, diamond, or a combination thereof; and an agglomerate comprising Group I or Group II metal oxides, titanium oxide, and manganese oxides, characterized in that the welding wire (50) is electrified with pulsed electropositive direct current (DCEP), and wherein the stabilizer component is an organic component comprising one or more organic molecules or organic polymers bound to the one or more Group I or Group II metals; the method further comprises:
+forming the weld deposit on the zinc-coated workpiece using the tubular welding wire (50) while providing the flow of shielding gas near the weld deposit, wherein less than 10 wt% of the tubular welding wire (50) is converted to spatter while forming the weld deposit on the zinc-coated workpiece.
+
+영어
+불어
+독어
+청구항 새창보기 (7)
+특허분류코드
+Original 코드보기
+특허분류	Current
+CPC	
+Ver.2018 : 
+B23K-2101/34
+Ver.2013 : 
+B23K-0009/164
+ ; 
+B23K-0009/09
+ ; 
+B23K-0009/173
+ ; 
+B23K-0035/0266
+ ; 
+B23K-0035/383
+ ; 
+B23K-0035/406
+ ; 
+B23K-0035/3053
+ ; 
+B23K-0035/3073
+ ; 
+B23K-0035/36
+ ; 
+B23K-0035/3601
+ ; 
+B23K-0035/3602
+ ; 
+B23K-0035/3608
+ ; 
+B23K-0035/3613
+
+IPC	
+Ver.2006 : 
+B23K-035/38
+B23K-009/09
+ ; 
+B23K-035/40
+ ; 
+B23K-101/34
+발명자
+BARHORST, Steven E.(US)155 Harlem Avenue Glenview, Illinois, 60025
+BUNDY, Joseph C.(US)155 Harlem Avenue Glenview, Illinois, 60025
+AMATA, Mario A.(US)155 Harlem Avenue Glenview, Illinois, 60025
+HEFLIN-KING, Tre' Dorell(US)155 Harlem Avenue Glenview, Illinois, 60025
+대리인
+Meissner Bolte Partnerschaft mbB
+심사청구여부
+Y (2016.10.18)
+최우선출원
+[Priority] US 14/959820 (2015.12.04)
+EPC지정국
+EPO회원국
+국가코드보기
+AL, AT, BE, BG, CH, CY, CZ, DE, DK, EE, ES, FI, FR, GB, GR, HR, HU, IE, IS, IT, LI, LT, LU, LV, MC, MK, MT, NL, NO, PL, PT, RO, RS, SE, SI, SK, SM, TR
+법적상태
+일자	종류	설명
+2026.01.14	PGFP	
+
+ANNUAL FEE PAID TO NATIONAL OFFICE [ANNOUNCED VIA POSTGRANT INFORMATION FROM NATIONAL OFFICE TO EPO]
+Ref Country Code : IT
+Payment Date : 20251021
+Year of Fee Payment : 10
+
+
+
+2025.11.12	26N	
+
+NO OPPOSITION FILED
+Effective Date : 20250905
+
+
+
+2025.10.10	PG25	
+
+LAPSED IN A CONTRACTING STATE [ANNOUNCED VIA POSTGRANT INFORMATION FROM NATIONAL OFFICE TO EPO]
+Ref Country Code : DK
+Further Information : LAPSE BECAUSE OF FAILURE TO SUBMIT A TRANSLATION OF THE DESCRIPTION OR TO PAY THE FEE WITHIN THE PRESCRIBED TIME-LIMIT
+Effective Date : 20241204
+
+
+
+2025.10.10	PLBE	
+
+NO OPPOSITION FILED WITHIN TIME LIMIT
+Further Information : ORIGINAL CODE : 0009261
+
+
+
+2025.10.10	STAA	
+
+INFORMATION ON THE STATUS OF AN EP PATENT APPLICATION OR GRANTED EP PATENT
+Further Information : STATUS : NO OPPOSITION FILED WITHIN TIME LIMIT
+
+
+
+2025.09.09	PG25	
+
+LAPSED IN A CONTRACTING STATE [ANNOUNCED VIA POSTGRANT INFORMATION FROM NATIONAL OFFICE TO EPO]
+Ref Country Code : SE
+Further Information : LAPSE BECAUSE OF FAILURE TO SUBMIT A TRANSLATION OF THE DESCRIPTION OR TO PAY THE FEE WITHIN THE PRESCRIBED TIME-LIMIT
+Effective Date : 20241204
+
+
+
+2025.09.05	REG	
+
+NO OPPOSITION FILED AGAINST GRANTED PATENT, OR EPO OPPOSITION PROCEEDINGS CONCLUDED WITHOUT DECISION
+Ref Country Code : DE
+Ref Legal Event Code : R097
+Ref Document Number : 602016090478
+Country of Ref Document : DE
+
+
+
+2025.07.28	PG25	
+
+LAPSED IN A CONTRACTING STATE [ANNOUNCED VIA POSTGRANT INFORMATION FROM NATIONAL OFFICE TO EPO]
+Ref Country Code : CZ
+Further Information : LAPSE BECAUSE OF FAILURE TO SUBMIT A TRANSLATION OF THE DESCRIPTION OR TO PAY THE FEE WITHIN THE PRESCRIBED TIME-LIMIT
+Effective Date : 20241204
+
+
+
+2025.07.25	PG25	
+
+LAPSED IN A CONTRACTING STATE [ANNOUNCED VIA POSTGRANT INFORMATION FROM NATIONAL OFFICE TO EPO]
+Ref Country Code : SK
+Further Information : LAPSE BECAUSE OF FAILURE TO SUBMIT A TRANSLATION OF THE DESCRIPTION OR TO PAY THE FEE WITHIN THE PRESCRIBED TIME-LIMIT
+Effective Date : 20241204
+
+
+
+2025.07.24	PG25	
+
+LAPSED IN A CONTRACTING STATE [ANNOUNCED VIA POSTGRANT INFORMATION FROM NATIONAL OFFICE TO EPO]
+Ref Country Code : AT
+Further Information : LAPSE BECAUSE OF FAILURE TO SUBMIT A TRANSLATION OF THE DESCRIPTION OR TO PAY THE FEE WITHIN THE PRESCRIBED TIME-LIMIT
+Effective Date : 20241204
+
+
+더보기
+
+Code Color : Green = Positive action,  Red = Negative action,  Black = Neutral action
+
+우선권번호
+전체 1 건
+1/1
+이전
+다음
+No	원문	출원번호	출원일자 	문헌번호	발명의 명칭
+1	
+PDF
+	US 14/959820	2015.12.04	10543556	Systems and methods for welding zinc-coated workpieces
+패밀리
+전체 41 건
+ WIPS Extended
+ EPO Simple
+ 중복제거
+1/3
+이전
+다음
+No	원문	문헌번호	일자	발명의 명칭	IPC(Main)	CPC(Main)
+1	
+PDF
+	EP 3175947 B1	2024.12.04	METHODS FOR WELDING ZINC-COATED WORKPIECES	
+B23K-035/38
+IPC아이콘
+	
+B23K-2101/34
+CPC아이콘
+
+2	
+PDF
+	US 12128506 B2	2024.10.29	Systems and methods for welding electrodes	
+B23K-035/00
+IPC아이콘
+	
+B23K-0035/00
+CPC아이콘
+
+3	
+PDF
+	CN 114012302 B	2024.07.26	Systems and methods for welding electrodes	
+B23K-035/02
+IPC아이콘
+	
+B23K-0035/3612
+CPC아이콘
+
+4	
+PDF
+	US 2023-0294216 A1	2023.09.21	SYSTEMS AND METHODS FOR WELDING ELECTRODES	
+B23K-035/00
+IPC아이콘
+	
+B23K-0035/00
+CPC아이콘
+
+5	
+PDF
+	US 11697171 B2	2023.07.11	Systems and methods for welding zinc-coated workpieces	
+B23K-009/173
+IPC아이콘
+	
+B23K-2101/34
+CPC아이콘
+
+6	
+PDF
+	US 11633814 B2	2023.04.25	Systems and methods for welding electrodes	
+B23K-035/00
+IPC아이콘
+	
+B23K-0035/00
+CPC아이콘
+
+7	
+PDF
+	MX 400982 B	2023.03.16	SYSTEMS AND METHODS FOR WELDING ELECTRODES.	
+B23K-035/36
+IPC아이콘
+	
+-
+
+8	
+PDF
+	EP 2945773 B1	2021.09.01	METHOD OF MANUFACTURING A TUBULAR METAL-CORED WELDING WIRE	
+B23K-035/36
+IPC아이콘
+	
+B23K-0035/3612
+CPC아이콘
+
+9	
+PDF
+	KR 10-2267993 B1	2021.06.16	관형 용접 와이어，용접 방법 및 용접 시스템(A TUBULAR WELDING WIRE，A WELDING METHOD AND A WELDING SYSTEM)	
+B23K-035/36
+IPC아이콘
+	
+B23K-0035/3601
+CPC아이콘
+
+10	
+PDF
+	EP 2890518 B1	2021.03.24	A TUBULAR WELDING WIRE, A WELDING METHOD AND A WELDING SYSTEM	
+B23K-035/32
+IPC아이콘
+	
+B23K-0035/3601
+CPC아이콘
+
+11	
+PDF
+	MX 380543 B	2021.03.10	SYSTEMS AND METHODS FOR WELDING ZINC-COATED WORKPIECES.	
+B23K-009/095
+IPC아이콘
+	
+-
+
+12	
+PDF
+	KR 10-2210291 B1	2021.01.26	관형의 용접 와이어(A TUBULAR WELDING WIRE)	
+B23K-035/36
+IPC아이콘
+	
+B23K-0035/3618
+CPC아이콘
+
+13	
+PDF
+	KR 10-2210287 B1	2021.01.26	튜브형 용접 와이어의 제조 방법(METHOD OF MANUFACTURING A TUBULAR WELDING WIRE)	
+B23K-035/40
+IPC아이콘
+	
+B23K-0035/406
+CPC아이콘
+
+14	
+PDF
+	CN 103920965 B	2020.11.06	Systems And Methods For Welding Electrodes	
+B23K-009/00
+IPC아이콘
+	
+B23K-0035/36
+CPC아이콘
+
+15	
+PDF
+	EP 2945774 B1	2020.08.05	WELDING ELECTRODE	
+B23K-035/36
+IPC아이콘
+	
+B23K-0035/36
+CPC아이콘
+
+16	
+PDF
+	MX 372039 B	2020.03.03	SYSTEMS AND METHODS FOR WELDING ELECTRODES.	
+B23K-035/36
+IPC아이콘
+	
+-
+
+17	
+PDF
+	MX 372040 B	2020.03.03	SYSTEMS AND METHODS FOR WELDING ELECTRODES.	
+B23K-035/36
+IPC아이콘
+	
+-
+
+18	
+PDF
+	MX 372041 B	2020.03.03	SYSTEMS AND METHODS FOR WELDING ELECTRODES.	
+B23K-035/36
+IPC아이콘
+	
+-
+
+19	
+PDF
+	US 10543556 B2	2020.01.28	Systems and methods for welding zinc-coated workpieces	
+B23K-009/173
+IPC아이콘
+	
+B23K-2101/34
+CPC아이콘
+
+20	
+PDF
+	CA 2943252 C	2019.01.29	SYSTEMS AND METHODS FOR WELDING ZINC-COATED WORKPIECES	
+B23K-009/173
+IPC아이콘
+	
+-
+Basic Patent
+기타 57개국
+패밀리 법적상태
+패밀리 법적상태 보기
+조사보고서의
+인용문헌
+전체 5 건
+1/1
+이전
+다음
+No	원문	카테고리	문헌번호	Relevant to claim	발명의 명칭	출원인
+1	
+PDF
+	XY	US 2009-0039065 A1	-	Welding wire and welding method(용접 와이어 및 용접 방법)	NATIONAL INSTITUTE FOR MATERIALS SCIENCE
+2	
+PDF
+	Y	US 2015-0096965 A1	-	ARC WELDING CONTROL METHOD(아크 용접 제어 방법)	Panasonic Intellectual Property Management Co., Ltd.
+3	
+PDF
+	YA	US 2014-0061175 A1	-	SYSTEMS AND METHODS FOR WELDING ELECTRODES(전극 용접 시스템과 방법)	HOBART BROTHERS COMPANY
+4	
+PDF
+	A	WO WO1989-007036 A1	-	IMPROVED CORED ELECTRODE WIRES(개선된 코어드 전극 와이어)	COMMONWEALTH SCIENTIFIC AND INDUSTRIAL RESEARCH ORGANIZATION | WELDING INDUSTRIES LIMITED | JAMES, Horace, Stuart, Bosisto | FRENCH, Ian, Edward
+5	
+PDF
+	X	US 2003-0136774 A1	-	Straight polarity metal cored wire(직선 극성 금속 충전 와이어)	HOBART BROTHERS COMPANY
+인용문헌의 카테고리 설명
+기타 57개국
+
+! 발행처의 조사보고서 텍스트 데이터는 원문 이미지 정보와 상이할 수 있습니다.
+
+인용/피 인용 특허문헌
+전체 9 건   인용(6) 피인용(3)
+ 심사관/ 심판 참증단계 보기
+1/1
+이전
+다음
+No	Depth	국가	문헌번호	
+인용참증단계
+	발명의 명칭	일자	출원인
+1	B1	WO	
+PDF
+WO1989-007036 A1
+	조사보고서	IMPROVED CORED ELECTRODE WIRES(개선된 코어드 전극 와이어)	1989.08.10	COMMONWEALTH SCIENTIFIC AND INDUSTRIAL RESEARCH ORGANIZATION | WELDING INDUSTRIES LIMITED | JAMES, Horace, Stuart, Bosisto | FRENCH, Ian, Edward
+2	B1	US	
+PDF
+10610945 B2
+PDF
+2015-0096965 A1
+	조사보고서	Arc welding control method(아크 용접 제어 방법)	2020.04.07	PANASONIC INTELLECTUAL PROPERTY MANAGEMENT CO., LTD.
+3	B1	US	
+PDF
+9199341 B2
+PDF
+2014-0061175 A1
+	조사보고서	Systems and methods for welding electrodes(전극 용접 시스템과 방법)	2015.12.01	HOBART BROTHERS COMPANY
+4	B1	US	
+PDF
+9999944 B2
+PDF
+2014-0061166 A1
+	조사보고서	Systems and methods for welding electrodes(전극 용접 시스템과 방법)	2018.06.19	HOBART BROTHERS COMPANY
+5	B1	US	
+PDF
+2009-0039065 A1
+	조사보고서	Welding wire and welding method(용접 와이어 및 용접 방법)	2009.02.12	NATIONAL INSTITUTE FOR MATERIALS SCIENCE
+6	B1	US	
+PDF
+6723954 B2
+PDF
+2003-0136774 A1
+	조사보고서	Straight polarity metal cored wire(직선 극성 금속 충전 와이어)	2004.04.20	HOBART BROTHERS COMPANY
+7	F1	US	
+PDF
+11772184 B2
+PDF
+2021-0323083 A1
+	출원서	Welding method for the manufacture of an assembly of at least 2 metallic substrates(적어도 2 개의 금속 기판 조립체의 제조를 위한 용접 방법)	2023.10.03	ARCELORMITTAL
+8	F1	US	
+PDF
+12208461 B2
+PDF
+2021-0308784 A1
+	출원서	Assembly of at least 2 metallic substrates(적어도 2개의 금속 기판의 조립체)	2025.01.28	ARCELORMITTAL
+9	F1	US	
+PDF
+11919102 B2
+PDF
+2021-0252627 A1
+	출원서	Assembly of at least 2 metallic substrates(적어도 2 개의 금속 기판의 어셈블리)	2024.03.05	ARCELORMITTAL
+심사관 인용(Backward by Examiner)
+ 
+심사관 피 인용(Forward by Examiner)
+1/1
+이전
+다음
+문헌 내 인용
+전체 2 건
+1/1
+이전
+다음
+No	원문	문헌번호	일자	발명의 명칭	출원인
+1	
+PDF
+	US 7087860 B2	2006.08.08	Straight polarity metal cored wires(직선 극성 금속 코어드 와이어)	Hobart Brothers Company
+2	
+PDF
+	US 6723954 B2	2004.04.20	Straight polarity metal cored wire(직선 극성 금속 충전 와이어)	HOBART BROTHERS COMPANY
+기타 57개국
+인용된 비 특허 문헌
+1. TAE-JIN KIM ET AL: "Characteristics of Pulse MIG Arc Welding with a Wire Melting Rate Change by Current Polarity Effect", JOURNAL OF ELECTRICAL ENGINEERING & TECHNOLOGY, vol. 2, no. 3, 1 September 2007 (2007-09-01), Seoul, pages 366 - 372, XP055359786, ISSN: 1975-0102, DOI: 10.5370/JEET.2007.2.3.366
+Tel : 02-726-1100 / 1105
+help@wips.co.kr
+카톡상담 : @윕스
+Copyright ⓒ 2026 WIPS Co.,Ltd. All rights reserved.

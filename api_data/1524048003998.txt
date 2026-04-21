@@ -1,0 +1,458 @@
+발명의 설명
+행정사항
+특허평가
+심판
+화합물
+표준특허
+상태정보
+등록
+현재진행상태보기
+특허번호
+3793764 B1 (2024.11.27 Bulletin 2024/48) (See Also : 3793764 A1)
+문헌종류 코드보기
+발행일
+2024.11.27
+공개일
+2021.03.24 Bulletin 2021/12
+출원번호
+2019-729949 (2019.05.14) 
+출원인
+AUTOTECH ENGINEERING S.L. (ES) Parque Empresarial Boroa P2-A448340 Amorebieta-Etxano
+출원인 대표명화
+AUTOTECH ENGINEERING A I E
+출원히스토리
+ 
+2018.05.15
+최우선출원(US-Priority)
+ 
+2019.05.14
+국제출원(US)
+출원
+ 
+2019.11.21
+국제공개(WO)
+ 
+2021.03.24
+공개
+ 
+2024.11.27
+등록
+ 
+2039.05.15
+소멸
+요약
+
+↓PCT-A1 문헌의 요약
+
+
+구성 요소의 레이저 절단을 위한 방법과 시스템이 여기에 개시된다. 실시예는 예를 들어 차량 도어의 일체형 측면 패널과 같은 차량 프레임 워크와 같은 비교적 큰 구성 요소를 레이저 절단하기에 특히 적합하다. 복수의 로봇들은 실질적으로 동시에 레이저 절단 작업을 수행할 수 있다.
+
+
+
+↓PCT-A1 문헌의 요약
+
+
+Methods and systems for laser cutting of components are disclosed herein. Examples are specifically suited for laser cutting relatively large components of e.g. a vehicle framework such as a unitary side panel of a vehicle door. Multiple robots may perform laser cutting operations substantially simultaneously.
+
+영어
+불어
+발명의 설명 새창보기
+도면
+개별도면 전체 4
+열기
+
+
+대표도면
+	
+
+도면 1
+	
+
+도면 2,3
+	
+
+도면 4a,4b
+대표청구항
+
+청구항 0001항 (대표청구항)
+
+길이와 폭이 75cm 이상인 차량의 대형 구조 부품을 제조하기 위한 방법, 상기 방법을 포함하는 방법: (1010) 복수의 블랭크 제공; 블랭크들((1030) )을 서로 접합하여 복합 블랭크를 형성한다; 부품을 형성하기 위해(1050) 복합 블랭크를 핫 스탬핑하는 것; 제 1 레이저 스테이션(200), 제 2 레이저 스테이션(400), 운송 시스템, 및 상기 제 1 레이저 스테이션(200), 상기 제 2 레이저 스테이션(400)및 상기 운송 시스템을 둘러싸기 위한 하우징을 포함하는 레이저 절단 시스템에서 상기 구성 요소를 절단하는 단계를 포함하며, 상기 방법은 상기 운송 시스템을 포함한다: 충전 영역으로부터 상기 제 1 레이저 스테이션 (200 )으로 상기 구성 요소 (10 )를 충전하는 단계, 상기 제 1 레이저 스테이션은 제 1 고정구 (250), 및 레이저 절단 헤드를 포함하는 제 1 복수의 다축 로봇(210,220,230,240)을 포함하며, 상기 제 1 복수의 다축 로봇은 상기 제 1 고정구의 대향 측면 상에 배열된다; 구성 요소가 제1 고정구(250)에 유지되는 동안 동시에 제1 복수의 다축 로봇((210, 220, 230, 240))의 레이저 절단 헤드로 구성 요소(10A)의 제1 복수의 영역을 절단한다; 상기 구성 요소(10)를 파지하기 위한 다축 로봇(310)상에 장착된 그리퍼를 사용하여 상기 제 1 레이저 스테이션(200)으로부터 상기 제 2 레이저 스테이션(400)으로 상기 구성 요소(10B)를 이송하는 것, 상기 제 2 레이저 스테이션(400)은 제 2 고정구(450)및 레이저 절단 헤드를 포함하는 제 2 복수의 다축 로봇((410, 420, 430, 440))을 포함한다, 상기 제 2 고정구의 대향 측면 상에 배열된 상기 제 2 복수의 다축 로봇; 구성 요소(10)가 제2 고정구(450)상에 위치되는 동안 제2 복수의 다축 로봇((410, 420, 430, 440))의 레이저 절단 헤드로 구성 요소(10C)의 제2 복수의 영역을 동시에 절단한다; 부품(10D)을 제2 레이저 스테이션(400)으로부터 방전 영역(600)으로 방전시킨다.
+
+A method for manufacturing a large structural component of a vehicle having a length and a width of 75 cm or more, the method comprising:providing (1010) a plurality of blanks; joining the blanks (1030) to each other to form a composite blank; hot stamping (1050) the composite blank to form the component; cutting the component in a laser cutting system comprising a first laser station (200), a second laser station (400), a transportation system, and a housing for enclosing the first laser station (200), the second laser station (400) and the transportation system, the method comprising:charging the component (10) from a charging area to the first laser station (200), the first laser station comprising a first fixture (250), and a first plurality of multi-axis robots (210,220,230,240) including a laser cutting head, the first plurality of multi-axis robots being arranged on opposite sides of the first fixture; cutting a first plurality of areas of the component (10A) with the laser cutting heads of the first plurality of multi-axis robots (210, 220, 230, 240) simultaneously while the component is held in the first fixture (250); transporting the component (10B) from the first laser station (200) to the second laser station (400) using a gripper mounted on a multi-axis robot (310) for gripping the component (10), the second laser station (400) comprising a second fixture (450) and a second plurality of multi-axis robots (410, 420, 430, 440) including a laser cutting head, the second plurality of multi-axis robots being arranged on opposite sides of the second fixture; cutting a second plurality of areas of the component (10C) with the laser cutting heads of the second plurality of multi-axis robots (410, 420, 430, 440) simultaneously while the component (10) is positioned on the second fixture (450); discharging the component (10D) from the second laser station (400) to a discharging area (600).
+
+영어
+불어
+독어
+청구항 새창보기 (11)
+특허분류코드
+Original 코드보기
+특허분류	Current
+CPC	
+Ver.2018 : 
+B23K-2101/18
+B23K-2101/185
+ ; 
+B23K-2103/04
+ ; 
+B23K-2101/006
+Ver.2013 : 
+B23K-0026/38
+ ; 
+B23K-0026/0093
+ ; 
+B23K-0026/0884
+ ; 
+B23K-0028/02
+ ; 
+B21D-0035/002
+ ; 
+B23K-0026/16
+ ; 
+B23K-0026/388
+ ; 
+B23K-0026/40
+ ; 
+B23K-0037/047
+
+IPC	
+Ver.2014 : 
+B23K-026/00
+B23K-026/08
+ ; 
+B23K-026/38
+ ; 
+B23K-028/02
+Ver.2006 : 
+B23K-101/18
+발명자
+TROJANOWSKI, James Joseph(US)2701 Troy Center Drive, Suite 200 Troy, MI 48084
+대리인
+Bardehle Pagenberg S.L.
+심사청구여부
+Y (2020.12.15)
+최우선출원
+[Priority] US 62/671781 (2018.05.15)
+국제출원
+출원번호	공개번호
+PCT-US2019-032277 (2019.05.14)	WO2019-222256 (2019.11.21)
+EPC지정국
+EPO회원국
+국가코드보기
+AL, AT, BE, BG, CH, CY, CZ, DE, DK, EE, ES, FI, FR, GB, GR, HR, HU, IE, IS, IT, LI, LT, LU, LV, MC, MK, MT, NL, NO, PL, PT, RO, RS, SE, SI, SK, SM, TR
+법적상태
+일자	종류	설명
+2026.04.09	PG25	
+
+LAPSED IN A CONTRACTING STATE [ANNOUNCED VIA POSTGRANT INFORMATION FROM NATIONAL OFFICE TO EPO]
+Ref Country Code : GB
+Further Information : LAPSE BECAUSE OF NON-PAYMENT OF DUE FEES
+Effective Date : 20250514
+
+
+
+2026.01.30	PG25	
+
+LAPSED IN A CONTRACTING STATE [ANNOUNCED VIA POSTGRANT INFORMATION FROM NATIONAL OFFICE TO EPO]
+Ref Country Code : MC
+Further Information : LAPSE BECAUSE OF FAILURE TO SUBMIT A TRANSLATION OF THE DESCRIPTION OR TO PAY THE FEE WITHIN THE PRESCRIBED TIME-LIMIT
+Effective Date : 20241127
+
+
+
+2026.01.29	REG	
+
+LAPSED BECAUSE OF NON-PAYMENT OF THE ANNUAL FEE
+Ref Country Code : BE
+Ref Legal Event Code : MM
+Effective Date : 20250531
+
+
+
+2026.01.28	GBPC	
+
+GB: EUROPEAN PATENT CEASED THROUGH NON-PAYMENT OF RENEWAL FEE
+Effective Date : 20250514
+
+
+
+2026.01.19	PG25	
+
+LAPSED IN A CONTRACTING STATE [ANNOUNCED VIA POSTGRANT INFORMATION FROM NATIONAL OFFICE TO EPO]
+Ref Country Code : CH
+Further Information : LAPSE BECAUSE OF NON-PAYMENT OF DUE FEES
+Effective Date : 20250531
+
+
+
+2026.01.15	PG25	
+
+LAPSED IN A CONTRACTING STATE [ANNOUNCED VIA POSTGRANT INFORMATION FROM NATIONAL OFFICE TO EPO]
+Ref Country Code : LU
+Further Information : LAPSE BECAUSE OF NON-PAYMENT OF DUE FEES
+Effective Date : 20250514
+
+
+
+2025.12.23	REG	
+
+IP RIGHT LAPSED
+Ref Country Code : CH
+Ref Legal Event Code : H13
+Further Information : ST27 STATUS EVENT CODE : U-0-0-H10-H13 (AS PROVIDED BY THE NATIONAL OFFICE)
+Effective Date : 20251223
+
+
+
+2025.11.05	26N	
+
+NO OPPOSITION FILED
+Effective Date : 20250828
+
+
+
+2025.10.08	REG	
+
+IP RIGHT REVIEW REQUESTED
+Ref Country Code : CH
+Ref Legal Event Code : L10
+Further Information : ST27 STATUS EVENT CODE : U-0-0-L10-L00 (AS PROVIDED BY THE NATIONAL OFFICE)
+Effective Date : 20251008
+
+
+
+2025.10.03	PLBE	
+
+NO OPPOSITION FILED WITHIN TIME LIMIT
+Further Information : ORIGINAL CODE : 0009261
+
+
+더보기
+
+Code Color : Green = Positive action,  Red = Negative action,  Black = Neutral action
+
+우선권번호
+전체 1 건
+1/1
+이전
+다음
+No	원문	출원번호	출원일자 	문헌번호	발명의 명칭
+해당 정보가 없습니다.
+
+* Provisional
+US 62/671781 (2018.05.15)
+
+패밀리
+전체 15 건
+ WIPS Extended
+ EPO Simple
+ 중복제거
+1/1
+이전
+다음
+No	원문	문헌번호	일자	발명의 명칭	IPC(Main)	CPC(Main)
+1	
+PDF
+	US 2025-0205828 A1	2025.06.26	LASER CUTTING SYSTEMS AND METHODS	
+B23K-028/02
+IPC아이콘
+	
+B23K-2101/006
+CPC아이콘
+
+2	
+PDF
+	US 2025-0205829 A1	2025.06.26	LASER CUTTING SYSTEMS AND METHODS	
+B23K-028/02
+IPC아이콘
+	
+B23K-2101/006
+CPC아이콘
+
+3	
+PDF
+	US 12275092 B2	2025.04.15	Laser cutting systems and methods	
+B23K-028/02
+IPC아이콘
+	
+B23K-2101/006
+CPC아이콘
+
+4	
+PDF
+	ES 3004559 T3	2025.03.12	METHOD FOR MANUFACTURING A LARGE STRUCTURAL COMPONENT OF A VEHICLE ; AND METHOD FOR MANUFACTURING A UNITARY SIDE PANEL FOR A DOOR FRAME OF A VEHICLE USING SUCH METHOD	
+B23K-026/00
+IPC아이콘
+	
+B23K-2101/18
+CPC아이콘
+
+5	
+PDF
+	KR 10-2745601 B1	2024.12.18	레이저 절단 시스템 및 방법	
+B23K-026/38
+IPC아이콘
+	
+B23K-2101/185
+CPC아이콘
+
+6	
+PDF
+	EP 3793764 B1	2024.11.27	METHOD FOR MANUFACTURING A LARGE STRUCTURAL COMPONENT OF A VEHICLE ; AND METHOD FOR MANUFACTURING A UNITARY SIDE PANEL FOR A DOOR FRAME OF A VEHICLE USING SUCH METHOD	
+B23K-026/00
+IPC아이콘
+	
+B23K-2101/18
+CPC아이콘
+
+7	
+PDF
+	JP 7496319 B2	2024.05.29	레이저 절단 시스템 및 방법	
+B23K-026/38
+IPC아이콘
+	
+B23K-2101/18
+CPC아이콘
+
+8	
+PDF
+	MX 412602 B	2024.04.26	LASER CUTTING SYSTEMS AND PROCEDURES	
+B23K-026/00
+IPC아이콘
+	
+-
+
+9	
+PDF
+	IN 510722	2024.02.16	LASER CUTTING SYSTEMS AND METHODS	
+B23K-026/38
+IPC아이콘
+	
+-
+
+10	
+PDF
+	RU 0002804235 C2	2023.09.26	SYSTEMS AND METHODS OF LASER CUTTING	
+B23K-026/38
+IPC아이콘
+	
+B23K-0026/38
+CPC아이콘
+
+11	
+PDF
+	BR 112020023114 B1	2023.09.12	METHOD FOR CUTTING A COMPONENT IN A LASER CUTTING SYSTEM, METHOD FOR MANUFACTURING A UNIT SIDE PANEL AND LASER CUTTING SYSTEM	
+B23K-026/00
+IPC아이콘
+	
+-
+
+12	
+PDF
+	CN 112654455 A	2021.04.13	Laser cutting systems and methods	
+B23K-026/38
+IPC아이콘
+	
+B23K-2101/18
+CPC아이콘
+
+13	
+PDF
+	WO WO2019-222256 A1	2019.11.21	LASER CUTTING SYSTEMS AND METHODS	
+B23K-026/00
+IPC아이콘
+	
+B23K-2101/18
+CPC아이콘
+
+14	
+PDF
+	CA 3099301 A1	2019.11.21	LASER CUTTING SYSTEMS AND METHODS	
+B23K-026/00
+IPC아이콘
+	
+-
+Basic Patent
+기타 57개국
+
+* Provisional
+US 62/671781 (2018.05.15)
+
+패밀리 법적상태
+패밀리 법적상태 보기
+조사보고서의
+인용문헌
+전체 6 건
+1/1
+이전
+다음
+No	원문	카테고리	문헌번호	Relevant to claim	발명의 명칭	출원인
+1	
+PDF
+	XAI	WO WO2015-073356 A1	-	SYSTEM AND METHOD FOR HIGH OUTPUT LASER TRIMMING(고출력 레이저 트리밍 시스템과 방법)	MAGNA INTERNATIONAL INC. | POTOCKI, John, Richard | ZAK, Alexander
+2	
+PDF
+	IA	CN 103600173 A	-	2 스테이션 고속 테이블 절단 방법 및 그 시스템(一种二工位快台切割的方法及其系统)	BAOSHAN IRON & STEEL Co.,Ltd. | SHANGHAI BAOSTEEL INTERNATIONAL ECONOMIC & TRADING Co.,Ltd.
+3	
+PDF
+	IA	CN 102105256 A	-	고속 절삭을 위한 점진적 레이저 절단 장치(用于高速切削的渐进激光切料装置)	American Automate
+4	
+PDF
+	IA	EP 3141332 A1	-	DEVICE AND METHOD FOR PROCESSING OF WORKPIECES USING A PLURALITY OF LASERS(복수의 레이저를 사용한 워크피스 처리 장치와 방법)	Wilco Wilken Lasertechnik GmbH
+5	
+PDF
+	A	WO WO2014-177034 A1	-	COMBINED SHEARING METHOD AND SYSTEM FOR STEEL PLATE(강판을 위한 복합 전단법 및 시스템)	BAOSHAN IRON & STEEL CO., LTD.
+6	
+PDF
+	A	US 5223692 A	-	Method and apparatus for laser trepanning(레이저 트레패닝 방법 및 장치)	General Electric Company
+인용문헌의 카테고리 설명
+기타 57개국
+
+! 발행처의 조사보고서 텍스트 데이터는 원문 이미지 정보와 상이할 수 있습니다.
+
+인용/피 인용 특허문헌
+전체 6 건   인용(6) 피인용(0)
+ 심사관/ 심판 참증단계 보기
+1/1
+이전
+다음
+No	Depth	국가	문헌번호	
+인용참증단계
+	발명의 명칭	일자	출원인
+1	B1	WO	
+PDF
+WO2015-073356 A1
+	조사보고서	SYSTEM AND METHOD FOR HIGH OUTPUT LASER TRIMMING(고출력 레이저 트리밍 시스템과 방법)	2015.05.21	MAGNA INTERNATIONAL INC. | POTOCKI, John, Richard | ZAK, Alexander
+2	B1	WO	
+PDF
+WO2014-177034 A1
+	조사보고서	COMBINED SHEARING METHOD AND SYSTEM FOR STEEL PLATE(강판을 위한 복합 전단법 및 시스템)	2014.11.06	BAOSHAN IRON & STEEL CO., LTD.
+3	B1	US	
+PDF
+5223692 A
+	조사보고서	Method and apparatus for laser trepanning(레이저 트레패닝 방법 및 장치)	1993.06.29	General Electric Company
+4	B1	EP	
+PDF
+3141332 A1
+	조사보고서	DEVICE AND METHOD FOR PROCESSING OF WORKPIECES USING A PLURALITY OF LASERS(복수의 레이저를 사용한 워크피스 처리 장치와 방법)	2017.03.15	Wilco Wilken Lasertechnik GmbH
+5	B1	CN	
+PDF
+103600173 B
+PDF
+103600173 A
+	조사보고서	2 스테이션 고속 테이블 절단 방법 및 그 시스템(一种二工位快台切割的方法及其系统)	2015.12.09	BAOSHAN IRON & STEEL Co.,Ltd. | SHANGHAI BAOSTEEL INTERNATIONAL ECONOMIC & TRADING Co.,Ltd.
+6	B1	CN	
+PDF
+102105256 B
+PDF
+102105256 A
+	조사보고서	고속 절삭을 위한 점진적 레이저 절단 장치(用于高速切削的渐进激光切料装置)	2014.12.31	Lasercoil Technologies, LLC
+심사관 인용(Backward by Examiner)
+ 
+심사관 피 인용(Forward by Examiner)
+1/1
+이전
+다음
+Tel : 02-726-1100 / 1105
+help@wips.co.kr
+카톡상담 : @윕스
+Copyright ⓒ 2026 WIPS Co.,Ltd. All rights reserved.

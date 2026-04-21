@@ -1,0 +1,485 @@
+발명의 설명
+특허평가
+심판
+화합물
+표준특허
+상태정보
+상태정보 출력 안내툴팁 아이콘
+등록 (특허)
+현재진행상태보기
+특허번호
+7640264 B2 (2025.02.25) (See Also : WO2019-189927 A1)
+문헌종류 코드보기
+발행일
+2025.03.05
+출원번호
+2020-509388 (2019.04.01) 
+출원인
+FURUKAWA ELECTRIC CO LTD (古河電気工業株式会社) (JP) 東京都千代田区大手町二丁目6番4号
+출원인 대표명화
+FURUKAWA ELECTRIC CO LTD
+출원인식별기호
+000005290
+현재권리자
+FURUKAWA ELECTRIC CO LTD (古河電気工業株式会社)  東京都千代田区
+현재권리자 대표명화
+FURUKAWA ELECTRIC CO LTD
+출원히스토리
+ 
+2018.03.30
+최우선출원(JP-Priority)
+ 
+2019.04.01
+국제출원(JP)
+출원
+ 
+2019.10.03
+공개
+국제공개(WO)
+ 
+2025.02.25
+등록
+ 
+2039.04.02
+소멸
+요약
+↓JP-A1 문헌의 요약
+【요약】
+
+용접 방법은 모재의 표면에 도금층이 형성된 도금 판재를 중첩해 가공 대상을 구성하고. 상기 가공 대상을 레이저광이 조사되는 영역에 배치하고 상기 가공 대상의 표면에 대해 상기 표면상의 소정 영역 내에서 복수의 빔의 서로의 중심이 겹쳐지지 않도록 위치를 분산시켜 상기 복수의 빔을 조사하고 상기 조사를 하면서 상기 복수의 빔과 상기 가공 대상을 상대적으로 이동시키고 상기 복수의 빔을 상기 가공 대상상에서 스윕하면서, 조사된 부분의 상기 가공 대상을 용융해 용접을 하고, 상기 복수의 빔의 각각의 조사에 의해 상기 가공 대상으로 형성되는 용융지가 서로 겹쳐지도록 상기 복수의 빔을 조사하는 거리로 설정한다.
+
+↓JP-A1 문헌의 요약
+[ABSTRACT]
+
+A welding process piles up the plating board material in which the plating layer was formed on the surface of the base material, constitutes the candidate for processing, and arranges it to the field to which a laser beam is irradiated with the above-mentioned candidate for processing, and it receives the surface for [ above-mentioned ] processing, A position is distributed so that the mutual center of a plurality of beams may not overlap in a field predetermined [ on the above-mentioned surface ], Moving relatively for [ said plurality of / a beam and for / above-mentioned / processing ], and sweeping said plurality of beams in the top for [ above-mentioned ] processing irradiating with said plurality of beams and performing the above-mentioned irradiation. It welds by carrying out the melting of the above-mentioned candidate for processing of the portion with which it was irradiated, and sets to the distance which irradiates with said plurality of beams so that the molten pool formed in the above-mentioned candidate for processing by each irradiation of said plurality of beams may overlap mutually.
+
+↓JP-A1 문헌의 요약
+【要約】
+
+溶接方法は、母材の表面にめっき層が形成されためっき板材を重ね合わせて加工対象を構成し、前記加工対象を、レーザ光が照射される領域に配置し、前記加工対象の表面に対して、前記表面上の所定の領域内で複数のビームの互いの中心が重ならないように位置を分散させて、前記複数のビームを照射し、前記照射を行いながら前記複数のビームと前記加工対象とを相対的に移動させ、前記複数のビームを前記加工対象上で掃引しつつ、照射された部分の前記加工対象を溶融して溶接を行い、前記複数のビームのそれぞれの照射によって、前記加工対象に形成される溶融池が互いに重なるように前記複数のビームを照射する距離に設定する。
+
+발명의 설명 새창보기
+도면
+개별도면 전체 30
+열기
+
+
+대표도면
+	
+
+도면 1
+	
+
+도면 2
+	
+
+도면 3
+대표청구항
+
+청구항 1항 (대표청구항)
+
+[Claim1]
+The plating board material in which the plating layer was formed on the surface of the base material is piled up, and the candidate for processing is constituted,
+
+The above-mentioned candidate for processing is arranged to the field to which a laser beam is irradiated,
+
+A position is distributed so that the mutual center of a plurality of beams which constitute the above-mentioned laser beam in a field predetermined on the above-mentioned surface may not overlap to the surface for above-mentioned processing, and it irradiates with said plurality of beams,
+
+It welds by carrying out the melting of the above-mentioned candidate for processing of the portion with which it was irradiated, moving relatively for said plurality of / a beam and for / above-mentioned / processing ], and sweeping said plurality of beams in the top for above-mentioned processing performing the above-mentioned irradiation,
+
+The distance which irradiates with said plurality of beams is set up so that the molten pool formed in the above-mentioned candidate for processing by each irradiation of said plurality of beams may overlap mutually,
+
+In the direction in which two beams which a part all adjoins intersect perpendicularly in the sweep direction of said plurality of beams, a part should overlap mutually among said plurality of beams. It is,
+
+Each diameter of a beam of said plurality of beams is below 600μm.
+
+Welding process.
+
+【청구항1】
+모재의 표면에 도금층이 형성된 도금 판재를 중첩해 가공 대상체를 구성하고.
+
+상기 가공 대상체를 레이저광이 조사되는 영역에 배치하고
+
+상기 가공 대상체의 표면에 대해, 상기 표면상의 소정 영역 내에서, 상기 레이저광을 구성하는 복수의 빔의 서로의 중심이 겹쳐지지 않도록 위치를 분산시켜 상기 복수의 빔을 조사하고
+
+상기 조사를 수행하면서 상기 복수의 빔과 상기 가공 대상체를 상대적으로 이동시키고 상기 복수의 빔을 상기 가공 대상체상에서 스윕하면서, 조사된 부분의 상기 가공 대상체를 용융해 용접을 하고,
+
+상기 복수의 빔의 각각의 조사에 의해 상기 가공 대상체로 형성되는 용융지가 서로 겹쳐지도록, 상기 복수의 빔을 조사하는 거리를 설정하고
+
+상기 복수의 빔 중 , 전부 또는 일부의 인접한 2개의 빔은 상기 복수의 빔의 스윕 방향으로 직교하는 방향으로 일부가 서로 겹쳐져 내려
+
+상기 복수의 빔의 각각의 빔 지름이 600μm이하이다
+
+용접 방법.
+
+【請求項1】
+母材の表面にめっき層が形成されためっき板材を重ね合わせて加工対象を構成し、
+前記加工対象を、レーザ光が照射される領域に配置し、
+前記加工対象の表面に対して、前記表面上の所定の領域内で、前記レーザ光を構成する複数のビームの互いの中心が重ならないように位置を分散させて、前記複数のビームを照射し、
+前記照射を行いながら前記複数のビームと前記加工対象とを相対的に移動させ、前記複数のビームを前記加工対象上で掃引しつつ、照射された部分の前記加工対象を溶融して溶接を行い、
+前記複数のビームのそれぞれの照射によって前記加工対象に形成される溶融池が互いに重なるように、前記複数のビームを照射する距離を設定し、
+前記複数のビームのうち、全部又は一部の隣接する2つのビームは、前記複数のビームの掃引方向に直交する方向において、一部が互いに重なっており、
+前記複数のビームのそれぞれのビーム径が600μm以下である
+溶接方法。
+
+청구항 새창보기 (11)
+특허분류코드
+Original 코드보기
+특허분류	Current
+CPC	
+Ver.2018 : 
+B23K-2103/04
+B23K-2101/34
+Ver.2015 : 
+B23K-0026/244
+ ; 
+B23K-0026/21
+ ; 
+B23K-0026/082
+Ver.2013 : 
+B23K-0026/322
+ ; 
+B23K-0026/26
+ ; 
+B23K-0026/0608
+ ; 
+B23K-0026/0676
+ ; 
+B23K-0026/0652
+ ; 
+B23K-0026/064
+
+IPC	
+Ver.2014 : 
+B23K-026/21
+B23K-026/064
+ ; 
+B23K-026/322
+Ver.2006 : 
+B23K-026/067
+
+FI	
+B23K-026/064 Z
+ ; 
+B23K-026/067
+ ; 
+B23K-026/21 G
+ ; 
+B23K-026/322
+
+F-term	
+4E168 : 
+BA02  
+BA73  
+BA83  
+BA88  
+CB04  
+DA02  
+DA13  
+DA24  
+DA26  
+DA28  
+DA29  
+DA32  
+DA38  
+EA11  
+EA15  
+EA17  
+테마코드
+4E168
+조사분야
+IPC : B23K-026/00 - 026/70
+발명자
+西井 諒介 東京都千代田区丸の内二丁目2番3号 古河電気工業株式会社内
+茅原 崇 東京都千代田区丸の内二丁目2番3号 古河電気工業株式会社内
+酒井 俊明 東京都千代田区丸の内二丁目2番3号 古河電気工業株式会社内
+安岡 知道 東京都千代田区丸の内二丁目2番3号 古河電気工業株式会社内
+繁松 孝 東京都千代田区丸の内二丁目2番3号 古河電気工業株式会社内
+대리인
+弁理士法人酒井国際特許事務所
+심사청구여부
+Y  (2021.12.17)
+최우선출원
+[Priority] JP 2018-069276 (2018.03.30)
+국제출원
+출원번호	공개번호
+PCT-JP2019-014452 (2019.04.01)	WO2019-189927 (2019.10.03)
+기타인명
+刈間 宏信
+鈴木 貴雄
+大山 健
+법적상태
+일자	종류	설명
+2025.03.13	R150	
+
+CERTIFICATE OF PATENT OR REGISTRATION OF UTILITY MODEL
+Ref Document Number : 7640264
+Country of Ref Document : JP
+Further Information : JAPANESE INTERMEDIATE CODE : R150
+
+
+
+2025.02.25	A61	
+
+FIRST PAYMENT OF ANNUAL FEES (DURING GRANT PROCEDURE)
+Further Information : JAPANESE INTERMEDIATE CODE : A61
+Effective Date : 20250220
+
+
+
+2024.10.23	A521	
+
+REQUEST FOR WRITTEN AMENDMENT FILED
+Further Information : JAPANESE INTERMEDIATE CODE : A523
+Effective Date : 20241023
+
+
+
+2023.10.30	A912	
+
+RE-EXAMINATION (ZENCHI) COMPLETED AND CASE TRANSFERRED TO APPEAL BOARD
+Further Information : JAPANESE INTERMEDIATE CODE : A912
+Effective Date : 20231027
+
+
+
+2023.09.28	A911	
+
+TRANSFER TO EXAMINER FOR RE-EXAMINATION BEFORE APPEAL (ZENCHI)
+Further Information : JAPANESE INTERMEDIATE CODE : A911
+Effective Date : 20230927
+
+
+
+2023.09.19	A521	
+
+REQUEST FOR WRITTEN AMENDMENT FILED
+Further Information : JAPANESE INTERMEDIATE CODE : A523
+Effective Date : 20230919
+
+
+
+2023.06.20	A02	
+
+DECISION OF REFUSAL
+Further Information : JAPANESE INTERMEDIATE CODE : A02
+Effective Date : 20230620
+
+
+
+2023.06.07	A521	
+
+REQUEST FOR WRITTEN AMENDMENT FILED
+Further Information : JAPANESE INTERMEDIATE CODE : A523
+Effective Date : 20230607
+
+
+
+2023.04.04	A601	
+
+WRITTEN REQUEST FOR EXTENSION OF TIME
+Further Information : JAPANESE INTERMEDIATE CODE : A601
+Effective Date : 20230404
+
+
+
+2023.02.07	A131	
+
+NOTIFICATION OF REASONS FOR REFUSAL
+Further Information : JAPANESE INTERMEDIATE CODE : A131
+Effective Date : 20230207
+
+
+더보기
+
+Code Color : Green = Positive action,  Red = Negative action,  Black = Neutral action
+
+우선권번호
+전체 1 건
+1/1
+이전
+다음
+No	원문	출원번호	출원일자 	문헌번호	발명의 명칭
+해당 정보가 없습니다.
+
+* 미포함 문헌 1건 (절차상 미공개 문헌, 과거분 문헌, WIPS 보유 데이터 범위에 포함되지 않는 문헌)
+JP 2018-069276 (2018.03.30)
+
+패밀리
+전체 9 건
+ WIPS Extended
+ EPO Simple
+ 중복제거
+1/1
+이전
+다음
+No	원문	문헌번호	일자	발명의 명칭	IPC(Main)	CPC(Main)
+1	
+PDF
+	US 12544857 B2	2026.02.10	Welding method and welding apparatus	
+B23K-026/24
+IPC아이콘
+	
+B23K-2101/34
+CPC아이콘
+
+2	
+PDF
+	HU E072679 T2	2025.12.28	WELDING METHOD AND WELDING APPARATUS	
+B23K-026/06
+IPC아이콘
+	
+B23K-2103/04
+CPC아이콘
+
+3	
+PDF
+	EP 3778098 B1	2025.06.18	WELDING METHOD AND WELDING APPARATUS	
+B23K-026/06
+IPC아이콘
+	
+B23K-2103/04
+CPC아이콘
+
+4	
+PDF
+	JP 7640264 B2	2025.02.25	용접 방법 및 용접 장치	
+B23K-026/21
+IPC아이콘
+	
+B23K-2103/04
+CPC아이콘
+
+5	
+PDF
+	TH 2001005625 A	2022.09.05	WELDING METHOD AND WELDING DEVICE	
+B23K-026/322
+IPC아이콘
+	
+-
+
+6	
+PDF
+	CN 111936262 A	2020.11.13	WELDING METHOD AND WELDING DEVICE	
+B23K-026/21
+IPC아이콘
+	
+B23K-2103/04
+CPC아이콘
+
+7	
+PDF
+	WO WO2019-189927 A1	2019.10.03	WELDING METHOD AND WELDING DEVICE	
+B23K-026/21
+IPC아이콘
+	
+B23K-2103/04
+CPC아이콘
+
+8	
+PDF
+	CA 3094699 A1	2019.10.03	WELDING METHOD AND WELDING APPARATUS	
+B23K-026/064
+IPC아이콘
+	
+-
+Basic Patent
+기타 57개국
+
+* 미포함 문헌 : 1건 (절차상 미공개 문헌, 과거분 문헌, WIPS 보유 데이터 범위에 포함되지 않는 문헌)
+JP 2018-069276 (2018.03.30)
+
+패밀리 법적상태
+패밀리 법적상태 보기
+인용/피 인용 특허문헌
+전체 12 건   인용(12) 피인용(0)
+ 심사관/ 심판 참증단계 보기
+1/1
+이전
+다음
+No	Depth	국가	문헌번호	
+인용참증단계
+	발명의 명칭	일자	출원인
+1	B1	WO	
+PDF
+WO2018-010132 A1
+	선행기술조사	MULTI-BEAM LASER SPOT WELDING OF COATED STEELS(코팅된 강철의 멀티 빔 레이저 스폿 용접)	2018.01.18	GM GLOBAL TECHNOLOGY OPERATIONS LLC | YANG, David
+2	B1	WO	
+PDF
+WO2000-066314 A1
+	
+거절결정,거절이유 통지	COATED MATERIAL WELDING WITH MULTIPLE ENERGY BEAMS(다중 에너지 빔을 가진 코팅 재료 용접)	2000.11.09	EDISON WELDING INSITUTE | XIE, Jian | DENNEY, Paul, Edward
+3	B1	US	
+PDF
+2017-0095886 A1
+	
+심사전치 보고	Process and System for Laser Welding Pre-Coated Sheet Metal Workpieces(사전 코팅된 시트 금속 워크피스를 레이저 용접하기 위한 공정 및 시스템)	2017.04.06	Magna International Inc.
+4	B1	US	
+PDF
+2013-0309000 A1
+	선행기술조사	HYBRID LASER ARC WELDING PROCESS AND APPARATUS(하이브리드 레이저 아크 용접 공정 및 장치)	2013.11.21	GENERAL ELECTRIC COMAPNY
+5	B1	JP	
+PDF
+5938622 B2
+PDF
+2013-139039 A
+	
+심사전치 보고	레이저 가공 장치 및 레이저 가공 방법(レーザ加工装置及びレーザ加工方法)	2016.05.27	MURATANI MACHINE INC | OSAKA UNIV | ISHIKAWA PREFECTURE
+6	B1	JP	
+PDF
+5866790 B2
+PDF
+2011-224655 A
+	
+심사전치 보고	레이저 용접 강관의 제조 방법(レーザ溶接鋼管の製造方法)	2016.01.15	JFE STEEL CORP
+7	B1	JP	
+PDF
+2008-126298 A
+	선행기술조사	레이저 용접 방법 및 그 장치(レーザ溶接方法およびその装置)	2008.06.05	MAZDA MOTOR CORP
+8	B1	JP	
+PDF
+4209326 B2
+PDF
+2005-504641 A
+	
+거절결정,거절이유 통지	2장의 피막된 금속 시트를 고에너지 밀도의 빔으로 중복 용접하기 위한 방법 및 장치(2枚の被膜された金属シートを高エネルギー密度のビームで重複溶接するための方法および装置)	2008.10.31	ARCELORMITTAL FRANCE
+9	B1	JP	
+PDF
+2002-219590 A
+	
+심사전치 보고	아연 도금 강판의 겹침 레이저 용접 방법(亜鉛めっき鋼板の重ねレーザー溶接方法)	2002.08.06	NIPPON STEEL CORP
+10	B1	JP	
+PDF
+2002-160083 A
+	선행기술조사	아연 도금 강판의 레이저 용접 방법(亜鉛めっき鋼板の重ねレーザー溶接方法)	2002.06.04	NIPPON STEEL CORP
+11	B1	JP	
+PDF
+3596326 B2
+PDF
+2000-233289 A
+	
+거절결정,거절이유 통지	알루미늄 합금의 용접 방법(アルミニウム合金の溶接方法)	2004.09.17	NISSAN MOTOR CO LTD
+12	B1	DE	
+PDF
+10-2017-201872 A1
+	선행기술조사	Method for the thermal joining of a component assembly and component assembly	2018.08.09	Bayerische Motoren Werke Aktiengesellschaft
+심사관 인용(Backward by Examiner)
+ 
+심사관 피 인용(Forward by Examiner)
+1/1
+이전
+다음
+문헌 내 인용
+전체 1 건
+1/1
+이전
+다음
+No	원문	문헌번호	일자	발명의 명칭	출원인
+1	
+PDF
+	JP 1995-155974 A	1995.06.20	도금 강판의 레이저 용접 방법(めっき鋼板のレーザ溶接方法)	HORIE METAL CO LTD
+기타 57개국
+Tel : 02-726-1100 / 1105
+help@wips.co.kr
+카톡상담 : @윕스
+Copyright ⓒ 2026 WIPS Co.,Ltd. All rights reserved.

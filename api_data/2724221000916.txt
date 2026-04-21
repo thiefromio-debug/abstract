@@ -1,0 +1,426 @@
+발명의 설명
+특허평가
+심판
+화합물
+표준특허
+상태정보
+상태정보 출력 안내툴팁 아이콘
+등록 (특허)
+현재진행상태보기
+특허번호
+7590313 B2 (2024.11.18) (See Also : 2023-084041 A )
+문헌종류 코드보기
+발행일
+2024.11.26
+공개번호
+2023-084041 (2023.06.16)
+출원번호
+2021-198137 (2021.12.06) 
+출원인
+KOBE STEEL LTD (株式会社神戸製鋼所) (JP) 兵庫県神戸市中央区脇浜海岸通二丁目2番4号
+출원인 대표명화
+KOBE STEEL LTD
+출원인식별기호
+000001199
+현재권리자
+KOBE STEEL LTD (株式会社神戸製鋼所)  兵庫県神戸市
+현재권리자 대표명화
+KOBE STEEL LTD
+출원히스토리
+ 
+2021.12.06
+출원
+최우선출원(JP)
+ 
+2023.06.16
+공개
+ 
+2024.11.18
+등록
+ 
+2041.12.07
+소멸
+요약
+↓JP-A 문헌의 요약
+【요약】
+
+【과제】알루미늄 합금재끼리, 구리 합금재끼리, 또는 이종 재료를 모재로 한 용접 조인트를 형성할 때 사용되며 고강도의 용접 금속을 얻을 수 있는 용접 방법을 제공한다.
+
+【해결 수단】제1 모재 11과 제2 모재 12를 용접에 의해 접합하는 용접 방법으로서, 알루미늄 합금으로 이루어진 제1 용접 와이어 1과 구리 합금으로 이루어진 제2 용접 와이어 2를, 예를 들면 아크, 레이저 9 및 전자 빔에서 선택된 적어도 1종의 열원에 의해 용융시킴으로써, 알루미늄 및 구리를 함유하는 용접 금속 10을 얻는다.
+
+【선택도】도 1
+
+↓JP-A 문헌의 요약
+[ABSTRACT]
+
+[Technical problem] It is used when forming the weld joint which used aluminium alloy material, copper alloy material, or different-species material as the base material, and the welding process which can obtain a high intensity weld metal is provided.
+
+[Means for Solution]The 1st welding wire 1 that is a welding process which joins the 1st base material 11 and 2nd base material 12 by welding, and consists of aluminium alloys, The weld metal 10 containing aluminum and copper is obtained by, for example, carrying out the melting of the 2nd welding wire 2 that consists of copper alloys by at least one sort of heat sources chosen from an arc, the laser 9, and an electron beam.
+
+[Chosen drawing] Drawing 1
+
+↓JP-A 문헌의 요약
+【要約】
+
+【課題】アルミニウム合金材同士、銅合金材同士、又は異種材料を母材とした溶接継手を形成する際に使用され、高強度な溶接金属を得ることができる溶接方法を提供する。
+【解決手段】第1の母材11と第2の母材12とを溶接により接合する溶接方法であって、アルミニウム合金からなる第1の溶接ワイヤ1と、銅合金からなる第2の溶接ワイヤ2と、を、例えば、アーク、レーザ9及び電子ビームから選択された少なくとも1種の熱源により溶融させることにより、アルミニウム及び銅を含有する溶接金属10を得る。
+【選択図】図1
+
+발명의 설명 새창보기
+도면
+개별도면 전체 20
+열기
+
+
+대표도면
+	
+
+도면 1
+	
+
+도면 2
+	
+
+도면 3
+대표청구항
+
+청구항 1항 (대표청구항)
+
+[Claim1]
+It is a welding process which joins the 1st base material and 2nd base material by welding,
+
+The melting of the 1st welding wire that consists of aluminium alloys, and the 2nd welding wire that consists of copper alloys is carried out by a heat source, and it has the process of obtaining the weld metal containing aluminum and copper,
+
+When W1 (g) and the amount of feeding per unit time of the 2nd above-mentioned welding wire are set to W2 (g) for the amount of feeding per unit time of the 1st above-mentioned welding wire by weight with weight,
+
+A welding process, wherein the weight ratios obtained by a following formula (1) are 8% or more and 40% or less.
+
+W2/(W1+W2) ... Formula (1)
+
+【청구항1】
+제1 모재와 제2 모재를 용접에 의해 접합하는 용접 방법으로서,
+
+알루미늄 합금으로 이루어진 제1 용접 와이어와 구리 합금으로 이루어진 제2 용접 와이어를 열원에 의해 용융시키고 알루미늄 및 구리를 함유하는 용접 금속을 얻는 공정을 가지며,
+
+상기 제1 용접 와이어의 단위 시간당의 송급량을 중량으로 W1 (g) , 상기 제2 용접 와이어의 단위 시간당의 송급량을 중량으로 W2 (g)로 할 경우에,
+
+하기 식 (1)에 의해 얻어진 중량비가8% 이상40% 이하임을 특징으로 하는 용접 방법.
+
+W2/ (W1+W2)···식 (1)
+
+【請求項1】
+第1の母材と第2の母材とを溶接により接合する溶接方法であって、
+アルミニウム合金からなる第1の溶接ワイヤと、銅合金からなる第2の溶接ワイヤと、を熱源により溶融させ、アルミニウム及び銅を含有する溶接金属を得る工程を有し、
+前記第1の溶接ワイヤの単位時間あたりの送給量を重量でW1(g)、前記第2の溶接ワイヤの単位時間あたりの送給量を重量でW2(g)とする場合に、
+下記式(1)により得られる重量比が8%以上40%以下であることを特徴とする、溶接方法。
+W2/(W1+W2)・・・式(1)
+
+청구항 새창보기 (17)
+특허분류코드
+Original 코드보기
+특허분류	Current
+IPC	
+Ver.2014 : 
+B23K-026/21
+B23K-026/323
+Ver.2006 : 
+B23K-009/23
+ ; 
+B23K-009/02
+ ; 
+B23K-009/12
+ ; 
+B23K-009/173
+ ; 
+B23K-015/00
+ ; 
+B23K-031/00
+ ; 
+B23K-035/02
+
+FI	
+B23K-009/23 H
+ ; 
+B23K-035/02 Z
+ ; 
+B23K-009/173 A
+ ; 
+B23K-009/23 E
+ ; 
+B23K-009/02 M
+ ; 
+B23K-031/00 B
+ ; 
+B23K-026/21 W
+ ; 
+B23K-009/12 310 C
+ ; 
+B23K-026/323
+ ; 
+B23K-009/23 F
+ ; 
+B23K-015/00 501 B
+
+F-term	
+4E001 : 
+AA03  
+BB08  
+CB01  
+CB02  
+DC02  
+DD02  
+DD03  
+4E066 : 
+CA11  
+CB09  
+CB10  
+CC03  
+4E081 : 
+BA08  
+BA16  
+BB04  
+BB07  
+BB15  
+CA08  
+CA11  
+CA14  
+DA13  
+DA31  
+DA39  
+DA40  
+4E168 : 
+BA02  
+BA03  
+BA04  
+BA38  
+BA64  
+BA87  
+BA89  
+DA23  
+DA24  
+DA26  
+DA28  
+DA36  
+FB03  
+테마코드
+4E001 ; 4E066 ; 4E081 ; 4E168
+조사분야
+IPC : B23K-009/23
+IPC : B23K-035/02
+IPC : B23K-009/173
+IPC : B23K-009/02
+IPC : B23K-031/00
+IPC : B23K-026/21
+IPC : B23K-009/12
+IPC : B23K-026/323
+IPC : B23K-015/00
+발명자
+鈴木 励一 兵庫県神戸市中央区脇浜海岸通二丁目2番4号 株式会社神戸製鋼所内
+戸田 要 兵庫県神戸市中央区脇浜海岸通二丁目2番4号 株式会社神戸製鋼所内
+대리인
+弁理士法人栄光事務所
+심사청구여부
+Y  (2023.09.01)
+심사관
+杉田 隼一
+최우선출원
+JP 2021-198137 (2021.12.06)
+법적상태
+일자	종류	설명
+2024.11.28	R150	
+
+CERTIFICATE OF PATENT OR REGISTRATION OF UTILITY MODEL
+Ref Document Number : 7590313
+Country of Ref Document : JP
+Further Information : JAPANESE INTERMEDIATE CODE : R150
+
+
+
+2024.11.18	A61	
+
+FIRST PAYMENT OF ANNUAL FEES (DURING GRANT PROCEDURE)
+Further Information : JAPANESE INTERMEDIATE CODE : A61
+Effective Date : 20241114
+
+
+
+2024.11.05	A01	
+
+WRITTEN DECISION TO GRANT A PATENT OR TO GRANT A REGISTRATION (UTILITY MODEL)
+Further Information : JAPANESE INTERMEDIATE CODE : A01
+Effective Date : 20241105
+
+
+
+2024.10.31	TRDD	
+
+DECISION OF GRANT OR REJECTION WRITTEN
+
+
+
+2024.10.07	A521	
+
+REQUEST FOR WRITTEN AMENDMENT FILED
+Further Information : JAPANESE INTERMEDIATE CODE : A523
+Effective Date : 20241007
+
+
+
+2024.10.01	A131	
+
+NOTIFICATION OF REASONS FOR REFUSAL
+Further Information : JAPANESE INTERMEDIATE CODE : A131
+Effective Date : 20241001
+
+
+
+2024.07.03	A521	
+
+REQUEST FOR WRITTEN AMENDMENT FILED
+Further Information : JAPANESE INTERMEDIATE CODE : A523
+Effective Date : 20240703
+
+
+
+2024.06.18	A131	
+
+NOTIFICATION OF REASONS FOR REFUSAL
+Further Information : JAPANESE INTERMEDIATE CODE : A131
+Effective Date : 20240618
+
+
+
+2024.06.12	A977	
+
+REPORT ON RETRIEVAL
+Further Information : JAPANESE INTERMEDIATE CODE : A971007
+Effective Date : 20240612
+
+
+
+2023.09.01	A621	
+
+WRITTEN REQUEST FOR APPLICATION EXAMINATION
+Further Information : JAPANESE INTERMEDIATE CODE : A621
+Effective Date : 20230901
+
+
+Code Color : Green = Positive action,  Red = Negative action,  Black = Neutral action
+
+패밀리
+전체 1 건
+ WIPS Extended
+ EPO Simple
+ 중복제거
+1/1
+이전
+다음
+No	원문	문헌번호	일자	발명의 명칭	IPC(Main)	CPC(Main)
+1	
+PDF
+	JP 7590313 B2 	2024.11.18	용접 방법, 용접 금속, 용접 조인트 제조 방법 및 용접 조인트	
+B23K-026/21
+IPC아이콘
+	
+-
+Basic Patent
+기타 57개국
+패밀리 법적상태
+패밀리 법적상태 보기
+인용/피 인용 특허문헌
+전체 8 건   인용(8) 피인용(0)
+ 심사관/ 심판 참증단계 보기
+1/1
+이전
+다음
+No	Depth	국가	문헌번호	
+인용참증단계
+	발명의 명칭	일자	출원인
+1	B1	JP	
+PDF
+2019-025520 A
+	
+거절이유 통지,선행기술조사,특허결정	이종 금속의 접합 방법 및 레이저 용접 장치(異種金属の接合方法およびレーザ溶接装置)	2019.02.21	UACJ CORP
+2	B1	JP	
+PDF
+6606960 B2
+PDF
+2017-070963 A
+	
+선행기술조사,특허결정	이재 접합 조인트 및 용접 접합 방법(異材接合継手及び溶接接合方法)	2019.11.01	TOYOTA BOSHOKU CORP
+3	B1	JP	
+PDF
+6184477 B2
+PDF
+2015-519746 A
+	
+선행기술조사,특허결정	알루미늄 피복된 구리의 본딩 와이어 및 그 제조 방법(アルミニウム被覆された銅のボンディングワイヤおよびその製造方法)	2017.08.04	HERAEUS DEUTSCHLAND GMBH & CO KG
+4	B1	JP	
+PDF
+3794400 B2
+PDF
+2005-042175 A
+	
+선행기술조사,특허결정	알루미늄 용접 구조물(アルミニウム溶接構造物)	2006.04.21	KOBE STEEL LTD
+5	B1	JP	
+PDF
+3893019 B2
+PDF
+2002-086272 A
+	
+선행기술조사,특허결정	용접 방법(溶接方法)	2006.12.15	KOBE STEEL LTD
+6	B1	JP	
+PDF
+1996-197281 A
+	
+선행기술조사,특허결정	Al 기 재료 표면에의 육성 용접용 Al Cu 복합 와이어(Al基材料表面への肉盛溶接用Al-Cu複合ワイヤ)	1996.08.06	NIPPON STEEL WELD PROD & ENG CO LTD
+7	B1	JP	
+PDF
+1994-238450 A
+	
+선행기술조사,특허결정	알루미늄 합금의 용접 방법(アルミニウム合金の溶接方法)	1994.08.30	KYODO OXYGEN CO LTD | SUMITOMO LIGHT METAL IND LTD
+8	B1	JP	
+PDF
+1994-015482 A
+	
+거절이유 통지,선행기술조사,특허결정	Al기 재료 표면에의 육성 용접용 용가재(Al基材料表面への肉盛溶接用溶加材)	1994.01.25	NIPPON STEEL WELD PROD & ENG CO LTD
+심사관 인용(Backward by Examiner)
+ 
+심사관 피 인용(Forward by Examiner)
+1/1
+이전
+다음
+문헌 내 인용
+전체 8 건
+1/1
+이전
+다음
+No	원문	문헌번호	일자	발명의 명칭	출원인
+1	
+PDF
+	JP 4864232 B2	2011.11.18	소모 2 전극 아크 용접 종료 방법 및 용접 종료 제어 방법 및 용접 로봇(消耗2電極アーク溶接終了方法及び溶接終了制御方法及び溶接ロボット)	DAIHEN CORP
+2	
+PDF
+	JP 4844564 B2	2011.10.21	아크용접 제어 방법(アーク溶接制御方法)	PANASONIC HOLDINGS CORP
+3	
+PDF
+	JP 4615779 B2	2010.10.29	탠덤 아크 자동 용접 시스템(タンデムアーク自動溶接システム)	KOBE STEEL LTD
+4	
+PDF
+	JP 4175781 B2	2008.08.29	다전극 펄스 아크 용접 제어 방법 및 용접 장치(多電極パルスアーク溶接制御方法及び溶接装置)	DAIHEN CORP
+5	
+PDF
+	JP 2009-006368 A	2009.01.15	가스 실과 아크용접 방법(ガスシールとアーク溶接方法)	KOMATSU ENGINEERING CORP
+6	
+PDF
+	JP 1996-039249 A	1996.02.13	핫 와이어 송급 용접 장치(ホットワイヤ-送給溶接装置)	AICHI SANGYO CO LTD | TOKYO GAS CO LTD | OSAKA GAS CO LTD | TOHO GAS CO LTD
+기타 57개국
+
+* 미포함 문헌 : 2건 (절차상 미공개 문헌, 과거분 문헌, WIPS 보유 데이터 범위에 포함되지 않는 문헌)
+JP 1989289573A
+JP 1990169183A
+
+Tel : 02-726-1100 / 1105
+help@wips.co.kr
+카톡상담 : @윕스
+Copyright ⓒ 2026 WIPS Co.,Ltd. All rights reserved.

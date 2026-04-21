@@ -1,0 +1,186 @@
+발명의 설명
+화합물
+표준특허
+공개번호
+WO2024-232118 A1 (2024.11.14)
+문헌종류 코드보기
+발행일
+2024.11.14
+출원번호
+PCT-JP2023-045574 (2023.12.19) 
+출원인
+HITACHI ZOSEN CORPORATION(JP)   (*-**, Nanko-kita *-chome, Suminoe-ku, Osaka-shi, Osaka, *******)
+출원인 대표명화
+Hitachi Zosen Corp.
+출원히스토리
+ 
+2023.05.10
+최우선출원(JP-Priority)
+ 
+2023.12.19
+출원
+ 
+2024.11.14
+공개
+요약
+
+
+
+필렛 용접 장치 (100)는 스크린 (1)과 판재 (2)를 필렛 용접한다. 스크린 (1)은 소정의 간격 (g)으로 병렬로 배치된 복수의 장척 부재 (10)를 갖는다. 판재 (2)는 스크린 (1)에 재치된다. 필렛 용접 장치 (100)는 용접 토치 (4)와 모서리부 검출기 (5)와 용접 토치 이동 기구 (6)와 용접 전원 (7)을 구비한다. 용접 토치 (4)는 필렛 용접되는 부분에 용접 시공으로서 입열한다. 모서리부 검출기 (5)는 판재 (2)에서 필렛 용접되는 부분 중 스크린 (1)에서 먼 쪽의 모서리부 (25)를 검출한다. 용접 토치 이동 기구 (6)는 검출된 모서리부 (25)에 용접 토치 (4)를 향한다. 용접 전원 (7)은 모서리부 (25)로 향한 용접 토치 (4)에 펄스의 용접 전류 (C)를 흐르게 한다.
+
+
+
+
+
+A fillet welding device (100) fillet-welds a screen (1) and a plate material (2). The screen (1) has a plurality of long members (10) arranged in parallel at a predetermined interval (g). The plate material (2) is placed on the screen (1). The fillet welding device (100) comprises: a welding torch (4); a corner part detector (5); a welding torch moving mechanism (6); and a welding power source (7). The welding torch (4) performs heat input as a welding procedure to portions that are to be fillet-welded. The corner part detector (5) detects a corner part (25) which is on the side far from the screen (1), among the portions that are to be fillet-welded in the plate material (2). The welding torch moving mechanism (6) directs the welding torch (4) toward the corner part (25) that is detected. The welding power source (7) applies a welding pulse current (C) to the welding torch (4) that is directed toward the corner part (25).
+
+영어
+불어
+일본어
+발명의 설명 새창보기
+도면
+개별도면 전체 5
+열기
+
+
+대표도면
+	
+
+도면 1
+	
+
+도면 2
+	
+
+도면 3
+대표청구항
+
+!PCT의 대표청구항은 원천데이터 상의 이유로 내용이 완전하지 않을 수 있습니다. 원문 또는 명세서를 확인해주시기 바랍니다.
+
+소정의 간격으로 병렬로 배치된 복수의 장척 부재를 갖는 스크린과 상기 스크린에 재치된 판재를 필렛 용접하는 필렛 용접 장치로서, 상기 필렛 용접되는 부분에 용접 시공으로서 입열하는 용접 토치와 상기 판재의 상기 필렛 용접되는 상기 부분 중 상기 스크린에서 먼 쪽의 모서리부를 검출하는 모서리부 검출기와 검출된 상기 모서리부에 상기 용접 토치를 향하는 용접 토치 이동 기구와 상기 모서리부로 향한 상기 용접 토치에 펄스의 용접 전류를 흐르게 하는 용접 전원을 구비하는 필렛 용접 장치.
+
+A fillet welding apparatus for welding fillet meat between a screen having a plurality of long members arranged in parallel at predetermined intervals and a plate material placed on the screen,
+A welding torch that inputs heat to the portion to be welded as a welding work;
+A corner detector for detecting a corner portion on the side far from the screen among the portion to be welded to the fillet in the plate material;
+A welding torch moving mechanism for directing the welding torch to the detected corner portion;
+A welding power source that passes a pulsed welding current through the welding torch directed at the corner, and
+Fillet welding equipment.
+
+영어
+일본어
+청구항 새창보기
+특허분류코드
+특허분류	
+Current CPC	
+Ver.2013 : 
+B23K-0009/02 
+B23K-0009/09 
+
+IPC	
+Ver.2006 : 
+B23K-009/02
+B23K-009/09
+발명자
+KATAYAMA Takeru(JP) c/o HITACHI ZOSEN CORPORATION, *-**, Nanko-kita *-chome, Suminoe-ku, Osaka-shi, Osaka, *******
+SHINODA Kaoru(JP) c/o HITACHI ZOSEN CORPORATION, *-**, Nanko-kita *-chome, Suminoe-ku, Osaka-shi, Osaka, *******
+KAMIKAWA Kenji(JP) c/o HITACHI ZOSEN CORPORATION, *-**, Nanko-kita *-chome, Suminoe-ku, Osaka-shi, Osaka, *******
+대리인
+MORIMOTO PATENT ATTORNEYS
+최우선출원
+[Priority] JP 2023-077535 (2023.05.10)
+지정국
+개별국(National Protection)
+국가코드보기
+AE, AG, AL, AM, AO, AT, AU, AZ, BA, BB, BG, BH, BN, BR, BW, BY, BZ, CA, CH, CL, CN, CO, CR, CU, CV, CZ, DE, DJ, DK, DM, DO, DZ, EC, EE, EG, ES, FI, GB, GD, GE, GH, GM, GT, HN, HR, HU, ID, IL, IN, IQ, IR, IS, IT, JM, JO, KE, KG, KH, KN, KP, KR, KW, KZ, LA, LC, LK, LR, LS, LU, LY, MA, MD, MG, MK, MN, MU, MW, MX, MY, MZ, NA, NG, NI, NO, NZ, OM, PA, PE, PG, PH, PL, PT, QA, RO, RS, RU, RW, SA, SC, SD, SE, SG, SK, SL, ST, SV, SY, TH, TJ, TM, TN, TR, TT, TZ, UA, UG, US, UZ, VC, VN, WS, ZA, ZM, ZW
+지역특허제도국(Regional Protection)
+[European] AL, AT, BE, BG, CH, CY, CZ, DE, DK, EE, ES, FI, FR, GB, GR, HR, HU, IE, IS, IT, LT, LU, LV, MC, ME, MK, MT, NL, NO, PL, PT, RO, RS, SE, SI, SK, SM, TR
+[OAPI] BF, BJ, CF, CG, CI, CM, GA, GN, GQ, GW, KM, ML, MR, NE, SN, TD, TG
+[ARIPO] BW, CV, GH, GM, KE, LR, LS, MW, MZ, NA, RW, SC, SD, SL, ST, SZ, TZ, UG, ZM, ZW
+[Eurasian] AM, AZ, BY, KG, KZ, RU, TJ, TM
+법적상태
+일자	종류	설명
+2025.12.11	NENP	
+
+NON-ENTRY INTO THE NATIONAL PHASE
+Ref Country Code : DE
+
+
+
+2024.12.25	121	
+
+EP: THE EPO HAS BEEN INFORMED BY WIPO THAT EP WAS DESIGNATED IN THIS APPLICATION
+Ref Document Number : 23936666
+Country of Ref Document : EP
+Kind Code of Ref Document : A1
+
+
+Code Color : Green = Positive action,  Red = Negative action,  Black = Neutral action
+
+우선권번호
+우선권 안내툴팁 아이콘
+전체 1 건 Priority (1) RA (0)
+1/1
+이전
+다음
+No	원문	유형	출원번호	출원일자 	문헌번호	발명의 명칭
+1	
+PDF
+	Priority	JP 2023-077535	2023.05.10	JP 2024-162209 A	필렛 용접 장치, 필렛 용접 방법 및 필렛 용접 구조물
+패밀리
+전체 2 건
+ WIPS Extended
+ EPO Simple
+ 중복제거
+1/1
+이전
+다음
+No	원문	문헌번호	일자	발명의 명칭	IPC(Main)	CPC(Main)
+1	
+PDF
+	JP 2024-162209 A 	2024.11.21	필렛 용접 장치, 필렛 용접 방법 및 필렛 용접 구조물	
+B23K-009/09
+IPC아이콘
+	
+B23K-0009/02
+CPC아이콘
+
+2	
+PDF
+	WO WO2024-232118 A1	2024.11.14	FILLET WELDING DEVICE, FILLET WELDING METHOD, AND FILLET WELDING STRUCTURE	
+B23K-009/02
+IPC아이콘
+	
+B23K-0009/02
+CPC아이콘
+Basic Patent
+기타 57개국
+패밀리 법적상태
+패밀리 법적상태 보기
+국제조사보고서의
+인용문헌
+전체 4 건
+1/1
+이전
+다음
+No	원문	카테고리	문헌번호	유형	발명의 명칭	출원인
+1	
+PDF
+	A	JP 1995-314139 A	ISR 국제조사보고서	전극 회전 식비소모 전극 아크 ( arc ) 용접에 있어서의 개선방 있어 방법 및 개선방 제어 장치(電極回転式非消耗電極アーク溶接における開先倣い方法及び開先倣い制御装置)	JFE ENGINEERING CORP
+2	
+PDF
+	A	JP 1995-290239 A	ISR 국제조사보고서	멤 브레인 자동 용접 장치(メンブレン自動溶接装置)	KAWASAKI HEAVY IND LTD
+3	
+PDF
+	A	JP 2007-205931 A	ISR 국제조사보고서	방사성 물질용 금속 통(放射性物質用金属キャスク)	HITACHI LTD
+인용문헌의 카테고리 설명
+기타 57개국
+
+! 발행처의 조사보고서 텍스트 데이터는 원문 이미지 정보와 상이할 수 있습니다.
+
+* 미포함 문헌 : 1건 (절차상 미공개 문헌, 과거분 문헌, WIPS 보유 데이터 범위에 포함되지 않는 문헌)
+(A) JP 1989-500099 A
+
+Tel : 02-726-1100 / 1105
+help@wips.co.kr
+카톡상담 : @윕스
+Copyright ⓒ 2026 WIPS Co.,Ltd. All rights reserved.

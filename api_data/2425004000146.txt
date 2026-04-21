@@ -1,0 +1,484 @@
+발명의 설명
+특허평가
+심판
+화합물
+표준특허
+상태정보
+상태정보 출력 안내툴팁 아이콘
+- (공개특허)
+현재진행상태보기
+공표번호
+2025-500235 A (2025.01.09)
+문헌종류 코드보기
+출원번호
+2024-535817 (2022.11.16) 
+출원인
+ARCELORMITTAL (アルセロールミタル) (LU) ルクセンブルク国、1160・ルクセンブルク、ブールバール・ダブランシュ、24-26
+출원인 대표명화
+ArcelorMittal SA
+출원인식별기호
+515214729
+출원히스토리
+ 
+2021.12.16
+최우선출원(WO-Priority)
+ 
+2022.11.16
+국제출원(IB)
+출원
+ 
+2023.03.23
+국제공개(WO)
+ 
+2024.08.13
+지정국번역문제출
+ 
+2025.01.09
+공개
+요약
+【요약】
+
+2개의 강판을 배트 용접하기 위한 방법으로서, 2개의 강판 (1, 2)을 제공하는 단계와, 3.5미크론을 초과하는 아연 기반의 금속 코팅 두께 Znth 및 탄소 함유율이 0.15%를 초과하는 혹은 규소 함유율이 0.5%를 초과하거나, 또는 그 양쪽 모두인 강판 기재 (12)를 갖는 모든면상에, 상기 금속 코팅의 적어도 일부를 제거하여 3.5 미크론 이하인 절제 후 아연 기반의 금속 코팅 두께 Znab를 가지며, 용접 후 절제 영역 (8)의 폭이 0.5 mm 이상이도록, 용접전의 절제 영역 (6)을 형성하는 단계와, 적어도 레이저원을 사용하여 상기 강판 (1, 2)을 배트 용접하는 단계를 포함하는 방법.
+
+[ABSTRACT]
+
+The step which is a method for carrying out bat welding of the two steel plates, and provides two steel plates (1, 2), Or metallurgical coating thickness Znth and carbon content over 3.5 microns of a zinc base exceed 0.15%, silicon content exceeds 0.5%, or Or on all the fields which have a steel plate substrate (12) which are the both, at least one copy of the above-mentioned metallurgical coating is removed, Have metallurgical coating thickness Znab of the zinc base after the ablation which is 3.5 microns or less, and so that the width of the ablation field (8) after welding may be 0.5 mm or more. A method containing the step which forms the ablation field (6) before welding, and the step which carries out bat welding of the above-mentioned steel plate (1, 2) at least using the source of laser.
+
+【要約】
+
+2つの鋼板をバット溶接するための方法であって、2つの鋼板(1、2)を提供するステップと、3.5ミクロンを超える亜鉛ベースの金属コーティング厚さZnth及び炭素含有率が0.15%を超える若しくはケイ素含有率が0.5%を超えるか、又はその両方である鋼板基材(12)を有するすべての面上に、前記金属コーティングの少なくとも一部を除去して、3.5ミクロン以下であるアブレーション後の亜鉛ベースの金属コーティング厚さZnabを有し、溶接後のアブレーション領域(8)の幅が0.5mm以上であるように、溶接前のアブレーション領域(6)を形成するステップと、少なくともレーザ源を使用して前記鋼板(1、2)をバット溶接するステップと、を含む、方法。
+
+발명의 설명 새창보기
+도면
+개별도면 전체 6
+열기
+
+
+대표도면
+	
+
+도면 1
+	
+
+도면 2A
+	
+
+도면 2B
+대표청구항
+
+청구항 1항 (대표청구항)
+
+[Claim1]
+Are a method for carrying out bat welding of the two steel plates (1, 2), and each steel plate (1, 2) is provided with a substrate (12), At least one above-mentioned steel plate (1, 2) has the metallurgical coating (5) of the zinc base of thickness Znth in one side at least, At least one above-mentioned steel plate has the chemical constitution of the above-mentioned substrate (12) denoted by the weight % which has the silicon content exceeding the carbon content exceeding 0.15%, or 0.5%, or its both,
+
+The above-mentioned method,
+
+- The step which provides the two above-mentioned steel plates (1, 2),
+
+-Metallurgical coating thickness Znth of the zinc base over 3.5 microns, And at least one copy of the above-mentioned metallurgical coating is removed on all the fields which have the silicon content exceeding the carbon content exceeding 0.15%, or 0.5%, or a steel plate substrate (12) which has the both, The step which has metallurgical coating thickness Znab of the zinc base after the ablation which is 3.5 microns or less, and forms the ablation field (6) before welding so that the width Wabfin of the ablation field (8) after welding may be 0.5 mm or more,
+
+- The step which carries out bat welding of the above-mentioned steel plate (1, 2) at least using the source of laser,
+
+を含む, a method.
+
+【청구항1】
+2개의 강판 (1, 2)을 배트 용접하기 위한 방법으로서, 각 강판 (1, 2)이 기재 (12)를 구비하고, 적어도 하나의 상기 강판 (1, 2)이 , 적어도 편측에 두께 Znth의 아연 기반의 금속 코팅 (5)을 가지며, 적어도 하나의 상기 강판이 , 0.15%를 초과하는 탄소 함유율 혹은 0.5%를 초과하는 규소 함유율, 또는 그 양쪽 모두를 가지는 중량%로 표시되는 상기 기재 (12)의 화학 조성을 가지며,
+
+상기 방법이 ,
+
+-상기 2개의 강판 (1, 2)을 제공하는 단계와,
+
+-3.5미크론을 초과하는 아연 기반의 금속 코팅 두께 Znth 및 0.15%를 초과하는 탄소 함유율 혹은 0.5%를 초과하는 규소 함유율, 또는 그 양쪽 모두를 갖는 강판 기재 (12)를 갖는 모든면상에, 상기 금속 코팅의 적어도 일부를 제거하여 3.5 미크론 이하인 절제 후 아연 기반의 금속 코팅 두께 Znab를 가지며, 용접 후 절제 영역 (8)의 폭 Wabfin가 , 0.5 mm 이상이도록, 용접전의 절제 영역 (6)을 형성하는 단계와,
+
+-적어도 레이저원을 사용하여 상기 강판 (1, 2)을 배트 용접하는 단계와,
+
+(을)를 포함하는 방법.
+
+【請求項1】
+2つの鋼板(1、2)をバット溶接するための方法であって、各鋼板(1、2)が基材(12)を備え、少なくとも1つの前記鋼板(1、2)が、少なくとも片側に厚さZnthの亜鉛ベースの金属コーティング(5)を有し、少なくとも1つの前記鋼板が、0.15%を超える炭素含有率若しくは0.5%を超えるケイ素含有率、又はその両方を有する、重量%で表される前記基材(12)の化学組成を有し、
+前記方法が、
+-前記2つの鋼板(1、2)を提供するステップと、
+-3.5ミクロンを超える亜鉛ベースの金属コーティング厚さZnth、及び0.15%を超える炭素含有率若しくは0.5%を超えるケイ素含有率、又はその両方を有する鋼板基材(12)を有するすべての面上に、前記金属コーティングの少なくとも一部を除去して、3.5ミクロン以下であるアブレーション後の亜鉛ベースの金属コーティング厚さZnabを有し、溶接後のアブレーション領域(8)の幅Wabfinが、0.5mm以上であるように、溶接前のアブレーション領域(6)を形成するステップと、
+-少なくともレーザ源を使用して前記鋼板(1、2)をバット溶接するステップと、
+を含む、方法。
+
+청구항 새창보기 (9)
+특허분류코드
+Original 코드보기
+특허분류	Current
+CPC	
+Ver.2024 : 
+B08B-0001/12
+Ver.2018 : 
+B23K-2101/185
+ ; 
+B23K-2101/34
+ ; 
+B23K-2103/04
+Ver.2015 : 
+B23K-0026/0622
+Ver.2013 : 
+B23K-0026/26
+ ; 
+B23K-0026/322
+ ; 
+C22C-0038/002
+ ; 
+C22C-0038/02
+ ; 
+C22C-0038/04
+ ; 
+C22C-0038/42
+ ; 
+C22C-0038/44
+ ; 
+C22C-0038/46
+ ; 
+C22C-0038/48
+ ; 
+C22C-0038/50
+ ; 
+C22C-0038/54
+ ; 
+C22C-0038/58
+
+IPC	
+Ver.2014 : 
+B23K-026/322
+B23K-026/21
+ ; 
+B23K-026/36
+
+FI	
+B23K-026/322
+ ; 
+B23K-026/21 F
+ ; 
+B23K-026/36
+
+F-term	
+4E168 : 
+AD00  
+BA85  
+BA88  
+DA43  
+테마코드
+4E168
+발명자
+ビオー,イバン フランス国、75018・パリ、リュ・マルカデ・168
+ゲエド,サドック フランス国、60740・サン-マクシマン、リュ・レオン・ブフレ・28
+カヌルグ,ジャン-フランソワ フランス国、93150・ル・ブラン-メニル、アブニュ・デュ・セマフォール、28
+ルシヨン,シルビ フランス国、60761・モンタテール、ルット・ドゥ・サン-ル、1、アルセロールミタル・エール・エ・デ
+대리인
+弁理士法人川口國際特許事務所
+심사청구여부
+Y  (2024.08.13)
+최우선출원
+[Priority] WO PCT-IB2021-061826 (2021.12.16)
+국제출원
+출원번호	공개번호
+PCT-IB2022-061032 (2022.11.16)	WO2023-042188 (2023.03.23)
+번역문 제출일
+2024.08.13
+지정국
+개별국(National Protection)
+국가코드보기
+CV, ME, AE, AG, AO, AU, BA, BB, BH, BN, BR, BZ, CA, CL, CN, CO, CR, CU, DJ, DM, DO, DZ, EC, EG, GD, GE, GT, HN, ID, IL, IN, IQ, IR, JM, JO, JP, KH, KN, KP, KR, KW, LA, LC, LK, LY, MA, MD, MG, MN, MX, MY, NG, NI, NZ, OM, PA, PE, PG, PH, QA, SA, SC, SG, SV, SY, TH, TN, TT, UA, US, UZ, VC, VN, WS, ZA
+지역특허제도국(Regional Protection)
+[ARIPO]
+BW, GH, GM, KE, LR, LS, MW, MZ, NA, RW, SD, SL, ST, SZ, TZ, UG, ZM, ZW
+[Eurasian]
+AM, AZ, BY, KG, KZ, RU, TJ, TM
+[European]
+AL, AT, BE, BG, CH, CY, CZ, DE, DK, EE, ES, FI, FR, GB, GR, HR, HU, IE, IS, IT, LT, LU, LV, MC, MK, MT, NL, NO, PL, PT, RO, RS, SE, SI, SK, SM, TR
+[OAPI]
+BF, BJ, CF, CG, CI, CM, GA, GN, GQ, GW, KM, ML, MR, NE, SN, TD, TG
+수속보정서(국제조사보고)
+수속보정서 보기
+법적상태
+일자	종류	설명
+2026.03.10	A01	
+
+WRITTEN DECISION TO GRANT A PATENT OR TO GRANT A REGISTRATION (UTILITY MODEL)
+Further Information : JAPANESE INTERMEDIATE CODE : A01
+Effective Date : 20260310
+
+
+
+2025.12.16	A521	
+
+REQUEST FOR WRITTEN AMENDMENT FILED
+Further Information : JAPANESE INTERMEDIATE CODE : A523
+Effective Date : 20251216
+
+
+
+2025.09.11	A601	
+
+WRITTEN REQUEST FOR EXTENSION OF TIME
+Further Information : JAPANESE INTERMEDIATE CODE : A601
+Effective Date : 20250911
+
+
+
+2025.06.17	A131	
+
+NOTIFICATION OF REASONS FOR REFUSAL
+Further Information : JAPANESE INTERMEDIATE CODE : A131
+Effective Date : 20250617
+
+
+
+2025.06.12	A977	
+
+REPORT ON RETRIEVAL
+Further Information : JAPANESE INTERMEDIATE CODE : A971007
+Effective Date : 20250612
+
+
+
+2024.10.01	A521	
+
+REQUEST FOR WRITTEN AMENDMENT FILED
+Further Information : JAPANESE INTERMEDIATE CODE : A523
+Effective Date : 20240813
+
+
+
+2024.10.01	A621	
+
+WRITTEN REQUEST FOR APPLICATION EXAMINATION
+Further Information : JAPANESE INTERMEDIATE CODE : A621
+Effective Date : 20240813
+
+
+Code Color : Green = Positive action,  Red = Negative action,  Black = Neutral action
+
+우선권번호
+전체 1 건
+1/1
+이전
+다음
+No	원문	출원번호	출원일자 	문헌번호	발명의 명칭
+1	
+PDF
+	WO PCT-IB2021-061826	2021.12.16	WO2023-111651	METHOD FOR BUTT-WELDING A STEEL PART AND ASSOCIATED STEEL PART
+패밀리
+전체 19 건
+ WIPS Extended
+ EPO Simple
+ 중복제거
+1/1
+이전
+다음
+No	원문	문헌번호	일자	발명의 명칭	IPC(Main)	CPC(Main)
+1	
+PDF
+	ES 3058783 T3	2026.03.12	METHOD FOR BUTT-WELDING TWO STEEL SHEETS	
+B23K-026/24
+IPC아이콘
+	
+B08B-0001/12
+CPC아이콘
+
+2	
+PDF
+	HU E073613 T2	2026.01.28	Method for butt welding two steel plates	
+B23K-026/24
+IPC아이콘
+	
+B08B-0001/12
+CPC아이콘
+
+3	
+PDF
+	FI 4448210 T3	2025.12.11	METHOD FOR BUTT-WELDING TWO STEEL SHEETS	
+B23K-026/24
+IPC아이콘
+	
+B08B-0001/12
+CPC아이콘
+
+4	
+PDF
+	MA 69640 B1 	2025.11.28	PROCÉDÉ DE SOUDAGE BOUT À BOUT DE DEUX TÔLES EN ACIER	
+B23K-026/24
+IPC아이콘
+	
+B23K-2101/185
+CPC아이콘
+
+5	
+PDF
+	EP 4448210 B1	2025.11.05	METHOD FOR BUTT-WELDING TWO STEEL SHEETS	
+B23K-026/24
+IPC아이콘
+	
+B08B-0001/12
+CPC아이콘
+
+6	
+PDF
+	ZA 202404281 B	2025.07.30	METHOD FOR BUTT-WELDING A STEEL PART AND ASSOCIATED STEEL PART	
+B23K
+IPC아이콘
+	
+B08B-0001/12
+CPC아이콘
+
+7	
+PDF
+	US 2025-0033147 A1	2025.01.30	Method for butt-welding a steel part and associated steel part	
+B23K-026/26
+IPC아이콘
+	
+B23K-2101/185
+CPC아이콘
+
+8	
+PDF
+	JP 2025-500235 A	2025.01.09	강제 부품과 관련된 강제 부품을 맞대기 용접하기 위한 방법	
+B23K-026/322
+IPC아이콘
+	
+B08B-0001/12
+CPC아이콘
+
+9	
+PDF
+	IN 202417043667	2024.12.20	METHOD FOR BUTT-WELDING A STEEL PART AND ASSOCIATED STEEL PART	
+B23K-026/24
+IPC아이콘
+	
+-
+
+10	
+PDF
+	VN 107058 A	2024.11.25	BUTT WELDING METHOD OF TWO STEEL PLATES, LASER WELDED PARTS AND SHAPED DETAILS	
+B23K-026/24
+IPC아이콘
+	
+-
+
+11	
+PDF
+	BR 112024011755 A2	2024.09.10	METHOD FOR BUTT WELDING TWO STEEL PLATES, LASER WELDED RAW PART AND MOLDED PART	
+B23K-026/24
+IPC아이콘
+	
+-
+
+12	
+PDF
+	RU 2024119856 A	2024.08.12	METHOD OF BUTT WELDING A STEEL PART AND THE CORRESPONDING STEEL PART	
+B23K-026/24
+IPC아이콘
+	
+-
+
+13	
+PDF
+	KR 10-2024-0119322 A	2024.08.06	강 부품의 맞대기 용접 방법 및 관련 강 부품	
+B08B-001/12
+IPC아이콘
+	
+B08B-0001/12
+CPC아이콘
+
+14	
+PDF
+	CN 118434532 A	2024.08.02	Method for butt welding steel component and associated steel component	
+B23K-026/24
+IPC아이콘
+	
+B08B-0001/12
+CPC아이콘
+
+15	
+PDF
+	MX MX/a/2024/007351 A	2024.06.26	METHOD FOR BUTT-WELDING A STEEL PART AND ASSOCIATED STEEL PART.	
+B23K-026/26
+IPC아이콘
+	
+B08B-0001/12
+CPC아이콘
+
+16	
+PDF
+	WO WO2023-111651 A1 	2023.06.22	METHOD FOR BUTT-WELDING A STEEL PART AND ASSOCIATED STEEL PART	
+B23K-026/24
+IPC아이콘
+	
+B08B-0001/12
+CPC아이콘
+
+17	
+PDF
+	WO WO2023-042188 A1	2023.03.23	METHOD FOR BUTT-WELDING A STEEL PART AND ASSOCIATED STEEL PART	
+B23K-026/24
+IPC아이콘
+	
+B08B-0001/12
+CPC아이콘
+
+18	
+PDF
+	CA 3241871 A1	2023.03.23	METHOD FOR BUTT-WELDING A STEEL PART AND ASSOCIATED STEEL PART	
+B23K-026/24
+IPC아이콘
+	
+-
+Basic Patent
+기타 57개국
+
+* 미포함 문헌 : 1건 (절차상 미공개 문헌, 과거분 문헌, WIPS 보유 데이터 범위에 포함되지 않는 문헌)
+IB PCT/IB2021/061826 (2021.12.16)
+
+패밀리 법적상태
+패밀리 법적상태 보기
+인용/피 인용 특허문헌
+전체 5 건   인용(5) 피인용(0)
+ 심사관/ 심판 참증단계 보기
+1/1
+이전
+다음
+No	Depth	국가	문헌번호	
+인용참증단계
+	발명의 명칭	일자	출원인
+1	B1	WO	
+PDF
+WO2019-093440 A1
+	
+특허결정	STEEL SHEET, TAILORED BLANK, HOT-PRESS FORMED ARTICLE, STEEL PIPE, HOLLOW QUENCHING FORMED ARTICLE, PRODUCTION METHOD FOR STEEL SHEET, PRODUCTION METHOD FOR TAILORED BLANK, PRODUCTION METHOD FOR HOT-PRESS FORMED ARTICLE, PRODUCTION METHOD FOR STEEL PIPE, AND PRODUCTION METHOD FOR HOLLOW QUENCHING FORMED ARTICLE(강판, 테일러드 블랭크, 열간 프레스 성형품, 강관, 중공형 담금질 성형품, 강판 제조 방법, 테일러드 블랭크 제조 방법, 열간 프레스 성형품 제조 방법, 강관 제조 방법 및 중공형 담금질 성형품 제조 방법)	2019.05.16	NIPPON STEEL CORPORATION
+2	B1	JP	
+PDF
+2017-209733 A
+	
+특허결정	시트 금속 피스에 용접 노치를 형성하는 방법(シート金属ピースに溶接ノッチを形成する方法)	2017.11.30	SHILOH INDUSTRIES INC
+3	B1	JP	
+PDF
+5237263 B2
+PDF
+2009-534529 A
+	
+특허결정	피복 적층판으로부터 상당히 높은 기계적 특성을 가지는 용접 부품을 제조하는 방법(被覆積層板から非常に高い機械的特性を有する溶接部品を製造する方法)	2013.04.05	ARCELORMITTAL FRANCE
+4	B1	JP	
+PDF
+1998-225770 A
+	
+특허결정	용접 장치(溶接装置)	1998.08.25	INST OF RESEARCH & INNOVATION | MITSUBISHI HEAVY IND LTD
+5	B1	DE	
+PDF
+10-2018-104829 A1
+	
+특허결정	Process for the welding pretreatment of coated steel sheets	2019.09.05	voestalpine Automotive Components Linz GmbH
+심사관 인용(Backward by Examiner)
+ 
+심사관 피 인용(Forward by Examiner)
+1/1
+이전
+다음
+Tel : 02-726-1100 / 1105
+help@wips.co.kr
+카톡상담 : @윕스
+Copyright ⓒ 2026 WIPS Co.,Ltd. All rights reserved.

@@ -1,0 +1,369 @@
+발명의 설명
+화합물
+표준특허
+공개번호
+WO2025-032899 A1 (2025.02.13)
+문헌종류 코드보기
+발행일
+2025.02.13
+출원번호
+PCT-JP2024-016972 (2024.05.07) 
+출원인
+NIPPON STEEL CORPORATION(JP)   (*-*, Marunouchi *-chome, Chiyoda-ku, Tokyo, *******)
+출원인 대표명화
+NIPPON STEEL
+출원히스토리
+ 
+2023.08.10
+최우선출원(JP-Priority)
+ 
+2024.05.07
+출원
+ 
+2025.02.13
+공개
+요약
+
+
+
+본 발명은 제조 시의 내LME성이 양호한 용접 조인트를 얻는 것을 과제로 한다. 본 발명의 용접 조인트는 중첩된 복수의 강판, 복수의 강판을 접합하는 너겟, 너겟의 주위에 형성된 압접부 및 열영향부를 갖는 스폿 용접부, 열영향부의 외측 영역인 비열영향부 및 압접부의 주위에 형성된 세퍼레이션부를 구비하고, 복수의 강판 중 적어도 가장 외측에 배치된 한 장의 강판이 판 두께 중심에서의 비커스 경도가 240 Hv 이상인 고강도 강판이며 고강도 강판이 소정의 화학 성분을 가지며, 압접부의 단부에서 외측으로 50μm의 위치에서 페라이트상의 면적률이90% 이상인 고페라이트층이 , 표면에서 두께 방향으로 5μm 이상의 두께로 존재하고 TOF-SIMS 측정에서 요구되는 깊이 50μm의 위치 B강도의 2배 이상의 B강도를 갖는 B농화부가 , 표면에서 1.0μm 이상의 두께로 존재하는 것을 특징으로 한다.
+
+
+
+
+
+The present invention addresses the problem of obtaining a welded joint having good LME resistance in production. A welded joint according to the present invention comprises: a plurality of steel sheets which are stacked; a nugget for joining the plurality of steel sheets together; a spot welded part which includes a pressure welded part and a heat-affected part formed around the nugget; a non-heat-affected part which is a region on the outer side of the heat-affected part; and a separation part which is formed around the pressure welded part. Said welded joint is characterized in that: among the plurality of steel sheets, at least one steel sheet which is disposed on the outermost side is a high-strength steel sheet having a Vickers hardness of not less than 240 Hv at the sheet thickness center; the high-strength steel sheet has a prescribed chemical component; at a position apart from the edge of the pressure welded part by 50 μm to the outer side, a highly ferritic layer having an area ratio of the ferrite phase of not less than 90% exists with a thickness of not less than 5 μm from the surface in the thickness direction; and a B-concentrated part having a B strength which is obtained by TOF-SIMS measurement and is two or more times as large as that at a depth position of 50 μm exists with a thickness of not less than 1.0 μm from the surface.
+
+영어
+불어
+일본어
+발명의 설명 새창보기
+도면
+
+
+대표도면
+	
+
+도면 1
+	
+
+도면 2
+	
+
+도면 3
+대표청구항
+
+!PCT의 대표청구항은 원천데이터 상의 이유로 내용이 완전하지 않을 수 있습니다. 원문 또는 명세서를 확인해주시기 바랍니다.
+
+중첩된 복수의 강판, 상기 복수의 강판을 접합하는 너겟, 상기 너겟의 주위에 형성된 압접부 및 열영향부를 갖는 스폿 용접부, 상기 열영향부의 외측 영역인 비열영향부 및 상기 압접부의 주위에 형성된 세퍼레이션부를 구비하는 용접 조인트로서, 상기 복수의 강판 중 적어도 가장 외측에 배치된 한 장의 강판이 판 두께 중심에서의 비커스 경도가 240 Hv 이상인 고강도 강판이며 상기 고강도 강판의 화학 성분이 , 질량%로, C :0.05~0.40%, Si:0.7~3.0%, Mn:0.1~5.0%, sol.Al:0~2.0%, P :0.0300% 이하, S :0.0300% 이하, N :0.0100% 이하, B :0.0005~0.0050%, Ti:0.0010~0.1000%, Nb:0~0.2000%, V :0~0.15%, Cr:0~2.00%, Ni:0~2.00%, Cu:0~2.00%, Mo:0~1.00%, W :0~1.00%, Ca:0~0.1000%, Mg:0~0.100%, Zr:0~0.100%, Hf:0~0.100% 및 REM:0~0.100%를 함유하고 잔부가 Fe 및 불순물이며 상기 압접부의 단부에서 외측으로 50μm의 위치에서 페라이트상의 면적률이90% 이상인 고페라이트층이 , 상기 고강도 강판의 표면에서 상기 고강도 강판의 두께 방향으로 5μm 이상의 두께로 존재하고 상기 압접부의 단부에서 외측으로 50μm의 위치에서 TOF-SIMS 측정에서 요구되는 깊이 50μm의 위치 B강도의 2배 이상의 B강도가 되는 B농화부가 , 상기 고강도 강판의 표면에서 1.0μm 이상의 두께로 존재하는 것을 특징으로 하는 용접 조인트.
+
+Multiple steel plates superimposed,
+A nugget that joins the plurality of steel plates,
+A spot weld having a pressure junction and a heat-affected zone formed around the nugget;
+A non-heat-affected zone that is an area outside the heat-affected zone, and
+Separation portion formed around the pressure junction
+A welded joint, comprising:
+Among the plurality of steel plates, at least one steel plate disposed outermost is a high-strength steel plate having a Vickers hardness of 240 Hv or more at the center of the plate thickness,
+The chemical component of the high-strength steel plate is mass%,
+Ｃ　：０．０５～０．４０％、
+Ｓｉ：０．７～３．０％、
+Ｍｎ：０．１～５．０％、
+ｓｏｌ．Ａｌ：０～２．０％、
+P: 0.0300% or less,
+S: 0.0300% or less,
+N: 0.0100% or less,
+Ｂ　：０．０００５～０．００５０％、
+Ｔｉ：０．００１０～０．１０００％、
+Ｎｂ：０～０．２０００％、
+Ｖ　：０～０．１５％、
+Ｃｒ：０～２．００％、
+Ｎｉ：０～２．００％、
+Ｃｕ：０～２．００％、
+Ｍｏ：０～１．００％、
+Ｗ　：０～１．００％、
+Ｃａ：０～０．１０００％、
+Ｍｇ：０～０．１００％、
+Ｚｒ：０～０．１００％、
+HF: 0~0.100%, &
+ＲＥＭ：０～０．１００％
+and the residual part is Fe and impurities,
+At a position of 50 μm outside the end of the pressure junction, a high ferrite layer having an area ratio of 90% or more of the ferrite phase is present at a thickness of 5 μm or more in the thickness direction of the high-strength steel plate from the surface of the high-strength steel plate,
+At a position of 50 μm outside the end of the pressure junction, a B enrichment portion having a B strength of 2 times or more than the B strength at a depth of 50 μm required in the TOF-SIMS measurement is present at a thickness of 1.0 μm or more from the surface of the high-strength steel plate
+Welded joints characterized by:
+
+영어
+일본어
+청구항 새창보기
+특허분류코드
+특허분류	
+Current CPC	
+Ver.2013 : 
+B23K-0011/16 
+C21D-0009/46  ;  
+C22C-0038/00  ;  
+C22C-0038/58  ;  
+C23C-0002/06  ;  
+C23C-0002/02  ;  
+C23C-0002/40  ;  
+C22C-0018/00  ;  
+C22C-0018/04 
+
+IPC	
+Ver.2006 : 
+C22C-038/00
+B23K-011/16  ; 
+C21D-009/46  ; 
+C22C-038/58  ; 
+C23C-002/02  ; 
+C23C-002/06  ; 
+C23C-002/40  ; 
+C22C-018/00  ; 
+C22C-018/04
+발명자
+MITSUNOBU, Takuya(JP) c/o NIPPON STEEL CORPORATION, *-*, Marunouchi *-chome, Chiyoda-ku, Tokyo, *******
+KIREKAWA, Naoto(JP) c/o NIPPON STEEL CORPORATION, *-*, Marunouchi *-chome, Chiyoda-ku, Tokyo, *******
+URANAKA, Masaaki(JP) c/o NIPPON STEEL CORPORATION, *-*, Marunouchi *-chome, Chiyoda-ku, Tokyo, *******
+TAKEBAYASHI, Hiroshi(JP) c/o NIPPON STEEL CORPORATION, *-*, Marunouchi *-chome, Chiyoda-ku, Tokyo, *******
+대리인
+AOKI, Atsushi et al.
+최우선출원
+[Priority] JP 2023-131158 (2023.08.10)
+지정국
+개별국(National Protection)
+국가코드보기
+AE, AG, AL, AM, AO, AT, AU, AZ, BA, BB, BG, BH, BN, BR, BW, BY, BZ, CA, CH, CL, CN, CO, CR, CU, CV, CZ, DE, DJ, DK, DM, DO, DZ, EC, EE, EG, ES, FI, GB, GD, GE, GH, GM, GT, HN, HR, HU, ID, IL, IN, IQ, IR, IS, IT, JM, JO, JP, KE, KG, KH, KN, KP, KR, KW, KZ, LA, LC, LK, LR, LS, LU, LY, MA, MD, MG, MK, MN, MU, MW, MX, MY, MZ, NA, NG, NI, NO, NZ, OM, PA, PE, PG, PH, PL, PT, QA, RO, RS, RU, RW, SA, SC, SD, SE, SG, SK, SL, ST, SV, SY, TH, TJ, TM, TN, TR, TT, TZ, UA, UG, US, UZ, VC, VN, WS, ZA, ZM, ZW
+지역특허제도국(Regional Protection)
+[European] AL, AT, BE, BG, CH, CY, CZ, DE, DK, EE, ES, FI, FR, GB, GR, HR, HU, IE, IS, IT, LT, LU, LV, MC, ME, MK, MT, NL, NO, PL, PT, RO, RS, SE, SI, SK, SM, TR
+[OAPI] BF, BJ, CF, CG, CI, CM, GA, GN, GQ, GW, KM, ML, MR, NE, SN, TD, TG
+[ARIPO] BW, CV, GH, GM, KE, LR, LS, MW, MZ, NA, RW, SC, SD, SL, ST, SZ, TZ, UG, ZM, ZW
+[Eurasian] AM, AZ, BY, KG, KZ, RU, TJ, TM
+법적상태
+일자	종류	설명
+2026.03.12	WWP	
+
+WIPO INFORMATION: PUBLISHED IN NATIONAL OFFICE
+Ref Document Number : 1020267003719
+Country of Ref Document : KR
+
+
+
+2026.03.11	NENP	
+
+NON-ENTRY INTO THE NATIONAL PHASE
+Ref Country Code : DE
+
+
+
+2026.03.10	WWE	
+
+WIPO INFORMATION: ENTRY INTO NATIONAL PHASE
+Ref Document Number : 2024851333
+Country of Ref Document : EP
+
+
+
+2026.03.02	WWP	
+
+WIPO INFORMATION: PUBLISHED IN NATIONAL OFFICE
+Ref Document Number : MX/A/2026/001442
+Country of Ref Document : MX
+
+
+
+2026.02.06	WWE	
+
+WIPO INFORMATION: ENTRY INTO NATIONAL PHASE
+Ref Document Number : 2601000833
+Country of Ref Document : TH
+
+
+
+2026.02.04	ENP	
+
+ENTRY INTO THE NATIONAL PHASE
+Ref Country Code : KR
+Ref Document Number : 1020267003719
+Country of Ref Document : KR
+Further Information : ST27 STATUS EVENT CODE : A-0-1-A10-A15-NAP-PA0105 (AS PROVIDED BY THE NATIONAL OFFICE)
+
+
+
+2026.02.04	WWE	
+
+WIPO INFORMATION: ENTRY INTO NATIONAL PHASE
+Ref Document Number : 1020267003719
+Country of Ref Document : KR
+
+
+
+2026.02.04	WWE	
+
+WIPO INFORMATION: ENTRY INTO NATIONAL PHASE
+Ref Document Number : MX/A/2026/001442
+Country of Ref Document : MX
+
+
+
+2026.01.15	WWE	
+
+WIPO INFORMATION: ENTRY INTO NATIONAL PHASE
+Ref Document Number : 202617004107
+Country of Ref Document : IN
+
+
+
+2025.04.30	ENP	
+
+ENTRY INTO THE NATIONAL PHASE
+Ref Country Code : JP
+Ref Document Number : 2025525162
+Country of Ref Document : JP
+Kind Code of Ref Document : A
+
+
+더보기
+
+Code Color : Green = Positive action,  Red = Negative action,  Black = Neutral action
+
+우선권번호
+우선권 안내툴팁 아이콘
+전체 1 건 Priority (1) RA (0)
+1/1
+이전
+다음
+No	원문	유형	출원번호	출원일자 	문헌번호	발명의 명칭
+해당 정보가 없습니다.
+
+* 미포함 문헌 1건 (절차상 미공개 문헌, 과거분 문헌, WIPS 보유 데이터 범위에 포함되지 않는 문헌)
+[Priority] JP 2023-131158 (2023.08.10)
+
+본 특허를
+우선권으로 한 특허
+전체 5 건
+ 중복제거
+1/1
+이전
+다음
+No	원문	문헌번호	일자	발명의 명칭
+1	
+PDF
+	KR 10-2026-0035241 A	2026.03.12	용접 조인트
+2	
+PDF
+	CN 121586785 A	2026.02.27	Welded joint
+3	
+PDF
+	IN 202617004107	2026.02.06	WELDED JOINT
+4	
+PDF
+	MX MX/a/2026/001442 A0	2026.02.04	WELDED JOINT
+5	
+PDF
+	JP 7741466 B2	2025.09.09	용접 조인트
+패밀리
+전체 8 건
+ WIPS Extended
+ EPO Simple
+ 중복제거
+1/1
+이전
+다음
+No	원문	문헌번호	일자	발명의 명칭	IPC(Main)	CPC(Main)
+1	
+PDF
+	KR 10-2026-0035241 A	2026.03.12	용접 조인트	
+B23K-011/16
+IPC아이콘
+	
+B23K-0011/16
+CPC아이콘
+
+2	
+PDF
+	CN 121586785 A	2026.02.27	Welded joint	
+C22C-038/00
+IPC아이콘
+	
+B23K-0011/16
+CPC아이콘
+
+3	
+PDF
+	ID 2026/01196 A	2026.02.10	WELDED JOINTS	
+B23K-011/16
+IPC아이콘
+	
+-
+
+4	
+PDF
+	IN 202617004107	2026.02.06	WELDED JOINT	
+C22C-038/00
+IPC아이콘
+	
+-
+
+5	
+PDF
+	MX MX/a/2026/001442 A0	2026.02.04	WELDED JOINT	
+C23C-002/06
+IPC아이콘
+	
+-
+
+6	
+PDF
+	JP 7741466 B2	2025.09.09	용접 조인트	
+C22C-038/00
+IPC아이콘
+	
+B23K-0011/16
+CPC아이콘
+
+7	
+PDF
+	WO WO2025-032899 A1	2025.02.13	WELDED JOINT	
+C22C-038/00
+IPC아이콘
+	
+B23K-0011/16
+CPC아이콘
+Basic Patent
+기타 57개국
+
+* 미포함 문헌 : 1건 (절차상 미공개 문헌, 과거분 문헌, WIPS 보유 데이터 범위에 포함되지 않는 문헌)
+JP 2023-131158 (2023.08.10)
+
+패밀리 법적상태
+패밀리 법적상태 보기
+국제조사보고서의
+인용문헌
+전체 5 건
+1/1
+이전
+다음
+No	원문	카테고리	문헌번호	유형	발명의 명칭	출원인
+1	
+PDF
+	A	JP 2019-504196 A	ISR 국제조사보고서	표면 품질 및 스폿 용접성이 우수한 고강도 용융아연 도금 강판 및 그 제조 방법(表面品質及びスポット溶接性に優れた高強度溶融亜鉛めっき鋼板及びその製造方法)	POSCO
+2	
+PDF
+	A	JP 2011-231346 A	ISR 국제조사보고서	용융아연계 도금 고장력 강판 제조법(溶融亜鉛系めっき高張力鋼板の製造法)	NISSHIN STEEL CO LTD
+3	
+PDF
+	A	WO WO2014-157155 A1	ISR 국제조사보고서	HOT-DIP GALVANIZED STEEL PLATE WITH EXCELLENT COATING ADHESION AND PROCESS FOR PRODUCING SAME(도금 밀착성이 우수한 용융아연계 도금 강판 및 그 제조 방법)	NISSHIN STEEL CO.,LTD.
+4	
+PDF
+	A	WO WO2023-132350 A1	ISR 국제조사보고서	STEEL SHEET FOR HOT STAMPING, METHOD FOR PRODUCING STEEL SHEET FOR HOT STAMPING, AND HOT-STAMPED MOLDED ARTICLE(핫 스탬프용 강판, 핫 스탬프용 강판 제조 방법 및 핫 스탬프 성형체)	NIPPON STEEL CORPORATION
+5	
+PDF
+	P,A	WO WO2024-053669 A1	ISR 국제조사보고서	WELDED JOINT(용접 조인트)	NIPPON STEEL CORPORATION
+인용문헌의 카테고리 설명
+기타 57개국
+
+! 발행처의 조사보고서 텍스트 데이터는 원문 이미지 정보와 상이할 수 있습니다.
+
+Tel : 02-726-1100 / 1105
+help@wips.co.kr
+카톡상담 : @윕스
+Copyright ⓒ 2026 WIPS Co.,Ltd. All rights reserved.

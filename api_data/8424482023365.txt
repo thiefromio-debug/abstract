@@ -1,0 +1,148 @@
+발명의 설명
+행정사항
+특허평가
+화합물
+표준특허
+상태정보
+심사중
+공개번호
+119020566 A (2024.11.26)
+문헌종류 코드보기
+출원번호
+2024-11086318 (2024.08.08) 
+출원인
+BAOTOU IRON & STEEL (GROUP) Co.,Ltd.(包头钢铁(集团)有限责任公司) (CN) 014010 内蒙古自治区包头市昆区河西工业区
+출원인 대표명화
+BAOTOU IRON & STEEL (GROUP) CO., LTD.
+출원히스토리
+ 
+2024.08.08
+출원
+최우선출원(CN)
+ 
+2024.11.26
+공개
+요약
+The invention discloses a low-cost production method for producing an SGCC steel plate, which is based on C-Mn, adopts a low-carbon and low-silicon process technology, and adopts a controlled rolling and controlled cooling process principle of high initial rolling temperature and low curling temperature in hot rolling; and the rolling reduction rate of cold rolling is controlled to be 65%-87%, so that the forming performance of the hot-dip galvanized substrate is guaranteed. The produced SGCC steel plate is low in cost and excellent in performance.
+
+
+
+本发明公开了一种低成本生产SGCC钢板的生产方法，以C‑Mn为基础，采取低碳低硅的工艺技术，热轧轧制采用高开轧温度、低温卷曲温度的控轧控冷工艺原则；冷轧轧制压下率控制在65％～87％，以便保证热镀锌基板成形性能。本发明所生产的SGCC钢板不仅成本低且性能优异。
+
+중국어
+한국어
+발명의 설명 새창보기
+도면
+
+
+대표도면
+대표청구항
+
+청구항 0001항 (대표청구항)
+
+
+1. A production method for producing SGCC steel plates at low cost is characterized by comprising the following steps: comprising the following steps:
+(1) Heating the slab with the thickness of 67-72 mm to 1050-1100 ℃ and preserving heat for 30-50 minutes;
+(2) The hot rolling is controlled to have a start rolling temperature of more than 1020 ℃ and a finish rolling temperature of 860-890 ℃; the heating temperature and the initial rolling temperature are 1030-1060 ℃,
+(3) Cooling by adopting a partition group laminar cooling mode after hot rolling, and controlling the cooling speed and strength; the coiling temperature is 550-600 ℃;
+(4) The rolling reduction rate of cold rolling is controlled to be 60% -87%;
+(5) After cold rolling, the steel plate is subjected to laser welding by a welding machine, is subjected to electrolytic degreasing and cleaning, and enters a non-oxidation heating furnace for annealing heat treatment;
+(6) The annealing temperature is 700-850 ℃; reasonably controlling the heat preservation time and the cooling speed;
+(7) The annealed steel plate enters a zinc pot;
+(8) Cooling the steel plate from the zinc pot by a cooling tower, and then feeding the steel plate into a leveling and straightening machine;
+(9) The steel plate coming out of the straightener is subjected to surface passivation treatment and then packed into a finished product roll;
+The SGCC steel plate comprises the following chemical components in percentage by weight: c:0.04 to 0.07 percent, si:0.015 to 0.050 percent, mn: 0.12-0.20%, P is less than or equal to 0.020%, S is less than or equal to 0.015%, alt is more than or equal to 0.015%, and the balance is Fe and unavoidable impurities.
+
+
+1.一种低成本生产SGCC钢板的生产方法，其特征在于：包括：
+(1)将厚度为67～72mm、板坯加热到1050～1100℃，保温30-50分钟；
+(2)热轧轧制控制开轧温度大于1020℃，终轧温度为860～890℃；加热温度，开轧温度为1030～1060℃，
+(3)热轧后采用隔组分散层流冷却模式进行冷却，控制冷却速度和强度；卷取温度在550～600℃；
+(4)冷轧轧制压下率控制在60％～87％；
+(5)冷轧后钢板经焊机激光焊接后，经电解脱脂清洗干净后进入无氧化加热炉进行退火热处理；
+(6)退火温度700～850℃；合理控制保温时间及冷却速度；
+(7)退火后的钢板进入锌锅；
+(8)钢板从锌锅出来后经冷却塔冷却后进入平整、矫直机；
+(9)从矫直机出来的钢板进行表面钝化处理后打包成成品卷；
+所述SGCC钢板的重量百分比的化学组分为：C：0.04～0.07％，Si：0.015～0.050％，Mn：0.12～0.20％，P≤0.020％，S≤0.015％，Alt≥0.015％，其余为Fe及不可避免的夹杂。
+
+중국어
+한국어
+청구항 새창보기 (6)
+특허분류코드
+특허분류	
+Current CPC	
+Ver.2013 : 
+C21D-0008/02 
+C21D-0008/0226  ;  
+C21D-0008/0273  ;  
+C21D-0011/005  ;  
+C21D-0006/005  ;  
+C21D-0006/008  ;  
+C21D-0001/26  ;  
+C22C-0038/02  ;  
+C22C-0038/04  ;  
+C22C-0038/06  ;  
+C23C-0002/06  ;  
+C23C-0002/40  ;  
+B23P-0015/00 
+
+IPC	
+Ver.2006 : 
+C21D-008/02
+C21D-011/00  ; 
+C21D-006/00  ; 
+C21D-001/26  ; 
+C22C-038/02  ; 
+C22C-038/04  ; 
+C22C-038/06  ; 
+C23C-002/06  ; 
+C23C-002/40  ; 
+B23P-015/00
+발명자
+Xu Qiang ; Yuan Xiaoming ; Yang Xiaodong ; Zhao Jin ; Wang Lei ; Yang Weiyu ; Liu Xiaolin
+徐强 ; 袁晓鸣 ; 杨晓东 ; 赵进 ; 王磊 ; 杨维宇 ; 刘晓琳
+대리인
+北京律远专利代理事务所(普通合伙) 11574(全成哲)
+최우선출원
+CN 2024-11086318 (2024.08.08)
+법적상태
+일자	종류	설명
+2025.02.25	SE01	
+
+ENTRY INTO FORCE OF REQUEST FOR SUBSTANTIVE EXAMINATION
+
+
+
+2024.11.26	PB01	
+
+PUBLICATION
+
+
+Code Color : Green = Positive action,  Red = Negative action,  Black = Neutral action
+
+패밀리
+전체 1 건
+ WIPS Extended
+ EPO Simple
+ 중복제거
+1/1
+이전
+다음
+No	원문	문헌번호	일자	발명의 명칭	IPC(Main)	CPC(Main)
+1	
+PDF
+	CN 119020566 A 	2024.11.26	Production method for producing SGCC steel plate at low cost	
+C21D-008/02
+IPC아이콘
+	
+C21D-0008/02
+CPC아이콘
+Basic Patent
+기타 57개국
+패밀리 법적상태
+패밀리 법적상태 보기
+Tel : 02-726-1100 / 1105
+help@wips.co.kr
+카톡상담 : @윕스
+Copyright ⓒ 2026 WIPS Co.,Ltd. All rights reserved.

@@ -1,0 +1,350 @@
+발명의 설명
+화합물
+표준특허
+공개번호
+WO2024-224712 A1 (2024.10.31)
+문헌종류 코드보기
+발행일
+2024.10.31
+출원번호
+PCT-JP2024-001190 (2024.01.18) 
+출원인
+JFE STEEL CORPORATION(JP)   (*-*, Uchisaiwai-cho *-chome, Chiyoda-ku, Tokyo, *******)
+출원인 대표명화
+JFE STEEL KK
+출원히스토리
+ 
+2023.04.25
+최우선출원(JP-Priority)
+ 
+2024.01.18
+출원
+ 
+2024.10.31
+공개
+요약
+
+
+
+본 발명은 슬래그의 부착량이 적고 안정된 용입 깊이를 가지며, 용접 이음새 강도 및 용접부의 내식성이 우수한 아크 용접 조인트 및 그 제조 방법을 제공하는 것을 목적으로 한다. 2장의 강판으로 이루어진 모서리를 접합하는 겹치기 필렛 아크 용접에 의해 제조되는 아크 용접 조인트로서, 상기 아크 용접 조인트는 상판, 하판 및 상기 상판과 상기 하판을 접합하는 용접부를 가지고 있으며 상판과 하판은 소정의 판 두께이며 상기 하판의 판 두께 t2와 용접부 단면에서의 상판과 하판의 경계에서 용접 비드의 하면까지의 거리인 용입 깊이 d가 소정의 식을 만족하고 용접 비드 표면의 비드 표면적 SBEAD와 슬래그로 덮인 영역의 면적인 슬래그 표면적SSLAG를 이용하여 소정의 식에서 산출되는 슬래그 피복 면적율 SRATIO가15% 이하인 아크 용접 조인트.
+
+
+
+
+
+The objective of the present invention is to provide: an arc-welded joint with which a slag adhesion amount is small, which has a stable weld penetration depth, and which has excellent weld joint strength and welded portion corrosion resistance; and a method for manufacturing the arc-welded joint. This arc welded joint is manufactured by lap fillet arc welding in which a corner formed by two steel plates is joined, wherein: the arc welded joint has an upper plate, a lower plate, and a welded portion joining the upper plate and the lower plate; the upper plate and the lower plate each have a predetermined plate thickness; a plate thickness t 2 of the lower plate and a weld penetration depth d, which is the distance from a boundary between the upper plate and the lower plate and a lower surface of a welding bead in a cross-section through the welded portion, satisfies a predetermined formula; and a slag covering surface area ratio SRATIO is at most equal to 15%, the slag covering surface area ratio being calculated by a predetermined formula using a bead surface area SBEAD of the weld bead surface and a slag surface area SSLAG, which is the surface area of a region covered by slag.
+
+영어
+불어
+일본어
+발명의 설명 새창보기
+도면
+개별도면 전체 7
+열기
+
+
+대표도면
+	
+
+도면 1
+	
+
+도면 2
+	
+
+도면 3
+대표청구항
+
+!PCT의 대표청구항은 원천데이터 상의 이유로 내용이 완전하지 않을 수 있습니다. 원문 또는 명세서를 확인해주시기 바랍니다.
+
+2장의 강판으로 이루어진 모서리를 접합하는 겹치기 필렛 아크 용접에 의해 제조되는 아크 용접 조인트로서, 상기 아크 용접 조인트는 상판, 하판 및 상기 상판과 상기 하판을 접합하고 상기 상판과 상기 하판에 대해 용해하고 있는 용접부를 가지고 있으며 상판의 판 두께 t1 및 하판의 판 두께 t2가 각각 5.0 mm이하에서, 상기 하판의 판 두께 t2와 상기 용접부의 단면에서의 상판과 하판의 경계에서 용접 비드의 하면까지의 거리인 용입 깊이 d가 하기 (1) 식을 만족하고 용접 비드 표면의 비드 표면적 SBEAD와 상기 비드 표면적 SBEAD 중 슬래그로 덮인 영역의 면적인 슬래그 표면적SSLAG를 이용하여 하기 (2) 식에서 산출되는 슬래그 피복 면적율 SRATIO가15% 이하인 아크 용접 조인트.
+0.20≦d/t2≦0.80 ···(1) (1) 식 중에서는, t2 (mm):하판의 판 두께, d (mm):용입 깊이를 나타낸다.
+SRATIO=SSLAG/SBEAD×100 ···(2) (2) 식 중에서는, SBEAD (mm2):비드 표면적, SSLAG (mm2):슬래그로 덮인 영역의 면적인 슬래그 표면적, SRATIO (%):슬래그 피복 면적율을 나타낸다.
+
+An arc welded joint manufactured by overlapping fillet arc welding that joins corners made of two steel plates,
+The arc welded joint has an upper plate, a lower plate, and a weld that joins the upper plate and the lower plate and is fused with the upper plate and the lower plate,
+The thickness t1 of the upper plate and the thickness of the lower plate t2 are 5.0 mm or less, respectively,
+The plate thickness t2 of the lower plate and the penetration depth d which is the distance from the boundary between the upper plate and the lower plate to the lower surface of the weld bead in the cross-section of the weld portion satisfy the following equation (1),
+In addition, the slag surface area SSLAG, which is the area of the area covered with slag in the bead surface of the weld bead surface S BEAD and the slag surface area SSLAG, which is the area of the area covered with slag in the bead surface SBEAD.0.20≦d/t2≦0.80 ・・・(1)
+In the formula (1), t2 (mm): The thickness of the lower plate, D (mm): Penetration depth is indicated.
+SRATIO=SSLAG /SBEAD ×100 ・・・(2)
+In the formula (2), SBEAD (mm2 ): bead surface area, SSLAG (mm2 ): slag surface area, which is the area of the area covered with slag, SRATIO (%): Slag cover area ratio is indicated.
+
+영어
+일본어
+청구항 새창보기
+특허분류코드
+특허분류	
+Current CPC	
+Ver.2018 : 
+B23K-2103/04 
+Ver.2013 : 
+B23K-0009/025  ;  
+B23K-0009/02  ;  
+B23K-0009/073  ;  
+B23K-0009/09 
+
+IPC	
+Ver.2006 : 
+B23K-009/09
+B23K-009/02  ; 
+B23K-009/073
+발명자
+KONISHI Kyohei(JP) c/o Intellectual Property Dept., JFE STEEL CORPORATION, *-*, Uchisaiwai-cho *-chome, Chiyoda-ku, Tokyo, *******
+SAWANISHI Chikaumi(JP) c/o Intellectual Property Dept., JFE STEEL CORPORATION, *-*, Uchisaiwai-cho *-chome, Chiyoda-ku, Tokyo, *******
+TANIGUCHI Koichi(JP) c/o Intellectual Property Dept., JFE STEEL CORPORATION, *-*, Uchisaiwai-cho *-chome, Chiyoda-ku, Tokyo, *******
+대리인
+KUMASAKA Akira et al.
+최우선출원
+[Priority] JP 2023-071307 (2023.04.25)
+지정국
+개별국(National Protection)
+국가코드보기
+AE, AG, AL, AM, AO, AT, AU, AZ, BA, BB, BG, BH, BN, BR, BW, BY, BZ, CA, CH, CL, CN, CO, CR, CU, CV, CZ, DE, DJ, DK, DM, DO, DZ, EC, EE, EG, ES, FI, GB, GD, GE, GH, GM, GT, HN, HR, HU, ID, IL, IN, IQ, IR, IS, IT, JM, JO, JP, KE, KG, KH, KN, KP, KR, KW, KZ, LA, LC, LK, LR, LS, LU, LY, MA, MD, MG, MK, MN, MU, MW, MX, MY, MZ, NA, NG, NI, NO, NZ, OM, PA, PE, PG, PH, PL, PT, QA, RO, RS, RU, RW, SA, SC, SD, SE, SG, SK, SL, ST, SV, SY, TH, TJ, TM, TN, TR, TT, TZ, UA, UG, US, UZ, VC, VN, WS, ZA, ZM, ZW
+지역특허제도국(Regional Protection)
+[European] AL, AT, BE, BG, CH, CY, CZ, DE, DK, EE, ES, FI, FR, GB, GR, HR, HU, IE, IS, IT, LT, LU, LV, MC, ME, MK, MT, NL, NO, PL, PT, RO, RS, SE, SI, SK, SM, TR
+[OAPI] BF, BJ, CF, CG, CI, CM, GA, GN, GQ, GW, KM, ML, MR, NE, SN, TD, TG
+[ARIPO] BW, CV, GH, GM, KE, LR, LS, MW, MZ, NA, RW, SC, SD, SL, ST, SZ, TZ, UG, ZM, ZW
+[Eurasian] AM, AZ, BY, KG, KZ, RU, TJ, TM
+법적상태
+일자	종류	설명
+2025.12.14	ENP	
+
+ENTRY INTO THE NATIONAL PHASE
+Ref Country Code : EP
+Ref Document Number : 2024796471
+Country of Ref Document : EP
+Effective Date : 20251015
+
+
+
+2025.12.07	ENP	
+
+ENTRY INTO THE NATIONAL PHASE
+Ref Country Code : EP
+Ref Document Number : 2024796471
+Country of Ref Document : EP
+Effective Date : 20251015
+
+
+
+2025.12.05	WWP	
+
+WIPO INFORMATION: PUBLISHED IN NATIONAL OFFICE
+Ref Document Number : 202517099752
+Country of Ref Document : IN
+
+
+
+2025.12.02	WWP	
+
+WIPO INFORMATION: PUBLISHED IN NATIONAL OFFICE
+Ref Document Number : 1020257034586
+Country of Ref Document : KR
+
+
+
+2025.12.01	WWP	
+
+WIPO INFORMATION: PUBLISHED IN NATIONAL OFFICE
+Ref Document Number : MX/A/2025/012410
+Country of Ref Document : MX
+
+
+
+2025.11.30	ENP	
+
+ENTRY INTO THE NATIONAL PHASE
+Ref Country Code : EP
+Ref Document Number : 2024796471
+Country of Ref Document : EP
+Effective Date : 20251015
+
+
+
+2025.11.26	NENP	
+
+NON-ENTRY INTO THE NATIONAL PHASE
+Ref Country Code : DE
+
+
+
+2025.11.23	ENP	
+
+ENTRY INTO THE NATIONAL PHASE
+Ref Country Code : EP
+Ref Document Number : 2024796471
+Country of Ref Document : EP
+Effective Date : 20251015
+
+
+
+2025.11.16	ENP	
+
+ENTRY INTO THE NATIONAL PHASE
+Ref Country Code : EP
+Ref Document Number : 2024796471
+Country of Ref Document : EP
+Effective Date : 20251015
+
+
+
+2025.10.16	ENP	
+
+ENTRY INTO THE NATIONAL PHASE
+Ref Country Code : KR
+Ref Document Number : 1020257034586
+Country of Ref Document : KR
+Further Information : ST27 STATUS EVENT CODE : A-0-1-A10-A15-NAP-PA0105 (AS PROVIDED BY THE NATIONAL OFFICE)
+
+
+더보기
+
+Code Color : Green = Positive action,  Red = Negative action,  Black = Neutral action
+
+우선권번호
+우선권 안내툴팁 아이콘
+전체 1 건 Priority (1) RA (0)
+1/1
+이전
+다음
+No	원문	유형	출원번호	출원일자 	문헌번호	발명의 명칭
+해당 정보가 없습니다.
+
+* 미포함 문헌 1건 (절차상 미공개 문헌, 과거분 문헌, WIPS 보유 데이터 범위에 포함되지 않는 문헌)
+[Priority] JP 2023-071307 (2023.04.25)
+
+본 특허를
+우선권으로 한 특허
+전체 6 건
+ 중복제거
+1/1
+이전
+다음
+No	원문	문헌번호	일자	발명의 명칭
+1	
+PDF
+	EP 4681852 A1	2026.01.21	ARC WELDED JOINT AND METHOD FOR MANUFACTURING SAME
+2	
+PDF
+	IN 202517099752	2025.12.05	ARC WELDED JOINT AND METHOD FOR MANUFACTURING SAME
+3	
+PDF
+	KR 10-2025-0168363 A	2025.12.02	아크 용접 조인트 및 그의 제조 방법
+4	
+PDF
+	MX MX/a/2025/012410 A	2025.12.01	ARC WELDED JOINT AND METHOD FOR MANUFACTURING SAME
+5	
+PDF
+	CN 121001844 A	2025.11.21	Arc welded joint and method for manufacturing same
+6	
+PDF
+	JP 7677536 B2	2025.05.07	아크 용접 조인트 및 그 제조 방법
+패밀리
+전체 9 건
+ WIPS Extended
+ EPO Simple
+ 중복제거
+1/1
+이전
+다음
+No	원문	문헌번호	일자	발명의 명칭	IPC(Main)	CPC(Main)
+1	
+PDF
+	EP 4681852 A1	2026.01.21	ARC WELDED JOINT AND METHOD FOR MANUFACTURING SAME	
+B23K-009/09
+IPC아이콘
+	
+B23K-2103/04
+CPC아이콘
+
+2	
+PDF
+	IN 202517099752	2025.12.05	ARC WELDED JOINT AND METHOD FOR MANUFACTURING SAME	
+B23K-009/09
+IPC아이콘
+	
+-
+
+3	
+PDF
+	KR 10-2025-0168363 A	2025.12.02	아크 용접 조인트 및 그의 제조 방법	
+B23K-009/02
+IPC아이콘
+	
+B23K-0009/02
+CPC아이콘
+
+4	
+PDF
+	MX MX/a/2025/012410 A	2025.12.01	ARC WELDED JOINT AND METHOD FOR MANUFACTURING SAME	
+B23K-009/09
+IPC아이콘
+	
+B23K-2103/04
+CPC아이콘
+
+5	
+PDF
+	CN 121001844 A	2025.11.21	Arc welded joint and method for manufacturing same	
+B23K-009/09
+IPC아이콘
+	
+B23K-2103/04
+CPC아이콘
+
+6	
+PDF
+	ID 2025/10925 A	2025.10.15	ARC WELDED JOINTS AND METHODS FOR MAKING THEM	
+B23K-009/09
+IPC아이콘
+	
+-
+
+7	
+PDF
+	JP 7677536 B2	2025.05.07	아크 용접 조인트 및 그 제조 방법	
+B23K-009/02
+IPC아이콘
+	
+B23K-2103/04
+CPC아이콘
+
+8	
+PDF
+	WO WO2024-224712 A1	2024.10.31	ARC WELDED JOINT AND METHOD FOR MANUFACTURING SAME	
+B23K-009/09
+IPC아이콘
+	
+B23K-2103/04
+CPC아이콘
+Basic Patent
+기타 57개국
+
+* 미포함 문헌 : 1건 (절차상 미공개 문헌, 과거분 문헌, WIPS 보유 데이터 범위에 포함되지 않는 문헌)
+JP 2023-071307 (2023.04.25)
+
+패밀리 법적상태
+패밀리 법적상태 보기
+국제조사보고서의
+인용문헌
+전체 2 건
+1/1
+이전
+다음
+No	원문	카테고리	문헌번호	유형	발명의 명칭	출원인
+1	
+PDF
+	A,X	WO WO2021-210335 A1	ISR 국제조사보고서	ARC WELDED JOINT AND ARC WELDING METHOD(아크 용접 조인트 및 아크 용접 방법)	JFE STEEL CORPORATION
+2	
+PDF
+	A	JP 2017-164798 A	ISR 국제조사보고서	가스 실드 아크 용접 방법 및 용접 구조 부품(ガスシールドアーク溶接方法及び溶接構造部品)	JFE STEEL CORP | SUBARU CORP
+인용문헌의 카테고리 설명
+기타 57개국
+
+! 발행처의 조사보고서 텍스트 데이터는 원문 이미지 정보와 상이할 수 있습니다.
+
+Tel : 02-726-1100 / 1105
+help@wips.co.kr
+카톡상담 : @윕스
+Copyright ⓒ 2026 WIPS Co.,Ltd. All rights reserved.

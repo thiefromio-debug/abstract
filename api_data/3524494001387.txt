@@ -1,0 +1,210 @@
+발명의 설명
+행정사항
+특허평가
+심판
+화합물
+표준특허
+상태정보
+등록  (특허)
+현재진행상태보기
+등록사항
+최종처분내용
+등록결정(일반)
+등록번호
+10-2738446 B1 (2024.11.29)
+문헌종류 코드보기
+공고일
+2024.12.04
+관련특허
+KPA문서보기
+출원번호
+10-2024-0119875 (2024.09.04) 
+출원인
+주식회사 금아스틸 (120070501247) (KR) (KUM A Steel Co.,ltd) 경상남도 창원시 성산구...
+원문상 출원인 -
+주식회사금아스틸
+출원인 대표명화
+(주)금아스틸
+현재권리자
+주식회사금아스틸 (KUM A Steel Co.,ltd)  경상남도 창원시 성산구 웅남로***번길 ** (남산동)
+현재권리자 대표명화
+
+(주)금아스틸
+출원히스토리
+ 
+2024.09.04
+출원
+최우선출원(KR)
+ 
+2024.11.29
+등록
+ 
+2044.09.05
+소멸
+요약
+
+본 발명은 모재 금속판; 상기 모재 금속판과 이종의 것인 부재 금속판; 및 상기 모재 금속판과 상기 부재 금속판을 열에 의해서 접합시키는 금속접합필름;을 포함하여 이루어지며, 상기 금속접합필름은 중간수지층; 상기 중간수지층의 양면에 각각 결합된 모재금속에 부착되는 제1열부착층; 및 부재금속에 부착되는 제2열부착층;을 포함하는 공압출(Coextrusion) PET 필름이며, 상기 제1열부착층 및 제2열부착층은 1,4-사이클로헥산 디메탄올(1,4-Cyclohexane Dimethanol), 1,3-프로판디올(1,3-Propanediol) 및 1,4-부탄디올(1,4-Butanediol)을 동시에 사용하여 변성된 PET(Polyethylene terephthalate) 수지 100 중량부에 대하여, 이소프탈산(Isophthalic acid)을 사용하여 변성된 PET 수지 10 내지 50 중량부, 1,3-벤젠디카르복실산(Benzenedicarboxylic acid), 1,4-벤젠디카르복실산 (Benzenedicarboxylic acid), 1,2-에탄디올(ethanediol)을 동시에 사용하여 변성된 PET 수지 1 내지 3 중량부, 1,4-사이클로헥산 디메탄올(1,4-Cyclohexane Dimethanol)을 사용하여 변성된 PET 수지 8 내지 12 중량부, 및 충전제 3 내지 5 중량부를 포함하여 이루어지는 것을 특징으로 하는 이종금속 접합강판을 제공한다.
+
+발명의 설명 새창보기
+도면
+개별도면 전체 5
+열기
+
+
+대표도면
+	
+
+도면 1
+	
+
+도면 2
+	
+
+도면 3
+대표청구항
+
+청구항 1항 (대표청구항)
+
+모재 금속판; 상기 모재 금속판과 이종의 것인 부재 금속판; 및 상기 모재 금속판과 상기 부재 금속판을 열에 의해서 접합시키는 금속접합필름;을 포함하여 이루어지며,
+상기 금속접합필름은 중간수지층; 상기 중간수지층의 양면에 각각 결합된 모재금속에 부착되는 제1열부착층; 및 부재금속에 부착되는 제2열부착층;을 포함하는 공압출(Coextrusion) PET 필름이며,
+상기 제1열부착층 및 제2열부착층은 1,4-사이클로헥산 디메탄올(1,4-Cyclohexane Dimethanol), 1,3-프로판디올(1,3-Propanediol) 및 1,4-부탄디올(1,4-Butanediol)을 동시에 사용하여 변성된 PET(Polyethylene terephthalate) 수지 100 중량부에 대하여,
+이소프탈산(Isophthalic acid)을 사용하여 변성된 PET 수지 10 내지 50 중량부,
+1,3-벤젠디카르복실산(Benzenedicarboxylic acid), 1,4-벤젠디카르복실산 (Benzenedicarboxylic acid), 1,2-에탄디올(ethanediol)을 동시에 사용하여 변성된 PET 수지 1 내지 3 중량부,
+1,4-사이클로헥산 디메탄올(1,4-Cyclohexane Dimethanol)을 사용하여 변성된 PET 수지 8 내지 12 중량부, 및
+충전제 3 내지 5 중량부를 포함하여 이루어지는 것을 특징으로 하는 이종금속 접합강판.
+
+청구항 새창보기 (7)
+특허분류코드
+Original 코드보기
+특허분류	Current
+CPC	
+Ver.2020 : 
+B32B-2264/102
+Ver.2019 : 
+B32B-0007/12
+Ver.2013 : 
+B32B-0015/09
+ ; 
+B32B-0027/36
+ ; 
+B32B-0027/20
+ ; 
+B32B-2262/0276
+ ; 
+B32B-2311/30
+
+IPC	
+Ver.2019 : 
+B32B-007/12
+Ver.2006 : 
+B32B-015/09
+ ; 
+B32B-027/36
+ ; 
+B32B-027/20
+발명자
+조익래 경상남도 김해시...
+대리인
+지킴특허법률사무소
+김지환  (920190001909) 울산 남구 대공원로 *** (신정동, 대공원코오롱파크폴리스) ***호(지킴특허법률사무소)
+심사청구여부
+Y (2024.09.04)
+심사관
+이인철
+최우선출원
+KR 10-2024-0119875 (2024.09.04)
+법적상태
+일자	종류	설명
+2024.11.29	GRNT	
+
+WRITTEN DECISION TO GRANT
+
+
+
+2024.11.22	E701	
+
+DECISION TO GRANT OR REGISTRATION OF PATENT RIGHT
+
+
+Code Color : Green = Positive action,  Red = Negative action,  Black = Neutral action
+
+패밀리
+전체 1 건
+ WIPS Extended
+ EPO Simple
+ 중복제거
+1/1
+이전
+다음
+No	원문	문헌번호	일자	발명의 명칭	IPC(Main)	CPC(Main)
+1	
+PDF
+	KR 10-2738446 B1 	2024.11.29	이종금속 접합강판(Dissimilar metal bonded steel sheet)	
+B32B-007/12
+IPC아이콘
+	
+B32B-2264/102
+CPC아이콘
+Basic Patent
+기타 57개국
+패밀리 법적상태
+패밀리 법적상태 보기
+인용/피 인용 특허문헌
+전체 5 건   인용(5) 피인용(0)
+ 심사관/ 심판 참증단계 보기
+1/1
+이전
+다음
+No	Depth	국가	문헌번호	
+인용참증단계
+	발명의 명칭	일자	출원인
+1	B1	KR	
+PDF
+10-2785387 B1
+PDF
+10-2023-0105186 A
+	
+선행기술조사,심사보고서	금속판 접합용 PET 필름(PET film for bonding metal plates)	2025.03.18	강용제
+2	B1	KR	
+PDF
+10-2644796 B1
+PDF
+10-2023-0105187 A
+	
+선행기술조사,심사보고서	이종 금속판 복합재 및 그 제조방법(Composites of dissimilar metal plates and manufacturing method thereof)	2024.03.04	강용제
+3	B1	KR	
+PDF
+10-2464041 B1
+	
+선행기술조사,심사보고서	식품 저장용기 및 그 제조방법(food storage vessel and manufacturing method thereof)	2022.11.02	강용제
+4	B1	KR	
+PDF
+10-2349063 B1
+	
+선행기술조사,심사보고서	열 부착 PET 필름(Heat Seal Laminating PET Film)	2022.01.05	조익래 | 강용제
+5	B1	KR	
+PDF
+10-1236036 B1
+PDF
+10-2012-0077904 A
+	출원서	ＰＥＴ 필름의 제조방법(Method for manufacturing PET film)	2013.02.15	조광페인트주식회사
+심사관 인용(Backward by Examiner)
+ 
+심사관 피 인용(Forward by Examiner)
+1/1
+이전
+다음
+본 출원인의
+동일 기술분야 특허
+ 본 특허와 가까운 일자 기준  최근 일자 기준
+원문	문헌번호	일자	발명의 명칭
+
+PDF
+	KR 10-2918687 B1	2026.01.22	식품보관 용기용 열융착 라미네이트 강판
+
+PDF
+	KR 10-2738443 B1	2024.11.29	동박접합금속판
+Tel : 02-726-1100 / 1105
+help@wips.co.kr
+카톡상담 : @윕스
+Copyright ⓒ 2026 WIPS Co.,Ltd. All rights reserved.

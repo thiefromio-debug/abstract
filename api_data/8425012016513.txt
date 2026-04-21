@@ -1,0 +1,113 @@
+발명의 설명
+행정사항
+특허평가
+화합물
+표준특허
+상태정보
+심사중
+공개번호
+119216866 A (2024.12.31)
+문헌종류 코드보기
+출원번호
+2024-11470614 (2024.10.21) 
+출원인
+Zhejiang Jingsheng Film Technology Co.,Ltd.(浙江景昇薄膜科技有限公司) (CN) 315413 浙江省宁波市余姚市三七市镇云山中路28号(余姚人才创业园内)
+출원히스토리
+ 
+2024.10.21
+출원
+최우선출원(CN)
+ 
+2024.12.31
+공개
+요약
+The invention relates to a composite solder for welding tin brass and a tungsten-titanium alloy and application of the composite solder to solve the problem that in the prior art, the color difference between a welding seam and a base material is large after welding. The composite solder comprises a central solder and an external solder arranged around the central solder; and the central welding flux is used for performing zinc-tin welding flux pool treatment on a welding material. The application comprises the step that the tin brass and the tungsten-titanium alloy are subjected to laser welding through the composite welding flux. According to the composite solder provided by the invention, the composite content is specifically designed, so that when the composite solder is used as the welding solder of the C46400 copper alloy and the tungsten-titanium alloy, the color difference between a welding seam obtained by welding and a base material C46400 copper alloy does not exist, and meanwhile, a welding joint has good performance.
+
+
+
+本发明涉及一种用于锡黄铜和钨钛合金焊接的复合焊料及其用途，以解决现有技术中焊接后焊缝和基材色差较大的问题。所述复合焊料包括中心焊料和围绕所述中心焊料设置的外置焊料；所述中心焊料为将焊材进行锌锡焊料池处理。所述用途包括采用所述复合焊料将锡黄铜和钨钛合金进行激光焊接。本发明提供的复合焊料，通过对复合含量进行特定的设计，使得其作为C46400铜合金和钨钛合金的焊接焊料时，焊接所得焊缝与基体材料C46400铜合金的颜色无色差，同时焊接接头具有良好的性能。
+
+중국어
+한국어
+발명의 설명 새창보기
+도면
+
+
+대표도면
+대표청구항
+
+청구항 0001항 (대표청구항)
+
+
+1. A composite solder for soldering tin brass and a tungsten titanium alloy, characterized in that the composite solder comprises a central solder and an external solder disposed around the central solder;
+the center solder is prepared by carrying out zinc-tin solder pool treatment on the welding material.
+
+
+1.一种用于锡黄铜和钨钛合金焊接的复合焊料，其特征在于，所述复合焊料包括中心焊料和围绕所述中心焊料设置的外置焊料；
+所述中心焊料为将焊材进行锌锡焊料池处理。
+
+중국어
+한국어
+청구항 새창보기 (10)
+특허분류코드
+특허분류	
+Current CPC	
+Ver.2015 : 
+B23K-0026/21 
+B23K-0026/702 
+Ver.2013 : 
+B23K-0035/302 
+
+IPC	
+Ver.2014 : 
+B23K-026/21  ; 
+B23K-026/70
+Ver.2006 : 
+B23K-035/30
+발명자
+Yao Lijun ; Teng Jun ; Wang Yucong ; Shen Dongdong
+姚力军 ; 滕俊 ; 王予丛 ; 沈栋栋
+대리인
+北京远智汇知识产权代理有限公司 11659(刘春青)
+최우선출원
+CN 2024-11470614 (2024.10.21)
+법적상태
+일자	종류	설명
+2025.01.17	SE01	
+
+ENTRY INTO FORCE OF REQUEST FOR SUBSTANTIVE EXAMINATION
+
+
+
+2024.12.31	PB01	
+
+PUBLICATION
+
+
+Code Color : Green = Positive action,  Red = Negative action,  Black = Neutral action
+
+패밀리
+전체 1 건
+ WIPS Extended
+ EPO Simple
+ 중복제거
+1/1
+이전
+다음
+No	원문	문헌번호	일자	발명의 명칭	IPC(Main)	CPC(Main)
+1	
+PDF
+	CN 119216866 A 	2024.12.31	Composite welding flux for welding tin brass and tungsten-titanium alloy and application of composite welding flux	
+B23K-035/30
+IPC아이콘
+	
+B23K-0026/21
+CPC아이콘
+Basic Patent
+기타 57개국
+패밀리 법적상태
+패밀리 법적상태 보기
+Tel : 02-726-1100 / 1105
+help@wips.co.kr
+카톡상담 : @윕스
+Copyright ⓒ 2026 WIPS Co.,Ltd. All rights reserved.

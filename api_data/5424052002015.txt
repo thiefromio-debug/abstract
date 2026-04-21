@@ -1,0 +1,384 @@
+발명의 설명
+행정사항
+특허평가
+심판
+소송
+화합물
+표준특허
+상태정보
+심사중
+현재진행상태보기
+공개번호
+2024-0425119 A1 (2024.12.26)
+문헌종류 코드보기
+출원번호
+18/819050 (2024.08.29) 
+출원인
+Autotech Engineering S.L. Amorebieta-Etxano (ES)
+
+!US Assignment 정보를 반영한 출원인을 제공합니다.
+
+출원인 대표명화
+AUTOTECH ENGINEERING A I E
+출원히스토리
+ 
+2018.06.25
+최우선출원(EP-Priority)
+ 
+2024.08.29
+출원
+ 
+2024.12.26
+공개
+요약
+
+차량용 일체형 본체 측면 구조 프레임을 제조하기 위한 방법이 제공된다. 상기 방법은 복수의 블랭크를 제공하는 단계, 상기 블랭크를 서로 결합시켜 복합 블랭크를 형성하는 단계를 포함하며, 여기에서 상기 블랭크를 결합하는 단계는 두 개의 블랭크를 부분적으로 중첩시킴으로써 형성된 하나 이상의 중첩 영역을 형성하는 단계 및 상기 복합 블랭크를 변형시켜 상기 단일 본체 측면 구조 프레임을 형성하는 단계를 포함한다. 본원에 기재된 임의의 방법에 의해 수득되는 바와 같은 단일체 측면 구조 프레임이 또한 제공된다.
+
+
+
+
+A method for manufacturing a unitary body side structural frame for a vehicle is provided. The method comprises providing a plurality of blanks, joining the blanks to each other to form a composite blank wherein joining the blanks includes forming one or more overlapping regions formed by partially overlapping two blanks and deforming the composite blank to form the unitary body side structural frame. A unitary body side structural frame as obtained by any of the methods herein described is also provided.
+
+발명의 설명 새창보기
+도면
+개별도면 전체 7
+열기
+
+
+대표도면
+	
+
+도면 1
+	
+
+도면 2
+	
+
+도면 3
+대표청구항
+
+청구항 16항 (대표청구항)
+
+16. 차량 일체형 차체 사이드 구조 프레임 제조 방법:
+
+복수의 블랭크 제공;
+
+상기 블랭크를 서로 접합하여 복합 블랭크를 형성하며, 여기에서 상기 블랭크를 접합하는 것은 두 개의 블랭크가 부분적으로 중첩되어 형성된 하나 이상의 중첩 영역을 형성하는 것을 포함한다;
+
+복합체 블랭크를 변형시켜 단일체 측면 구조 프레임을 형성;
+
+상기 단일 본체 측면 구조 프레임은 하부 빔 부분과 상부 빔 부분, 상기 하부 빔 부분을 상기 상부 빔 부분에 연결하는 전방 기둥 부분, 및 상기 하부 빔 부분을 상기 상부 빔 부분에 연결하는 후방 기둥 부분을 포함하며, 여기에서 상기 하부 빔 부분을 상기 상부 빔 부분에 연결한다.
+
+하부 빔 부분은 로커 부분을 포함한다;
+
+상기 전방 기둥 부분은 힌지 기둥 부분을 포함한다;
+
+상기 후면 기둥부는 C 기둥부를 포함한다;
+
+상부 빔 부분은 A-기둥 부분, 및 A-기둥 부분을 포함한다.
+
+상기 A-기둥 부분은 상기 힌지 기둥 부분으로부터 상기 C-기둥 부분으로 연장되고 상기 C-기둥 부분은 상기 로커 부분으로부터 상기 A-기둥 부분으로 연장된다.
+
+16. A method for manufacturing a unitary body side structural frame of a vehicle comprising:
+
+providing a plurality of blanks;
+
+joining the blanks to each other to form a composite blank, wherein joining the blanks includes forming one or more overlapping regions formed by partially overlapping two blanks;
+
+deforming the composite blank to form the unitary body side structural frame;
+
+wherein the unitary body side structural frame includes a lower beam portion and an upper beam portion, a front pillar portion connecting the lower beam portion to the upper beam portion, and a rear pillar portion connecting the lower beam portion to the upper beam portion, wherein
+
+the lower beam portion comprises a rocker portion;
+
+the front pillar portion comprises a hinge pillar portion;
+
+the rear pillar portion comprises a C-pillar portion;
+
+the upper beam portion comprises an A-pillar portion, and
+
+wherein the A-pillar portion extends from the hinge pillar portion to the C-pillar portion and the C-pillar portion extends from the rocker portion to the A-pillar portion.
+
+청구항 새창보기 (19)
+특허분류코드
+Original 코드보기
+특허분류	Current
+CPC	
+Ver.2013 : 
+B62D-0025/02
+B23K-0026/0006
+ ; 
+B62D-0025/025
+ ; 
+B62D-0025/04
+ ; 
+B62D-0027/02
+ ; 
+B62D-0027/023
+ ; 
+B62D-0029/007
+ ; 
+B62D-0065/02
+
+IPC	
+Ver.2014 : 
+B23K-026/00
+Ver.2006 : 
+B62D-025/02
+ ; 
+B62D-025/04
+ ; 
+B62D-027/02
+ ; 
+B62D-065/02
+발명자
+Marti MECA MARTINEZ Santpedor (ES)
+Xavier VALENCIA CARRIO Manresa (ES)
+최우선출원
+[Priority] EP 2018-382467 (2018.06.25)
+법적상태
+일자	종류	설명
+2024.09.17	STPP	
+
+INFORMATION ON STATUS: PATENT APPLICATION AND GRANTING PROCEDURE IN GENERAL
+Further Information : DOCKETED NEW CASE - READY FOR EXAMINATION
+
+
+Code Color : Green = Positive action,  Red = Negative action,  Black = Neutral action
+
+우선권번호
+우선권 안내툴팁 아이콘
+전체 3 건 Priority (1) RA (2)
+1/1
+이전
+다음
+No	원문	유형	출원번호	출원일자 	문헌번호	발명의 명칭
+1	
+PDF
+	Continuation	US 18/191173	2023.03.28	US 12103592 B2 
+pct 아이콘
+	Body side structural frame of a vehicle
+2	
+PDF
+	Continuation	US 17/068128	2020.10.12	US 11643145 B2 
+pct 아이콘
+	Body side structural frame of a vehicle
+
+* 미포함 문헌 1건 (절차상 미공개 문헌, 과거분 문헌, WIPS 보유 데이터 범위에 포함되지 않는 문헌)
+[Priority] EP 2018-382467 (2018.06.25)
+
+패밀리
+전체 39 건
+ WIPS Extended
+ EPO Simple
+ 중복제거
+1/2
+이전
+다음
+No	원문	문헌번호	일자	발명의 명칭	IPC(Main)	CPC(Main)
+1	
+PDF
+	JP 2026-010686 A	2026.01.22	차량의 바디 사이드 구조 프레임	
+B21D-022/26
+IPC아이콘
+	
+B62D-0025/02
+CPC아이콘
+
+2	
+PDF
+	EP 4342772 B1	2026.01.14	METHOD FOR MANUFACTURING AN UNITARY BODY SIDE STRUCTURAL FRAME OF A VEHICLE AND CORRESPONDING UNITARY BODY SIDE STRUCTURAL FRAME	
+B62D-025/02
+IPC아이콘
+	
+B62D-0025/02
+CPC아이콘
+
+3	
+PDF
+	MX 429336 B	2025.11.04	A SIDE STRUCTURAL FRAME OF A VEHICLE BODY	
+B62D-025/02
+IPC아이콘
+	
+-
+
+4	
+PDF
+	KR 10-2868455 B1	2025.09.30	차량의 본체 측면 구조 프레임	
+B23K-026/00
+IPC아이콘
+	
+B62D-0025/02
+CPC아이콘
+
+5	
+PDF
+	MX MX/a/2025/009019 A	2025.09.02	A BODY SIDE STRUCTURAL FRAME OF A VEHICLE	
+B62D-025/02
+IPC아이콘
+	
+B62D-0025/02
+CPC아이콘
+
+6	
+PDF
+	MX MX/a/2025/009020 A	2025.09.02	A BODY SIDE STRUCTURAL FRAME OF A VEHICLE	
+B62D-025/02
+IPC아이콘
+	
+B62D-0025/02
+CPC아이콘
+
+7	
+PDF
+	MX MX/a/2025/009021 A	2025.09.02	A BODY SIDE STRUCTURAL FRAME OF A VEHICLE	
+B62D-025/02
+IPC아이콘
+	
+B62D-0025/02
+CPC아이콘
+
+8	
+PDF
+	JP 7733088 B2	2025.08.25	차량의 바디 사이드 구조 프레임	
+B21D-022/20
+IPC아이콘
+	
+B62D-0025/02
+CPC아이콘
+
+9	
+PDF
+	CN 119858603 A	2025.04.22	Method for producing integral body side structural frame of vehicle	
+B62D-025/02
+IPC아이콘
+	
+B62D-0025/02
+CPC아이콘
+
+10	
+PDF
+	KR 10-2025-0046351 A	2025.04.02	차량의 본체 측면 구조 프레임(A bodyside structure frame of a vehicle)	
+B23K-026/00
+IPC아이콘
+	
+B62D-0025/02
+CPC아이콘
+
+11	
+PDF
+	KR 10-2025-0046352 A	2025.04.02	차량의 본체 측면 구조 프레임(A bodyside structure frame of a vehicle)	
+B23K-026/00
+IPC아이콘
+	
+B62D-0025/02
+CPC아이콘
+
+12	
+PDF
+	KR 10-2025-0046353 A	2025.04.02	차량의 본체 측면 구조 프레임(A bodyside structure frame of a vehicle)	
+B23K-026/00
+IPC아이콘
+	
+B62D-0025/02
+CPC아이콘
+
+13	
+PDF
+	US 2024-0425119 A1	2024.12.26	BODY SIDE STRUCTURAL FRAME OF A VEHICLE	
+B23K-026/00
+IPC아이콘
+	
+B62D-0025/02
+CPC아이콘
+
+14	
+PDF
+	US 2024-0417000 A1	2024.12.19	BODY SIDE STRUCTURAL FRAME OF A VEHICLE	
+B23K-026/00
+IPC아이콘
+	
+B62D-0025/02
+CPC아이콘
+
+15	
+PDF
+	US 12103592 B2	2024.10.01	Body side structural frame of a vehicle	
+B23K-026/00
+IPC아이콘
+	
+B62D-0025/02
+CPC아이콘
+
+16	
+PDF
+	IN 549448	2024.09.06	A BODY SIDE STRUCTURAL FRAME OF A VEHICLE	
+B62D-025/02
+IPC아이콘
+	
+-
+
+17	
+PDF
+	MX 414491 B	2024.06.28	A VEHICLE BODY SIDE STRUCTURAL FRAME	
+B62D-025/02
+IPC아이콘
+	
+-
+
+18	
+PDF
+	CN 118082981 A	2024.05.28	Vehicle body side structural frame of vehicle	
+B62D-025/02
+IPC아이콘
+	
+B62D-0025/02
+CPC아이콘
+
+19	
+PDF
+	RU 2024100310 A	2024.05.13	VEHICLE SIDEWALL STRUCTURAL FRAME	
+B62D-025/02
+IPC아이콘
+	
+-
+
+20	
+PDF
+	RU 2024100309 A	2024.05.02	VEHICLE SIDEWALL STRUCTURAL FRAME	
+B62D-025/02
+IPC아이콘
+	
+-
+Basic Patent
+기타 57개국
+
+* 미포함 문헌 : 2건 (절차상 미공개 문헌, 과거분 문헌, WIPS 보유 데이터 범위에 포함되지 않는 문헌)
+EP 2018-382467 (2018.06.25)
+WO 18382467 (2018.06.25)
+
+패밀리 법적상태
+패밀리 법적상태 보기
+문헌 내 인용
+전체 4 건
+1/1
+이전
+다음
+No	원문	문헌번호	일자	발명의 명칭	출원인
+1	
+PDF
+	WO WO2016-142367 A1	2016.09.15	PRESS SYSTEMS AND METHODS(프레스 시스템과 방법)	AUTOTECH ENGINEERING A.I.E.
+2	
+PDF
+	US 9492859 B2	2016.11.15	Press systems and methods(프레스 시스템과 방법)	AUTOTECH ENGINEERING A.I.E.
+3	
+PDF
+	EP 2735620 A1	2014.05.28	METHOD FOR PRODUCING HOT-PRESSED STEEL MEMBER(열간 프레스 강재의 제조 방법)	Kabushiki Kaisha Kobe Seiko Sho
+4	
+PDF
+	US 2006-0097549 A1	2006.05.11	Side panel for a motor vehicle, and method of making such a side panel(자동차용 측면 패널 및 해당 측면 패널을 제조하는 방법)	BENTELER AUTOMOBILTECHNIK GMBH
+기타 57개국
+Tel : 02-726-1100 / 1105
+help@wips.co.kr
+카톡상담 : @윕스
+Copyright ⓒ 2026 WIPS Co.,Ltd. All rights reserved.
