@@ -1,7 +1,15 @@
 === PATENT SKEY: 5424045001574 ===
 === SOURCE URL: http://newsd.wips.co.kr/wipslink/api/dusdshtm.wips?skey=5424045001574 ===
 
-=== DETAILED DESCRIPTION ===
+==============================
+=== CLAIMS (청구항) ===
+==============================
+
+청구항 정보를 추출하지 못했습니다.
+
+==============================
+=== DETAILED DESCRIPTION (상세 설명) ===
+==============================
 
 CROSS REFERENCE TO RELATED APPLICATIONS
 [0001] This application is a continuation of International Application No. PCT/EP2022/084803 (WO 2023/110583 A1), filed on Dec. 7, 2022, and claims benefit to German Patent Application No. DE 10 2022 121 053.7, filed on Aug. 19, 2022 and US Patent Application No. U.S. 63/290,760, filed on Dec. 17, 2021. The aforementioned applications are hereby incorporated by reference herein.

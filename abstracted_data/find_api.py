@@ -1,55 +1,79 @@
 import asyncio
 import json
+import re
 from playwright.async_api import async_playwright
 
 async def run():
-    async with async_playwright() as p:
-        # 브라우저 실행 (headless=False로 설정하여 실제 동작 확인 가능)
-        browser = await p.chromium.launch(headless=False)
-        page = await browser.new_page()
+    found_apis = []
+    all_responses = []
 
-        # 응답 가로채기 설정
+    async with async_playwright() as p:
+        browser = await p.chromium.launch(headless=True)
+        context = await browser.new_context(
+            user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+        )
+        page = await context.new_page()
+
         async def handle_response(response):
-            # 주로 API는 'fetch' 또는 'xhr' 타입임
             if response.request.resource_type in ["fetch", "xhr"]:
                 url = response.url
                 try:
-                    content_type = response.headers.get("content-type", "")
-                    
-                    # JSON 데이터이거나 URL에 'api' 또는 'wips'가 포함된 요청을 가로챔
-                    if "application/json" in content_type or "wips" in url:
-                        print(f"\n{'='*80}")
-                        print(f"[API URL Found]: {url}")
-                        print(f"[Method]: {response.request.method}")
-                        
-                        # 1. 나중에 requests 라이브러리에서 사용할 Headers 출력
-                        print("\n[Request Headers - 직접 호출 시 필요]:")
-                        print(json.dumps(response.request.headers, indent=2, ensure_ascii=False))
-                        
-                        # 2. POST 요청인 경우 데이터 확인
-                        if response.request.post_data:
-                            print(f"\n[Post Data]: {response.request.post_data}")
-
-                        # 3. 실제 들어오는 JSON 데이터의 구조 확인
-                        data = await response.json()
-                        print("\n[Response Data Preview (First 500 chars)]:")
-                        print(json.dumps(data, indent=2, ensure_ascii=False)[:500] + "...")
-                        print(f"{'='*80}\n")
-                except Exception:
+                    text = await response.text()
+                    all_responses.append({
+                        "url": url,
+                        "method": response.request.method,
+                        "headers": response.request.headers,
+                        "post_data": response.request.post_data,
+                        "body": text
+                    })
+                except:
                     pass
 
-        # 응답 이벤트 리스너 등록
         page.on("response", handle_response)
 
-        # 대상 URL로 이동
-        print("페이지 접속 중...")
         target_url = "http://newsd.wips.co.kr/wipslink/api/djpdshtm.wips?skey=2725040000516"
+        print(f"접속 중: {target_url}")
+
         await page.goto(target_url, wait_until="networkidle")
 
-        # 모든 데이터가 로드될 수 있도록 충분히 대기
-        await page.wait_for_timeout(10000)
+        # ']' 키를 두 번 눌러 '상세 설명'으로 이동 유도 (메모리 힌트)
+        print("']' 키를 눌러 상세 설명 페이지 로딩 유도...")
+        await page.keyboard.press("]")
+        await asyncio.sleep(2)
+        await page.keyboard.press("]")
+        await asyncio.sleep(5) # 로딩 대기
 
-        print("탐색 종료.")
+        # 수집된 응답들 분석
+        # [0001] 또는 【0001】 또는 {0001} 등 다양한 패턴 고려
+        target_pattern = re.compile(r"[\[【{]\d{4}[\]】}]")
+
+        for res in all_responses:
+            if target_pattern.search(res["body"]):
+                print(f"!!! 패턴 발견 !!! : {res['url']}")
+                found_apis.append(res)
+
+        if found_apis:
+            output = []
+            for api in found_apis:
+                api_copy = api.copy()
+                api_copy["body_preview"] = api["body"][:2000]
+                # HTML 태그 제거 후 텍스트만 추출해서 패턴 확인
+                clean_text = re.sub('<[^<]+?>', '', api["body"])
+                api_copy["clean_text_preview"] = clean_text[:2000]
+                del api_copy["body"]
+                output.append(api_copy)
+
+            with open("found_api_details.json", "w", encoding="utf-8") as f:
+                json.dump(output, f, indent=4, ensure_ascii=False)
+            print(f"\n패턴 발견 API {len(found_apis)}개 저장됨.")
+        else:
+            print("\n패턴 발견된 API 없음. (키 입력 후 재시도)")
+
+        # 전체 응답 백업 (디버깅용)
+        with open("all_xhr_responses.json", "w", encoding="utf-8") as f:
+            json.dump(all_responses, f, indent=4, ensure_ascii=False)
+
         await browser.close()
 
-asyncio.run(run())
+if __name__ == "__main__":
+    asyncio.run(run())

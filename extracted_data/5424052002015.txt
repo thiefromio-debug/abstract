@@ -1,7 +1,15 @@
 === PATENT SKEY: 5424052002015 ===
 === SOURCE URL: http://newsd.wips.co.kr/wipslink/api/dusdshtm.wips?skey=5424052002015 ===
 
-=== DETAILED DESCRIPTION ===
+==============================
+=== CLAIMS ===
+==============================
+
+FAILED TO EXTRACT CLAIMS
+
+==============================
+=== DESCRIPTION ===
+==============================
 
 [0001] The present application claims the benefit and priority of EP 18 382 467.1 filed on Jun. 25, 2018.
 [0002] The present disclosure relates to body side structural frames for vehicles and methods of manufacturing body side structural frames for vehicles.

@@ -1,7 +1,15 @@
 === PATENT SKEY: 3524493000209 ===
 === SOURCE URL: http://newsd.wips.co.kr/wipslink/api/dkrdshtm.wips?skey=3524493000209 ===
 
-=== DETAILED DESCRIPTION ===
+==============================
+=== CLAIMS ===
+==============================
+
+FAILED TO EXTRACT CLAIMS
+
+==============================
+=== DESCRIPTION ===
+==============================
 
 [기술분야]
 [0001] 본 발명은 표면 처리, 특히 표면 특성들을 변형하거나 또는 표면을 세정하는 기술 분야에 관한 것이다.

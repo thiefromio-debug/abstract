@@ -1,7 +1,15 @@
 === PATENT SKEY: 1524049003923 ===
 === SOURCE URL: http://newsd.wips.co.kr/wipslink/api/depdshtm.wips?skey=1524049003923 ===
 
-=== DETAILED DESCRIPTION ===
+==============================
+=== CLAIMS ===
+==============================
+
+FAILED TO EXTRACT CLAIMS
+
+==============================
+=== DESCRIPTION ===
+==============================
 
 BACKGROUND
 [0001] The invention relates generally to welding and, more specifically, to welding zinc-coated workpieces.

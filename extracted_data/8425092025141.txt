@@ -1,125 +1,119 @@
 === PATENT SKEY: 8425092025141 ===
-=== SOURCE URL: http://newsd.wips.co.kr/wipslink/api/dcndshtm.wips?skey=8425092025141 ===
 
-=== DETAILED DESCRIPTION ===
+==============================
+=== CLAIMS (청구항) ===
+==============================
 
-一种微通道喷锌铝扁管表面喷锌工艺
-技术领域
+청구항을 추출하지 못했습니다.
 
-[0001] 本发明属于电弧喷锌技术领域，具体为一种微通道喷锌铝扁管表面喷锌工艺。
+==============================
+=== DETAILED DESCRIPTION (상세 설명) ===
+==============================
 
-背景技术
+technical field of electric arc zinc spraying, and particularly relates to a micro-channel zinc spraying aluminum flat pipe surface zinc spraying technology, a used zinc spraying device comprises a spraying box, a cooling component and a preheating component, the cooling component is arranged at the right end of the interior of the spraying box, and the preheating component is arranged at the left end of the interior of the spraying box. According to the cooling device, the aluminum flat pipe subjected to electric arc zinc spraying is cooled through the cooling component, hot air flow is not generated through heat exchange, the hot air flow is made to conduct preheating treatment on the aluminum flat pipe not subjected to zinc spraying through the preheating component, and heat is reused; meanwhile, the screw pitch of the spiral spoiler is gradually reduced leftwards, that is, the airflow is gradually reduced along a spiral leftward channel of the spiral spoiler, so that the flowing speed of the airflow is gradually increased, the speed of hot airflow entering the preheating sleeve through the air inlet pipe, the purification box and the air outlet pipe is increased, and heat loss of the hot airflow in the flowing transmission process can be reduced; and the preheating effect on the aluminum flat pipe is improved.
 
-[0002] 热喷锌技术是采用燃烧火焰、电弧等离子弧等作为热源，将喷金属锌加热到塑态和熔融状态，同时在高速气流加速作用下，使金属锌呈雾化颗粒束冲击到经过预处理机体的表面，随之激冷并不断地层积而形成的涂层工艺方法。该工艺通常用于铝扁管的表面处理，主要通过热喷涂里的电弧喷涂将锌丝熔断后通过压缩空气吹到铝扁管表面，温度由4000℃急速下降冷却形成致密锌涂层，覆盖在铝扁管表面。该涂层可以有效地将铝与外部隔绝，保证其不受损坏，由于金属锌具有很好的耐大气腐蚀特性。涂层与基体集合牢固，涂层寿命长，长期的经济效益好。
 
-[0003] 经过检索，公开号为CN112647036A的中国专利公开了一种空调铝扁管电弧喷锌装置，能够根据涂层的状态对自动对电弧喷枪的喷涂角度进行调整，并且铝扁管经过冷却水槽能够起到有效的降温，铝扁管通过擦拭轮时，边角毛刷轮能够对铝扁管的两侧进行清洁，以彻底对铝扁管四周表面进行清洁作业。上述装置通过冷却水槽进行冷却，随着冷却过程中热量的交换不断，导致水槽内部的冷却水温度上升，冷却效率逐渐降低，而被冷却水吸收的热量也未能被再次利用，导致热能被浪费。
 
-发明内容
+本发明属于电弧喷锌技术领域，具体为一种微通道喷锌铝扁管表面喷锌工艺，所用喷锌装置包括喷涂箱、冷却部件和预热部件，冷却部件设置在喷涂箱的内部右端，预热部件设置在喷涂箱的内部左端。通过冷却部件对电弧喷锌后的铝扁管进行冷却降温，并未通过热量交换产生热气流，使热气流通过预热部件对未喷锌的铝扁管进行预热处理，对热量进行再次利用，由于冷却装置中冷却套的左端逐渐缩小，同时螺旋扰流片的螺距向左逐渐减小，即气流沿螺旋扰流片螺旋向左的通道逐渐减小，因此气流的流速逐渐加快，从而使热气流通过进风管、净化箱及出风管进入至预热套内部的速度加快，可减少热气流在流动传输过程中的热量损耗，提高对铝扁管的预热效果。
 
-[0004] 本发明的目的是提供一种微通道喷锌铝扁管表面喷锌工艺，以解决上述背景技术中指出的缺陷。
+중국어
+한국어
+발명의 설명 새창보기
+도면
+개별도면 전체 9
+열기
 
-[0005] 本发明提供如下技术方案：一种微通道喷锌铝扁管表面喷锌工艺，包括以下步骤：
 
-[0006] S1:将铝扁管从喷锌装置的喷涂箱(100)左端的入口伸入，使铝扁管依次从预热套(303)的内部穿过后，然后从止密圈(102)的内部穿过，再从挡流圈(2004)的内部穿过后，贯穿螺旋扰流片(206)的内部，最终从冷却套(201)右端的出口穿出；
+대표도면
 
-[0007] S2:加工时，由外部的牵引设备牵引铝扁管缓慢地向右匀速移动，四个电弧喷头(500)共同对铝扁管的表面进行电弧喷锌作业，随着铝扁管向右移动，被喷锌的铝扁管段向右移动至冷却套(201)的内部后，通过两个风机(208)鼓风，并通过风道(209)及开设的进风口(207)将风送入冷却套(201)的内部，使得冷却套(201)内部产生向左流向的气流，气流通过螺旋扰流片(206)呈螺旋式向左流动，流动的冷气流不断地吸收刚喷锌的铝扁管表面的热量；
 
-[0008] S3:当热气流通过净化箱(301)内部的过程中，首先气流中的灰尘及一些脱落的锌粉通过多个上下分布的预热部件(300)时，由于预热部件(300)产生高压电场，气流在高压电场的作用下被电离，产生阳离子和阴离子，灰尘颗粒和锌粉吸附阴离子带负电，带有负电的灰尘颗粒和锌粉吸在随气流向左流动的过程中被多个带有正电荷的吸附极板(308)吸附，将气流中的灰尘和锌粉进行拦截过滤，避免其随气流一同进入预热套(303)的内部；
+도면 0001
 
-[0009] 所述喷锌装置包括喷涂箱、冷却部件和预热部件，所述冷却部件设置在喷涂箱的内部右端，所述预热部件设置在喷涂箱的内部左端，且所述预热部件贯穿喷涂箱的顶部及底部；
 
-[0010] 所述冷却部件包括固定安装在喷涂箱内部右端的冷却套，所述冷却套的左端固定安装有导流罩，所述导流罩的左端固定安装有站板，所述站板固定安装在喷涂箱的内壁上，所述站板的右侧面固定安装有导流块，所述冷却套的内部固定安装有螺旋扰流片，所述冷却套的顶部右端开设有进风口，所述进风口的顶部固定安装有风道，所述风道的前部及后部均固定安装有风机，导流罩的顶部及底部均开设有气孔，所述导流罩的顶部及底部均固定安装有进风管；
+도면 0002
 
-[0011] 所述预热部件包括固定安装在喷涂箱顶部以及固定安装在喷涂箱底部的两个净化箱，所述净化箱的左端均固定安装有出风管，两个所述出风管相靠近的一端共同固定安装有预热套，所述预热套位于喷涂箱的内部左端。
 
-[0012] 作为本发明优选的方案，所述冷却套的内壁尺寸向左逐渐减小，所述螺旋扰流片的尺寸向左逐渐减小，且所述螺旋扰流片的螺距向左逐渐减小，所述冷却套右端开设有与铝扁管规格相适配的出料口。
+도면 0003
+대표청구항
 
-[0013] 作为本发明优选的方案，所述导流罩的内壁尺寸向左逐渐增大，所述导流块的外壁尺寸向左逐渐增大，所述导流块的内壁固定安装有挡流圈，所述挡流圈的内壁规格与铝扁管外壁规格相适配，所述站板的中部开设有贯穿孔，所述贯穿孔内壁尺寸大于挡流圈的内壁尺寸。
+청구항 0001항 (대표청구항)
 
-[0014] 作为本发明优选的方案，所述预热部件还包括除尘组件，所述除尘组件包括固定安装在净化箱内部的多个电晕极片，多个所述电晕极片呈上下等间距分布，且多个所述电晕极片位于净化箱内部靠近进风管的一侧，所述净化箱远离喷涂箱的一侧面开设有多个前后等间距分布的插槽，所述插槽的内部均插接有吸附极板，所述吸附极板均延伸至净化箱的内部，多个所述吸附极板远离喷涂箱的一侧面共同固定安装有固定盖板，所述固定盖板通过螺栓紧固在净化箱的表面。
 
-[0015] 作为本发明优选的方案，所述预热套的外围套设有保温套，所述保温套为陶瓷材料制成。
+1. A micro-channel zinc-spraying aluminum flat tube surface zinc spraying process comprises the following steps:
+s1, an aluminum flat tube stretches into an inlet at the left end of a spraying box (100) of a zinc spraying device, the aluminum flat tube sequentially passes through the inside of a preheating sleeve (303), then passes through the inside of a sealing ring (102), passes through the inside of a flow blocking ring (2004), then passes through the inside of a spiral spoiler (206), and finally passes out of an outlet at the right end of a cooling sleeve (201);
+S2, during processing, an aluminum flat pipe is pulled by external traction equipment to slowly move rightwards at a uniform speed, four arc spray heads (500) jointly perform arc zinc spraying operation on the surface of the aluminum flat pipe, along with the rightward movement of the aluminum flat pipe, the zinc sprayed aluminum flat pipe section moves rightwards to the inside of a cooling sleeve (201), air is blown by two fans (208), and is sent into the inside of the cooling sleeve (201) through an air duct (209) and an air inlet (207), so that air flow flowing leftwards is generated in the cooling sleeve (201), the air flow flows leftwards in a spiral manner through a spiral spoiler (206), and the flowing cold air flow continuously absorbs heat on the surface of the aluminum flat pipe which is just sprayed with zinc;
+S3, when the hot air flow passes through the interior of the purifying box (301), firstly dust and some fallen zinc powder in the air flow pass through a plurality of preheating components (300) which are distributed up and down, as the preheating components (300) generate a high-voltage electric field, the air flow is ionized under the action of the high-voltage electric field to generate cations and anions, the dust particles and the zinc powder adsorb the anions and are negatively charged, the dust particles and the zinc powder with the negative charge are adsorbed by a plurality of adsorption polar plates (308) with positive charges in the process of flowing leftwards along with the air flow, and the dust and the zinc powder in the air flow are intercepted and filtered so as to prevent the dust and the zinc powder from entering the interior of the preheating sleeve (303) along with the air flow;
+the zinc spraying device comprises a spraying box (100), a cooling component (200) and a preheating component (300), and is characterized in that the cooling component (200) is arranged at the right end of the inside of the spraying box (100), the preheating component (300) is arranged at the left end of the inside of the spraying box (100), and the preheating component (300) penetrates through the top and the bottom of the spraying box (100);
+The cooling component (200) comprises a cooling sleeve (201) fixedly arranged at the right end inside the spraying box (100), a guide cover (202) is fixedly arranged at the left end of the cooling sleeve (201), a standing plate (203) is fixedly arranged at the left end of the guide cover (202), the standing plate (203) is fixedly arranged on the inner wall of the spraying box (100), a guide block (204) is fixedly arranged on the right side surface of the standing plate (203), a spiral spoiler (206) is fixedly arranged inside the cooling sleeve (201), an air inlet (207) is formed in the right end of the top of the cooling sleeve (201), an air channel (209) is fixedly arranged at the top of the air inlet (207), fans (208) are fixedly arranged at the front part and the rear part of the air channel (209), air holes (205) are formed in the top and the bottom of the guide cover (202), and an air inlet pipe (2010) is fixedly arranged at the top and the bottom of the guide cover (202);
+The preheating component (300) comprises two purifying boxes (301) fixedly installed at the top of the spraying box (100) and at the bottom of the spraying box (100), air outlet pipes (302) are fixedly installed at the left ends of the purifying boxes (301), preheating sleeves (303) are fixedly installed at one ends, close to each other, of the two air outlet pipes (302), and the preheating sleeves (303) are located at the left end of the inside of the spraying box (100).
 
-[0016] 作为本发明优选的方案，所述喷涂箱的外壁通过螺纹固定安装有四个电弧喷头，所述电弧喷头分别位于喷涂箱的四角处，且四个所述电弧喷头均延伸至喷涂箱的内部，四个所述电弧喷头位于站板的左部。
 
-[0017] 作为本发明优选的方案，所述喷涂箱的内部固定安装有隔板，所述隔板位于电弧喷头的左部，所述隔板位于保温套的右部，所述隔板的内壁固定安装有止密圈，所述止密圈的内部尺寸与铝扁管的外壁尺寸相适配。
+1.一种微通道喷锌铝扁管表面喷锌工艺，包括以下步骤：
+S1:将铝扁管从喷锌装置的喷涂箱(100)左端的入口伸入，使铝扁管依次从预热套(303)的内部穿过后，然后从止密圈(102)的内部穿过，再从挡流圈(2004)的内部穿过后，贯穿螺旋扰流片(206)的内部，最终从冷却套(201)右端的出口穿出；
+S2:加工时，由外部的牵引设备牵引铝扁管缓慢地向右匀速移动，四个电弧喷头(500)共同对铝扁管的表面进行电弧喷锌作业，随着铝扁管向右移动，被喷锌的铝扁管段向右移动至冷却套(201)的内部后，通过两个风机(208)鼓风，并通过风道(209)及开设的进风口(207)将风送入冷却套(201)的内部，使得冷却套(201)内部产生向左流向的气流，气流通过螺旋扰流片(206)呈螺旋式向左流动，流动的冷气流不断地吸收刚喷锌的铝扁管表面的热量；
+S3:当热气流通过净化箱(301)内部的过程中，首先气流中的灰尘及一些脱落的锌粉通过多个上下分布的预热部件(300)时，由于预热部件(300)产生高压电场，气流在高压电场的作用下被电离，产生阳离子和阴离子，灰尘颗粒和锌粉吸附阴离子带负电，带有负电的灰尘颗粒和锌粉吸在随气流向左流动的过程中被多个带有正电荷的吸附极板(308)吸附，将气流中的灰尘和锌粉进行拦截过滤，避免其随气流一同进入预热套(303)的内部；
+所述喷锌装置包括喷涂箱(100)、冷却部件(200)和预热部件(300)，其特征在于：所述冷却部件(200)设置在喷涂箱(100)的内部右端，所述预热部件(300)设置在喷涂箱(100)的内部左端，且所述预热部件(300)贯穿喷涂箱(100)的顶部及底部；
+所述冷却部件(200)包括固定安装在喷涂箱(100)内部右端的冷却套(201)，所述冷却套(201)的左端固定安装有导流罩(202)，所述导流罩(202)的左端固定安装有站板(203)，所述站板(203)固定安装在喷涂箱(100)的内壁上，所述站板(203)的右侧面固定安装有导流块(204)，所述冷却套(201)的内部固定安装有螺旋扰流片(206)，所述冷却套(201)的顶部右端开设有进风口(207)，所述进风口(207)的顶部固定安装有风道(209)，所述风道(209)的前部及后部均固定安装有风机(208)，导流罩(202)的顶部及底部均开设有气孔(205)，所述导流罩(202)的顶部及底部均固定安装有进风管(2010)；
+所述预热部件(300)包括固定安装在喷涂箱(100)顶部以及固定安装在喷涂箱(100)底部的两个净化箱(301)，所述净化箱(301)的左端均固定安装有出风管(302)，两个所述出风管(302)相靠近的一端共同固定安装有预热套(303)，所述预热套(303)位于喷涂箱(100)的内部左端。
 
-[0018] 作为本发明优选的方案，所述预热套的内壁尺寸大于铝扁管的外壁尺寸，且所述预热套的内壁与铝扁管的外壁之间间隙为1.5～1.8cm。
+중국어
+한국어
+청구항 새창보기 (10)
+특허분류코드
+특허분류
+Current CPC
+Ver.2016 : 
+C23C-0004/131 
+Ver.2013 : 
+C23C-0004/08  ;  
+C23C-0004/16 
 
-[0019] 作为本发明优选的方案，所述喷涂箱的前壁及后壁之间转动安装有多个左右分布的托辊，所述托辊的高度与冷却套的高度以及预热套的高度相适配。
+IPC
+Ver.2016 : 
+C23C-004/131
+C23C-004/08  ; 
+C23C-004/16
+발명자
+Xue Cheng ; Wu Guoliang ; Huang Yanchao ; Hou Jiang
+薛成 ; 吴国良 ; 黄彦超 ; 侯江
+대리인
+威海恒誉润达专利代理事务所(普通合伙) 37260(孙佳)
+최우선출원
+CN 2024-11739124 (2024.11.29)
+법적상태
+일자	종류	설명
+2025.03.14	SE01
 
-[0020] 作为本发明优选的方案，所述冷却套、导流罩、进风管、净化箱及出风管的外围均包裹有隔热层。
+ENTRY INTO FORCE OF REQUEST FOR SUBSTANTIVE EXAMINATION
 
-[0021] 与现有技术相比，本发明的有益效果为：
 
-[0022] 1、本发明通过冷却部件对电弧喷锌后的铝扁管进行冷却降温，并未通过热量交换产生热气流，使热气流通过预热部件对未喷锌的铝扁管进行预热处理，对热量进行再次利用，由于冷却装置中冷却套的左端逐渐缩小，同时螺旋扰流片的螺距向左逐渐减小，即气流沿螺旋扰流片螺旋向左的通道逐渐减小，因此气流的流速逐渐加快，从而使热气流通过进风管、净化箱及出风管进入至预热套内部的速度加快，可减少热气流在流动传输过程中的热量损耗，提高对铝扁管的预热效果。
 
-[0023] 2、本发明通过在预热部件中设置除尘组件，使热气流通过净化箱内部的过程中，首先气流中的灰尘及一些脱落的锌粉通过多个上下分布的预热部件时，由于预热部件产生高压电场，气流在高压电场的作用下被电离，产生阳离子和阴离子，灰尘颗粒和锌粉吸附阴离子带负电，带有负电的灰尘颗粒和锌粉在随气流向左流动的过程中被多个带有正电荷的吸附极板吸附，对气流中的灰尘和锌粉进行拦截过滤，防止其随气流一同进入预热套的内部。
+2025.02.25	PB01
 
-[0024] 3、本发明冷却套的左端逐渐缩小，同时螺旋扰流片的螺距向左逐渐减小，即气流沿螺旋扰流片螺旋向左的通道逐渐减小，因此气流的流速逐渐加快，在较快的流速作用下可以将部分附着在电晕极片表面的灰尘及锌粉吹落，保证后续进入净化箱内部的灰尘及锌能够与电晕极片良好接触而带电。
+PUBLICATION
 
-附图说明
 
-[0025] 图1为本发明所用喷锌装置的第一视角立体结构示意图；
+Code Color : Green = Positive action,  Red = Negative action,  Black = Neutral action
 
-[0026] 图2为本发明所用喷锌装置的第二视角立体结构示意图；
+패밀리
+전체 1 건
+ WIPS Extended
+ EPO Simple
+ 중복제거
+1/1
+이전
+다음
+No	원문	문헌번호	일자	발명의 명칭	IPC(Main)	CPC(Main)
+1
+PDF
+	CN 119506759 A 	2025.02.25	Process for spraying zinc on surface of micro-channel zinc-sprayed aluminum flat tube
+C23C-004/131
+IPC아이콘
 
-[0027] 图3为本发明所用喷锌装置喷涂箱的剖面立体结构示意图；
-
-[0028] 图4为本发明所用喷锌装置喷涂箱的内部立体结构示意图；
-
-[0029] 图5为本发明所用喷锌装置冷却套及预热套的剖面立体结构示意图；
-
-[0030] 图6为本发明所用喷锌装置冷却套的内部立体结构示意图；
-
-[0031] 图7为本发明所用喷锌装置净化箱的剖面立体结构示意图；
-
-[0032] 图8为本发明所用喷锌装置风道的立体结构示意图；
-
-[0033] 图9为本发明图5中A处的放大结构示意图。
-
-[0034] 图中：100、喷涂箱；101、隔板；102、止密圈；200、冷却部件；201、冷却套；202、导流罩；203、站板；204、导流块；2004、挡流圈；205、气孔；206、螺旋扰流片；207、进风口；208、风机；209、风道；2010、进风管；300、预热部件；301、净化箱；302、出风管；303、预热套；304、保温套；305、电晕极片；306、插槽；307、固定盖板；308、吸附极板；500、电弧喷头；600、托辊。
-
-具体实施方式
-
-[0035] 下面将结合本发明实施例中的附图，对本发明实施例中的技术方案进行清楚、完整地描述，显然，所描述的实施例仅仅是本发明一部分实施例，而不是全部的实施例。基于本发明中的实施例，本领域普通技术人员在没有做出创造性劳动前提下所获得的所有其他实施例，都属于本发明保护的范围。
-
-[0036] 请参阅图1-图9，本发明提供的技术方案，具体包括以下实施例：
-
-[0037] 实施例一
-
-[0038] 一种微通道喷锌铝扁管表面喷锌工艺，所用喷锌装置包括喷涂箱100、冷却部件200和预热部件300，冷却部件200设置在喷涂箱100的内部右端，预热部件300设置在喷涂箱100的内部左端，且预热部件300贯穿喷涂箱100的顶部及底部；
-
-[0039] 冷却部件200包括固定安装在喷涂箱100内部右端的冷却套201，冷却套201的左端固定安装有导流罩202，导流罩202的左端固定安装有站板203，站板203固定安装在喷涂箱100的内壁上，站板203的右侧面固定安装有导流块204，冷却套201的内部固定安装有螺旋扰流片206，冷却套201的顶部右端开设有进风口207，进风口207的顶部固定安装有风道209，风道209的前部及后部均固定安装有风机208，导流罩202的顶部及底部均开设有气孔205，导流罩202的顶部及底部均固定安装有进风管2010，冷却套201的内壁尺寸向左逐渐减小，螺旋扰流片206的尺寸向左逐渐减小，且螺旋扰流片206的螺距向左逐渐减小，冷却套201右端开设有与铝扁管规格相适配的出料口，导流罩202的内壁尺寸向左逐渐增大，导流块204的外壁尺寸向左逐渐增大，导流块204的内壁固定安装有挡流圈2004，挡流圈2004的内壁规格与铝扁管外壁规格相适配，站板203的中部开设有贯穿孔，贯穿孔内壁尺寸大于挡流圈2004的内壁尺寸；
-
-[0040] 预热部件300包括固定安装在喷涂箱100顶部以及固定安装在喷涂箱100底部的两个净化箱301，净化箱301的左端均固定安装有出风管302，两个出风管302相靠近的一端共同固定安装有预热套303，预热套303位于喷涂箱100的内部左端，预热套303的内壁尺寸大于铝扁管的外壁尺寸，且预热套303的内壁与铝扁管的外壁之间间隙为1.5～1.8cm，冷却套201、导流罩202、进风管2010、净化箱301及出风管302的外围均包裹有隔热层；
-
-[0041] 喷涂箱100的外壁通过螺纹固定安装有四个电弧喷头500，电弧喷头500分别位于喷涂箱100的四角处，且四个电弧喷头500均延伸至喷涂箱100的内部，四个电弧喷头500位于站板203的左部；
-
-[0042] 本实施例具体为，将铝扁管从喷涂箱100左端的入口伸入，使铝扁管依次从预热套303的内部穿过后，然后从止密圈102的内部穿过，再从挡流圈2004的内部穿过后，贯穿螺旋扰流片206的内部，最终从冷却套201右端的出口穿出，由外部的牵引设备牵引铝扁管缓慢地向右匀速移动，四个电弧喷头500共同对铝扁管的表面进行电弧喷锌作业，随着铝扁管向右移动，被喷锌的铝扁管段向右移动至冷却套201的内部后，通过两个风机208鼓风，并通过风道209及开设的进风口207将风送入冷却套201的内部，使得冷却套201内部产生向左流向的气流，气流通过螺旋扰流片206呈螺旋式向左流动，流动的冷气流不断地吸收刚喷锌的铝扁管表面的热量，一方面使铝扁管快速的降温，另一方面冷气流吸收铝扁管的热量后，由于热量交换使得气流稳定地上升变成热气流，然后通过导流罩202及导流块204之间，经两个气孔205及两个进风管2010流动至净化箱301的内部，再通过出风管302流动至预热套303的内部，热气沿预热套303内壁与铝扁管外壁的间隙流动，从而对未喷锌的铝扁管的表面进行预热处理，避免热量浪费。
-
-[0043] 需要额外说明的是，由于冷却套201的左端逐渐缩小，同时螺旋扰流片206的螺距向左逐渐减小，即气流沿螺旋扰流片206螺旋向左的通道逐渐减小，因此气流的流速逐渐加快，从而使热气流通过进风管2010、净化箱301及出风管302进入至预热套303内部的速度加快，可减少热气流在流动传输过程中的热量损耗，提高对铝扁管的预热效果。
-
-[0044] 实施例二
-
-[0045] 预热部件300还包括除尘组件，除尘组件包括固定安装在净化箱301内部的多个电晕极片305，多个电晕极片305呈上下等间距分布，且多个电晕极片305位于净化箱301内部靠近进风管2010的一侧，净化箱301远离喷涂箱100的一侧面开设有多个前后等间距分布的插槽306，插槽306的内部均插接有吸附极板308，吸附极板308均延伸至净化箱301的内部，多个吸附极板308远离喷涂箱100的一侧面共同固定安装有固定盖板307，固定盖板307通过螺栓紧固在净化箱301的表面；
-
-[0046] 本实施例具体为，当热气流通过净化箱301内部的过程中，首先气流中的灰尘及一些脱落的锌粉通过多个上下分布的预热部件300时，由于预热部件300产生高压电场，气流在高压电场的作用下被电离，产生阳离子和阴离子，灰尘颗粒和锌粉吸附阴离子带负电，带有负电的灰尘颗粒和锌粉在随气流向左流动的过程中被多个带有正电荷的吸附极板308吸附，对气流中的灰尘和锌粉进行拦截过滤，避免其随气流一同进入预热套303的内部，同时，由于冷却套201的左端逐渐缩小，同时螺旋扰流片206的螺距向左逐渐减小，即气流沿螺旋扰流片206螺旋向左的通道逐渐减小，因此气流的流速逐渐加快，在较快的流速作用下可以将部分附着在电晕极片305表面的灰尘及锌粉吹落，保证后续进入净化箱301内部的灰尘及锌能够与电晕极片305进行良好接触而带电。
-
-[0047] 进一步的，预热套303的外围套设有保温套304，保温套304为陶瓷材料制成，喷涂箱100的内部固定安装有隔板101，隔板101位于电弧喷头500的左部，隔板101位于保温套304的右部，隔板101的内壁固定安装有止密圈102，止密圈102的内部尺寸与铝扁管的外壁尺寸相适配；通过设置保温套304起到隔热保温的作用，避免进入至预热套303内部的热量快速散发，以步保证对铝扁管的预热效果；通过设置隔板101及止密圈102，将预热套303与电弧喷头500之间隔离开，避免喷锌的过程中对保温套304及预热套303的内部造成污染。
-
-[0048] 实施例三
-
-[0049] 喷涂箱100的前壁及后壁之间转动安装有多个左右分布的托辊600，托辊600的高度与冷却套201的高度以及预热套303的高度相适配；
-
-[0050] 本实施例具体为，通过设置托辊600，对铝扁管的底部起支撑作用，使铝扁管可以很好地向右移动，同时避免铝扁管向下弯曲。
-
-[0051] 本方案将铝扁管从喷涂箱100左端的入口伸入，使铝扁管依次从预热套303的内部穿过后，然后从止密圈102的内部穿过，再随从挡流圈2004的内部穿过后，贯穿螺旋扰流片206的内部，最终从冷却套201右端的出口穿出；
-
-[0052] 加工时，由外部的牵引设备牵引铝扁管缓慢地向右匀速移动，四个电弧喷头500共同对铝扁管的表面进行电弧喷锌作业，随着铝扁管向右移动，被喷锌的铝扁管段向右移动至冷却套201的内部后，通过两个风机208鼓风，并通过风道209及开设的进风口207将风送入冷却套201的内部，使得冷却套201内部产生向左流向的气流，气流通过螺旋扰流片206呈螺旋式向左流动，流动的冷气流不断地吸收刚喷锌的铝扁管表面的温度，一方面使铝扁管快速的降温，另一方面冷气流吸收铝扁管的温度后，由于热量交换导致冷气流稳定地上升变成热气流，然后通过导流罩202及导流块204之间，经过两个气孔205及两个进风管2010流动至净化箱301的内部，再通过出风管302流动至预热套303的内部，热气沿预热套303内壁与铝扁管外壁的间隙流动，从而对未喷锌的铝扁管的表面进行预热处理，避免热量浪费；
-
-[0053] 需要额外说明的是，冷却套201的左端逐渐缩小，同时螺旋扰流片206的螺距向左逐渐减小，即气流沿螺旋扰流片206螺旋向左的通道逐渐减小，因此气流的流速逐渐加快，从而使热气流通过进风管2010、净化箱301及出风管302进入至预热套303内部的速度加快，可减少热气流在流动传输过程中的热量损耗，提高对铝扁管的预热效果；
-
-[0054] 当热气流通过净化箱301内部的过程中，首先气流中的灰尘及一些脱落的锌粉通过多个上下分布的预热部件300时，由于预热部件300产生高压电场，气流在高压电场的作用下被电离，产生阳离子和阴离子，灰尘颗粒和锌粉吸附阴离子带负电，带有负电的灰尘颗粒和锌粉在随气流向左流动的过程中被多个带有正电荷的吸附极板308吸附，对气流中的灰尘和锌粉进行拦截过滤，避免其随气流一同进入预热套303的内部，同时，由于冷却套201的左端逐渐缩小，同时螺旋扰流片206的螺距向左逐渐减小，即气流沿螺旋扰流片206螺旋向左的通道逐渐减小，因此气流的流速逐渐加快，在较快的流速作用下可以将部分附着在电晕极片305表面的灰尘及锌粉吹落，保证后续进入净化箱301内部的灰尘及锌能够与电晕极片305进行良好接触而带电。
-
-[0055] 尽管已经示出和描述了本发明的实施例，对于本领域的普通技术人员而言，可以理解在不脱离本发明的原理和精神的情况下可以对这些实施例进行多种变化、修改、替换和变形。
+C23C-0004/131
+CPC아이콘
+Basic Patent
+기타 57개국
+패밀리 법적상태
+패밀리 법적상태 보기
+Tel : 02-726-1100 / 1105
